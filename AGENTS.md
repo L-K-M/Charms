@@ -43,7 +43,7 @@ CODE_SIGN_IDENTITY="Apple Development" ./scripts/build-app.sh   # keeps the Acce
 ./scripts/e2e.sh                          # drives dist/Charms.app with real keys against CharmsHarness
 ```
 
-`scripts/e2e.sh` types on the real keyboard and screen for about two minutes and
+`scripts/e2e.sh` types on the real keyboard and screen for about four minutes and
 needs a terminal with the Accessibility permission; it exits 77 when it
 cannot run. It is not part of CI. Run it after changes to the picker, the
 session flow, insertion or the typed trigger. Three environment variables

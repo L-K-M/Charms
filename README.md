@@ -157,7 +157,7 @@ swift run CharmsCatalogTool check # the committed catalogue matches the pinned d
 a test window (`CharmsHarness`), and checks insertion, Undo, Escape, copying,
 placement, the typed `::` and the password-field rule with real key events. It
 needs a terminal that has the Accessibility permission and uses the keyboard
-for about two minutes, including checks in every theme and both explicit
+for about four minutes, including checks in every theme and both explicit
 appearances.
 
 `scripts/build.sh` / `scripts/release.sh` wrap the shared `lkm-build` /

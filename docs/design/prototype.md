@@ -101,13 +101,20 @@ CODE_SIGN_IDENTITY="Apple Development" ./scripts/build-app.sh
 ./scripts/e2e.sh
 ```
 
-All 27 scenarios passed on the final build. The five additions check stable
+The original 27-scenario run passed. Its five additions check stable
 selection under hover, empty-result recovery, exact insertion without preview
 guides, a non-actionable proof, and keyboard access to character actions. The
 last test exposed an existing macOS 27 routing bug: Control-Return reached the
 native query menu instead. It was observed failing before the panel-level
 key-equivalent fix and passing afterwards. The mouse coordinates in the
 script follow the new 432 by 472 point panel and its section heading.
+
+The completed theme build passes 354 unit tests and all 33 real-input
+scenarios. Six theme/appearance additions each repeat navigation, Escape,
+joined emoji, preview guides and keyboard menus. Settings persistence and
+reset were exercised through the actual controls; live system appearance
+changes preserved the open query and proof. The default Settings window
+shows the whole example and reset action. See compatibility for exact scope.
 
 Motion review found a real defect in the first version: identity replacement
 and opacity transitions could leave the paper briefly blank during rapid

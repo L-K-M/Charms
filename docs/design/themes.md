@@ -18,6 +18,16 @@ Changes apply immediately and save automatically. They survive relaunch;
 The example in Settings uses the actual proof and block components, with a
 fixed arrow specimen. It never opens a session or reads a document.
 
+![Blueprint in light appearance](impression-blueprint.png)
+
+![Plum in dark appearance](impression-plum.png)
+
+![Appearance settings with the actual proof and block preview](appearance-settings.png)
+
+These are captures of the signed universal app, using isolated storage and
+staged text on macOS 27.0.1. The settings capture shows Plum/Dark. The original
+Impression images and keyboard demonstration remain in [the guide](prototype.md).
+
 All themes retain:
 
 - The native query field, selection, composition, Undo and text caret.

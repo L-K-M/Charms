@@ -6,7 +6,7 @@
 #
 # Needs a built app (scripts/build-app.sh) and a terminal that has the
 # Accessibility permission, which the app started from here inherits. It
-# types and moves windows on the real screen for about two minutes: do not use
+# types and moves windows on the real screen for about four minutes: do not use
 # the keyboard meanwhile. Charms runs with CHARMS_HOME pointing at a temporary
 # directory, so your own favourites and settings are neither read nor changed.
 #
