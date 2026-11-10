@@ -20,8 +20,13 @@ struct PickerMenuAction: Identifiable {
 final class PickerViewModel: ObservableObject {
     static let columns = 8
     static let cellSize: CGFloat = 44
-    static let cellSpacing: CGFloat = 2
-    static let padding: CGFloat = 12
+    static let cellSpacing: CGFloat = 6
+    static let padding: CGFloat = 19
+    static let mastheadHeight: CGFloat = 32
+    static let searchHeight: CGFloat = 46
+    static let proofHeight: CGFloat = 154
+    static let footerHeight: CGFloat = 44
+    static let sectionHeadingHeight: CGFloat = 12
 
     @Published var sections: [PickerSection] = []
     @Published var selection: GridPosition?
@@ -29,6 +34,9 @@ final class PickerViewModel: ObservableObject {
     /// query text.
     @Published var isNavigating = false
     @Published var hover: GridPosition?
+    /// A read-only projection of SessionMachine's pending choice. Never
+    /// drives dispatch or adds an animation deadline to the release gate.
+    @Published var pressedItem: PickerItem?
     @Published var canInsert = false
     /// A short message that replaces the key hints, for example after the
     /// target changed.
@@ -39,6 +47,7 @@ final class PickerViewModel: ObservableObject {
     var selectedCellFrame: CGRect?
 
     var onActivate: ((GridPosition) -> Void)?
+    var onCopySelection: (() -> Void)?
     var menuActions: ((GridPosition) -> [PickerMenuAction])?
 
     var navigator: GridNavigator {

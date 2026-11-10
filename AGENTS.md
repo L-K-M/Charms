@@ -85,6 +85,13 @@ not a mockup or a real document.
 - The session state table (`SessionMachine`) is the single authority on what
   the picker may do next. The app reports events to it and performs the
   effects it returns; it does not keep a second notion of state.
+- The **Impression** picker prototype is documented in
+  `docs/design/impression.md` and `docs/design/prototype.md`. Its two-scale
+  proof uses catalogue previews, not document text. `pressedItem` is only a
+  rendering of the machine's frozen choice; never delay dispatch for motion.
+  Keep the native search editor, exact scalar readout and hover/selection
+  separation. If picker geometry changes, update the real mouse coordinates
+  in `scripts/e2e.sh` and recapture the prototype images.
 
 ## Critical Constraints
 

@@ -13,6 +13,29 @@ What sets it apart is where it opens. The picker appears on the display that
 holds your typing, right beside the text cursor, and never on top of the line
 you are writing, wherever the mouse happens to be.
 
+### Impression: the composing picker
+
+Choose a character on a little type block. See it large on a paper proof and
+at writing size between “Aa” and “Bb”. Then press Return and keep writing.
+The specimen is demonstration text, not a reading of your document. The name
+and exact Unicode sequence sit beside the proof; guides for spaces and
+combining marks are labelled and never inserted.
+
+![The Impression picker, searching the real character catalogue for arrows](docs/design/impression-arrows.png)
+
+The raised selection and short stamping response give choosing a character
+some weight, without adding a step or delaying insertion. Hover never changes
+what Return inserts. Motion follows Reduce Motion; the opaque paper and
+composing tray do not depend on transparency. Sound is intentionally absent.
+
+This is an interaction prototype, not a new release. Read the
+[three concepts and design decision](docs/design/impression.md),
+[run the prototype](docs/design/prototype.md), or
+[watch the native keyboard demonstration](docs/design/impression-demo.mp4).
+Settings, the catalogue and insertion policy are unchanged.
+
+### Released picker (v0.1.0)
+
 ![Charms searching for arrows beside the typing position in TextEdit](docs/screenshots/picker-arrows.png)
 
 ## Using it
@@ -95,8 +118,10 @@ delete the app, and optionally delete `~/Library/Application Support/Charms`
 (favourites and recents) and the Accessibility entry in System Settings.
 
 What has been tested, and on which systems, is recorded in
-[docs/compatibility.md](docs/compatibility.md). The screenshots show v0.1.0 on
-macOS 27; other macOS versions may look different.
+[docs/compatibility.md](docs/compatibility.md). The released-app screenshots
+under `docs/screenshots/` show v0.1.0 on macOS 27. Impression's separate
+prototype captures live under `docs/design/`. Other macOS versions may look
+different.
 
 ### Reinstalling or going back
 

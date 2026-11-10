@@ -65,6 +65,7 @@ final class PickerController: PickerSearchDelegate {
             self.model.selection = position
             self.activate(.insert)
         }
+        model.onCopySelection = { [weak self] in self?.activate(.copy) }
         model.menuActions = { [weak self] position in self?.menuActions(for: position) ?? [] }
         observeEnvironment()
     }
@@ -143,6 +144,19 @@ final class PickerController: PickerSearchDelegate {
     // MARK: Effects
 
     private func perform(_ effects: [SessionEffect]) {
+        // Pressure is a rendering of the real pending choice, not a second
+        // session state. Escape and release expiry remove it immediately.
+        let pressed: PickerItem?
+        switch machine.state {
+        case .awaitingRelease:
+            pressed = session?.chosen
+        case .handoff where machine.pendingActivation != nil:
+            pressed = session?.chosen
+        default:
+            pressed = nil
+        }
+        if model.pressedItem != pressed { model.pressedItem = pressed }
+
         for effect in effects {
             switch effect {
             case .capture(let id, let invocation):
@@ -673,8 +687,17 @@ final class PickerController: PickerSearchDelegate {
     private func handleKeyEquivalent(_ event: NSEvent) -> Bool {
         guard machine.isPickerVisible else { return false }
         let flags = event.modifierFlags.intersection([.command, .control, .option, .shift])
+        let isReturn = event.keyCode == UInt16(kVK_Return) || event.keyCode == UInt16(kVK_ANSI_KeypadEnter)
+        if flags == .control, isReturn {
+            // macOS 27 opens the field editor's menu before doCommandBy sees
+            // Control-Return. Keep this picker command at the panel boundary,
+            // except while the native input method owns the composing keys.
+            guard (viewController.searchField.currentEditor() as? NSTextView)?.hasMarkedText() != true else { return false }
+            showMenuForSelection()
+            return true
+        }
         guard flags == .command else { return false }
-        if event.keyCode == UInt16(kVK_Return) || event.keyCode == UInt16(kVK_ANSI_KeypadEnter) {
+        if isReturn {
             activate(.copy)
             return true
         }
@@ -749,7 +772,8 @@ final class PickerController: PickerSearchDelegate {
 
     /// Control-Return: the selected cell's menu, for use without a mouse.
     private func showMenuForSelection() {
-        guard let position = model.selection else { return }
+        guard machine.state == .browsing || machine.state == .handoff,
+              machine.pendingActivation == nil, let position = model.selection else { return }
         let actions = menuActions(for: position)
         guard !actions.isEmpty, let view = panel.contentView else { return }
         let menu = NSMenu()

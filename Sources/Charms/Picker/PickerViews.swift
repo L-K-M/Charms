@@ -10,9 +10,13 @@ private struct SelectedCellFrameKey: PreferenceKey {
     }
 }
 
-/// The grid: favourites and recents before a query, results after.
+/// The composing tray. Position identities keep search updates from leaving
+/// stale characters in cells; the proof above uses exact string identity.
 struct PickerGridView: View {
     @ObservedObject var model: PickerViewModel
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @Environment(\.colorSchemeContrast) private var contrast
+    @Namespace private var selectionSaddle
 
     private var columns: [GridItem] {
         Array(repeating: GridItem(.fixed(PickerViewModel.cellSize), spacing: PickerViewModel.cellSpacing), count: PickerViewModel.columns)
@@ -21,14 +25,14 @@ struct PickerGridView: View {
     var body: some View {
         ScrollViewReader { proxy in
             ScrollView(.vertical) {
-                VStack(alignment: .leading, spacing: 4) {
+                VStack(alignment: .leading, spacing: 6) {
                     ForEach(Array(model.sections.enumerated()), id: \.element.id) { sectionIndex, section in
                         sectionView(section, index: sectionIndex)
                     }
                     if model.isLoading {
                         message("Loading characters…")
                     } else if !model.isQueryEmpty, !model.hasItems {
-                        message("No matching characters")
+                        message("No matching characters. Keep looking.")
                     }
                 }
                 .padding(PickerViewModel.padding)
@@ -42,69 +46,81 @@ struct PickerGridView: View {
                 model.selectedCellFrame = frame
             }
         }
+        .overlay(alignment: .top) {
+            Rectangle().fill(Color.black.opacity(0.4)).frame(height: 1)
+        }
     }
 
-    @ViewBuilder
     private func sectionView(_ section: PickerSection, index sectionIndex: Int) -> some View {
-        if let title = title(for: section.kind) {
-            Text(title)
-                .font(.caption.weight(.medium))
-                .foregroundStyle(.secondary)
-                .padding(.leading, 4)
-                .padding(.top, sectionIndex == 0 ? 0 : 6)
-                .accessibilityAddTraits(.isHeader)
-        }
-        if section.items.isEmpty, let hint = emptyHint(for: section.kind) {
-            Text(hint)
-                .font(.callout)
-                .foregroundStyle(.tertiary)
-                .padding(.leading, 4)
-                .frame(height: PickerViewModel.cellSize, alignment: .leading)
-        } else {
-            LazyVGrid(columns: columns, alignment: .leading, spacing: PickerViewModel.cellSpacing) {
-                // Cells are identified by where they are, not by what they
-                // show. Identifying them by character while also giving each
-                // an explicit position id left cells of the previous query in
-                // the grid when a character changed place (seen with "a"
-                // followed by "arrow").
-                ForEach(Array(section.items.enumerated()), id: \.offset) { itemIndex, item in
-                    cell(item, at: GridPosition(section: sectionIndex, index: itemIndex))
-                }
+        VStack(alignment: .leading, spacing: 8) {
+            HStack(alignment: .firstTextBaseline) {
+                Text(title(for: section.kind))
+                    .tracking(1.4)
+                Spacer()
+                Text(section.items.isEmpty ? "" : String(format: "%02d", section.items.count))
             }
-            .accessibilityElement(children: .contain)
-            .accessibilityLabel(title(for: section.kind) ?? "Results")
+            .font(.system(size: 9, weight: .medium, design: .monospaced))
+            .foregroundStyle(PickerPalette.chalk.opacity(contrast == .increased ? 1 : 0.75))
+            .frame(height: PickerViewModel.sectionHeadingHeight)
+            .accessibilityAddTraits(.isHeader)
+
+            if section.items.isEmpty, let hint = emptyHint(for: section.kind) {
+                Text(hint)
+                    .font(.system(size: 11))
+                    .foregroundStyle(PickerPalette.chalk.opacity(contrast == .increased ? 1 : 0.75))
+                    .frame(height: PickerViewModel.cellSize, alignment: .leading)
+            } else {
+                LazyVGrid(columns: columns, alignment: .leading, spacing: PickerViewModel.cellSpacing) {
+                    ForEach(Array(section.items.enumerated()), id: \.offset) { itemIndex, item in
+                        cell(item, at: GridPosition(section: sectionIndex, index: itemIndex))
+                    }
+                }
+                .accessibilityElement(children: .contain)
+                .accessibilityLabel(title(for: section.kind))
+            }
         }
+        .padding(.top, sectionIndex == 0 ? 0 : 4)
     }
 
     private func cell(_ item: PickerItem, at position: GridPosition) -> some View {
         let isSelected = model.selection == position
-        return PickerCell(item: item, isSelected: isSelected, isNavigating: model.isNavigating, isHovered: model.hover == position)
-            .id(position)
-            .background {
-                if isSelected {
-                    GeometryReader { geometry in
-                        Color.clear.preference(key: SelectedCellFrameKey.self, value: geometry.frame(in: .global))
-                    }
+        return PickerCell(
+            item: item,
+            isSelected: isSelected,
+            isNavigating: model.isNavigating,
+            isHovered: model.hover == position,
+            isPressed: model.pressedItem?.id == item.id
+        )
+        .background {
+            if isSelected {
+                RoundedRectangle(cornerRadius: 7)
+                    .fill(PickerPalette.vermilion)
+                    .padding(-2)
+                    .matchedGeometryEffect(id: "selection", in: selectionSaddle)
+                    .animation(reduceMotion ? nil : .spring(response: 0.20, dampingFraction: 0.84), value: model.selection)
+                GeometryReader { geometry in
+                    Color.clear.preference(key: SelectedCellFrameKey.self, value: geometry.frame(in: .global))
                 }
             }
-            .contentShape(Rectangle())
-            .onTapGesture { model.onActivate?(position) }
-            // Hover is only a highlight. It never moves the selection, so a
-            // mouse resting over the grid cannot change what Return inserts.
-            .onHover { inside in
-                if inside {
-                    model.hover = position
-                } else if model.hover == position {
-                    model.hover = nil
-                }
+        }
+        .id(position)
+        .contentShape(Rectangle())
+        .onTapGesture { model.onActivate?(position) }
+        // A resting mouse cannot change the proof or what Return inserts.
+        .onHover { inside in
+            if inside {
+                model.hover = position
+            } else if model.hover == position {
+                model.hover = nil
             }
-            .contextMenu { menu(model.menuActions?(position) ?? []) }
-            .accessibilityElement(children: .ignore)
-            .accessibilityLabel(item.name)
-            .accessibilityValue(item.codePoints)
-            .accessibilityAddTraits(isSelected ? [.isButton, .isSelected] : .isButton)
-            .accessibilityAction { model.onActivate?(position) }
-            .help("\(item.name)\n\(item.codePoints)")
+        }
+        .contextMenu { menu(model.menuActions?(position) ?? []) }
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(item.name)
+        .accessibilityValue(item.codePoints)
+        .accessibilityAddTraits(isSelected ? [.isButton, .isSelected] : .isButton)
+        .accessibilityAction { model.onActivate?(position) }
+        .help("\(item.name)\n\(item.codePoints)")
     }
 
     private func menu(_ actions: [PickerMenuAction]) -> some View {
@@ -125,23 +141,23 @@ struct PickerGridView: View {
 
     private func message(_ text: String) -> some View {
         Text(text)
-            .font(.callout)
-            .foregroundStyle(.secondary)
-            .frame(maxWidth: .infinity, minHeight: 120, alignment: .center)
+            .font(.system(size: 12))
+            .foregroundStyle(PickerPalette.chalk)
+            .frame(maxWidth: .infinity, minHeight: 70, alignment: .center)
     }
 
-    private func title(for kind: PickerSection.Kind) -> String? {
+    private func title(for kind: PickerSection.Kind) -> String {
         switch kind {
-        case .favourites: return "Favourites"
-        case .recents: return "Recent"
-        case .results: return nil
+        case .favourites: return "FAVOURITES"
+        case .recents: return "RECENT IMPRESSIONS"
+        case .results: return "CHARACTERS"
         }
     }
 
     private func emptyHint(for kind: PickerSection.Kind) -> String? {
         switch kind {
-        case .favourites: return "Press ⌘D on a character to keep it here."
-        case .recents: return "Characters you use will appear here."
+        case .favourites: return "⌘D keeps a character here."
+        case .recents: return "Your next character starts a collection."
         case .results: return nil
         }
     }
@@ -152,74 +168,102 @@ private struct PickerCell: View {
     let isSelected: Bool
     let isNavigating: Bool
     let isHovered: Bool
+    let isPressed: Bool
 
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @Environment(\.colorSchemeContrast) private var contrast
 
     var body: some View {
         Text(item.preview)
-            .font(.system(size: item.isEmoji ? 26 : 24))
+            .font(.system(size: item.isEmoji ? 26 : 25))
             .lineLimit(1)
             .minimumScaleFactor(0.4)
-            .foregroundStyle(isSelected && isNavigating ? Color.white : Color.primary)
-            .opacity(item.preview == item.string ? 1 : 0.55)
+            .foregroundStyle(isSelected ? PickerPalette.ink : PickerPalette.chalk)
+            .opacity(item.preview.isExactly(item.string) ? 1 : 0.75)
             .frame(width: PickerViewModel.cellSize, height: PickerViewModel.cellSize)
-            .background(background, in: RoundedRectangle(cornerRadius: 8, style: .continuous))
+            .background {
+                RoundedRectangle(cornerRadius: 6)
+                    .fill(isSelected ? PickerPalette.paper : Color(red: 0.21, green: 0.26, blue: 0.23))
+                    .overlay {
+                        if !isPressed {
+                            LinearGradient(colors: [.white.opacity(isHovered ? 0.12 : 0.05), .clear], startPoint: .top, endPoint: .bottom)
+                                .clipShape(RoundedRectangle(cornerRadius: 6))
+                        }
+                    }
+                    .shadow(color: .black.opacity(isPressed ? 0 : 0.5), radius: isHovered ? 2 : 0.5, y: isPressed ? 0 : 2)
+            }
             .overlay {
-                if isSelected {
-                    RoundedRectangle(cornerRadius: 8, style: .continuous)
-                        .strokeBorder(Color.accentColor, lineWidth: contrast == .increased ? 2.5 : 1.5)
+                RoundedRectangle(cornerRadius: 6)
+                    .strokeBorder(isSelected ? PickerPalette.ink.opacity(0.25) : .white.opacity(contrast == .increased ? 0.7 : 0.16), lineWidth: contrast == .increased ? 1.5 : 0.5)
+            }
+            .overlay(alignment: .bottom) {
+                if isSelected, isNavigating {
+                    Capsule().fill(PickerPalette.ink).frame(width: 10, height: 2).padding(.bottom, 3)
                 }
             }
             .overlay(alignment: .topTrailing) {
                 if item.isFavourite {
                     Circle()
-                        .fill(isSelected && isNavigating ? Color.white : Color.accentColor)
-                        .frame(width: 5, height: 5)
-                        .padding(5)
-                        .accessibilityHidden(true)
+                        .fill(isSelected ? PickerPalette.ink : PickerPalette.vermilion)
+                        .frame(width: 3, height: 3)
+                        .padding(4)
                 }
             }
-    }
-
-    /// The selection is filled while the arrow keys act on the grid and
-    /// only tinted while they act on the query, so it is visible which of
-    /// the two the keyboard is driving.
-    private var background: Color {
-        if isSelected { return isNavigating ? Color.accentColor : Color.accentColor.opacity(0.18) }
-        if isHovered { return Color.primary.opacity(0.08) }
-        return Color.clear
+            .offset(y: reduceMotion ? 0 : isPressed ? 1 : isSelected ? -2 : isHovered ? -1.5 : 0)
+            .animation(reduceMotion ? nil : .easeOut(duration: isPressed ? 0.06 : 0.12), value: isHovered)
+            .animation(reduceMotion ? nil : .easeOut(duration: 0.08), value: isPressed)
+            .animation(reduceMotion ? nil : .spring(response: 0.18, dampingFraction: 0.8), value: isSelected)
     }
 }
 
-/// The line under the grid: what is selected, and what Return will do.
+/// Actions stay literal even though the proof and tray use a physical idiom.
 struct PickerFooterView: View {
     @ObservedObject var model: PickerViewModel
 
     var body: some View {
-        HStack(spacing: 8) {
-            if let item = model.selectedItem {
-                Text(item.name)
-                    .lineLimit(1)
-                    .truncationMode(.tail)
-                    .layoutPriority(1)
-                Text(item.codePoints)
-                    .foregroundStyle(.secondary)
-                    .lineLimit(1)
-                    .truncationMode(.middle)
-            }
-            Spacer(minLength: 8)
-            Text(model.notice ?? hints)
-                .foregroundStyle(model.notice == nil ? .secondary : .primary)
-                .lineLimit(1)
-                .fixedSize()
-        }
-        .font(.callout)
-        .padding(.horizontal, 14)
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .accessibilityElement(children: .combine)
-    }
+        HStack(spacing: 12) {
+            if let notice = model.notice {
+                Text(notice)
+                    .font(.system(size: 11, weight: .medium))
+                    .foregroundStyle(PickerPalette.chalk)
+                    .lineLimit(2)
+                    .accessibilityAddTraits(.updatesFrequently)
+            } else {
+                Button {
+                    if let selection = model.selection { model.onActivate?(selection) }
+                } label: {
+                    HStack(spacing: 7) {
+                        Image(systemName: "return")
+                        Text(model.canInsert ? "Insert character" : "Copy character")
+                    }
+                    .font(.system(size: 12, weight: .medium))
+                    .foregroundStyle(PickerPalette.chalk)
+                }
+                .buttonStyle(.plain)
+                .disabled(model.selectedItem == nil)
+                .help(model.canInsert ? "Insert into the original typing field" : "No insertion target. Copy instead.")
 
-    private var hints: String {
-        model.canInsert ? "↵ Insert · ⌘↵ Copy" : "↵ Copy"
+                Spacer(minLength: 4)
+                if model.canInsert {
+                    Button { model.onCopySelection?() } label: {
+                        Text("⌘↵ Copy")
+                            .font(.system(size: 10, design: .monospaced))
+                            .foregroundStyle(PickerPalette.chalk)
+                    }
+                    .buttonStyle(.plain)
+                    .disabled(model.selectedItem == nil)
+                } else {
+                    Text("COPY ONLY")
+                        .font(.system(size: 9, weight: .medium, design: .monospaced))
+                        .tracking(0.8)
+                        .foregroundStyle(PickerPalette.vermilion)
+                }
+            }
+        }
+        .padding(.horizontal, 19)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .overlay(alignment: .top) {
+            Rectangle().fill(PickerPalette.chalk.opacity(0.15)).frame(height: 0.5).padding(.horizontal, 19)
+        }
     }
 }

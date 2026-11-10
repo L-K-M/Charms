@@ -261,12 +261,81 @@ scenario_click_cell() {
     sleep 0.2
     origin="$(picker_origin)" || { FAILURE="no picker window on screen"; return 1; }
     read -r px py <<< "$origin"
-    # The second cell of the first row: 12 points of padding, cells of 44
-    # with 2 between them, under a 46 point search area.
-    "$HARNESS" click --x "$(awk "BEGIN { print $px + 12 + 46 + 22 }")" --y "$(awk "BEGIN { print $py + 46 + 12 + 22 }")" >/dev/null
+    # Second result: masthead 32, search 46, proof 154, grid padding 19,
+    # heading 12 + gap 8; cells 44 with 6 between. See PickerViewModel.
+    "$HARNESS" click --x "$(awk "BEGIN { print $px + 19 + 50 + 22 }")" --y "$(awk "BEGIN { print $py + 32 + 46 + 154 + 19 + 12 + 8 + 22 }")" >/dev/null
     await "outcome-" "$from" || { FAILURE="the click did not end the session"; return 1; }
     sleep 0.15
     expect "text" "$(editor)" "←"
+}
+
+scenario_hover_keeps_selection() {
+    reset ""
+    open_picker || return 1
+    typing "arrow"
+    local from origin px py
+    from="$(mark)"
+    origin="$(picker_origin)" || { FAILURE="no picker window on screen"; return 1; }
+    read -r px py <<< "$origin"
+    "$HARNESS" mouse --x "$(awk "BEGIN { print $px + 19 + 50 + 22 }")" --y "$(awk "BEGIN { print $py + 32 + 46 + 154 + 19 + 12 + 8 + 22 }")" >/dev/null
+    press return
+    await "outcome-" "$from" || { FAILURE="the session did not end"; return 1; }
+    sleep 0.15
+    expect "text after hovering the second result" "$(editor)" "→"
+}
+
+scenario_no_results() {
+    reset "A "
+    local count; count="$(clipboard_count)"
+    open_picker || return 1
+    typing "zzzznocharactermatcheszzzz"
+    press return
+    expect "text with no selection" "$(editor)" "A " || return 1
+    expect "clipboard change count" "$(clipboard_count)" "$count" || return 1
+    picker_origin >/dev/null || { FAILURE="Return closed an empty picker"; return 1; }
+    # Select back to the start of the native query, without a layout-specific
+    # key code for Select All. Typing must still edit normally after Return.
+    press left --command --shift
+    choose "arrow" || return 1
+    expect "text after correcting the query" "$(editor)" "A →"
+}
+
+scenario_preview_guides() {
+    reset "A "
+    open_picker && choose "U+0301" || return 1
+    expect "combining mark without the dotted-circle guide" "$(editor)" "$(printf 'A \314\201')" || return 1
+    reset "A "
+    open_picker && choose "U+00A0" || return 1
+    expect "space without the open-box guide" "$(editor)" "$(printf 'A \302\240')"
+}
+
+scenario_keyboard_menu() {
+    reset ""
+    open_picker || return 1
+    typing "infinity"
+    local from; from="$(mark)"
+    "$HARNESS" pasteboard --set "MENU_PROBE" >/dev/null
+    press return --control
+    press down
+    press return
+    await "outcome-dispatched" "$from" || { FAILURE="Control-Return did not open the character action menu"; press escape; return 1; }
+    sleep 0.15
+    expect "text after the first character-menu action" "$(editor)" "∞"
+}
+
+scenario_click_proof() {
+    reset "A "
+    local count origin px py
+    count="$(clipboard_count)"
+    open_picker || return 1
+    typing "arrow"
+    origin="$(picker_origin)" || { FAILURE="no picker window on screen"; return 1; }
+    read -r px py <<< "$origin"
+    "$HARNESS" click --x "$(awk "BEGIN { print $px + 80 }")" --y "$(awk "BEGIN { print $py + 130 }")" >/dev/null
+    expect "text after clicking the specimen" "$(editor)" "A " || return 1
+    expect "clipboard change count" "$(clipboard_count)" "$count" || return 1
+    picker_origin >/dev/null || { FAILURE="clicking the proof closed the picker"; return 1; }
+    press escape
 }
 
 scenario_click_outside() {
@@ -469,6 +538,7 @@ scenario_password_field() {
 }
 
 ALL=(insert escape replace_selection sequence navigate first_selected copy placement click_cell click_outside
+     hover_keeps_selection no_results preview_guides click_proof keyboard_menu
      cancel_while_held typed_trigger typed_trigger_first_selected typed_trigger_late_selection
      typed_trigger_focus_moves_during_selection typed_trigger_selection_refused typed_trigger_fast
      typed_trigger_escape colons_inside_a_word password_field

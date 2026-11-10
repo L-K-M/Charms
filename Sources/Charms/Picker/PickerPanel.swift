@@ -11,7 +11,7 @@ import SwiftUI
 /// field has keyboard focus again within a few milliseconds. That is what
 /// lets a character go back to where the user was typing.
 final class PickerPanel: NSPanel {
-    static let size = CGSize(width: 392, height: 320)
+    static let size = CGSize(width: 432, height: 472)
 
     /// Keys the search field never sees as commands: Command-Return,
     /// Command-D and Command-C. Returns true when the key was used.
@@ -90,22 +90,17 @@ final class PickerViewController: NSViewController, NSTextFieldDelegate {
     }
 
     override func loadView() {
-        let effect = NSVisualEffectView(frame: CGRect(origin: .zero, size: PickerPanel.size))
-        effect.material = .popover
-        effect.state = .active
-        effect.blendingMode = .behindWindow
-        effect.wantsLayer = true
-        effect.layer?.cornerRadius = 12
-        effect.layer?.cornerCurve = .continuous
-        effect.layer?.masksToBounds = true
-        effect.layer?.borderWidth = 0.5
-        effect.layer?.borderColor = NSColor.separatorColor.cgColor
+        let surface = NSView(frame: CGRect(origin: .zero, size: PickerPanel.size))
+        surface.wantsLayer = true
+        surface.layer?.cornerRadius = 14
+        surface.layer?.cornerCurve = .continuous
+        surface.layer?.masksToBounds = true
 
         searchField.isBordered = false
         searchField.drawsBackground = false
         searchField.focusRingType = .none
-        searchField.font = .systemFont(ofSize: 17)
-        searchField.placeholderString = "Search arrows, symbols, emoji…"
+        searchField.font = .systemFont(ofSize: 15)
+        searchField.placeholderString = "Find arrows, symbols, emoji…"
         searchField.delegate = self
         searchField.usesSingleLineMode = true
         searchField.lineBreakMode = .byTruncatingHead
@@ -113,63 +108,27 @@ final class PickerViewController: NSViewController, NSTextFieldDelegate {
         searchField.setAccessibilityLabel("Search characters")
         searchField.translatesAutoresizingMaskIntoConstraints = false
 
-        let escapeHint = NSTextField(labelWithString: "esc")
-        escapeHint.font = .systemFont(ofSize: 11)
-        escapeHint.textColor = .tertiaryLabelColor
-        escapeHint.setAccessibilityElement(false)
-        escapeHint.translatesAutoresizingMaskIntoConstraints = false
+        // One hosting coordinate space also makes keyboard context-menu
+        // placement agree with the selected cell's reported frame.
+        let content = NSHostingView(rootView: PickerSurfaceView(model: model))
+        content.sizingOptions = []
+        content.translatesAutoresizingMaskIntoConstraints = false
+        surface.addSubview(content)
+        surface.addSubview(searchField)
 
-        // The hosting views take their size from the constraints below and
-        // must not push their own ideal size back onto the borderless
-        // window, which would make the panel jump while typing.
-        let grid = NSHostingView(rootView: PickerGridView(model: model))
-        grid.sizingOptions = []
-        grid.translatesAutoresizingMaskIntoConstraints = false
-        let footer = NSHostingView(rootView: PickerFooterView(model: model))
-        footer.sizingOptions = []
-        footer.translatesAutoresizingMaskIntoConstraints = false
-        let upperRule = Self.rule()
-        let lowerRule = Self.rule()
-
-        for view in [searchField, escapeHint, upperRule, grid, lowerRule, footer] {
-            effect.addSubview(view)
-        }
         NSLayoutConstraint.activate([
-            effect.widthAnchor.constraint(equalToConstant: PickerPanel.size.width),
-            effect.heightAnchor.constraint(equalToConstant: PickerPanel.size.height),
+            surface.widthAnchor.constraint(equalToConstant: PickerPanel.size.width),
+            surface.heightAnchor.constraint(equalToConstant: PickerPanel.size.height),
+            content.leadingAnchor.constraint(equalTo: surface.leadingAnchor),
+            content.trailingAnchor.constraint(equalTo: surface.trailingAnchor),
+            content.topAnchor.constraint(equalTo: surface.topAnchor),
+            content.bottomAnchor.constraint(equalTo: surface.bottomAnchor),
 
-            searchField.leadingAnchor.constraint(equalTo: effect.leadingAnchor, constant: 16),
-            searchField.trailingAnchor.constraint(equalTo: escapeHint.leadingAnchor, constant: -8),
-            searchField.centerYAnchor.constraint(equalTo: effect.topAnchor, constant: 23),
-            escapeHint.trailingAnchor.constraint(equalTo: effect.trailingAnchor, constant: -14),
-            escapeHint.centerYAnchor.constraint(equalTo: searchField.centerYAnchor),
-
-            upperRule.topAnchor.constraint(equalTo: effect.topAnchor, constant: 46),
-            upperRule.leadingAnchor.constraint(equalTo: effect.leadingAnchor),
-            upperRule.trailingAnchor.constraint(equalTo: effect.trailingAnchor),
-
-            grid.topAnchor.constraint(equalTo: upperRule.bottomAnchor),
-            grid.leadingAnchor.constraint(equalTo: effect.leadingAnchor),
-            grid.trailingAnchor.constraint(equalTo: effect.trailingAnchor),
-            grid.bottomAnchor.constraint(equalTo: lowerRule.topAnchor),
-
-            lowerRule.leadingAnchor.constraint(equalTo: effect.leadingAnchor),
-            lowerRule.trailingAnchor.constraint(equalTo: effect.trailingAnchor),
-            lowerRule.bottomAnchor.constraint(equalTo: footer.topAnchor),
-
-            footer.leadingAnchor.constraint(equalTo: effect.leadingAnchor),
-            footer.trailingAnchor.constraint(equalTo: effect.trailingAnchor),
-            footer.bottomAnchor.constraint(equalTo: effect.bottomAnchor),
-            footer.heightAnchor.constraint(equalToConstant: 30)
+            searchField.leadingAnchor.constraint(equalTo: surface.leadingAnchor, constant: 44),
+            searchField.trailingAnchor.constraint(equalTo: surface.trailingAnchor, constant: -54),
+            searchField.centerYAnchor.constraint(equalTo: surface.topAnchor, constant: PickerViewModel.mastheadHeight + 20)
         ])
-        view = effect
-    }
-
-    private static func rule() -> NSBox {
-        let box = NSBox()
-        box.boxType = .separator
-        box.translatesAutoresizingMaskIntoConstraints = false
-        return box
+        view = surface
     }
 
     /// Puts the keyboard into the search field with the caret at the end.
