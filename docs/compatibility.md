@@ -142,6 +142,93 @@ Release build, Apple M4 Max, macOS 27.0.1.
 | Catalogue load at launch | about 60 ms, off the main thread (43,548 entries) |
 | Search, per keystroke | median 0.2 ms, 95th percentile 3.6 ms, worst case about 27 ms for a single common letter |
 
+## Impression prototype
+
+The native interaction prototype is documented in
+[the design note](design/impression.md) and
+[the running and verification guide](design/prototype.md). These checks use
+the same Mac Studio, macOS 27.0.1, Swiss German layout and Swift 6.4.2 as the
+baseline above, on 10 November 2026. They do not re-establish the application
+matrix above for the new picker.
+
+- Release build assembled with `CODE_SIGN_IDENTITY="Apple Development"
+  ./scripts/build-app.sh`; signature verified by the build script.
+- `swift build`, all 339 unit tests and `swift run CharmsCatalogTool check`
+  pass. The generated catalogue and insertion/session rules are unchanged.
+- All **27** real-input scenarios in `scripts/e2e.sh` pass with the new
+  432 by 472 point panel. This includes the prior 22 insertion, focus,
+  cancellation, Undo, copy, trigger and caret-line placement scenarios.
+- Added `hover_keeps_selection`: the pointer rests on the second arrow but
+  Return still inserts the keyboard-selected first arrow.
+- Added `no_results`: Return changes neither source nor clipboard, leaves the
+  picker open, and editing the same native query recovers to an insertion.
+- Added `preview_guides`: U+0301 and U+00A0 arrive exactly, without the
+  dotted-circle or open-box illustrations.
+- Added `click_proof`: clicking the large specimen leaves source and
+  clipboard alone and does not dismiss the picker.
+- Added `keyboard_menu`: Control-Return, Down, Return inserts through the
+  selected character's action menu. The test failed against the original
+  routing, which opened the native query menu on macOS 27, and passed after
+  interception at the panel's key-equivalent boundary. Composing input is
+  still left to the native editor; an IME runtime pass remains unverified.
+- Inspected the Accessibility tree: the proof is `AXStaticText` with the
+  selected name and full scalar sequence; cells and Insert/Copy are named
+  buttons. This is an API inspection, not a VoiceOver listening pass.
+- Recorded the actual release app with isolated storage, staged text and
+  real keyboard events. The demonstration includes repeated selection,
+  pressure during a held Return, focus return and complete emoji insertion.
+  The images and ten-second silent video live under `docs/design/`.
+  Motion was evaluated in dark appearance; light appearance and accessibility
+  display settings were not exercised.
+- Reviewing early recording frames exposed transient blank proofs during
+  rapid query changes. The prototype now retains the specimen and stamps it
+  instead of replacing its identity through opacity transitions. Implicit
+  glyph/font crossfades are suppressed, so fast queries do not layer old and
+  new proofs together. Final recording frames confirm a continuously visible
+  specimen. The guide records the reproduction procedure.
+
+### Theming completion
+
+On 10 November 2026 (UTC), using the same Mac and toolchain:
+
+- All **354 unit tests** pass, including 11 preference/migration tests and
+  four palette tests. Every theme's text roles and muted labels meet 4.5:1
+  contrast; selection accents meet 3:1 against tray and blocks. These are
+  sRGB calculations, not a substitute for an assistive-technology pass.
+- The signed universal release app builds and passes deep, strict signature
+  verification. Both arm64 and x86_64 slices are present; only arm64 ran.
+- All **33 real-input scenarios** pass in a complete final run. Six additions
+  cover every palette in both explicit appearances; each checks navigation,
+  Escape, an exact joined emoji, combining/space guides and keyboard menus.
+  An earlier run was interrupted by unrelated application activation; the
+  app cancelled safely, and the affected checks and full suite passed on
+  rerun without relaxing assertions.
+- In the actual Settings UI, selecting Plum and Dark persisted to the
+  isolated preferences file and survived rebuilding/relaunching the app.
+  Restore Default Appearance wrote Impression/System. The default window
+  now shows the entire example and reset action; smaller windows scroll.
+- Switched macOS from dark to light and back while a System-mode picker
+  remained open. Native query ink/caret and chrome followed; `arrow`, the
+  selected proof and complete scalar value remained intact, with no source
+  edit. The original system appearance was restored.
+- Inspected and captured actual Blueprint/Light, Plum/Dark, and Impression
+  in both system appearances, plus the Appearance tab. Captures under
+  `docs/design/` use isolated storage and fixed example text. The preview
+  reuses the same proof and block components as the picker.
+- All test apps were quit and the desktop released with no dialog open.
+
+Increase Contrast and Reduce Motion are implemented across themes, including
+native high-contrast overrides and display-setting notifications, but their
+system switches were not exercised in this pass. The earlier motion recording
+remains evidence for ordinary motion, not for accessibility display settings.
+
+Not established by this work: larger-text reflow, a VoiceOver listening
+pass, input-method composition, runtime on macOS 14–26 or Intel, and fresh
+multi-display/full-screen application coverage with the taller panel. The
+existing native editor, accessibility values, contrast/motion environment
+handling and session policy remain, but code paths are not a substitute for
+those runtime checks.
+
 ## Published v0.1.0
 
 Published on 10 November 2026 from commit

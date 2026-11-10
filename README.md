@@ -13,6 +13,29 @@ What sets it apart is where it opens. The picker appears on the display that
 holds your typing, right beside the text cursor, and never on top of the line
 you are writing, wherever the mouse happens to be.
 
+### Impression: the composing picker
+
+Choose a character on a little type block. See it large on a paper proof and
+at writing size between “Aa” and “Bb”. Then press Return and keep writing.
+The specimen is demonstration text, not a reading of your document. The name
+and exact Unicode sequence sit beside the proof; guides for spaces and
+combining marks are labelled and never inserted.
+
+![The Impression picker, searching the real character catalogue for arrows](docs/design/impression-arrows.png)
+
+The raised selection and short stamping response give choosing a character
+some weight, without adding a step or delaying insertion. Hover never changes
+what Return inserts. Motion follows Reduce Motion; the opaque paper and
+composing tray do not depend on transparency. Sound is intentionally absent.
+
+Impression is the development picker, not a tagged release. Read the
+[three concepts and design decision](docs/design/impression.md),
+[build and run it](docs/design/prototype.md), or
+[watch the native keyboard demonstration](docs/design/impression-demo.mp4).
+The catalogue and insertion policy are unchanged.
+
+### Released picker (v0.1.0)
+
 ![Charms searching for arrows beside the typing position in TextEdit](docs/screenshots/picker-arrows.png)
 
 ## Using it
@@ -60,6 +83,13 @@ forgets all answers, including a temporary Not Now in the current run.
 Change the shortcut, choose a default emoji skin tone, or start Charms at
 login in Settings.
 
+In development builds, **Appearance** offers three picker themes:
+**Impression** (warm paper and vermilion), **Blueprint** (navy and cyan), and
+**Plum** (rose paper and apricot). Choose System, Light or Dark independently.
+Choices take effect immediately and survive relaunch. The preview uses the
+same proof and character blocks as the picker. Restore Default Appearance
+returns to Impression and System. [Theme details](docs/design/themes.md).
+
 ![Charms General settings, with insertion enabled and launch at login off](docs/screenshots/settings.png)
 
 ### Permission
@@ -95,8 +125,10 @@ delete the app, and optionally delete `~/Library/Application Support/Charms`
 (favourites and recents) and the Accessibility entry in System Settings.
 
 What has been tested, and on which systems, is recorded in
-[docs/compatibility.md](docs/compatibility.md). The screenshots show v0.1.0 on
-macOS 27; other macOS versions may look different.
+[docs/compatibility.md](docs/compatibility.md). The released-app screenshots
+under `docs/screenshots/` show v0.1.0 on macOS 27. Impression's separate
+development captures live under `docs/design/`. Other macOS versions may look
+different.
 
 ### Reinstalling or going back
 
@@ -125,7 +157,8 @@ swift run CharmsCatalogTool check # the committed catalogue matches the pinned d
 a test window (`CharmsHarness`), and checks insertion, Undo, Escape, copying,
 placement, the typed `::` and the password-field rule with real key events. It
 needs a terminal that has the Accessibility permission and uses the keyboard
-for about a minute.
+for about four minutes, including checks in every theme and both explicit
+appearances.
 
 `scripts/build.sh` / `scripts/release.sh` wrap the shared `lkm-build` /
 `lkm-release` engines; releases are cut by tagging. See [CICD.md](CICD.md).

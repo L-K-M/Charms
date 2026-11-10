@@ -105,6 +105,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     private func apply(_ preferences: Preferences) {
         guard let hotKeys, let trigger else { return }
+        picker?.applyAppearance(preferences)
         if hotKeys.combo != preferences.shortcut {
             hotKeys.apply(preferences.shortcut)
         }

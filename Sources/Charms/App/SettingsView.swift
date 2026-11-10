@@ -48,14 +48,16 @@ struct SettingsView: View {
     @ObservedObject var model: SettingsModel
     @ObservedObject var preferences: PreferencesStore
 
-    /// Tall enough to show each tab whole, so that nothing has to be
-    /// scrolled to be found. The longest are General and Applications.
-    static let defaultSize = NSSize(width: 600, height: 680)
+    /// Shows the appearance preview and reset action together on a normal
+    /// display. Smaller windows retain the native form's scrolling.
+    static let defaultSize = NSSize(width: 600, height: 780)
     static let minimumSize = NSSize(width: 520, height: 400)
 
     var body: some View {
         TabView {
             general.tabItem { Label("General", systemImage: "gearshape") }
+            AppearanceSettingsView(preferences: preferences)
+                .tabItem { Label("Appearance", systemImage: "paintpalette") }
             typing.tabItem { Label("Typing ::", systemImage: "keyboard") }
             applications.tabItem { Label("Applications", systemImage: "app.badge") }
             data.tabItem { Label("Data", systemImage: "tray.full") }

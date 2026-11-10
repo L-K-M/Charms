@@ -1,6 +1,6 @@
 # Charms implementation plan
 
-Status: implemented through M4; first release (M5) not yet cut. What was verified, and what was not, is in `docs/compatibility.md`.
+Status: v0.1.0 published; Impression and persistent picker themes are the next development version. Compatibility gaps remain explicit in `docs/compatibility.md`.
 
 Updated: 10 November 2026 (implementation results recorded in §11, §15 and §16; final review: project setup aligned with the owner's other Mac apps, native spike results recorded, data releases pinned; see `docs/reviews/2026-11-10-final-plan-review.md`)
 
@@ -8,7 +8,7 @@ Updated: 10 November 2026 (implementation results recorded in §11, §15 and §1
 
 Charms is a small native macOS utility for inserting arrows, unusual symbols, punctuation, and emoji into the app where the user is typing. Its defining behaviour is that the picker opens on the display containing the typing focus, preferably beside the text caret, even when the mouse is on another display.
 
-The product name is **Charms**. The selected interface direction is the **first, compact grid design** from the initial concept: a search field, generous character cells, favourites, recents, and a quiet detail/footer area. The alternative named-results list is not the default design.
+The product name is **Charms**. The composing picker is **Impression**: a native search field, a two-scale character proof, an eight-column composing tray, favourites, recents and literal Insert/Copy actions. It extends the initially selected compact grid rather than replacing it with a named-results list. The three experiential concepts and the decision are in [docs/design/impression.md](docs/design/impression.md); running instructions, captures and limitations are in [docs/design/prototype.md](docs/design/prototype.md). Settings add persistent Impression, Blueprint and Plum palettes with independent System/Light/Dark chrome; see [theming](docs/design/themes.md). This is not a new tagged release.
 
 ### Alternatives considered
 
@@ -67,7 +67,7 @@ At the planning baseline the repository contained the license but no application
 - Drawing recognition, AI search, GIFs, stickers, snippets, and general-purpose text expansion.
 - Arbitrary trigger languages and automatic conversion of ordinary words; v1 recognizes only the optional `::` marker.
 - Cloud accounts, cross-device synchronization, usage analytics, and remote search.
-- HTML/CSS/source-code output formats, a full Unicode inspector, and custom themes.
+- HTML/CSS/source-code output formats, a full Unicode inspector, and user-authored theme files. Three built-in palettes are available in Settings.
 - Mac App Store distribution and an automatic updater; evaluate these after direct distribution works reliably.
 
 ## 3. The primary user journey
@@ -99,34 +99,39 @@ The shortcut path inserts at the existing selection. The typed-trigger path repl
 
 ### 4.1 Compact picker
 
-Use the first design as the visual contract:
+The Impression picker concentrates expression on choosing and proofing a character:
 
 ```text
 ┌──────────────────────────────────────────┐
-│ Search arrows, symbols, emoji…       esc  │
-├──────────────────────────────────────────┤
-│ Favourites                               │
+│ CHARMS                        IMPRESSION │
+│ Find arrows, symbols, emoji…         esc │
+│ ┌──────────────────────────────────────┐ │
+│ │  →     Right-pointing arrow          │ │
+│ │        U+2192                        │ │
+│ │ IN TEXT  Aa → Bb        Exact Unicode │ │
+│ └──────────────────────────────────────┘ │
+│ FAVOURITES                               │
 │  →    ✓    —    ∞    👍    😊    ❤️    🎉  │
-│                                          │
-│ Recent                                   │
+│ RECENT IMPRESSIONS                        │
 │  ←    °    ≠    •    ✨    😂    ⌘    ↗   │
-├──────────────────────────────────────────┤
-│ Right arrow · U+2192  ↵ Insert · ⌘↵ Copy │
+│ ↵ Insert character              ⌘↵ Copy │
 └──────────────────────────────────────────┘
 ```
 
 The diagram is structural; native font metrics determine final spacing.
 
-- Start near 400 points wide with approximately 40-44 point character cells and eight columns at the normal size.
+- The picker is 432 by 472 points with eight 44-point cells, 6-point gaps and 19-point tray insets. The panel stays fixed while searching. Names and the complete scalar sequence live beside the large proof; a second specimen uses 16-point text. The “Aa” and “Bb” are fixed examples, never source-document text.
 - Surface the Copy action in the footer (for example `⌘↵ Copy`) so the explicit copy path is discoverable without reading the keyboard table.
-- Let accessibility text sizing, available display area, and actual font metrics determine the final dimensions. Reflow rather than clipping.
+- Larger-text reflow remains a release requirement and is not implemented by this fixed-size prototype. Long names have a tooltip and accessibility label; long scalar sequences have horizontal scrolling with a bidirectional affordance and an unabridged accessibility value. See the prototype guide for validation gaps.
 - Empty search shows a compact favourites section and up to two rows of recents. Seed a small useful favourites set only on first launch.
-- A non-empty query replaces those sections with a single result grid. Keep the selected name and full Unicode sequence in the footer.
+- A non-empty query replaces those sections with a single result grid. Keep the selected name and full Unicode sequence in the proof. The footer presents clickable Insert/Copy actions as well as their key hints; copy-only mode is explicit.
 - Use a native scroll view for longer results, keep the selected cell visible, and avoid resizing the panel on every keystroke.
 - Start with the first available item selected whenever items are shown: the first favourite (or recent) with an empty query, the first match otherwise. Enter therefore always acts on a visible choice, also right after the picker opens. Clearing search selects the first item again. Enter does nothing only when there is nothing to select. (The first version left the empty-query view unselected; that made Enter a dead key until an arrow key or Tab was pressed.)
 - Distinguish selection from hover. A stationary mouse must not steal selection after a keyboard search or rerender.
 - A primary click on a result cell activates that item exactly once, equivalent to Enter. In insertion mode it inserts; in browse/copy mode it copies. Chrome, section headers, empty space, and context-menu clicks never insert. Favourite/variant actions remain separate (`⌘D` or context menu); record accidental-activation checks in M3.
-- Use system appearance, readable contrast, restrained borders, and native focus indicators. Honour Reduce Motion, Increase Contrast, and Reduce Transparency. Evaluate native popover material with `NSVisualEffectView`; a translucent borderless implementation may use `isOpaque = false` and a clear backing only when its content provides readable coverage. If custom panel geometry changes require it, call `invalidateShadow()` and inspect the result; material/shadow choices are tested styling decisions, not prerequisites for focus correctness.
+- Offer Impression, Blueprint and Plum in Settings, with System/Light/Dark chrome independent of the palette. Persist both choices; missing or invalid fields default independently without losing other preferences. The native query/caret and context menus follow the same appearance. Keep themes out of the insertion state machine.
+- Use opaque paper, ink and graphite surfaces with light/dark chrome. A cream raised block and vermilion saddle distinguish selection from hover without relying only on colour; a small underline indicates grid navigation. Search retains a visible outline while it owns arrow keys. Increase Contrast strengthens rules and labels. Reduce Motion disables lift, scale and travelling selection; Reduce Transparency needs no substitute material because the surfaces are opaque. Sound is deliberately absent.
+- Hover lifts a block by 1.5 points over 120 ms but never selects. A new proof is immediately visible and makes a 3-point, 180 ms stamping motion, rather than fading through blank paper during rapid typing. Pressing Return compresses the frozen choice only while the existing session machine is awaiting release (or settling a typed handoff). Release dispatches without an animation delay; Escape or the existing one-second release deadline removes pressure. Do not present a delivery receipt.
 - Do not introduce permanent sidebars, font selectors, code-format controls, or category toolbars into this surface.
 - An empty result state says that nothing matched and allows immediate query editing. Enter does nothing when no result is selected.
 
