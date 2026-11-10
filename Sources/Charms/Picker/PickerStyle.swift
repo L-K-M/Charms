@@ -1,24 +1,74 @@
+import AppKit
+import CharmsCore
 import SwiftUI
 
 /// Ink and paper are intentionally opaque. A character must stay readable
 /// regardless of the document underneath, also with Reduce Transparency on.
 struct PickerPalette {
+    let colors: PickerTheme.Colors
     let scheme: ColorScheme
     let contrast: ColorSchemeContrast
 
-    static let vermilion = Color(red: 1, green: 0.44, blue: 0.30)
-    static let paper = Color(red: 0.98, green: 0.965, blue: 0.925)
-    static let ink = Color(red: 0.13, green: 0.18, blue: 0.15)
-    static let tray = Color(red: 0.12, green: 0.16, blue: 0.14)
-    static let chalk = Color(red: 0.94, green: 0.95, blue: 0.90)
-
-    var shell: Color {
-        scheme == .dark ? Color(red: 0.18, green: 0.22, blue: 0.20) : Color(red: 0.91, green: 0.91, blue: 0.87)
+    init(theme: PickerTheme, scheme: ColorScheme, contrast: ColorSchemeContrast) {
+        colors = theme.colors
+        self.scheme = scheme
+        self.contrast = contrast
     }
 
-    var label: Color { scheme == .dark ? Self.chalk : Self.ink }
+    var paper: Color { Color(colors.paper) }
+    var ink: Color { Color(colors.ink) }
+    var tray: Color { Color(colors.tray) }
+    var chalk: Color { Color(colors.chalk) }
+    var block: Color { Color(colors.block) }
+    var accent: Color { Color(colors.accent) }
+    var proofAccent: Color { Color(colors.proofAccent) }
+    var shell: Color { Color(scheme == .dark ? colors.darkShell : colors.lightShell) }
+    var label: Color { scheme == .dark ? chalk : ink }
     var secondary: Color { label.opacity(contrast == .increased ? 1 : 0.70) }
+    var proofSecondary: Color { ink.opacity(contrast == .increased ? 1 : 0.70) }
     var rule: Color { label.opacity(contrast == .increased ? 0.7 : 0.18) }
+}
+
+private struct PickerPaletteKey: EnvironmentKey {
+    static let defaultValue = PickerPalette(theme: .impression, scheme: .light, contrast: .standard)
+}
+
+extension EnvironmentValues {
+    var pickerPalette: PickerPalette {
+        get { self[PickerPaletteKey.self] }
+        set { self[PickerPaletteKey.self] = newValue }
+    }
+}
+
+extension Color {
+    init(_ rgb: PickerTheme.RGB) {
+        self.init(.sRGB, red: rgb.red, green: rgb.green, blue: rgb.blue, opacity: 1)
+    }
+}
+
+extension NSColor {
+    convenience init(_ rgb: PickerTheme.RGB) {
+        self.init(srgbRed: rgb.red, green: rgb.green, blue: rgb.blue, alpha: 1)
+    }
+}
+
+extension PickerAppearance {
+    var nativeAppearance: NSAppearance? {
+        let increased = NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast
+        switch self {
+        case .system: return nil
+        case .light: return NSAppearance(named: increased ? .accessibilityHighContrastAqua : .aqua)
+        case .dark: return NSAppearance(named: increased ? .accessibilityHighContrastDarkAqua : .darkAqua)
+        }
+    }
+
+    func colorScheme(system: ColorScheme) -> ColorScheme {
+        switch self {
+        case .system: return system
+        case .light: return .light
+        case .dark: return .dark
+        }
+    }
 }
 
 /// Four open corners, like registration marks around a printed specimen.
@@ -46,7 +96,7 @@ struct PickerSurfaceView: View {
     @Environment(\.colorScheme) private var scheme
     @Environment(\.colorSchemeContrast) private var contrast
 
-    private var palette: PickerPalette { PickerPalette(scheme: scheme, contrast: contrast) }
+    private var palette: PickerPalette { PickerPalette(theme: model.theme, scheme: scheme, contrast: contrast) }
 
     var body: some View {
         VStack(spacing: 0) {
@@ -62,7 +112,7 @@ struct PickerSurfaceView: View {
                         Rectangle().frame(width: 4, height: 4)
                     }
                 }
-                .foregroundStyle(scheme == .dark ? PickerPalette.vermilion : palette.label)
+                .foregroundStyle(scheme == .dark ? palette.accent : palette.label)
                 Text("CHARMS")
                     .font(.system(size: 10, weight: .bold, design: .monospaced))
                     .tracking(2)
@@ -107,12 +157,13 @@ struct PickerSurfaceView: View {
 
             PickerGridView(model: model)
                 .frame(maxHeight: .infinity)
-                .background(PickerPalette.tray)
+                .background(palette.tray)
 
             PickerFooterView(model: model)
                 .frame(height: PickerViewModel.footerHeight)
-                .background(PickerPalette.tray)
+                .background(palette.tray)
         }
+        .environment(\.pickerPalette, palette)
         .background(palette.shell)
         .overlay {
             RoundedRectangle(cornerRadius: 14)

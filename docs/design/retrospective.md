@@ -19,9 +19,16 @@ it with an always-present specimen and a short stamping response. A character
 picker should reveal the new choice immediately, not make you wait for an
 animation to explain itself.
 
-I stopped at the composing surface. Redesigning Settings, adding sound,
+The initial prototype stopped at the composing surface. Redesigning Settings, adding sound,
 inventing a font browser or animating a flight into the document would have
 weakened the idea or implied knowledge the app does not have. The taller
 panel is a real tradeoff. Larger-text reflow, a VoiceOver listening pass,
 input methods and broader runtime compatibility still need work before this
-prototype should be treated as release-ready.
+picker should be treated as broadly release-verified.
+
+The follow-through adds three coordinated themes and independent appearance
+controls in Settings. The example reuses the real composing components;
+preferences migrate without losing unrelated settings, and native query ink
+and the caret share the surface’s colour roles. This extends the vocabulary
+rather than adding another gesture to insertion. Custom skin files and
+arbitrary colour controls remain out of scope.

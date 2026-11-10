@@ -117,6 +117,15 @@ captures and verification limits.
 
 No shelves, smoke, weapons, random particles, fake insertion receipts,
 compulsory dragging, or delayed dismissal. No font browser, new search engine,
-or redesign of Settings. No document preview or retained text. This prototype
-proves the composing surface first, with the existing insertion and
-cancellation rules intact.
+or wholesale redesign of Settings. No document preview or retained text. The
+initial prototype proved the composing surface with the existing insertion
+and cancellation rules intact.
+
+## Follow-through
+
+The composing surface is now the development picker. Settings adds a native
+Appearance tab with Impression, Blueprint and Plum palettes and independent
+System/Light/Dark chrome. A live example reuses the actual proof and block
+components. Choices persist without rebuilding the native query editor or
+altering the insertion state. [Theme details](themes.md) describe the shared
+color roles and extension contract. Custom theme files remain out of scope.

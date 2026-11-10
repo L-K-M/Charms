@@ -43,7 +43,7 @@ CODE_SIGN_IDENTITY="Apple Development" ./scripts/build-app.sh   # keeps the Acce
 ./scripts/e2e.sh                          # drives dist/Charms.app with real keys against CharmsHarness
 ```
 
-`scripts/e2e.sh` types on the real keyboard and screen for about a minute and
+`scripts/e2e.sh` types on the real keyboard and screen for about two minutes and
 needs a terminal with the Accessibility permission; it exits 77 when it
 cannot run. It is not part of CI. Run it after changes to the picker, the
 session flow, insertion or the typed trigger. Three environment variables
@@ -85,13 +85,19 @@ not a mockup or a real document.
 - The session state table (`SessionMachine`) is the single authority on what
   the picker may do next. The app reports events to it and performs the
   effects it returns; it does not keep a second notion of state.
-- The **Impression** picker prototype is documented in
+- The **Impression** composing picker is documented in
   `docs/design/impression.md` and `docs/design/prototype.md`. Its two-scale
   proof uses catalogue previews, not document text. `pressedItem` is only a
   rendering of the machine's frozen choice; never delay dispatch for motion.
   Keep the native search editor, exact scalar readout and hover/selection
   separation. If picker geometry changes, update the real mouse coordinates
-  in `scripts/e2e.sh` and recapture the prototype images.
+  in `scripts/e2e.sh` and recapture the native images.
+- Theme identities and opaque sRGB roles live in `CharmsCore/Settings/`;
+  SwiftUI and the native query editor share those roles. Settings expose
+  Impression, Blueprint and Plum, independently of System/Light/Dark chrome.
+  Preserve lenient preference migration and contrast tests when adding a
+  theme. Forced appearances must retain Increase Contrast and live display
+  setting changes. Never recreate the field editor to apply a theme.
 
 ## Critical Constraints
 

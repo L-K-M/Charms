@@ -28,6 +28,7 @@ final class PickerViewModel: ObservableObject {
     static let footerHeight: CGFloat = 44
     static let sectionHeadingHeight: CGFloat = 12
 
+    @Published var theme: PickerTheme = .impression
     @Published var sections: [PickerSection] = []
     @Published var selection: GridPosition?
     /// True while the arrow keys move between cells instead of through the

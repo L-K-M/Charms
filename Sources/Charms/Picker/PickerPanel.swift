@@ -1,5 +1,6 @@
 import AppKit
 import Carbon.HIToolbox
+import CharmsCore
 import SwiftUI
 
 /// The picker's window: a borderless panel that can take the keyboard
@@ -131,9 +132,28 @@ final class PickerViewController: NSViewController, NSTextFieldDelegate {
         view = surface
     }
 
+    /// Shares the shell's ink with the real field editor, including the caret.
+    /// Dynamic colors follow live system appearance changes without replacing
+    /// the editor, its marked text, selection or Undo history.
+    func applyTheme(_ theme: PickerTheme) {
+        let colors = theme.colors
+        searchField.textColor = NSColor(name: nil) { appearance in
+            NSColor(appearance.bestMatch(from: [.aqua, .darkAqua]) == .darkAqua ? colors.chalk : colors.ink)
+        }
+        updateEditorColors()
+    }
+
+    private func updateEditorColors() {
+        guard let editor = searchField.currentEditor() as? NSTextView,
+              let color = searchField.textColor else { return }
+        editor.textColor = color
+        editor.insertionPointColor = color
+    }
+
     /// Puts the keyboard into the search field with the caret at the end.
     func focusSearch() {
         view.window?.makeFirstResponder(searchField)
+        updateEditorColors()
         searchField.currentEditor()?.selectedRange = NSRange(location: (searchField.stringValue as NSString).length, length: 0)
     }
 

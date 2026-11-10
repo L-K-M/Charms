@@ -6,7 +6,7 @@
 #
 # Needs a built app (scripts/build-app.sh) and a terminal that has the
 # Accessibility permission, which the app started from here inherits. It
-# types and moves windows on the real screen for about a minute: do not use
+# types and moves windows on the real screen for about two minutes: do not use
 # the keyboard meanwhile. Charms runs with CHARMS_HOME pointing at a temporary
 # directory, so your own favourites and settings are neither read nor changed.
 #
@@ -537,18 +537,38 @@ scenario_password_field() {
     expect "clipboard" "$(clipboard)" "→"
 }
 
+# Exercise the native query editor, exact sequences, guides, cancellation and
+# keyboard menus under every palette and both explicit appearances. Preferences
+# are loaded through the real storage boundary, not injected into the views.
+scenario_theme_impression_light() { theme_round_trip; }
+scenario_theme_impression_dark() { theme_round_trip; }
+scenario_theme_blueprint_light() { theme_round_trip; }
+scenario_theme_blueprint_dark() { theme_round_trip; }
+scenario_theme_plum_light() { theme_round_trip; }
+scenario_theme_plum_dark() { theme_round_trip; }
+
+theme_round_trip() {
+    scenario_navigate && scenario_escape && scenario_sequence && scenario_preview_guides && scenario_keyboard_menu
+}
+
 ALL=(insert escape replace_selection sequence navigate first_selected copy placement click_cell click_outside
      hover_keeps_selection no_results preview_guides click_proof keyboard_menu
      cancel_while_held typed_trigger typed_trigger_first_selected typed_trigger_late_selection
      typed_trigger_focus_moves_during_selection typed_trigger_selection_refused typed_trigger_fast
      typed_trigger_escape colons_inside_a_word password_field
-     paste_backend pass_through)
+     paste_backend pass_through
+     theme_impression_light theme_impression_dark theme_blueprint_light theme_blueprint_dark
+     theme_plum_light theme_plum_dark)
 
 # The preferences a scenario runs with. Charms is restarted when they change.
 preferences_for() {
     case "$1" in
         paste_backend) echo "{\"pasteApplications\": [\"$HOST_ID\"]}" ;;
         pass_through) echo "{\"shortcutPassThrough\": [\"$HOST_ID\"]}" ;;
+        theme_*)
+            local theme="${1#theme_}"
+            echo "{\"typedTriggerEnabled\": true, \"pickerTheme\": \"${theme%_*}\", \"pickerAppearance\": \"${theme##*_}\"}"
+            ;;
         *) echo '{"typedTriggerEnabled": true}' ;;
     esac
 }

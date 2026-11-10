@@ -16,6 +16,7 @@ struct PickerGridView: View {
     @ObservedObject var model: PickerViewModel
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @Environment(\.colorSchemeContrast) private var contrast
+    @Environment(\.pickerPalette) private var palette
     @Namespace private var selectionSaddle
 
     private var columns: [GridItem] {
@@ -60,14 +61,14 @@ struct PickerGridView: View {
                 Text(section.items.isEmpty ? "" : String(format: "%02d", section.items.count))
             }
             .font(.system(size: 9, weight: .medium, design: .monospaced))
-            .foregroundStyle(PickerPalette.chalk.opacity(contrast == .increased ? 1 : 0.75))
+            .foregroundStyle(palette.chalk.opacity(contrast == .increased ? 1 : 0.75))
             .frame(height: PickerViewModel.sectionHeadingHeight)
             .accessibilityAddTraits(.isHeader)
 
             if section.items.isEmpty, let hint = emptyHint(for: section.kind) {
                 Text(hint)
                     .font(.system(size: 11))
-                    .foregroundStyle(PickerPalette.chalk.opacity(contrast == .increased ? 1 : 0.75))
+                    .foregroundStyle(palette.chalk.opacity(contrast == .increased ? 1 : 0.75))
                     .frame(height: PickerViewModel.cellSize, alignment: .leading)
             } else {
                 LazyVGrid(columns: columns, alignment: .leading, spacing: PickerViewModel.cellSpacing) {
@@ -94,7 +95,7 @@ struct PickerGridView: View {
         .background {
             if isSelected {
                 RoundedRectangle(cornerRadius: 7)
-                    .fill(PickerPalette.vermilion)
+                    .fill(palette.accent)
                     .padding(-2)
                     .matchedGeometryEffect(id: "selection", in: selectionSaddle)
                     .animation(reduceMotion ? nil : .spring(response: 0.20, dampingFraction: 0.84), value: model.selection)
@@ -142,7 +143,7 @@ struct PickerGridView: View {
     private func message(_ text: String) -> some View {
         Text(text)
             .font(.system(size: 12))
-            .foregroundStyle(PickerPalette.chalk)
+            .foregroundStyle(palette.chalk)
             .frame(maxWidth: .infinity, minHeight: 70, alignment: .center)
     }
 
@@ -163,7 +164,8 @@ struct PickerGridView: View {
     }
 }
 
-private struct PickerCell: View {
+/// Shared with the non-interactive appearance preview in Settings.
+struct PickerCell: View {
     let item: PickerItem
     let isSelected: Bool
     let isNavigating: Bool
@@ -172,18 +174,19 @@ private struct PickerCell: View {
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @Environment(\.colorSchemeContrast) private var contrast
+    @Environment(\.pickerPalette) private var palette
 
     var body: some View {
         Text(item.preview)
             .font(.system(size: item.isEmoji ? 26 : 25))
             .lineLimit(1)
             .minimumScaleFactor(0.4)
-            .foregroundStyle(isSelected ? PickerPalette.ink : PickerPalette.chalk)
+            .foregroundStyle(isSelected ? palette.ink : palette.chalk)
             .opacity(item.preview.isExactly(item.string) ? 1 : 0.75)
             .frame(width: PickerViewModel.cellSize, height: PickerViewModel.cellSize)
             .background {
                 RoundedRectangle(cornerRadius: 6)
-                    .fill(isSelected ? PickerPalette.paper : Color(red: 0.21, green: 0.26, blue: 0.23))
+                    .fill(isSelected ? palette.paper : palette.block)
                     .overlay {
                         if !isPressed {
                             LinearGradient(colors: [.white.opacity(isHovered ? 0.12 : 0.05), .clear], startPoint: .top, endPoint: .bottom)
@@ -194,17 +197,17 @@ private struct PickerCell: View {
             }
             .overlay {
                 RoundedRectangle(cornerRadius: 6)
-                    .strokeBorder(isSelected ? PickerPalette.ink.opacity(0.25) : .white.opacity(contrast == .increased ? 0.7 : 0.16), lineWidth: contrast == .increased ? 1.5 : 0.5)
+                    .strokeBorder(isSelected ? palette.ink.opacity(contrast == .increased ? 0.8 : 0.25) : palette.chalk.opacity(contrast == .increased ? 0.7 : 0.16), lineWidth: contrast == .increased ? 1.5 : 0.5)
             }
             .overlay(alignment: .bottom) {
                 if isSelected, isNavigating {
-                    Capsule().fill(PickerPalette.ink).frame(width: 10, height: 2).padding(.bottom, 3)
+                    Capsule().fill(palette.ink).frame(width: 10, height: 2).padding(.bottom, 3)
                 }
             }
             .overlay(alignment: .topTrailing) {
                 if item.isFavourite {
                     Circle()
-                        .fill(isSelected ? PickerPalette.ink : PickerPalette.vermilion)
+                        .fill(isSelected ? palette.ink : palette.accent)
                         .frame(width: 3, height: 3)
                         .padding(4)
                 }
@@ -219,13 +222,14 @@ private struct PickerCell: View {
 /// Actions stay literal even though the proof and tray use a physical idiom.
 struct PickerFooterView: View {
     @ObservedObject var model: PickerViewModel
+    @Environment(\.pickerPalette) private var palette
 
     var body: some View {
         HStack(spacing: 12) {
             if let notice = model.notice {
                 Text(notice)
                     .font(.system(size: 11, weight: .medium))
-                    .foregroundStyle(PickerPalette.chalk)
+                    .foregroundStyle(palette.chalk)
                     .lineLimit(2)
                     .accessibilityAddTraits(.updatesFrequently)
             } else {
@@ -237,7 +241,7 @@ struct PickerFooterView: View {
                         Text(model.canInsert ? "Insert character" : "Copy character")
                     }
                     .font(.system(size: 12, weight: .medium))
-                    .foregroundStyle(PickerPalette.chalk)
+                    .foregroundStyle(palette.chalk)
                 }
                 .buttonStyle(.plain)
                 .disabled(model.selectedItem == nil)
@@ -248,7 +252,7 @@ struct PickerFooterView: View {
                     Button { model.onCopySelection?() } label: {
                         Text("⌘↵ Copy")
                             .font(.system(size: 10, design: .monospaced))
-                            .foregroundStyle(PickerPalette.chalk)
+                            .foregroundStyle(palette.chalk)
                     }
                     .buttonStyle(.plain)
                     .disabled(model.selectedItem == nil)
@@ -256,14 +260,14 @@ struct PickerFooterView: View {
                     Text("COPY ONLY")
                         .font(.system(size: 9, weight: .medium, design: .monospaced))
                         .tracking(0.8)
-                        .foregroundStyle(PickerPalette.vermilion)
+                        .foregroundStyle(palette.accent)
                 }
             }
         }
         .padding(.horizontal, 19)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .overlay(alignment: .top) {
-            Rectangle().fill(PickerPalette.chalk.opacity(0.15)).frame(height: 0.5).padding(.horizontal, 19)
+            Rectangle().fill(palette.chalk.opacity(0.15)).frame(height: 0.5).padding(.horizontal, 19)
         }
     }
 }

@@ -135,6 +135,13 @@ final class PickerController: PickerSearchDelegate {
         fieldAccess.forgetAnswers()
     }
 
+    /// Appearance never rebuilds the panel or changes session/selection state.
+    func applyAppearance(_ preferences: Preferences) {
+        if model.theme != preferences.pickerTheme { model.theme = preferences.pickerTheme }
+        panel.appearance = preferences.pickerAppearance.nativeAppearance
+        viewController.applyTheme(preferences.pickerTheme)
+    }
+
     /// Favourites, recents or the catalogue changed underneath the picker.
     func contentDidChange() {
         guard machine.isPickerVisible else { return }
@@ -777,6 +784,7 @@ final class PickerController: PickerSearchDelegate {
         let actions = menuActions(for: position)
         guard !actions.isEmpty, let view = panel.contentView else { return }
         let menu = NSMenu()
+        menu.appearance = panel.effectiveAppearance
         menu.autoenablesItems = false
         for action in actions {
             menu.addItem(ClosureMenuItem.make(action))
@@ -807,6 +815,12 @@ final class PickerController: PickerSearchDelegate {
     /// never follows the user to another application, display or Space.
     private func observeEnvironment() {
         let workspace = NSWorkspace.shared.notificationCenter
+        observers.append(workspace.addObserver(forName: NSWorkspace.accessibilityDisplayOptionsDidChangeNotification, object: nil, queue: .main) { [weak self] _ in
+            MainActor.assumeIsolated {
+                guard let self else { return }
+                self.applyAppearance(self.services.preferences.value)
+            }
+        })
         observers.append(workspace.addObserver(forName: NSWorkspace.didActivateApplicationNotification, object: nil, queue: .main) { [weak self] notification in
             let activated = (notification.userInfo?[NSWorkspace.applicationUserInfoKey] as? NSRunningApplication)?.processIdentifier
             MainActor.assumeIsolated {

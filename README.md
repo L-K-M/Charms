@@ -28,11 +28,11 @@ some weight, without adding a step or delaying insertion. Hover never changes
 what Return inserts. Motion follows Reduce Motion; the opaque paper and
 composing tray do not depend on transparency. Sound is intentionally absent.
 
-This is an interaction prototype, not a new release. Read the
+Impression is the development picker, not a tagged release. Read the
 [three concepts and design decision](docs/design/impression.md),
-[run the prototype](docs/design/prototype.md), or
+[build and run it](docs/design/prototype.md), or
 [watch the native keyboard demonstration](docs/design/impression-demo.mp4).
-Settings, the catalogue and insertion policy are unchanged.
+The catalogue and insertion policy are unchanged.
 
 ### Released picker (v0.1.0)
 
@@ -83,6 +83,13 @@ forgets all answers, including a temporary Not Now in the current run.
 Change the shortcut, choose a default emoji skin tone, or start Charms at
 login in Settings.
 
+In development builds, **Appearance** offers three picker themes:
+**Impression** (warm paper and vermilion), **Blueprint** (navy and cyan), and
+**Plum** (rose paper and apricot). Choose System, Light or Dark independently.
+Choices take effect immediately and survive relaunch. The preview uses the
+same proof and character blocks as the picker. Restore Default Appearance
+returns to Impression and System. [Theme details](docs/design/themes.md).
+
 ![Charms General settings, with insertion enabled and launch at login off](docs/screenshots/settings.png)
 
 ### Permission
@@ -120,7 +127,7 @@ delete the app, and optionally delete `~/Library/Application Support/Charms`
 What has been tested, and on which systems, is recorded in
 [docs/compatibility.md](docs/compatibility.md). The released-app screenshots
 under `docs/screenshots/` show v0.1.0 on macOS 27. Impression's separate
-prototype captures live under `docs/design/`. Other macOS versions may look
+development captures live under `docs/design/`. Other macOS versions may look
 different.
 
 ### Reinstalling or going back
@@ -150,7 +157,8 @@ swift run CharmsCatalogTool check # the committed catalogue matches the pinned d
 a test window (`CharmsHarness`), and checks insertion, Undo, Escape, copying,
 placement, the typed `::` and the password-field rule with real key events. It
 needs a terminal that has the Accessibility permission and uses the keyboard
-for about a minute.
+for about two minutes, including checks in every theme and both explicit
+appearances.
 
 `scripts/build.sh` / `scripts/release.sh` wrap the shared `lkm-build` /
 `lkm-release` engines; releases are cut by tagging. See [CICD.md](CICD.md).

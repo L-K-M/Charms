@@ -7,6 +7,7 @@ struct PickerProofView: View {
     @ObservedObject var model: PickerViewModel
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @Environment(\.colorSchemeContrast) private var contrast
+    @Environment(\.pickerPalette) private var palette
 
     private var item: PickerItem? { model.pressedItem ?? model.selectedItem }
     private var isPressed: Bool { model.pressedItem != nil }
@@ -14,10 +15,10 @@ struct PickerProofView: View {
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 3)
-                .fill(PickerPalette.ink.opacity(0.14))
+                .fill(palette.ink.opacity(0.14))
                 .offset(y: 3)
             RoundedRectangle(cornerRadius: 3)
-                .fill(PickerPalette.paper)
+                .fill(palette.paper)
 
             if let item {
                 // Keep the new proof visible from the first frame. Replacing
@@ -42,7 +43,7 @@ struct PickerProofView: View {
                     Text(model.isQueryEmpty ? "Search, or choose a favourite below." : "Try another name or a code point.")
                         .font(.system(size: 11))
                 }
-                .foregroundStyle(PickerPalette.ink)
+                .foregroundStyle(palette.ink)
             }
         }
         .padding(.horizontal, 12)
@@ -62,25 +63,25 @@ struct PickerProofView: View {
                     .font(.system(size: item.isEmoji ? 68 : 76))
                     .lineLimit(1)
                     .minimumScaleFactor(0.3)
-                    .foregroundStyle(PickerPalette.ink)
+                    .foregroundStyle(palette.ink)
                     .frame(width: 108, height: 88)
                     .scaleEffect(isPressed && !reduceMotion ? 0.94 : 1)
                     .offset(y: isPressed && !reduceMotion ? 2 : 0)
                     .background(alignment: .bottom) {
                         Rectangle()
-                            .fill(PickerPalette.ink.opacity(0.12))
+                            .fill(palette.ink.opacity(0.12))
                             .frame(height: 0.5)
                             .padding(.bottom, 15)
                     }
                     .overlay {
                         ProofRegistration()
-                            .stroke(PickerPalette.ink.opacity(contrast == .increased ? 0.8 : 0.3), lineWidth: 0.75)
+                            .stroke(palette.ink.opacity(contrast == .increased ? 0.8 : 0.3), lineWidth: 0.75)
                     }
 
                 VStack(alignment: .leading, spacing: 6) {
                     HStack(spacing: 5) {
                         Circle()
-                            .fill(isPressed ? PickerPalette.ink : Color(red: 0.70, green: 0.21, blue: 0.10))
+                            .fill(isPressed ? palette.ink : palette.proofAccent)
                             .frame(width: 4, height: 4)
                         Text(isPressed ? "IN THE PRESS" : "CHARACTER PROOF")
                             .font(.system(size: 8, weight: .semibold, design: .monospaced))
@@ -105,7 +106,7 @@ struct PickerProofView: View {
                     .frame(height: 15)
                     .help(item.codePoints + ". Scroll horizontally for the complete sequence.")
                 }
-                .foregroundStyle(PickerPalette.ink)
+                .foregroundStyle(palette.ink)
                 .frame(maxWidth: .infinity, alignment: .leading)
             }
 
@@ -114,9 +115,9 @@ struct PickerProofView: View {
                     .font(.system(size: 8, weight: .medium, design: .monospaced))
                     .tracking(1)
                 HStack(alignment: .firstTextBaseline, spacing: 7) {
-                    Text("Aa").foregroundStyle(PickerPalette.ink.opacity(0.55))
+                    Text("Aa").foregroundStyle(palette.proofSecondary)
                     Text(item.preview)
-                    Text("Bb").foregroundStyle(PickerPalette.ink.opacity(0.55))
+                    Text("Bb").foregroundStyle(palette.proofSecondary)
                 }
                 .font(.system(size: 16))
                 .lineLimit(1)
@@ -125,10 +126,10 @@ struct PickerProofView: View {
                 Text(usesGuide(item) ? "Preview guide only" : "Exact Unicode")
                     .font(.system(size: 9, design: .monospaced))
             }
-            .foregroundStyle(PickerPalette.ink)
+            .foregroundStyle(palette.ink)
             .padding(.top, 5)
             .overlay(alignment: .top) {
-                Rectangle().fill(PickerPalette.ink.opacity(0.17)).frame(height: 0.5)
+                Rectangle().fill(palette.ink.opacity(0.17)).frame(height: 0.5)
             }
         }
         .padding(.horizontal, 14)

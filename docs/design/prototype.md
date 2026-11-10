@@ -1,9 +1,10 @@
 # Running Impression
 
-Impression is a working interaction prototype inside Charms' native Mac app,
-not a separate mockup or a new release. It uses the bundled Unicode/CLDR
-catalogue, real search, favourites, recents and the existing insertion pipeline.
-The original concept branch is `design/impression-picker`.
+Impression is Charms' native composing picker, with persistent themes in
+Settings → Appearance. It uses the bundled Unicode/CLDR catalogue, real
+search, favourites, recents and the existing insertion pipeline. This is the
+development version, not a new tagged release. The original concept branch
+is `design/impression-picker`; this guide keeps its original path for links.
 
 ## Run
 
@@ -25,6 +26,14 @@ grant across rebuilds. No privacy database reset or automatic grant is needed.
 Click a text field in a test document, then press Control-P. Search `arrow`,
 `infinity`, `technologist`, `U+0301` or `U+00A0`. Try the optional `::` trigger
 only after explicitly enabling it in Settings.
+
+## Themes
+
+Open Settings → Appearance for Impression, Blueprint and Plum palettes,
+independent System/Light/Dark chrome, a live example and Restore Default
+Appearance. Choices apply immediately and survive relaunch. The native query,
+caret and keyboard menu follow the same appearance, including Increase
+Contrast. Settings itself follows macOS. [Theme details](themes.md).
 
 ## A ten-second demonstration
 
@@ -113,10 +122,11 @@ storage against CharmsHarness, with staged example text. They are not
 composites. The video is cropped to that staged source line and the picker;
 no real documents or clipboard contents are included.
 
-This slice does not redesign Settings, the menu bar, onboarding, icon,
-search/ranking or transport. Larger-text reflow, listening with VoiceOver,
-input methods and older-Mac runtime testing remain explicit release gates,
-not claims established by these captures. The fixed-size prototype costs
-152 points more vertical space than the previous picker. The existing
-placement engine receives the new size; the caret-line check is rerun, but
-small displays and mixed-scale multi-monitor use need a fresh manual pass.
+Settings adds appearance controls without redesigning the other tabs. The
+menu bar, onboarding, icon, search/ranking and transport remain unchanged.
+Larger-text reflow, listening with VoiceOver, input methods and older-Mac
+runtime testing remain explicit compatibility limits, not claims established
+by these captures. The fixed-size picker costs 152 points more vertical space
+than the previous picker. The existing placement engine receives the new
+size; the caret-line check is rerun, but small displays and mixed-scale
+multi-monitor use need a fresh manual pass.

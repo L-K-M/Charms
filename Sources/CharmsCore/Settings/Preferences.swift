@@ -21,6 +21,10 @@ public struct Preferences: Codable, Equatable, Sendable {
     /// Applications for which the user does not want to be asked.
     public var fieldAccessDeclined: Set<String>
     public var hasCompletedOnboarding: Bool
+    /// Cosmetic theme for the picker.
+    public var pickerTheme: PickerTheme
+    /// Appearance the picker asks the system for.
+    public var pickerAppearance: PickerAppearance
 
     public init(
         shortcut: KeyCombo = .standard,
@@ -31,7 +35,9 @@ public struct Preferences: Codable, Equatable, Sendable {
         shortcutPassThrough: Set<String> = [],
         fieldAccessApplications: Set<String> = [],
         fieldAccessDeclined: Set<String> = [],
-        hasCompletedOnboarding: Bool = false
+        hasCompletedOnboarding: Bool = false,
+        pickerTheme: PickerTheme = .impression,
+        pickerAppearance: PickerAppearance = .system
     ) {
         self.shortcut = shortcut
         self.skinTone = skinTone
@@ -42,12 +48,15 @@ public struct Preferences: Codable, Equatable, Sendable {
         self.fieldAccessApplications = fieldAccessApplications
         self.fieldAccessDeclined = fieldAccessDeclined
         self.hasCompletedOnboarding = hasCompletedOnboarding
+        self.pickerTheme = pickerTheme
+        self.pickerAppearance = pickerAppearance
     }
 
     private enum CodingKeys: String, CodingKey {
         case shortcut, skinTone, typedTriggerEnabled
         case triggerExclusions, pasteApplications, shortcutPassThrough, hasCompletedOnboarding
         case fieldAccessApplications, fieldAccessDeclined
+        case pickerTheme, pickerAppearance
     }
 
     /// Decodes leniently: a field that is absent or unreadable takes its
@@ -67,6 +76,8 @@ public struct Preferences: Codable, Equatable, Sendable {
         fieldAccessApplications = value(.fieldAccessApplications, defaults.fieldAccessApplications)
         fieldAccessDeclined = value(.fieldAccessDeclined, defaults.fieldAccessDeclined)
         hasCompletedOnboarding = value(.hasCompletedOnboarding, defaults.hasCompletedOnboarding)
+        pickerTheme = value(.pickerTheme, defaults.pickerTheme)
+        pickerAppearance = value(.pickerAppearance, defaults.pickerAppearance)
     }
 
     public static let storageKey = "preferences.v1"

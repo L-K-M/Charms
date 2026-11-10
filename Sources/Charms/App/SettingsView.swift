@@ -56,6 +56,8 @@ struct SettingsView: View {
     var body: some View {
         TabView {
             general.tabItem { Label("General", systemImage: "gearshape") }
+            AppearanceSettingsView(preferences: preferences)
+                .tabItem { Label("Appearance", systemImage: "paintpalette") }
             typing.tabItem { Label("Typing ::", systemImage: "keyboard") }
             applications.tabItem { Label("Applications", systemImage: "app.badge") }
             data.tabItem { Label("Data", systemImage: "tray.full") }
