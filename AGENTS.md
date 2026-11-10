@@ -67,6 +67,13 @@ assets/Charms-icon.png` and commit the result. Releases are cut by tagging:
 Note that `scripts/build.sh` reveals the built app in Finder. Automated
 sessions should call `scripts/build-app.sh` directly.
 
+For a release, download and verify both published archives and upload
+`SHA256SUMS.txt`; the shared workflow does not generate that file. Record
+artifact and runtime checks in `docs/compatibility.md`. README screenshots
+live in `docs/screenshots/`; its README records their build and capture
+procedure. Capture the actual app with staged text and isolated storage,
+not a mockup or a real document.
+
 ## Conventions
 
 - Standard Swift API Design Guidelines; one main type per file.
