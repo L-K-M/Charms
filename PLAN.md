@@ -585,9 +585,15 @@ Verdict: implemented as §7.5 and §7.6 describe and checked in the built app at
 
 - [ ] Complete the real-app/display compatibility matrix and review unresolved limitations.
 - [x] Measure performance using release builds and record the hardware/OS used.
-- [ ] Produce the universal app and its zip and dmg through the tag-triggered release workflow, ad-hoc signed. Add Developer ID signing and notarization only once an account is supplied.
-- [ ] Verify a downloaded build from a stable, non-translocated installation, normally `/Applications`, including the Gatekeeper step an un-notarized download needs, launch, permission onboarding, login-item registration/approval, duplicate open, and quitting.
-- [ ] Publish build instructions, compatibility notes, release notes, and checksums with the release, together with the documentation §14 already requires: uninstalling and disabling launch at login, privacy behaviour, current compatibility, and how to recover insertion permission.
+- [x] Produce the universal app and its zip and dmg through the tag-triggered release workflow, ad-hoc signed. Add Developer ID signing and notarization only once an account is supplied.
+- [x] Verify a downloaded build from a stable, non-translocated installation in `/Applications`, including the Gatekeeper warning route, launch, permission onboarding, login-item registration when no additional approval is needed, duplicate open, and quitting. Record the CLI/quarantine test method in `docs/compatibility.md` rather than claiming a fresh browser installation.
+- [ ] Check a fresh browser download/drag installation, the approval-required login-item state, and actual startup at login.
+- [x] Publish build instructions, compatibility notes, release notes, and checksums with the release, together with the documentation §14 already requires: uninstalling and disabling launch at login, privacy behaviour, current compatibility, and how to recover insertion permission.
+
+Published **v0.1.0 on 10 November 2026** from `bdb0a4e` through release run
+`42881964227`. Both downloaded archives were verified; the README now shows
+screenshots from that build. Remaining compatibility gaps above and in
+`docs/compatibility.md` are not implied to have passed by publication.
 
 **Exit:** a fresh user can install, grant only needed access, invoke Charms, insert symbols/emoji in documented contexts, and remove or quit it normally.
 

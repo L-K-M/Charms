@@ -13,18 +13,7 @@ What sets it apart is where it opens. The picker appears on the display that
 holds your typing, right beside the text cursor, and never on top of the line
 you are writing, wherever the mouse happens to be.
 
-```text
-┌──────────────────────────────────────────┐
-│ Search arrows, symbols, emoji…       esc │
-├──────────────────────────────────────────┤
-│ Favourites                               │
-│  →    ✓    —    ∞    👍    😊    ❤️    🎉  │
-│ Recent                                   │
-│  ←    °    ≠    •    ✨    😂    ⌘    ↗   │
-├──────────────────────────────────────────┤
-│ Rightwards arrow  U+2192  ↵ Insert · ⌘↵ Copy │
-└──────────────────────────────────────────┘
-```
+![Charms searching for arrows beside the typing position in TextEdit](docs/screenshots/picker-arrows.png)
 
 ## Using it
 
@@ -40,7 +29,9 @@ you are writing, wherever the mouse happens to be.
 | `esc` | Close without changing anything. |
 
 Before you search, the picker shows your favourites and the characters you
-used most recently.
+used most recently. Names and keywords find emoji too:
+
+![Charms showing emoji results for the search “smile”](docs/screenshots/picker-emoji.png)
 
 ### Typing `::` instead of the shortcut
 
@@ -64,6 +55,13 @@ another application while the question is open does not pull you back.
 Your remembered answers are listed under Settings, General, where Ask Again
 forgets all answers, including a temporary Not Now in the current run.
 
+### Settings
+
+Change the shortcut, choose a default emoji skin tone, or start Charms at
+login in Settings.
+
+![Charms General settings, with insertion enabled and launch at login off](docs/screenshots/settings.png)
+
 ### Permission
 
 Charms asks for one permission, Accessibility, and explains it before the
@@ -71,6 +69,10 @@ system prompt appears. (macOS 27 lists it as Device Control and Data Access.)
 It uses it to find the field you are typing in and to send the chosen
 character there. Without it Charms still opens, searches and copies; you paste
 yourself. Nothing leaves your Mac: see [PRIVACY.md](PRIVACY.md).
+
+If insertion stops after replacing the app, choose Enable Insertion in
+Settings, General. In the system list, switch Charms off and on again if it
+is already enabled.
 
 ## Installing
 
@@ -81,6 +83,10 @@ later, try to open Charms once, dismiss the warning, then click Open Anyway
 under Privacy & Security in System Settings. On macOS 14, Control-click the
 app, choose Open, then Open. Requires macOS 14 or later.
 
+Both archives are universal (Apple Silicon and Intel); only Apple Silicon
+has been runtime-tested. [SHA-256 checksums](https://github.com/L-K-M/Charms/releases/latest/download/SHA256SUMS.txt)
+identify the published files, not a claim of reproducible builds.
+
 If another utility already uses Control-P, for example PopChar, quit it or
 change one of the two shortcuts; whichever registered first wins.
 
@@ -89,7 +95,21 @@ delete the app, and optionally delete `~/Library/Application Support/Charms`
 (favourites and recents) and the Accessibility entry in System Settings.
 
 What has been tested, and on which systems, is recorded in
-[docs/compatibility.md](docs/compatibility.md).
+[docs/compatibility.md](docs/compatibility.md). The screenshots show v0.1.0 on
+macOS 27; other macOS versions may look different.
+
+### Reinstalling or going back
+
+Quit Charms before replacing the app with a copy from
+[Releases](https://github.com/L-K-M/Charms/releases). Replacing the app keeps
+your settings, favourites and recents.
+
+Before trying an older version, back up `~/Library/Application Support/Charms`
+and export your preferences with
+`defaults export ch.lkmc.Charms Charms-preferences.plist`. Restore data and
+preferences from a backup made for that version if needed. Replacing the app
+does not reverse a data migration. This first release uses library schema 1;
+downgrades across schema versions are unverified.
 
 ## Building
 

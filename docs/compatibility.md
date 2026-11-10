@@ -142,6 +142,60 @@ Release build, Apple M4 Max, macOS 27.0.1.
 | Catalogue load at launch | about 60 ms, off the main thread (43,548 entries) |
 | Search, per keystroke | median 0.2 ms, 95th percentile 3.6 ms, worst case about 27 ms for a single common letter |
 
+## Published v0.1.0
+
+Published on 10 November 2026 from commit
+`bdb0a4e8cae8051e23219dc15397a53628e0ff7f` by
+[release run 42881964227](https://github.com/L-K-M/Charms/actions/runs/42881964227).
+The hosted macOS 26 / Xcode 26.0 job passed all 339 tests, built and ad-hoc
+signed the universal app, and downloaded both uploaded assets to compare
+them byte for byte with the build output.
+
+The published ZIP and DMG were then independently downloaded with the
+GitHub CLI on the Mac described above:
+
+- SHA-256 hashes match GitHub's asset digests and the published
+  [SHA256SUMS.txt](https://github.com/L-K-M/Charms/releases/download/v0.1.0/SHA256SUMS.txt).
+  These identify the artifacts; byte-for-byte reproducible builds are not
+  claimed.
+- ZIP integrity and `hdiutil verify` passed. The read-only mounted DMG and
+  extracted ZIP contain identical app bundles. The DMG's Applications link
+  points to `/Applications`.
+- Both apps pass strict, deep signature verification. The executable has
+  `arm64` and `x86_64` slices; the version is 0.1.0, build 2, with macOS 14.0
+  as the minimum and `ch.lkmc.Charms` as the bundle identifier.
+- The catalogue and third-party notices match the tagged source. The icon
+  decodes at 1024 x 1024 and retains transparent corners.
+
+### Installed app checks
+
+The downloaded app was copied to `/Applications/Charms.app`. Since the
+GitHub CLI does not add quarantine, a quarantine attribute was applied for
+this test. Gatekeeper blocked it; Done, then Open Anyway in Privacy &
+Security, confirmation and administrator authentication allowed it to open.
+This exercises the macOS 27 warning route, not a browser's download/drag
+installation. The CLI-installed copy remained translocated after approval,
+so its quarantine attribute was cleared before the stable-path checks.
+Launch Services then reported `/Applications/Charms.app`, not App Translocation.
+
+With `CHARMS_HOME` isolating storage for the interaction checks:
+
+- The native Accessibility prompt appeared before insertion was enabled.
+  Enabling Charms in Device Control and Data Access was reflected in Settings.
+- Control-P, `arrow`, Return inserted exactly U+2192 into a staged TextEdit
+  rich-text document. One Edit > Undo Typing restored the original text.
+- Escape after searching for emoji left the source exactly unchanged.
+- The login-item switch registered and unregistered the app. No additional
+  approval was required; the switch was left off. Actual login was not tested.
+- Opening the installed app again showed Settings and kept one process.
+  Quitting removed that process.
+- The README screenshots were captured from this published build in dark
+  appearance, not from a mockup. Their provenance is in
+  [screenshots/README.md](screenshots/README.md).
+
+The test apps were quit, the temporary installation removed, and the desktop
+released. This does not extend coverage to Intel or older macOS versions.
+
 ## Not verified
 
 - **macOS 14, 15 and 26.** The deployment target is macOS 14 and CI builds
@@ -176,8 +230,10 @@ Release build, Apple M4 Max, macOS 27.0.1.
   waits for approval in System Settings, and a copy that macOS runs from a
   temporary location (opened straight from Downloads or the disk image),
   have code and unit tests only.
-- **A downloaded release**, its Gatekeeper prompt, and the pasteboard privacy
-  behaviour of an app started that way.
+- **A fresh browser download and drag installation**, Gatekeeper on older
+  macOS versions, and the pasteboard privacy behaviour of a downloaded app
+  started through Launch Services. The CLI-downloaded app and the macOS 27
+  warning route were checked as described above.
 - **Secure input switched on by another application** (some password
   managers and terminals do this) while Charms is used elsewhere.
 - **Skin-tone variants by hand.** The preference, the per-cell menu and the
