@@ -151,9 +151,8 @@ final class SnippetStoreTests: XCTestCase {
         let entries = (0..<(SnippetLibrary.maximumCount + 1)).map { index in
             #"{"id":"\#(UUID().uuidString)","shortcut":"item\#(index)","name":"Item","text":"ok"}"#
         }
-        let tooMany = Data(#"{"schemaVersion":1,"snippets":["#.utf8
-            + Data(entries.joined(separator: ",").utf8)
-            + Data("]}".utf8))
+        let tooManyJSON = #"{"schemaVersion":1,"snippets":["# + entries.joined(separator: ",") + "]}"
+        let tooMany = Data(tooManyJSON.utf8)
         try write(tooMany)
         XCTAssertThrowsError(try store.load())
         XCTAssertEqual(try Data(contentsOf: fileURL), tooMany)

@@ -6,6 +6,8 @@ and press Return to replace the marker with `¯\_(ツ)_/¯`. Or open Charms with
 the normal shortcut and search for `shrug`. Escape keeps the original field
 and clipboard unchanged, just as it does for characters.
 
+![The native picker showing Shrug and its emoji alternatives](snippets-picker.png)
+
 ## Your snippets
 
 Open **Settings → Snippets**. Choose **New Snippet…**, enter a name, shortcut
@@ -25,6 +27,11 @@ its unsaved draft. A failed save keeps the active list unchanged and reports
 the failure. **Add Missing Starters** restores deleted starters without
 replacing entries you edited or shortcuts claimed by your own snippets.
 The list is capped at 500 entries.
+
+![The native Snippets settings and starter list](snippets-settings.png)
+
+Both images are captures of the signed universal app on macOS 27.0.1, with
+isolated storage and staged text, on 11 November 2026.
 
 ## In the picker
 
