@@ -537,6 +537,138 @@ scenario_password_field() {
     expect "clipboard" "$(clipboard)" "→"
 }
 
+scenario_snippet_insert() {
+    reset "A "
+    local count; count="$(clipboard_count)"
+    open_picker && choose "shrug" || return 1
+    expect "snippet text" "$(editor)" 'A ¯\_(ツ)_/¯' || return 1
+    expect "clipboard change count" "$(clipboard_count)" "$count" || return 1
+    send --op undo >/dev/null
+    expect "snippet after one undo" "$(editor)" "A "
+}
+
+scenario_snippet_typed() {
+    reset "x "
+    local from; from="$(mark)"
+    typing "::shrug" 6
+    await "presented-" "$from" || { FAILURE="typing :: did not open the picker"; return 1; }
+    sleep 0.2
+    press return
+    await "outcome-dispatched" "$from" || { FAILURE="the snippet was not dispatched"; return 1; }
+    sleep 0.15
+    expect "typed snippet" "$(editor)" 'x ¯\_(ツ)_/¯'
+}
+
+scenario_snippet_escape() {
+    reset "x "
+    local from count before; from="$(mark)"; count="$(clipboard_count)"
+    before="$(shasum "$WORK/library.json")"
+    typing "::"
+    await "presented-" "$from" || { FAILURE="typing :: did not open the picker"; return 1; }
+    typing "shrug"
+    press escape
+    await "outcome-cancelled" "$from" || { FAILURE="Escape did not cancel the snippet"; return 1; }
+    expect "source after Escape" "$(editor)" "x ::" || return 1
+    expect "clipboard after Escape" "$(clipboard_count)" "$count" || return 1
+    expect "library after Escape" "$(shasum "$WORK/library.json")" "$before"
+}
+
+scenario_snippet_copy() {
+    reset "A "
+    open_picker && choose "shrug" --command || return 1
+    expect "source after copying snippet" "$(editor)" "A " || return 1
+    expect "copied snippet" "$(clipboard)" '¯\_(ツ)_/¯'
+}
+
+scenario_snippet_starters() {
+    # Read the shipped list through actual first-run storage. read -r and a
+    # tab-only separator preserve backslashes and spaces in every payload.
+    local query replacement cases="$WORK/snippet-cases.tsv"
+    python3 - "$WORK/snippets.json" > "$cases" <<'PY'
+import json, sys
+snippets = [s for s in json.load(open(sys.argv[1]))['snippets']
+            if s['id'].upper().startswith('43686172-6D73-4000-8000-')]
+assert len(snippets) == 20
+for snippet in snippets:
+    print(snippet['shortcut'] + '\t' + snippet['text'])
+PY
+    [[ $? == 0 ]] || { FAILURE="the starter fixture did not load"; return 1; }
+    while IFS=$'\t' read -r query replacement; do
+        reset ""
+        open_picker && choose "$query" || return 1
+        expect "starter $query" "$(editor)" "$replacement" || return 1
+    done < "$cases"
+}
+
+scenario_snippet_custom() {
+    # A saved custom string takes the same real storage/search/dispatch path.
+    # Stop before writing the fixture; Settings editing is checked manually.
+    kill "$APP_PID"; wait "$APP_PID" 2>/dev/null || true
+    APP_PID=""; CURRENT_PREFERENCES=""
+    python3 - "$WORK/snippets.json" <<'PY'
+import json, sys
+path = sys.argv[1]
+data = json.load(open(path))
+data['snippets'] = [s for s in data['snippets'] if s['shortcut'] != 'sampletext']
+data['snippets'].append(dict(id='00000000-0000-4000-8000-000000000001',
+    shortcut='sampletext', name='Exact sample', text=' \u212b e\u0301 👩🏽‍💻  '))
+with open(path, 'w') as file:
+    json.dump(data, file)
+PY
+    start_charms "$(preferences_for snippet_custom)" || { FAILURE="custom snippets did not load"; return 1; }
+    reset "A "
+    open_picker && choose "sampletext" || return 1
+    expect "exact custom text" "$(editor)" 'A  Å é 👩🏽‍💻  '
+}
+
+snippet_toggle_favourite() {
+    press return --control
+    press down; press down; press down
+    press return
+    sleep 0.1
+}
+
+shrug_is_favourite() {
+    python3 - "$WORK/library.json" <<'PY'
+import json, sys
+items = json.load(open(sys.argv[1]))['favourites']
+sys.exit(0 if any(s['string'] == r'¯\_(ツ)_/¯' for s in items) else 1)
+PY
+}
+
+scenario_snippet_favourite() {
+    reset ""
+    open_picker || return 1
+    typing "shrug"
+    if shrug_is_favourite; then snippet_toggle_favourite; fi
+    snippet_toggle_favourite
+    shrug_is_favourite || { FAILURE="snippet favourite was not saved"; return 1; }
+    press escape
+    reset ""
+    open_picker || return 1
+    local from; from="$(mark)"
+    # Eight original favourites, then the snippet: Down from the first
+    # block lands on it. Its saved presentation must still be text.
+    press down
+    press return
+    await "outcome-dispatched" "$from" || { FAILURE="saved snippet was not dispatched"; return 1; }
+    sleep 0.15
+    expect "saved favourite text" "$(editor)" '¯\_(ツ)_/¯' || return 1
+    open_picker || return 1
+    typing "shrug"
+    snippet_toggle_favourite
+    press escape
+}
+
+scenario_snippet_paste() {
+    reset "A "
+    local from; from="$(mark)"
+    open_picker && choose "shrug" || return 1
+    expect "pasted snippet" "$(editor)" 'A ¯\_(ツ)_/¯' || return 1
+    tail -n +"$((from + 1))" "$TRACE" | grep -q "sent-paste" || { FAILURE="the paste backend was not used"; return 1; }
+    sleep 1
+}
+
 # Exercise the native query editor, exact sequences, guides, cancellation and
 # keyboard menus under every palette and both explicit appearances. Preferences
 # are loaded through the real storage boundary, not injected into the views.
@@ -548,7 +680,7 @@ scenario_theme_plum_light() { theme_round_trip; }
 scenario_theme_plum_dark() { theme_round_trip; }
 
 theme_round_trip() {
-    scenario_navigate && scenario_escape && scenario_sequence && scenario_preview_guides && scenario_keyboard_menu
+    scenario_navigate && scenario_escape && scenario_sequence && scenario_preview_guides && scenario_keyboard_menu && scenario_snippet_insert
 }
 
 ALL=(insert escape replace_selection sequence navigate first_selected copy placement click_cell click_outside
@@ -557,13 +689,14 @@ ALL=(insert escape replace_selection sequence navigate first_selected copy place
      typed_trigger_focus_moves_during_selection typed_trigger_selection_refused typed_trigger_fast
      typed_trigger_escape colons_inside_a_word password_field
      paste_backend pass_through
+     snippet_insert snippet_typed snippet_escape snippet_copy snippet_starters snippet_favourite snippet_custom snippet_paste
      theme_impression_light theme_impression_dark theme_blueprint_light theme_blueprint_dark
      theme_plum_light theme_plum_dark)
 
 # The preferences a scenario runs with. Charms is restarted when they change.
 preferences_for() {
     case "$1" in
-        paste_backend) echo "{\"pasteApplications\": [\"$HOST_ID\"]}" ;;
+        paste_backend|snippet_paste) echo "{\"pasteApplications\": [\"$HOST_ID\"]}" ;;
         pass_through) echo "{\"shortcutPassThrough\": [\"$HOST_ID\"]}" ;;
         theme_*)
             local theme="${1#theme_}"

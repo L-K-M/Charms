@@ -10,17 +10,21 @@ public struct LibraryItem: Codable, Sendable, Equatable {
     public var string: String
     /// Display name captured when the item was saved.
     public var name: String
+    /// Presentation metadata only. The exact saved string remains the
+    /// payload even if this snippet is later edited or deleted.
+    public var snippetShortcut: String?
 
-    public init(string: String, name: String) {
+    public init(string: String, name: String, snippetShortcut: String? = nil) {
         self.string = string
         self.name = name
+        self.snippetShortcut = snippetShortcut
     }
 
     /// Identity is the exact scalar sequence of `string`; `name` compares
     /// normally. Swift's `String ==` would treat `"\u{212B}"` and `"\u{C5}"`
     /// as equal, but they insert different text.
     public static func == (lhs: LibraryItem, rhs: LibraryItem) -> Bool {
-        lhs.string.isExactly(rhs.string) && lhs.name == rhs.name
+        lhs.string.isExactly(rhs.string) && lhs.name == rhs.name && lhs.snippetShortcut == rhs.snippetShortcut
     }
 }
 

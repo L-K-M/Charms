@@ -8,6 +8,7 @@ final class AppServices {
     let diagnostics = DiagnosticsLog(sink: AppServices.traceSink())
     let preferences: PreferencesStore
     let library: LibraryController
+    let snippets: SnippetController
     let glyphs = GlyphSupport()
     /// Nil until the catalogue has been read, a fraction of a second after
     /// launch.
@@ -18,6 +19,7 @@ final class AppServices {
         self.paths = paths
         preferences = PreferencesStore(paths: paths)
         library = LibraryController(paths: paths, diagnostics: diagnostics)
+        snippets = SnippetController(paths: paths, diagnostics: diagnostics)
     }
 
     func loadCatalog() async {

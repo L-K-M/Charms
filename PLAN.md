@@ -6,7 +6,7 @@ Updated: 10 November 2026 (implementation results recorded in §11, §15 and §1
 
 ## 1. Product direction
 
-Charms is a small native macOS utility for inserting arrows, unusual symbols, punctuation, and emoji into the app where the user is typing. Its defining behaviour is that the picker opens on the display containing the typing focus, preferably beside the text caret, even when the mouse is on another display.
+Charms is a small native macOS utility for inserting arrows, unusual symbols, punctuation, emoji and explicitly saved short text snippets into the app where the user is typing. Its defining behaviour is that the picker opens on the display containing the typing focus, preferably beside the text caret, even when the mouse is on another display.
 
 The product name is **Charms**. The composing picker is **Impression**: a native search field, a two-scale character proof, an eight-column composing tray, favourites, recents and literal Insert/Copy actions. It extends the initially selected compact grid rather than replacing it with a named-results list. The three experiential concepts and the decision are in [docs/design/impression.md](docs/design/impression.md); running instructions, captures and limitations are in [docs/design/prototype.md](docs/design/prototype.md). Settings add persistent Impression, Blueprint and Plum palettes with independent System/Light/Dark chrome; see [theming](docs/design/themes.md). This is not a new tagged release.
 
@@ -58,13 +58,14 @@ At the planning baseline the repository contained the license but no application
 - Search for ordinary symbols and emoji using names, aliases, literal characters, and code points.
 - Keyboard and mouse selection, direct insertion, and an explicit copy action.
 - Favourites, recents, and emoji variants supported by the bundled catalogue.
+- User-defined, single-line text snippets confirmed in the same picker, with 20 editable researched starters. No automatic expansion; see [the snippet specification and sources](docs/snippets.md).
 - Accessibility onboarding, optional launch at login, and a small settings window.
 - Defined compatibility behaviour for native apps, browser fields, rich web editors, and Electron apps.
 
 ### Deferred
 
 - Font inspection, font comparison, font-specific private-use glyph collections, and typographic alternate selection.
-- Drawing recognition, AI search, GIFs, stickers, snippets, and general-purpose text expansion.
+- Drawing recognition, AI search, GIFs, stickers, templates, multiline snippets and general-purpose automatic text expansion.
 - Arbitrary trigger languages and automatic conversion of ordinary words; v1 recognizes only the optional `::` marker.
 - Cloud accounts, cross-device synchronization, usage analytics, and remote search.
 - HTML/CSS/source-code output formats, a full Unicode inspector, and user-authored theme files. Three built-in palettes are available in Settings.
@@ -129,6 +130,7 @@ The diagram is structural; native font metrics determine final spacing.
 - Start with the first available item selected whenever items are shown: the first favourite (or recent) with an empty query, the first match otherwise. Enter therefore always acts on a visible choice, also right after the picker opens. Clearing search selects the first item again. Enter does nothing only when there is nothing to select. (The first version left the empty-query view unselected; that made Enter a dead key until an arrow key or Tab was pressed.)
 - Distinguish selection from hover. A stationary mouse must not steal selection after a keyboard search or rerender.
 - A primary click on a result cell activates that item exactly once, equivalent to Enter. In insertion mode it inserts; in browse/copy mode it copies. Chrome, section headers, empty space, and context-menu clicks never insert. Favourite/variant actions remain separate (`⌘D` or context menu); record accidental-activation checks in M3.
+- Snippet results use shortcut-labelled blocks and a full-width text proof. Exact shortcut matches precede emoji aliases; broader metadata matches follow literal/code-point/exact catalogue hits. The existing session machine freezes and dispatches their exact strings. Settings provide transactional add/edit/remove with native verbatim editors. Snippets are single-line, at most 64 UTF-16 units, and stored separately from generated Unicode data; deleting all starters persists. Adding missing starters preserves edited IDs and claimed shortcuts. Favourites and recents retain exact text snapshots after edits/deletion. No automatic expansion or new keyboard observation is added.
 - Offer Impression, Blueprint and Plum in Settings, with System/Light/Dark chrome independent of the palette. Persist both choices; missing or invalid fields default independently without losing other preferences. The native query/caret and context menus follow the same appearance. Keep themes out of the insertion state machine.
 - Use opaque paper, ink and graphite surfaces with light/dark chrome. A cream raised block and vermilion saddle distinguish selection from hover without relying only on colour; a small underline indicates grid navigation. Search retains a visible outline while it owns arrow keys. Increase Contrast strengthens rules and labels. Reduce Motion disables lift, scale and travelling selection; Reduce Transparency needs no substitute material because the surfaces are opaque. Sound is deliberately absent.
 - Hover lifts a block by 1.5 points over 120 ms but never selects. A new proof is immediately visible and makes a 3-point, 180 ms stamping motion, rather than fading through blank paper during rapid typing. Pressing Return compresses the frozen choice only while the existing session machine is awaiting release (or settling a typed handoff). Release dispatches without an animation delay; Escape or the existing one-second release deadline removes pressure. Do not present a delivery receipt.

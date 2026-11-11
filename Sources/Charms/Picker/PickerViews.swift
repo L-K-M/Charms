@@ -33,7 +33,7 @@ struct PickerGridView: View {
                     if model.isLoading {
                         message("Loading characters…")
                     } else if !model.isQueryEmpty, !model.hasItems {
-                        message("No matching characters. Keep looking.")
+                        message("No matches. Keep looking.")
                     }
                 }
                 .padding(PickerViewModel.padding)
@@ -53,9 +53,10 @@ struct PickerGridView: View {
     }
 
     private func sectionView(_ section: PickerSection, index sectionIndex: Int) -> some View {
-        VStack(alignment: .leading, spacing: 8) {
+        let heading = section.kind == .results && section.items.contains(where: \.isSnippet) ? "RESULTS" : title(for: section.kind)
+        return VStack(alignment: .leading, spacing: 8) {
             HStack(alignment: .firstTextBaseline) {
-                Text(title(for: section.kind))
+                Text(heading)
                     .tracking(1.4)
                 Spacer()
                 Text(section.items.isEmpty ? "" : String(format: "%02d", section.items.count))
@@ -77,7 +78,7 @@ struct PickerGridView: View {
                     }
                 }
                 .accessibilityElement(children: .contain)
-                .accessibilityLabel(title(for: section.kind))
+                .accessibilityLabel(heading)
             }
         }
         .padding(.top, sectionIndex == 0 ? 0 : 4)
@@ -118,10 +119,10 @@ struct PickerGridView: View {
         .contextMenu { menu(model.menuActions?(position) ?? []) }
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(item.name)
-        .accessibilityValue(item.codePoints)
+        .accessibilityValue(item.snippetShortcut.map { "Text snippet ::\($0). \(item.string)" } ?? item.codePoints)
         .accessibilityAddTraits(isSelected ? [.isButton, .isSelected] : .isButton)
         .accessibilityAction { model.onActivate?(position) }
-        .help("\(item.name)\n\(item.codePoints)")
+        .help("\(item.name)\n\(item.isSnippet ? item.string : item.codePoints)")
     }
 
     private func menu(_ actions: [PickerMenuAction]) -> some View {
@@ -177,10 +178,7 @@ struct PickerCell: View {
     @Environment(\.pickerPalette) private var palette
 
     var body: some View {
-        Text(item.preview)
-            .font(.system(size: item.isEmoji ? 26 : 25))
-            .lineLimit(1)
-            .minimumScaleFactor(0.4)
+        face
             .foregroundStyle(isSelected ? palette.ink : palette.chalk)
             .opacity(item.preview.isExactly(item.string) ? 1 : 0.75)
             .frame(width: PickerViewModel.cellSize, height: PickerViewModel.cellSize)
@@ -217,6 +215,25 @@ struct PickerCell: View {
             .animation(reduceMotion ? nil : .easeOut(duration: 0.08), value: isPressed)
             .animation(reduceMotion ? nil : .spring(response: 0.18, dampingFraction: 0.8), value: isSelected)
     }
+
+    @ViewBuilder private var face: some View {
+        if let shortcut = item.snippetShortcut {
+            VStack(spacing: 1) {
+                Text("::").font(.system(size: 8, design: .monospaced))
+                Text(shortcut)
+                    .font(.system(size: 10, weight: .semibold, design: .monospaced))
+                    .lineLimit(2)
+                    .truncationMode(.middle)
+                    .minimumScaleFactor(0.85)
+            }
+            .padding(.horizontal, 3)
+        } else {
+            Text(item.preview)
+                .font(.system(size: item.isEmoji ? 26 : 25))
+                .lineLimit(1)
+                .minimumScaleFactor(0.4)
+        }
+    }
 }
 
 /// Actions stay literal even though the proof and tray use a physical idiom.
@@ -238,7 +255,8 @@ struct PickerFooterView: View {
                 } label: {
                     HStack(spacing: 7) {
                         Image(systemName: "return")
-                        Text(model.canInsert ? "Insert character" : "Copy character")
+                        Text(model.canInsert ? (model.selectedItem?.isSnippet == true ? "Insert text" : "Insert character")
+                             : (model.selectedItem?.isSnippet == true ? "Copy text" : "Copy character"))
                     }
                     .font(.system(size: 12, weight: .medium))
                     .foregroundStyle(palette.chalk)

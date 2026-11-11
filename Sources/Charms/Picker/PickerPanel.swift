@@ -101,12 +101,12 @@ final class PickerViewController: NSViewController, NSTextFieldDelegate {
         searchField.drawsBackground = false
         searchField.focusRingType = .none
         searchField.font = .systemFont(ofSize: 15)
-        searchField.placeholderString = "Find arrows, symbols, emoji…"
+        searchField.placeholderString = "Find symbols, emoji, snippets…"
         searchField.delegate = self
         searchField.usesSingleLineMode = true
         searchField.lineBreakMode = .byTruncatingHead
         searchField.cell?.isScrollable = true
-        searchField.setAccessibilityLabel("Search characters")
+        searchField.setAccessibilityLabel("Search characters and snippets")
         searchField.translatesAutoresizingMaskIntoConstraints = false
 
         // One hosting coordinate space also makes keyboard context-menu
@@ -153,6 +153,7 @@ final class PickerViewController: NSViewController, NSTextFieldDelegate {
     /// Puts the keyboard into the search field with the caret at the end.
     func focusSearch() {
         view.window?.makeFirstResponder(searchField)
+        (searchField.currentEditor() as? NSTextView)?.disableAutomaticTextProcessing()
         updateEditorColors()
         searchField.currentEditor()?.selectedRange = NSRange(location: (searchField.stringValue as NSString).length, length: 0)
     }

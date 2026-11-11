@@ -58,6 +58,8 @@ struct SettingsView: View {
             general.tabItem { Label("General", systemImage: "gearshape") }
             AppearanceSettingsView(preferences: preferences)
                 .tabItem { Label("Appearance", systemImage: "paintpalette") }
+            SnippetsSettingsView(controller: model.services.snippets)
+                .tabItem { Label("Snippets", systemImage: "text.quote") }
             typing.tabItem { Label("Typing ::", systemImage: "keyboard") }
             applications.tabItem { Label("Applications", systemImage: "app.badge") }
             data.tabItem { Label("Data", systemImage: "tray.full") }
@@ -188,7 +190,7 @@ struct SettingsView: View {
                         Button("Enable Insertion…") { model.enableInsertion() }
                     }
                 }
-                Text("Type two colons at the start of a field or after a space, keep typing a name such as ::arrow, and press Return. The colons and the name are replaced by the character. Escape closes the picker and leaves the colons in your text.")
+                Text("Type two colons at the start of a field or after a space, keep typing a name such as ::arrow or ::shrug, and press Return. The colons and the name are replaced by the selected character or snippet. Escape closes the picker and leaves the colons in your text.")
                     .font(.callout).foregroundStyle(.secondary)
                 Text("While this is on, Charms watches the keys typed in other applications for the two colons. It keeps nothing but a colon it is waiting to see repeated, sends nothing anywhere, and stops watching when you turn this off.")
                     .font(.callout).foregroundStyle(.secondary)

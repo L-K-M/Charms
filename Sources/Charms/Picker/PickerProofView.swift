@@ -25,7 +25,9 @@ struct PickerProofView: View {
                 // identity with an opacity transition left blank paper during
                 // rapid queries in the recorded prototype. Only its pressure
                 // moves now; ExactString also distinguishes U+212B and U+00C5.
-                specimen(item)
+                Group {
+                    if item.isSnippet { snippetSpecimen(item) } else { specimen(item) }
+                }
                     // Phase animation moves the sheet, not the old and new
                     // glyphs together. Suppress implicit text/font crossfades.
                     .transaction { $0.animation = nil }
@@ -51,7 +53,7 @@ struct PickerProofView: View {
         .padding(.bottom, 14)
         .animation(reduceMotion ? nil : .easeOut(duration: 0.07), value: isPressed)
         .accessibilityElement(children: .ignore)
-        .accessibilityLabel("Character proof")
+        .accessibilityLabel(item?.isSnippet == true ? "Text snippet proof" : "Character proof")
         .accessibilityValue(proofDescription)
         .accessibilityAddTraits(.isStaticText)
     }
@@ -137,6 +139,34 @@ struct PickerProofView: View {
         .offset(y: isPressed && !reduceMotion ? 1 : 0)
     }
 
+    private func snippetSpecimen(_ item: PickerItem) -> some View {
+        VStack(alignment: .leading, spacing: 7) {
+            HStack {
+                Text(isPressed ? "IN THE PRESS" : "TEXT SNIPPET")
+                    .font(.system(size: 8, weight: .semibold, design: .monospaced))
+                    .tracking(1.2)
+                Spacer(minLength: 8)
+                Text("::" + (item.snippetShortcut ?? ""))
+                    .font(.system(size: 10, design: .monospaced))
+                    .lineLimit(1)
+            }
+            Text(item.name)
+                .font(.system(size: 14, weight: .medium, design: .serif))
+                .lineLimit(1)
+            Text(item.string)
+                .font(.system(size: 17, design: .monospaced))
+                .lineLimit(3)
+                .minimumScaleFactor(0.75)
+                .fixedSize(horizontal: false, vertical: true)
+                .frame(maxWidth: .infinity, alignment: .leading)
+        }
+        .foregroundStyle(palette.ink)
+        .padding(.horizontal, 14)
+        .padding(.vertical, 9)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+        .offset(y: isPressed && !reduceMotion ? 1 : 0)
+    }
+
     private func scalarLabel(_ item: PickerItem) -> some View {
         Text(item.codePoints)
             .font(.system(size: 10, design: .monospaced))
@@ -150,6 +180,7 @@ struct PickerProofView: View {
 
     private var proofDescription: String {
         guard let item else { return model.isLoading ? "Loading characters" : "No character selected" }
+        if let shortcut = item.snippetShortcut { return "\(item.name). Text snippet ::\(shortcut). \(item.string)" }
         let guide = usesGuide(item) ? ". The visible guide is not inserted" : ""
         return "\(item.name). \(item.codePoints)\(guide)"
     }

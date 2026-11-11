@@ -66,6 +66,23 @@ put there. It is off by default, and off in terminals, code editors,
 password managers and applications that have their own `:shortcodes:`; the
 list is yours to edit.
 
+### Text snippets
+
+Type `::shrug`, then Return, to insert `¯\_(ツ)_/¯`. Charms includes **20
+editable starters**, including table flip/unflip, Lenny, disapproval, bear,
+cat and celebration faces. Open **Settings → Snippets** to add your own short,
+single-line text, edit a shortcut, or remove a starter. You can also find
+snippets through the normal picker shortcut. Nothing expands automatically.
+
+Snippet tiles show their shortcuts; the proof shows the replacement text.
+Exact shortcuts take priority over emoji aliases, with the emoji still
+available as another result. Favourites and recents keep exact saved copies,
+so editing a snippet does not silently change them. Explicitly saved snippets
+are stored locally as plain text, never included in diagnostics.
+
+See [the snippet guide](docs/snippets.md) for limits, storage and the researched
+starter list with source links.
+
 ### Applications that hide their text fields
 
 Some applications, those built with Electron among them, do not report where
