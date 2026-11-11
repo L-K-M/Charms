@@ -14,14 +14,17 @@ public struct PickerItem: Equatable, Sendable, Identifiable {
     /// Catalogue index of the base emoji whose skin-tone variants can be
     /// offered for this cell, or nil when it has none.
     public let variantBaseIndex: Int?
+    public let snippetShortcut: String?
+    public var isSnippet: Bool { snippetShortcut != nil }
 
-    public init(string: String, name: String, preview: String? = nil, isEmoji: Bool, isFavourite: Bool, variantBaseIndex: Int?) {
+    public init(string: String, name: String, preview: String? = nil, isEmoji: Bool, isFavourite: Bool, variantBaseIndex: Int?, snippetShortcut: String? = nil) {
         self.string = string
         self.name = name
         self.preview = preview ?? string
         self.isEmoji = isEmoji
         self.isFavourite = isFavourite
         self.variantBaseIndex = variantBaseIndex
+        self.snippetShortcut = snippetShortcut
     }
 
     public var id: ExactString { ExactString(string) }
@@ -32,6 +35,7 @@ public struct PickerItem: Equatable, Sendable, Identifiable {
     public static func == (lhs: PickerItem, rhs: PickerItem) -> Bool {
         lhs.string.isExactly(rhs.string) && lhs.name == rhs.name && lhs.isEmoji == rhs.isEmoji
             && lhs.isFavourite == rhs.isFavourite && lhs.variantBaseIndex == rhs.variantBaseIndex
+            && lhs.snippetShortcut == rhs.snippetShortcut
     }
 }
 
@@ -77,6 +81,7 @@ public struct PickerContent: Sendable {
         library: UserLibrary,
         skinTone: SkinTone,
         columns: Int,
+        snippets: SnippetLibrary = SnippetLibrary(),
         isSupported: (CatalogEntry) -> Bool,
         isCancelled: @escaping @Sendable () -> Bool = { false }
     ) -> [PickerSection] {
@@ -92,7 +97,24 @@ public struct PickerContent: Sendable {
         var seen = Set<ExactString>()
         var items: [PickerItem] = []
         items.reserveCapacity(hits.count)
+        let matches = snippets.matches(query: query)
+        func appendSnippets(_ candidates: [TextSnippet]) {
+            for snippet in candidates where seen.insert(ExactString(snippet.text)).inserted {
+                items.append(PickerItem(string: snippet.text, name: snippet.name, isEmoji: false,
+                                        isFavourite: favourites.contains(ExactString(snippet.text)),
+                                        variantBaseIndex: nil, snippetShortcut: snippet.shortcut))
+            }
+        }
+        // Explicit user shortcuts win, including over an emoji's alias.
+        // Other snippet matches follow literal/code-point/exact catalogue hits
+        // but precede broad prefixes. The catalogue's own ordering is intact.
+        appendSnippets(matches.filter { $0.matchesShortcut(query) || $0.text.isExactly(query) })
+        var appendedOtherSnippets = false
         for hit in hits {
+            if hit.tier >= .prefix, !appendedOtherSnippets {
+                appendSnippets(matches)
+                appendedOtherSnippets = true
+            }
             let explicit = hit.tier == .literal || hit.tier == .codePoint || hit.tier == .bareCodePoint
             guard let shown = displayed(hit.entry, at: hit.index, skinTone: skinTone, explicit: explicit, isSupported: isSupported) else {
                 continue
@@ -100,6 +122,7 @@ public struct PickerContent: Sendable {
             guard seen.insert(ExactString(shown.entry.string)).inserted else { continue }
             items.append(item(for: shown.entry, at: shown.index, favourites: favourites))
         }
+        if !appendedOtherSnippets { appendSnippets(matches) }
         return [PickerSection(kind: .results, items: items)]
     }
 
@@ -117,6 +140,10 @@ public struct PickerContent: Sendable {
     /// The item for a string the user saved earlier. The stored name is used
     /// when the catalogue no longer lists the string.
     public func item(for saved: LibraryItem, isFavourite: Bool) -> PickerItem {
+        if let shortcut = saved.snippetShortcut {
+            return PickerItem(string: saved.string, name: saved.name, isEmoji: false,
+                              isFavourite: isFavourite, variantBaseIndex: nil, snippetShortcut: shortcut)
+        }
         if let index = catalog.index(of: saved.string) {
             let entry = catalog.entries[index]
             return PickerItem(string: entry.string, name: entry.displayName, preview: Self.preview(for: entry), isEmoji: entry.isEmoji, isFavourite: isFavourite, variantBaseIndex: variantBase(for: entry, at: index))

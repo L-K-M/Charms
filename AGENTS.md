@@ -21,8 +21,8 @@ been verified, and where, lives in [docs/compatibility.md](docs/compatibility.md
 - **Layout:** `Package.swift` at the root (no `.xcodeproj`):
   - `Sources/CharmsCore/`: pure logic with no AppKit. Catalogue and its file
     format, search, placement geometry, the session state table, typed-trigger
-    recognition and handoff, insertion policy, preferences, favourites and
-    recents. Everything testable lives here.
+    recognition and handoff, insertion policy, preferences, favourites,
+    recents and explicitly saved text snippets. Everything testable lives here.
   - `Sources/Charms/`: the app. Status item, hot key, Accessibility capture,
     the picker panel, event posting, settings.
   - `Sources/CharmsCatalogBuilder/` and `Sources/CharmsCatalogTool/`: the
@@ -98,6 +98,13 @@ not a mockup or a real document.
   Preserve lenient preference migration and contrast tests when adding a
   theme. Forced appearances must retain Increase Contrast and live display
   setting changes. Never recreate the field editor to apply a theme.
+- Short text snippets live in `CharmsCore/Snippets/`, independently of the
+  generated catalogue. `SnippetController` saves before publishing; load
+  failures leave the file untouched and editing disabled. Preserve exact
+  payloads, independent shortcut search and saved library snapshots. Do not
+  re-seed an intentionally empty list or overwrite user edits when adding
+  missing starters. Use native verbatim editors, not smart substitutions.
+  Starter provenance and limits are documented in `docs/snippets.md`.
 
 ## Critical Constraints
 
@@ -113,8 +120,10 @@ not a mockup or a real document.
   add or strip variation selectors, joiners or modifiers.
 - **Accessibility offsets are UTF-16.** Never use Swift character counts as
   ranges in another application's text.
-- **Privacy.** No network access. No stored queries, typed text, document
-  contents, window titles or clipboard contents. The diagnostics log has no
+- **Privacy.** No network access. No stored queries, surrounding typed text,
+  document contents, window titles or clipboard contents. Text deliberately
+  saved as snippets, favourites or recents is the explicit local-storage
+  exception; never include snippet content in diagnostics. The diagnostics log has no
   free-text field on purpose. The `::` observer exists only while the user
   has switched it on, and keeps one candidate colon and a bounded query
   prefix, nothing else.

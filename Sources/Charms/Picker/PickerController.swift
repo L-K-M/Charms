@@ -553,7 +553,7 @@ final class PickerController: PickerSearchDelegate {
     private func finish(_ id: SessionID, outcome: SessionOutcome) {
         guard let current = session, current.id == id else { return }
         if outcome == .dispatched || outcome == .copied, let chosen = current.chosen {
-            services.library.change { $0.recordUse(LibraryItem(string: chosen.string, name: chosen.name)) }
+            services.library.change { $0.recordUse(LibraryItem(string: chosen.string, name: chosen.name, snippetShortcut: chosen.snippetShortcut)) }
         }
         if outcome == .failedBeforeDispatch {
             NSSound.beep()
@@ -582,6 +582,7 @@ final class PickerController: PickerSearchDelegate {
             library: services.library.library,
             skinTone: services.preferences.value.skinTone,
             columns: PickerViewModel.columns,
+            snippets: services.snippets.library,
             isSupported: { glyphs.isSupported($0) }
         )
         if keepSelection, let previousItem {
@@ -768,7 +769,7 @@ final class PickerController: PickerSearchDelegate {
     }
 
     private func toggleFavourite(_ item: PickerItem) {
-        services.library.change { $0.toggleFavourite(LibraryItem(string: item.string, name: item.name)) }
+        services.library.change { $0.toggleFavourite(LibraryItem(string: item.string, name: item.name, snippetShortcut: item.snippetShortcut)) }
         refreshContent(keepSelection: true)
     }
 

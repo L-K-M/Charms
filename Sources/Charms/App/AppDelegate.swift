@@ -68,6 +68,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
                 DispatchQueue.main.async { picker?.contentDidChange() }
             }
             .store(in: &cancellables)
+        services.snippets.$library
+            .dropFirst()
+            .sink { [weak picker] _ in
+                DispatchQueue.main.async { picker?.contentDidChange() }
+            }
+            .store(in: &cancellables)
         services.onCatalogLoaded = { [weak picker] in picker?.contentDidChange() }
         Task { await services.loadCatalog() }
 

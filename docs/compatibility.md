@@ -229,6 +229,52 @@ existing native editor, accessibility values, contrast/motion environment
 handling and session policy remain, but code paths are not a substitute for
 those runtime checks.
 
+## Text snippets
+
+Verified locally on 11 November 2026, Mac Studio/M4 Max, macOS 27.0.1,
+Swift 6.4.2 and Swiss German keyboard layout, with isolated storage:
+
+- All **398 unit tests** pass. New coverage checks exact payloads, UTF-16
+  limits, joined emoji, canonical distinctions, shortcut priority, saved
+  snapshots, defaults/merging, strict decoding, owner-only atomic persistence,
+  read/write failures, size limits and preservation of unknown-schema files.
+- Catalogue generation and pinned Unicode/CLDR hashes still match. Snippets
+  are a separate file, not hand-edited generated catalogue entries.
+- The Apple Development-signed universal release builds, contains arm64 and
+  x86_64, and passes deep, strict signature verification. Only arm64 ran.
+- All **41 real-input scenarios** pass in a complete final run (223 seconds).
+  Eight additions cover snippet insertion and one Undo, fast `::shrug`,
+  Escape/source/clipboard/library preservation, Copy, all 20 starter payloads,
+  favourites, custom canonical/combining/joined text and spaces, and Paste.
+  Each of the six palette/appearance cases also repeats snippet insertion.
+- The initial snippet batch exposed the first Escape being consumed by native
+  automatic text processing for `shrug`, before the field delegate saw it.
+  Disabling automatic completion/correction/substitution on the same native
+  editor fixes that regression. The failing scenario then passes without
+  changing its assertions. Native IME guards remain; real IMEs were not run.
+- Used the actual Settings controls to create a custom entry, reject a
+  duplicate shortcut, cancel an unsaved draft, remove a starter, and add it
+  back without changing custom entries. Native Tab moves between all three
+  editor fields; Return saves and Escape cancels.
+- The custom replacement retained straight quotes, two hyphens, U+212B,
+  decomposed accents, a joined emoji and surrounding spaces through Settings,
+  relaunch, typed invocation and insertion. Tests separately cover two
+  trailing spaces and canonical identity.
+- A 64-unit CJK replacement is fully visible in the three-line proof and
+  arrives exactly. This checks the ordinary fixed-size UI, not larger text.
+- Making the isolated storage directory unwritable leaves the previous file
+  byte-for-byte intact, keeps the draft open and shows an actionable error.
+  Restoring permissions and pressing Return saves the unchanged draft.
+- An unsupported-schema file remains byte-for-byte untouched at launch;
+  Settings disables editing and offers Retry Loading. The fixture was
+  restored afterwards. All test apps were quit and the desktop released.
+
+See [the snippet guide](snippets.md) for the actual app captures, constraints
+and web-researched starter provenance. These checks do not re-establish the
+application matrix, VoiceOver listening, real IMEs, accessibility display
+settings, older-macOS/Intel runtime or fresh multi-display/full-screen
+coverage. CI and independent review results are recorded in the PR.
+
 ## Published v0.1.0
 
 Published on 10 November 2026 from commit
