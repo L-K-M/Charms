@@ -88,6 +88,14 @@ final class BundledCatalogTests: XCTestCase {
         XCTAssertEqual(index.search("U+212B").map(\.entry.string.codePointDescription), ["U+212B"])
     }
 
+    func testCodePointOutsideTheCatalogueFindsNothing() {
+        // `u` names the magnet exactly, which must not make it an answer
+        // to a code point that is unassigned, a noncharacter or invalid.
+        for query in ["U+10FFFF", "U+E0001", "U+D800", "U+110000"] {
+            XCTAssertEqual(index.search(query).map(\.entry.string.codePointDescription), [], query)
+        }
+    }
+
     func testPunctuationAliasKeepsItsCharactersReachable() {
         let found = index.search("->").map(\.entry.string)
         XCTAssertEqual(found.first, "\u{2192}")

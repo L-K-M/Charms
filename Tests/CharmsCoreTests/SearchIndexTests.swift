@@ -289,6 +289,9 @@ final class SearchIndexTests: XCTestCase {
         assertResults("U+110000", [])
         assertResults("U+ZZZZ", [])
         assertResults("U+0007", [])
+        // Code point notation is never read as words: `x` names the
+        // multiplication sign, but this query is not about it.
+        assertResults("U+D800 x", [])
     }
 
     // MARK: - Literals
@@ -515,5 +518,13 @@ final class SearchTextTests: XCTestCase {
         XCTAssertNil(CodePointQuery.parse("U+2192 zz"))
         XCTAssertNil(CodePointQuery.parse("f"))
         XCTAssertNil(CodePointQuery.parse("1234567"))
+    }
+
+    func testCodePointNotationIsRecognisedEvenWhenInvalid() {
+        XCTAssertTrue(CodePointQuery.isNotation("U+D800"))
+        XCTAssertTrue(CodePointQuery.isNotation("arrow u+2192"))
+        XCTAssertFalse(CodePointQuery.isNotation("2192"))
+        XCTAssertFalse(CodePointQuery.isNotation("c++"))
+        XCTAssertFalse(CodePointQuery.isNotation("menu+"))
     }
 }

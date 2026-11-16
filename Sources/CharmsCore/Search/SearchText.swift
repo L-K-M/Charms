@@ -122,13 +122,13 @@ public struct CodePointQuery: Equatable, Sendable {
     /// Parses a whole query. Returns nil unless every part is a valid scalar
     /// value; one invalid part rejects the query rather than being skipped.
     public static func parse(_ query: String) -> CodePointQuery? {
-        let parts = query.split(whereSeparator: { $0 == " " || $0 == "," || $0 == "\t" })
+        let parts = parts(of: query)
         guard !parts.isEmpty, parts.count <= 16 else { return nil }
         var scalars = String.UnicodeScalarView()
         var explicit = false
         for part in parts {
             var digits = Substring(part)
-            if digits.hasPrefix("U+") || digits.hasPrefix("u+") {
+            if hasPrefix(digits) {
                 digits = digits.dropFirst(2)
                 explicit = true
             }
@@ -139,5 +139,20 @@ public struct CodePointQuery: Equatable, Sendable {
             scalars.append(scalar)
         }
         return CodePointQuery(string: String(scalars), isExplicit: explicit)
+    }
+
+    /// True when some part of the query is written with a `U+` prefix,
+    /// whether or not it names a valid scalar: such a query is about code
+    /// points, and its `u` is not a word.
+    public static func isNotation(_ query: String) -> Bool {
+        parts(of: query).contains(where: hasPrefix)
+    }
+
+    private static func parts(of query: String) -> [Substring] {
+        query.split(whereSeparator: { $0 == " " || $0 == "," || $0 == "\t" })
+    }
+
+    private static func hasPrefix(_ part: Substring) -> Bool {
+        part.hasPrefix("U+") || part.hasPrefix("u+")
     }
 }

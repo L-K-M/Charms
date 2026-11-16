@@ -350,6 +350,9 @@ public final class SearchIndex: Sendable {
         // lists its letters and would otherwise add every other one.
         if let first = hits.first?.tier, first <= .exact {
             // Named exactly as typed.
+        } else if CodePointQuery.isNotation(query) {
+            // Code points the catalogue lacks, such as `U+10FFFF`: the `u`
+            // names the magnet, which is no answer.
         } else {
             let found = candidates.count
             let isSparse = matched < Self.fuzzyThreshold
