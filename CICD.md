@@ -54,10 +54,11 @@ against the built app on a Mac with an interactive session; see
 
 `Resources/catalog.txt` is generated from the files under `Data/` (pinned
 Unicode and CLDR releases, with their checksums in `Data/sources.tsv`) and the
-curated `Data/aliases.tsv`. `swift run CharmsCatalogTool check` rebuilds it in
-memory and fails when the committed file differs byte for byte, so a change to
-the data or the builder cannot land without its regenerated output, and the
-output cannot be edited by hand.
+curated `Data/aliases.tsv`, `Data/related.tsv` and `Data/preferred.tsv`.
+`swift run CharmsCatalogTool check` rebuilds it in memory and fails when the
+committed file differs byte for byte, so a change to the data or the builder
+cannot land without its regenerated output, and the output cannot be edited by
+hand.
 
 ## PR review (`zai-code-review.yml`)
 

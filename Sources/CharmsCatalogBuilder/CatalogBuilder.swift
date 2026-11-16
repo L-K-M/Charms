@@ -15,8 +15,9 @@ public struct CatalogBuildResult {
 
 /// Builds `CatalogFormat.Contents` from the pinned Unicode, Emoji and CLDR
 /// sources: emoji first in `emoji-test.txt` order, then the listed
-/// characters in code point order, then `extras.tsv`; `aliases.tsv` ranks are
-/// applied last, and the result is validated before it is returned.
+/// characters in code point order, then `extras.tsv`; `aliases.tsv` ranks and
+/// the words of `related.tsv` and `preferred.tsv` are applied last, and the
+/// result is validated before it is returned.
 public enum CatalogBuilder {
     /// The format characters listed as kind `space`: soft hyphen, zero width
     /// space/joiners, bidi marks, word joiner and the byte order mark.
@@ -79,6 +80,8 @@ public enum CatalogBuilder {
             annotations: sources.annotations, annotationsFile: "annotations-en.json",
             derived: sources.annotationsDerived, derivedFile: "annotations-derived-en.json")
         let curatedAliases = try CuratedFiles.parseAliases(sources.aliases)
+        let relatedWords = try CuratedFiles.parseAliases(sources.related, file: CuratedFiles.relatedFileName)
+        let preferredWords = try CuratedFiles.parseAliases(sources.preferred, file: CuratedFiles.preferredFileName)
         let extras = try CuratedFiles.parseExtras(sources.extras)
 
         var session = Session(blocks: blocksFile.blocks, scripts: scripts, ages: ages,
@@ -87,6 +90,9 @@ public enum CatalogBuilder {
         try session.emitCharacters(rows: unicodeData)
         try session.emitExtras(extras)
         try session.applyAliases(curatedAliases)
+        let wordProblems = session.applyCuratedWords(relatedWords, as: .related, aliases: curatedAliases, otherWords: preferredWords)
+            + session.applyCuratedWords(preferredWords, as: .preferred, aliases: curatedAliases, otherWords: relatedWords)
+        guard wordProblems.isEmpty else { throw CatalogError.invalid(wordProblems) }
         try session.validate(expectedEmojiCount: emojiFile.fullyQualified.count)
 
         let contents = CatalogFormat.Contents(
@@ -96,7 +102,9 @@ public enum CatalogBuilder {
                 cldrVersion: cldr.version),
             entries: session.entries,
             ranges: session.ranges)
-        let statistics = try session.statistics(contents: contents, aliasCount: curatedAliases.count)
+        let statistics = try session.statistics(contents: contents, aliasCount: curatedAliases.count,
+                                                relatedWordCount: relatedWords.count,
+                                                preferredWordCount: preferredWords.count)
         return CatalogBuildResult(contents: contents, statistics: statistics)
     }
 
@@ -385,8 +393,99 @@ public enum CatalogBuilder {
                 let entry = entries[index]
                 entries[index] = CatalogEntry(string: entry.string, kind: entry.kind, rank: 0,
                                               age: entry.age, group: entry.group, name: entry.name,
-                                              keywords: entry.keywords, aliases: entry.aliases + aliasList)
+                                              keywords: entry.keywords, aliases: entry.aliases + aliasList,
+                                              relatedWords: entry.relatedWords, preferredWords: entry.preferredWords)
             }
+        }
+
+        /// The two kinds of curated everyday words. Neither changes an
+        /// item's rank; they differ in where the items rank for the word.
+        enum CuratedWords {
+            /// `related.tsv`: after everything the word names.
+            case related
+            /// `preferred.tsv`: before everything the word names.
+            case preferred
+
+            var file: String {
+                switch self {
+                case .related: return CuratedFiles.relatedFileName
+                case .preferred: return CuratedFiles.preferredFileName
+                }
+            }
+        }
+
+        /// Attaches `related.tsv` or `preferred.tsv`, or returns why not. A
+        /// line that could never change a search, or that contradicts
+        /// another file, is a problem rather than dead data: a word that is
+        /// also an alias or in the other file, and a related word that
+        /// already finds an item through its name, a keyword or an alias.
+        mutating func applyCuratedWords(_ words: [CuratedAlias], as kind: CuratedWords,
+                                        aliases: [CuratedAlias], otherWords: [CuratedAlias]) -> [String] {
+            let file = kind.file
+            let otherFile = kind == .related ? CuratedFiles.preferredFileName : CuratedFiles.relatedFileName
+            var indexByString: [ExactString: Int] = [:]
+            for (index, entry) in entries.enumerated() where indexByString[entry.string.exact] == nil {
+                indexByString[entry.string.exact] = index
+            }
+            let aliasTexts = Set(aliases.map { Self.searchKey($0.text) })
+            let otherTexts = Set(otherWords.map { Self.searchKey($0.text) })
+
+            var problems: [String] = []
+            var seenWords: Set<String> = []
+            var attachments: [Int: [CatalogAlias]] = [:]
+            for word in words {
+                let text = word.text.lowercased()
+                let key = Self.searchKey(text)
+                if !seenWords.insert(key).inserted {
+                    problems.append("\(file):\(word.lineNumber): duplicate word '\(text)'")
+                }
+                if SearchText.tokens(SearchText.fold(text)).isEmpty {
+                    problems.append("\(file):\(word.lineNumber): '\(text)' has no letters or digits, so no search can reach it")
+                }
+                if aliasTexts.contains(key) {
+                    problems.append("\(file):\(word.lineNumber): '\(text)' is already an alias in \(CuratedFiles.aliasesFileName)")
+                }
+                if otherTexts.contains(key) {
+                    problems.append("\(file):\(word.lineNumber): '\(text)' is also in \(otherFile)")
+                }
+                var seenItems: Set<ExactString> = []
+                for (position, item) in word.items.enumerated() {
+                    if !seenItems.insert(item.exact).inserted {
+                        problems.append("\(file):\(word.lineNumber): '\(text)' repeats item '\(item.codePointDescription)'")
+                    }
+                    guard let index = indexByString[item.exact] else {
+                        problems.append("\(file):\(word.lineNumber): item '\(item.codePointDescription)' of '\(text)' matches no entry")
+                        continue
+                    }
+                    let entry = entries[index]
+                    if entry.kind == .variant {
+                        problems.append("\(file):\(word.lineNumber): item '\(item.codePointDescription)' of '\(text)' is a skin-tone variant; use its base")
+                    }
+                    let names = [entry.name] + entry.keywords + entry.aliases.map(\.text)
+                    if kind == .related, names.contains(where: { Self.searchKey($0) == key }) {
+                        problems.append("\(file):\(word.lineNumber): '\(text)' already finds '\(item.codePointDescription)' by its name, a keyword or an alias")
+                    }
+                    attachments[index, default: []].append(CatalogAlias(text: text, rank: UInt8(min(position, 255))))
+                }
+            }
+            guard problems.isEmpty else { return problems }
+
+            for (index, wordList) in attachments {
+                let entry = entries[index]
+                entries[index] = CatalogEntry(string: entry.string, kind: entry.kind, rank: entry.rank,
+                                              age: entry.age, group: entry.group, name: entry.name,
+                                              keywords: entry.keywords, aliases: entry.aliases,
+                                              relatedWords: entry.relatedWords + (kind == .related ? wordList : []),
+                                              preferredWords: entry.preferredWords + (kind == .preferred ? wordList : []))
+            }
+            return []
+        }
+
+        /// The form in which search compares a whole query with a phrase.
+        private static func searchKey(_ phrase: String) -> String {
+            let folded = SearchText.fold(phrase)
+            let tokens = SearchText.tokens(folded)
+            return tokens.isEmpty ? folded : String(decoding: SearchText.canonical(tokens), as: UTF8.self)
         }
 
         // MARK: (F) Validation
@@ -424,7 +523,8 @@ public enum CatalogBuilder {
 
         // MARK: Statistics
 
-        func statistics(contents: CatalogFormat.Contents, aliasCount: Int) throws -> CatalogStatistics {
+        func statistics(contents: CatalogFormat.Contents, aliasCount: Int, relatedWordCount: Int,
+                        preferredWordCount: Int) throws -> CatalogStatistics {
             var byKind: [String: Int] = [:]
             var byRank: [String: Int] = [:]
             var longest: (length: Int, string: String) = (0, "")
@@ -452,6 +552,10 @@ public enum CatalogBuilder {
                 entriesWithCldrNames: cldrNamed,
                 curatedAliases: aliasCount,
                 entriesWithAliases: entries.filter { !$0.aliases.isEmpty }.count,
+                relatedWords: relatedWordCount,
+                entriesWithRelatedWords: entries.filter { !$0.relatedWords.isEmpty }.count,
+                preferredWords: preferredWordCount,
+                entriesWithPreferredWords: entries.filter { !$0.preferredWords.isEmpty }.count,
                 outputBytes: try CatalogFormat.encode(contents).utf8.count)
         }
     }

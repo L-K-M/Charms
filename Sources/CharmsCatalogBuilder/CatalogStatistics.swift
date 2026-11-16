@@ -27,6 +27,14 @@ public struct CatalogStatistics: Codable, Equatable, Sendable {
     public var curatedAliases: Int
     /// Entries carrying at least one curated alias.
     public var entriesWithAliases: Int
+    /// Word lines read from `related.tsv`.
+    public var relatedWords: Int
+    /// Entries carrying at least one related word.
+    public var entriesWithRelatedWords: Int
+    /// Word lines read from `preferred.tsv`.
+    public var preferredWords: Int
+    /// Entries carrying at least one preferred word.
+    public var entriesWithPreferredWords: Int
     /// UTF-8 byte count of the encoded catalogue.
     public var outputBytes: Int
 
@@ -36,6 +44,8 @@ public struct CatalogStatistics: Codable, Equatable, Sendable {
         rangeCount: Int, rangeCodePoints: Int, emojiBases: Int, variants: Int,
         maxUTF16Length: Int, longestEntry: String,
         entriesWithCldrNames: Int, curatedAliases: Int, entriesWithAliases: Int,
+        relatedWords: Int, entriesWithRelatedWords: Int,
+        preferredWords: Int, entriesWithPreferredWords: Int,
         outputBytes: Int
     ) {
         self.unicodeVersion = unicodeVersion
@@ -53,6 +63,10 @@ public struct CatalogStatistics: Codable, Equatable, Sendable {
         self.entriesWithCldrNames = entriesWithCldrNames
         self.curatedAliases = curatedAliases
         self.entriesWithAliases = entriesWithAliases
+        self.relatedWords = relatedWords
+        self.entriesWithRelatedWords = entriesWithRelatedWords
+        self.preferredWords = preferredWords
+        self.entriesWithPreferredWords = entriesWithPreferredWords
         self.outputBytes = outputBytes
     }
 }

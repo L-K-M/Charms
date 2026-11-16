@@ -1,0 +1,18 @@
+# Everyday words for characters whose names and keywords do not use them.
+#
+# Format: word<TAB>items, as in aliases.tsv: items are separated by single
+# spaces, each a literal character or sequence, or U+XXXX notation for
+# invisible or ambiguous characters, in order of preference. Words are
+# matched case-insensitively and may be short phrases.
+#
+# A related word suggests its items without naming them. Searching for the
+# whole word lists them in this order after everything the word names
+# through a Unicode name, a CLDR keyword or an alias, and before any partial
+# match. A related word does not change an item's rank. Put a name people
+# use for a character in aliases.tsv instead.
+#
+# The generator rejects a word that is also an alias, an item the word
+# already finds by name, keyword or alias, and skin-tone variants. Search
+# reduces plurals, -ed and -ing forms and British spellings to their base
+# form when nothing matches them as typed, so list the base form (approve,
+# not approved) unless the inflected form means something else.

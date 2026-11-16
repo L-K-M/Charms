@@ -10,15 +10,20 @@ import Foundation
 /// # comment
 /// !unicode<TAB>18.0.0                          header: key, value
 /// 2192<TAB>s<TAB>0<TAB>1.1<TAB>Arrows<TAB>right arrow<TAB>rightwards arrow|east<TAB>->#0|arrow#0
+/// 1F6A8<TAB>e<TAB>1<TAB>0.6<TAB>Travel & Places/transport-ground<TAB>police car light<TAB>beacon|car<TAB><TAB>urgent|alarm#2
 /// @<TAB>4E00<TAB>9FFF<TAB>hex<TAB>CJK UNIFIED IDEOGRAPH-<TAB>CJK Unified Ideographs<TAB>1.1
 /// ```
 ///
 /// Entry fields: scalars (hex, space-separated), kind letter, rank, age,
-/// group, name, keywords, aliases. Keywords and aliases are `|`-separated;
-/// an alias may carry `#rank`. A `v` (variant) entry belongs to the nearest
-/// preceding `e` (emoji) entry.
+/// group, name, keywords, aliases, and optionally related words and preferred
+/// words. Keywords, aliases, related and preferred words are `|`-separated;
+/// an alias, related or preferred word may carry `#rank`. The two optional
+/// fields are written only when they are needed, so most lines have eight
+/// fields. A `v` (variant) entry belongs to the nearest preceding `e` (emoji)
+/// entry.
 public enum CatalogFormat {
-    public static let version = 1
+    /// Format 2 added the optional related-words and preferred-words fields.
+    public static let version = 2
 
     public struct Header: Sendable, Equatable {
         public var formatVersion: Int
@@ -108,16 +113,20 @@ public enum CatalogFormat {
         for entry in contents.entries {
             let scalars = entry.string.unicodeScalars.map { CodePoint.hex($0.value) }.joined(separator: " ")
             let keywords = try entry.keywords.map { try escapeListItem($0) }.joined(separator: "|")
-            let aliases = try entry.aliases.map { alias -> String in
-                let text = try escapeListItem(alias.text)
-                return alias.rank == 0 ? text : "\(text)#\(alias.rank)"
-            }.joined(separator: "|")
+            let aliases = try rankedList(entry.aliases)
             out += scalars
             out += "\t\(letter(for: entry.kind))\t\(entry.rank)\t\(entry.age)\t"
             out += try plain(entry.group)
             out += "\t"
             out += try plain(entry.name)
-            out += "\t\(keywords)\t\(aliases)\n"
+            out += "\t\(keywords)\t\(aliases)"
+            if !entry.relatedWords.isEmpty || !entry.preferredWords.isEmpty {
+                out += "\t\(try rankedList(entry.relatedWords))"
+            }
+            if !entry.preferredWords.isEmpty {
+                out += "\t\(try rankedList(entry.preferredWords))"
+            }
+            out += "\n"
         }
         for range in contents.ranges {
             let rule: String
@@ -135,6 +144,13 @@ public enum CatalogFormat {
             out += "\t\(range.age)\n"
         }
         return out
+    }
+
+    private static func rankedList(_ words: [CatalogAlias]) throws -> String {
+        try words.map { word -> String in
+            let text = try escapeListItem(word.text)
+            return word.rank == 0 ? text : "\(text)#\(word.rank)"
+        }.joined(separator: "|")
     }
 
     private static func plain(_ field: String) throws -> String {
@@ -231,8 +247,8 @@ public enum CatalogFormat {
 
     private static func decodeEntry(_ line: Bytes, lineNumber: Int) throws -> CatalogEntry {
         let fields = split(line, separator: UInt8(ascii: "\t"))
-        guard fields.count == 8 else {
-            throw FormatError.malformedLine(number: lineNumber, reason: "expected 8 fields, found \(fields.count)")
+        guard (8...10).contains(fields.count) else {
+            throw FormatError.malformedLine(number: lineNumber, reason: "expected 8 to 10 fields, found \(fields.count)")
         }
         guard let string = decodeScalars(fields[0]) else {
             throw FormatError.malformedLine(number: lineNumber, reason: "invalid scalar list")
@@ -249,6 +265,12 @@ public enum CatalogFormat {
         let aliases = try decodeList(fields[7]).map { item -> CatalogAlias in
             try decodeAlias(item, lineNumber: lineNumber)
         }
+        let relatedWords = fields.count > 8 ? try decodeList(fields[8]).map { item -> CatalogAlias in
+            try decodeAlias(item, lineNumber: lineNumber)
+        } : []
+        let preferredWords = fields.count > 9 ? try decodeList(fields[9]).map { item -> CatalogAlias in
+            try decodeAlias(item, lineNumber: lineNumber)
+        } : []
         return CatalogEntry(
             string: string,
             kind: kind,
@@ -257,7 +279,9 @@ public enum CatalogFormat {
             group: text(fields[4]),
             name: text(fields[5]),
             keywords: decodeList(fields[6]).map { unescapeListItem($0) },
-            aliases: aliases
+            aliases: aliases,
+            relatedWords: relatedWords,
+            preferredWords: preferredWords
         )
     }
 

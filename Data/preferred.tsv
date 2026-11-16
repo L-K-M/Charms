@@ -1,0 +1,9 @@
+# Everyday words whose names and keywords lead somewhere few people mean.
+#
+# Format: word<TAB>items, as in related.tsv. Searching for the whole word
+# lists the items first, in this order, after any alias of the word and
+# before everything the word names through a Unicode name or CLDR keyword:
+# `book` names the dingbat BOOK, but most people want the open book. While
+# the word is still being typed, the items rank like any other match, and a
+# preferred word does not change an item's rank. A word may be in only one
+# of aliases.tsv, related.tsv and this file.

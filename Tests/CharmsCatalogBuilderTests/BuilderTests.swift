@@ -16,13 +16,15 @@ final class BuilderTests: XCTestCase {
         annotations: String = #"{"annotations":{"annotations":{}}}"#,
         annotationsDerived: String = #"{"annotationsDerived":{"annotations":{}}}"#,
         aliases: String = "",
-        extras: String = ""
+        extras: String = "",
+        related: String = "",
+        preferred: String = ""
     ) -> CatalogSources {
         CatalogSources(
             unicodeData: unicodeData, nameAliases: nameAliases, blocks: blocks,
             scripts: scripts, derivedAge: derivedAge, emojiTest: emojiTest,
             annotations: Data(annotations.utf8), annotationsDerived: Data(annotationsDerived.utf8),
-            aliases: aliases, extras: extras)
+            aliases: aliases, extras: extras, related: related, preferred: preferred)
     }
 
     private func emojiRows(_ rows: String) -> String {
@@ -249,6 +251,72 @@ final class BuilderTests: XCTestCase {
             XCTAssertTrue(problems.contains { $0.contains("duplicate alias 'dup'") })
             XCTAssertTrue(problems.contains { $0.contains("'unknown'") && $0.contains("matches no entry") })
             XCTAssertTrue(problems.contains { $0.contains("'repeats'") && $0.contains("repeats item") })
+        }
+    }
+
+    // MARK: - Related words
+
+    private static let arrows = "2190;LEFTWARDS ARROW;Sm;0;ON;;;;;N;;;;;\n2192;RIGHTWARDS ARROW;Sm;0;ON;;;;;N;;;;;\n"
+
+    func testRelatedWordsAttachInOrderAndKeepTheRank() throws {
+        let plain = try CatalogBuilder.build(sources(unicodeData: Self.arrows))
+        let result = try CatalogBuilder.build(sources(unicodeData: Self.arrows, related: "Direction\t→ U+2190\n"))
+        XCTAssertEqual(result.contents.entries[0].relatedWords, [CatalogAlias(text: "direction", rank: 1)])
+        XCTAssertEqual(result.contents.entries[1].relatedWords, [CatalogAlias(text: "direction", rank: 0)])
+        XCTAssertEqual(result.contents.entries.map(\.rank), plain.contents.entries.map(\.rank))
+        XCTAssertEqual(result.contents.entries.map(\.aliases), [[], []])
+        XCTAssertEqual(result.statistics.relatedWords, 1)
+        XCTAssertEqual(result.statistics.entriesWithRelatedWords, 2)
+    }
+
+    func testRelatedWordProblemsAreListedTogether() {
+        let related = "dup\t→\ndup\t→\nunknown\tU+9999\nrepeats\t→ →\narrow\t←\nrightwards arrow\t→\nleft\t←\n->>\t→\n"
+        XCTAssertThrowsError(try CatalogBuilder.build(sources(
+            unicodeData: Self.arrows, aliases: "arrow\t→\nleft\t→\n", related: related))) { error in
+            guard case .invalid(let problems) = error as? CatalogError else {
+                return XCTFail("expected invalid, got \(error)")
+            }
+            XCTAssertTrue(problems.contains { $0.hasPrefix("related.tsv:2:") && $0.contains("duplicate word 'dup'") })
+            XCTAssertTrue(problems.contains { $0.contains("'unknown'") && $0.contains("matches no entry") })
+            XCTAssertTrue(problems.contains { $0.contains("'repeats'") && $0.contains("repeats item") })
+            XCTAssertTrue(problems.contains { $0.contains("'arrow' is already an alias") })
+            XCTAssertTrue(problems.contains { $0.contains("'rightwards arrow' already finds") })
+            XCTAssertTrue(problems.contains { $0.contains("'left' is already an alias") })
+            XCTAssertTrue(problems.contains { $0.contains("'->>' has no letters or digits") })
+        }
+    }
+
+    func testPreferredWordsAttachEvenWhereTheWordIsAName() throws {
+        // Unlike a related word, a preferred word may be the item's own
+        // name: it changes the order, not whether the item is found.
+        let plain = try CatalogBuilder.build(sources(unicodeData: Self.arrows))
+        let result = try CatalogBuilder.build(sources(unicodeData: Self.arrows, preferred: "rightwards arrow\t→\n"))
+        XCTAssertEqual(result.contents.entries[1].preferredWords, [CatalogAlias(text: "rightwards arrow", rank: 0)])
+        XCTAssertEqual(result.contents.entries[1].relatedWords, [])
+        XCTAssertEqual(result.contents.entries.map(\.rank), plain.contents.entries.map(\.rank))
+        XCTAssertEqual(result.statistics.preferredWords, 1)
+        XCTAssertEqual(result.statistics.entriesWithPreferredWords, 1)
+    }
+
+    func testWordInBothRelatedAndPreferredIsAnError() {
+        XCTAssertThrowsError(try CatalogBuilder.build(sources(
+            unicodeData: Self.arrows, aliases: "arrow\t→\n", related: "direction\t→\n", preferred: "Direction\t←\narrow\t←\n"))) { error in
+            guard case .invalid(let problems) = error as? CatalogError else {
+                return XCTFail("expected invalid, got \(error)")
+            }
+            XCTAssertTrue(problems.contains { $0.hasPrefix("related.tsv:1:") && $0.contains("also in preferred.tsv") })
+            XCTAssertTrue(problems.contains { $0.hasPrefix("preferred.tsv:1:") && $0.contains("also in related.tsv") })
+            XCTAssertTrue(problems.contains { $0.hasPrefix("preferred.tsv:2:") && $0.contains("already an alias") })
+        }
+    }
+
+    func testRelatedWordForASkinToneVariantIsAnError() {
+        let emoji = emojiRows(row("1F44D", "thumbs up") + row("1F44D 1F3FB", "thumbs up: light skin tone"))
+        XCTAssertThrowsError(try CatalogBuilder.build(sources(emojiTest: emoji, related: "approve\t\u{1F44D}\u{1F3FB}\n"))) { error in
+            guard case .invalid(let problems) = error as? CatalogError else {
+                return XCTFail("expected invalid, got \(error)")
+            }
+            XCTAssertTrue(problems.contains { $0.contains("skin-tone variant") })
         }
     }
 }

@@ -131,9 +131,10 @@ not a mockup or a real document.
   hard-code ANSI key codes for commands such as Paste; resolve them through
   the active layout.
 - **The catalogue is generated.** Do not edit `Resources/catalog.txt` by
-  hand. Change `Data/aliases.tsv`, `Data/extras.tsv` or the builder, run
-  `swift run CharmsCatalogTool generate`, and commit the result; CI fails when
-  the committed file differs from a fresh build.
+  hand. Change `Data/aliases.tsv`, `Data/related.tsv`, `Data/preferred.tsv`,
+  `Data/extras.tsv` or the builder, run `swift run CharmsCatalogTool
+  generate`, and commit the result; CI fails when the committed file differs
+  from a fresh build.
 - **Bundle id is `ch.lkmc.Charms`.** Keep it and `NSHumanReadableCopyright`
   ("Public domain (Unlicense)") consistent with `LICENSE`; `ci.yml` asserts
   both. The Accessibility grant is tied to the bundle id and signature.
