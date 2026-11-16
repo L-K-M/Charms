@@ -223,12 +223,61 @@ public final class SearchIndex: Sendable {
 
     // MARK: - Searching
 
+    /// A possible hit. It refers to its entry by position rather than
+    /// carrying a copy: copying an entry retains each of its strings and
+    /// lists, and a one-letter query has thousands of candidates. With
+    /// copies, `s` took 22 ms in an optimised build on Apple silicon (more
+    /// once entries gained curated words); by position it takes 5 ms.
     private struct Candidate {
-        var entry: CatalogEntry
-        var index: Int?
+        enum Source {
+            case catalogue(Int)
+            /// A character outside the catalogue, found by its code point.
+            indirect case outside(CatalogEntry)
+        }
+
+        var source: Source
         var tier: SearchHit.Tier
         /// Higher is better, compared only inside one tier.
         var quality: Int
+
+        init(index: Int, tier: SearchHit.Tier, quality: Int) {
+            self.source = .catalogue(index)
+            self.tier = tier
+            self.quality = quality
+        }
+
+        init(outside entry: CatalogEntry, tier: SearchHit.Tier, quality: Int) {
+            self.source = .outside(entry)
+            self.tier = tier
+            self.quality = quality
+        }
+
+        /// The entry's position in the catalogue, if it has one.
+        var index: Int? {
+            if case .catalogue(let index) = source { return index }
+            return nil
+        }
+    }
+
+    private func entry(of candidate: Candidate) -> CatalogEntry {
+        switch candidate.source {
+        case .catalogue(let index): return catalog.entries[index]
+        case .outside(let entry): return entry
+        }
+    }
+
+    private func string(of candidate: Candidate) -> String {
+        switch candidate.source {
+        case .catalogue(let index): return catalog.entries[index].string
+        case .outside(let entry): return entry.string
+        }
+    }
+
+    private func rank(of candidate: Candidate) -> UInt8 {
+        switch candidate.source {
+        case .catalogue(let index): return catalog.entries[index].rank
+        case .outside(let entry): return entry.rank
+        }
     }
 
     public func search(_ rawQuery: String, options: SearchOptions = SearchOptions()) -> [SearchHit] {
@@ -253,7 +302,7 @@ public final class SearchIndex: Sendable {
         special.append(contentsOf: aliasCandidates(folded))
         if let symbolHits = symbolicMap[folded] {
             for entry in symbolHits {
-                special.append(Candidate(entry: catalog.entries[Int(entry)], index: Int(entry), tier: .exact, quality: Quality.keyword))
+                special.append(Candidate(index: Int(entry), tier: .exact, quality: Quality.keyword))
             }
         }
 
@@ -265,7 +314,7 @@ public final class SearchIndex: Sendable {
             // be written with follow.
             let hasAlias = special.contains { $0.tier == .exact }
             for var candidate in literalCandidates(query) {
-                if hasAlias, !candidate.entry.string.isExactly(query) {
+                if hasAlias, !string(of: candidate).isExactly(query) {
                     candidate.tier = .prefix
                 }
                 special.append(candidate)
@@ -280,7 +329,7 @@ public final class SearchIndex: Sendable {
         for (alias, hits) in aliasMap where alias.utf8.count > folded.utf8.count && alias.hasPrefix(folded) {
             for hit in hits {
                 let index = Int(hit.entry)
-                special.append(Candidate(entry: catalog.entries[index], index: index, tier: .prefix, quality: Quality.aliasPrefix - min(Int(hit.rank), Quality.aliasPrefix - Quality.aliasPrefixFloor)))
+                special.append(Candidate(index: index, tier: .prefix, quality: Quality.aliasPrefix - min(Int(hit.rank), Quality.aliasPrefix - Quality.aliasPrefixFloor)))
             }
         }
 
@@ -369,10 +418,10 @@ public final class SearchIndex: Sendable {
 
     private func resolve(_ string: String, tier: SearchHit.Tier) -> [Candidate] {
         if let index = catalog.index(of: string) {
-            return [Candidate(entry: catalog.entries[index], index: index, tier: tier, quality: 0)]
+            return [Candidate(index: index, tier: tier, quality: 0)]
         }
         if let entry = catalog.resolve(string) {
-            return [Candidate(entry: entry, index: nil, tier: tier, quality: 0)]
+            return [Candidate(outside: entry, tier: tier, quality: 0)]
         }
         return []
     }
@@ -405,7 +454,7 @@ public final class SearchIndex: Sendable {
     private func aliasCandidates(_ key: String) -> [Candidate] {
         (aliasMap[key] ?? []).map { hit in
             let index = Int(hit.entry)
-            return Candidate(entry: catalog.entries[index], index: index, tier: .exact, quality: Quality.alias - Int(hit.rank))
+            return Candidate(index: index, tier: .exact, quality: Quality.alias - Int(hit.rank))
         }
     }
 
@@ -414,7 +463,7 @@ public final class SearchIndex: Sendable {
         func candidates(_ map: [String: [AliasPosting]], quality: Int) -> [Candidate] {
             (map[key] ?? []).map { hit in
                 let index = Int(hit.entry)
-                return Candidate(entry: catalog.entries[index], index: index, tier: .exact, quality: quality - Int(hit.rank))
+                return Candidate(index: index, tier: .exact, quality: quality - Int(hit.rank))
             }
         }
         return candidates(preferredMap, quality: Quality.preferred) + candidates(relatedMap, quality: Quality.related)
@@ -476,7 +525,7 @@ public final class SearchIndex: Sendable {
         }
         return scores.map { index, score in
             let quality = score.words * Quality.someWordsPerWord + score.position * Quality.someWordsPerPosition + score.quality
-            return Candidate(entry: catalog.entries[index], index: index, tier: .someWords, quality: quality)
+            return Candidate(index: index, tier: .someWords, quality: quality)
         }
     }
 
@@ -587,23 +636,22 @@ public final class SearchIndex: Sendable {
         result.reserveCapacity(survivors.count)
         for entry32 in survivors {
             let index = Int(entry32)
-            let entry = catalog.entries[index]
             let matchClass = worstClass[index]
             let fieldScore = Int(Field.group.rawValue) - Int(worstField[index])
             switch matchClass {
             case MatchClass.whole.rawValue:
-                if let quality = exactQuality(entry, canonicalQuery: canonicalQuery) {
-                    result.append(Candidate(entry: entry, index: index, tier: .exact, quality: quality))
+                if let quality = exactQuality(at: index, canonicalQuery: canonicalQuery) {
+                    result.append(Candidate(index: index, tier: .exact, quality: quality))
                 } else {
-                    result.append(Candidate(entry: entry, index: index, tier: .prefix, quality: Quality.wholeWords + fieldScore))
+                    result.append(Candidate(index: index, tier: .prefix, quality: Quality.wholeWords + fieldScore))
                 }
             case MatchClass.prefix.rawValue:
-                result.append(Candidate(entry: entry, index: index, tier: .prefix, quality: fieldScore))
+                result.append(Candidate(index: index, tier: .prefix, quality: fieldScore))
             case MatchClass.substring.rawValue:
-                result.append(Candidate(entry: entry, index: index, tier: .substring, quality: fieldScore))
+                result.append(Candidate(index: index, tier: .substring, quality: fieldScore))
             default:
                 // Without the fuzzy pass no entry reaches this class.
-                result.append(Candidate(entry: entry, index: index, tier: .fuzzy, quality: fieldScore))
+                result.append(Candidate(index: index, tier: .fuzzy, quality: fieldScore))
             }
         }
         return result
@@ -611,12 +659,13 @@ public final class SearchIndex: Sendable {
 
     /// Whether the whole query equals the entry's name or one of its keywords,
     /// comparing words rather than punctuation.
-    private func exactQuality(_ entry: CatalogEntry, canonicalQuery: [UInt8]) -> Int? {
-        if Self.canonicalEquals(entry.name, canonicalQuery) {
+    private func exactQuality(at index: Int, canonicalQuery: [UInt8]) -> Int? {
+        let name = catalog.entries[index].name
+        if Self.canonicalEquals(name, canonicalQuery) {
             return Quality.name
         }
-        for keyword in entry.keywords where Self.canonicalEquals(keyword, canonicalQuery) {
-            return Quality.keyword + (Self.nameHoldsWords(entry.name, canonicalQuery) ? Quality.nameWords : 0)
+        for keyword in catalog.entries[index].keywords where Self.canonicalEquals(keyword, canonicalQuery) {
+            return Quality.keyword + (Self.nameHoldsWords(name, canonicalQuery) ? Quality.nameWords : 0)
         }
         return nil
     }
@@ -714,7 +763,7 @@ public final class SearchIndex: Sendable {
         var best: [ExactString: Candidate] = [:]
         best.reserveCapacity(candidates.count)
         for candidate in candidates {
-            let key = candidate.entry.string.exact
+            let key = string(of: candidate).exact
             if let existing = best[key], (existing.tier, -existing.quality) <= (candidate.tier, -candidate.quality) {
                 continue
             }
@@ -722,7 +771,7 @@ public final class SearchIndex: Sendable {
         }
 
         func boost(_ candidate: Candidate) -> Int {
-            let key = candidate.entry.string.exact
+            let key = string(of: candidate).exact
             if options.favourites.contains(key) { return 2 }
             if options.recents.contains(key) { return 1 }
             return 0
@@ -744,16 +793,18 @@ public final class SearchIndex: Sendable {
                 let rhsBoost = boost(rhs)
                 if lhsBoost != rhsBoost { return lhsBoost > rhsBoost }
             }
-            if lhs.entry.rank != rhs.entry.rank { return lhs.entry.rank < rhs.entry.rank }
+            let lhsRank = rank(of: lhs)
+            let rhsRank = rank(of: rhs)
+            if lhsRank != rhsRank { return lhsRank < rhsRank }
             if isPartial, lhs.quality != rhs.quality { return lhs.quality > rhs.quality }
             switch (lhs.index, rhs.index) {
             case let (l?, r?): return l < r
             case (.some, nil): return true
             case (nil, .some): return false
-            case (nil, nil): return lhs.entry.string.unicodeScalars.lexicographicallyPrecedes(rhs.entry.string.unicodeScalars)
+            case (nil, nil): return string(of: lhs).unicodeScalars.lexicographicallyPrecedes(string(of: rhs).unicodeScalars)
             }
         }
-        return (ordered.prefix(options.limit).map { SearchHit(entry: $0.entry, index: $0.index, tier: $0.tier) }, ordered.count)
+        return (ordered.prefix(options.limit).map { SearchHit(entry: entry(of: $0), index: $0.index, tier: $0.tier) }, ordered.count)
     }
 }
 
