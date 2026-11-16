@@ -15,6 +15,11 @@ public struct SearchHit: Sendable, Equatable {
         case bareCodePoint
         /// Every query word starts a word of the entry.
         case prefix
+        /// Some of several query words name the entry exactly, offered when
+        /// the words together name nothing exactly: `red car` shows the
+        /// cars, then red things. Ranked above substrings, which for several
+        /// words are mostly coincidences (`scared` holds `car` and `red`).
+        case someWords
         /// Every query word occurs inside a word of the entry.
         case substring
         /// A near miss, offered only when little else matched.
@@ -67,7 +72,14 @@ public final class SearchIndex: Sendable {
         case alias = 0
         case name = 1
         case keyword = 2
-        case group = 3
+        /// A curated related or preferred word, which suggests the entry
+        /// without naming it.
+        case related = 3
+        case group = 4
+
+        /// Postings and match scores keep the field in their low bits.
+        static let bits: UInt32 = 3
+        static let mask: UInt32 = (1 << bits) - 1
     }
 
     private struct AliasPosting: Sendable {
@@ -81,10 +93,16 @@ public final class SearchIndex: Sendable {
     private let tokenOffsets: [Int32]
     /// Start of each word's postings; one extra element marks the end.
     private let postingOffsets: [Int32]
-    /// `entry << 2 | field`, at most one per entry and word (the best field).
+    /// `entry << Field.bits | field`, at most one per entry and word (the
+    /// best field).
     private let postings: [UInt32]
     /// Folded alias text to the entries carrying it.
     private let aliasMap: [String: [AliasPosting]]
+    /// Related words, as canonical words joined by spaces, to the entries
+    /// carrying them.
+    private let relatedMap: [String: [AliasPosting]]
+    /// Preferred words, keyed like related words.
+    private let preferredMap: [String: [AliasPosting]]
     /// Folded names and keywords that contain no letters or digits, such as
     /// `+` or `<3`, which the word index cannot represent.
     private let symbolicMap: [String: [Int32]]
@@ -99,6 +117,8 @@ public final class SearchIndex: Sendable {
         var tokenIDs: [[UInt8]: Int] = [:]
         var lists: [[UInt32]] = []
         var aliases: [String: [AliasPosting]] = [:]
+        var related: [String: [AliasPosting]] = [:]
+        var preferred: [String: [AliasPosting]] = [:]
         var symbolic: [String: [Int32]] = [:]
         var groupTokens: [String: [[UInt8]]] = [:]
 
@@ -111,8 +131,8 @@ public final class SearchIndex: Sendable {
                 tokenIDs[token] = id
                 lists.append([])
             }
-            let packed = UInt32(entry) << 2 | field.rawValue
-            if let last = lists[id].last, last >> 2 == UInt32(entry) {
+            let packed = UInt32(entry) << Field.bits | field.rawValue
+            if let last = lists[id].last, last >> Field.bits == UInt32(entry) {
                 // Same entry again: keep whichever field ranks better.
                 if packed < last {
                     lists[id][lists[id].count - 1] = packed
@@ -148,6 +168,21 @@ public final class SearchIndex: Sendable {
                     add(token, entry: index, field: .alias)
                 }
             }
+            for (words, isPreferred) in [(entry.relatedWords, false), (entry.preferredWords, true)] {
+                for word in words {
+                    let tokens = SearchText.tokens(SearchText.fold(word.text))
+                    guard !tokens.isEmpty else { continue }
+                    let posting = AliasPosting(entry: Int32(index), rank: word.rank)
+                    if isPreferred {
+                        preferred[Self.phraseKey(tokens), default: []].append(posting)
+                    } else {
+                        related[Self.phraseKey(tokens), default: []].append(posting)
+                    }
+                    for token in tokens {
+                        add(token, entry: index, field: .related)
+                    }
+                }
+            }
             let tokens: [[UInt8]]
             if let cached = groupTokens[entry.group] {
                 tokens = cached
@@ -181,6 +216,8 @@ public final class SearchIndex: Sendable {
         postingOffsets = postingStarts
         postings = flatPostings
         aliasMap = aliases.mapValues { $0.sorted { ($0.rank, $0.entry) < ($1.rank, $1.entry) } }
+        relatedMap = related.mapValues { $0.sorted { ($0.rank, $0.entry) < ($1.rank, $1.entry) } }
+        preferredMap = preferred.mapValues { $0.sorted { ($0.rank, $0.entry) < ($1.rank, $1.entry) } }
         symbolicMap = symbolic
     }
 
@@ -213,12 +250,7 @@ public final class SearchIndex: Sendable {
         }
 
         let folded = SearchText.fold(query)
-        if let aliasHits = aliasMap[folded] {
-            for hit in aliasHits {
-                let index = Int(hit.entry)
-                special.append(Candidate(entry: catalog.entries[index], index: index, tier: .exact, quality: Quality.alias - Int(hit.rank)))
-            }
-        }
+        special.append(contentsOf: aliasCandidates(folded))
         if let symbolHits = symbolicMap[folded] {
             for entry in symbolHits {
                 special.append(Candidate(entry: catalog.entries[Int(entry)], index: Int(entry), tier: .exact, quality: Quality.keyword))
@@ -241,6 +273,8 @@ public final class SearchIndex: Sendable {
             return finish(special, options: options)
         }
 
+        special.append(contentsOf: curatedWordCandidates(Self.phraseKey(tokens)))
+
         // An alias that starts with the query, so that `arr` already shows
         // what `arrow` will show, in the same order.
         for (alias, hits) in aliasMap where alias.utf8.count > folded.utf8.count && alias.hasPrefix(folded) {
@@ -256,12 +290,38 @@ public final class SearchIndex: Sendable {
         if options.isCancelled() { return [] }
 
         var candidates = special
-        candidates.append(contentsOf: wordCandidates(tokens, allowFuzzy: false))
+        candidates.append(contentsOf: wordCandidates(tokens, matching: .substring))
         if options.isCancelled() { return [] }
 
-        var hits = finish(candidates, options: options)
-        if hits.count < Self.fuzzyThreshold, tokens.allSatisfy({ $0.count >= Self.fuzzyMinimumLength }) {
-            candidates.append(contentsOf: wordCandidates(tokens, allowFuzzy: true))
+        var (hits, matched) = finishCounting(candidates, options: options)
+
+        // Only a query that names nothing exactly is read another way, so a
+        // word the catalogue knows is never second-guessed. Dropping filler
+        // words is for queries that found little: `letter with` already
+        // lists its letters and would otherwise add every other one.
+        if let first = hits.first?.tier, first <= .exact {
+            // Named exactly as typed.
+        } else {
+            let found = candidates.count
+            let isSparse = matched < Self.fuzzyThreshold
+            // The most faithful reading that names something wins.
+            for reading in QueryReadings.alternatives(tokens) where reading.matching == .whole || isSparse {
+                let found = readingCandidates(reading)
+                candidates.append(contentsOf: found)
+                if found.contains(where: { $0.tier == .exact }) { break }
+            }
+            let words = QueryReadings.significantWords(tokens)
+            if words.count > 1, words.count <= QueryReadings.maximumWords {
+                candidates.append(contentsOf: someWordsCandidates(words))
+            }
+            if options.isCancelled() { return [] }
+            if candidates.count > found {
+                (hits, matched) = finishCounting(candidates, options: options)
+            }
+        }
+
+        if matched < Self.fuzzyThreshold, tokens.allSatisfy({ $0.count >= Self.fuzzyMinimumLength }) {
+            candidates.append(contentsOf: wordCandidates(tokens, matching: .fuzzy))
             if options.isCancelled() { return [] }
             hits = finish(candidates, options: options)
         }
@@ -280,8 +340,13 @@ public final class SearchIndex: Sendable {
 
     private enum Quality {
         static let alias = 1000
+        /// A curated preferred word: after aliases, before names.
+        static let preferred = 900
         static let name = 500
         static let keyword = 400
+        /// A curated related word: after everything that names the entry,
+        /// before every partial match.
+        static let related = 300
         /// Added to a keyword match when the entry's name also holds every
         /// query word: for `beer`, a beer mug comes before ginger root.
         static let nameWords = 50
@@ -293,6 +358,11 @@ public final class SearchIndex: Sendable {
         /// Every alias-prefix match scores at least this, above all other
         /// prefix matches.
         static let aliasPrefixFloor = 20
+        /// In the some-words tier, an entry named by more query words leads
+        /// whatever the rest; then the position of the word, then how well
+        /// that word names it.
+        static let someWordsPerWord = 100_000
+        static let someWordsPerPosition = 10_000
     }
 
     // MARK: Literal and code point lookups
@@ -330,6 +400,86 @@ public final class SearchIndex: Sendable {
         return result
     }
 
+    // MARK: Curated words and readings
+
+    private func aliasCandidates(_ key: String) -> [Candidate] {
+        (aliasMap[key] ?? []).map { hit in
+            let index = Int(hit.entry)
+            return Candidate(entry: catalog.entries[index], index: index, tier: .exact, quality: Quality.alias - Int(hit.rank))
+        }
+    }
+
+    /// Entries whose preferred or related word is exactly this phrase.
+    private func curatedWordCandidates(_ key: String) -> [Candidate] {
+        func candidates(_ map: [String: [AliasPosting]], quality: Int) -> [Candidate] {
+            (map[key] ?? []).map { hit in
+                let index = Int(hit.entry)
+                return Candidate(entry: catalog.entries[index], index: index, tier: .exact, quality: quality - Int(hit.rank))
+            }
+        }
+        return candidates(preferredMap, quality: Quality.preferred) + candidates(relatedMap, quality: Quality.related)
+    }
+
+    /// The form in which a related word or a whole query is looked up.
+    private static func phraseKey(_ tokens: [[UInt8]]) -> String {
+        String(decoding: SearchText.canonical(tokens), as: UTF8.self)
+    }
+
+    private func readingCandidates(_ reading: QueryReadings.Reading) -> [Candidate] {
+        switch reading.matching {
+        case .prefix:
+            let key = Self.phraseKey(reading.tokens)
+            return aliasCandidates(key) + curatedWordCandidates(key) + wordCandidates(reading.tokens, matching: .prefix)
+        case .whole:
+            // A reduced form counts only if it names something exactly, as
+            // `cat` does for `cats`; then so do its other whole-word matches,
+            // such as the grinning cat.
+            let key = Self.phraseKey(reading.tokens)
+            let curated = aliasCandidates(key) + curatedWordCandidates(key)
+            let words = wordCandidates(reading.tokens, matching: .whole)
+            guard !curated.isEmpty || words.contains(where: { $0.tier == .exact }) else { return [] }
+            return curated + words
+        }
+    }
+
+    /// Entries whose alias, preferred or related word, name or keyword is
+    /// exactly these words.
+    private func exactCandidates(_ tokens: [[UInt8]]) -> [Candidate] {
+        let key = Self.phraseKey(tokens)
+        return aliasCandidates(key) + curatedWordCandidates(key) + wordCandidates(tokens, matching: .whole).filter { $0.tier == .exact }
+    }
+
+    /// For several words that together match little: the entries that some
+    /// of them name exactly, each word read in its base form if it names
+    /// nothing as typed. Entries named by more of the words lead; then the
+    /// matches of later words, since the last word of an English phrase
+    /// usually names the thing (`red car`, `urgent message`).
+    private func someWordsCandidates(_ words: [[UInt8]]) -> [Candidate] {
+        var scores: [Int: (words: Int, position: Int, quality: Int)] = [:]
+        for (position, word) in words.enumerated() {
+            var matches = exactCandidates([word])
+            if matches.isEmpty {
+                for base in QueryReadings.baseForms(word) {
+                    matches = exactCandidates([base])
+                    if !matches.isEmpty { break }
+                }
+            }
+            var qualities: [Int: Int] = [:]
+            for match in matches {
+                guard let index = match.index else { continue }
+                qualities[index] = max(qualities[index] ?? Int.min, match.quality)
+            }
+            for (index, quality) in qualities {
+                let previous = scores[index]?.words ?? 0
+                scores[index] = (previous + 1, position, quality)
+            }
+        }
+        return scores.map { index, score in
+            let quality = score.words * Quality.someWordsPerWord + score.position * Quality.someWordsPerPosition + score.quality
+            return Candidate(entry: catalog.entries[index], index: index, tier: .someWords, quality: quality)
+        }
+    }
+
     // MARK: Word matching
 
     private enum MatchClass: UInt8 {
@@ -339,10 +489,24 @@ public final class SearchIndex: Sendable {
         case fuzzy = 3
     }
 
-    private func wordCandidates(_ queryTokens: [[UInt8]], allowFuzzy: Bool) -> [Candidate] {
+    /// How loosely each query word may match a word of the entry. Every
+    /// level includes the ones before it.
+    private enum WordMatching: Int, Comparable {
+        case whole
+        case prefix
+        case substring
+        case fuzzy
+
+        static func < (lhs: WordMatching, rhs: WordMatching) -> Bool { lhs.rawValue < rhs.rawValue }
+    }
+
+    private func wordCandidates(_ queryTokens: [[UInt8]], matching: WordMatching) -> [Candidate] {
+        // Words matched so far are counted in a byte. No entry has hundreds
+        // of words, so such a query matches nothing.
+        guard queryTokens.count < Int(UInt8.max) else { return [] }
         let entryCount = catalog.entries.count
         let none: UInt8 = 0xFF
-        /// Best `class << 2 | field` for the current query word.
+        /// Best `class << Field.bits | field` for the current query word.
         var current = [UInt8](repeating: none, count: entryCount)
         /// Number of leading query words an entry has matched.
         var matched = [UInt8](repeating: 0, count: entryCount)
@@ -360,10 +524,18 @@ public final class SearchIndex: Sendable {
                 let end = Int(postingOffsets[token + 1])
                 for cursor in start..<end {
                     let packed = postings[cursor]
-                    let entry = Int(packed >> 2)
+                    let entry = Int(packed >> Field.bits)
                     // An entry that missed an earlier word cannot match.
                     guard matched[entry] == step else { continue }
-                    let score = matchClass.rawValue << 2 | UInt8(packed & 3)
+                    let field = packed & Field.mask
+                    // Related words and block names count only as whole words
+                    // or prefixes: `port` is no reason to show what
+                    // `important` suggests, nor `critical` the Combining
+                    // Diacritical Marks.
+                    if matchClass == .substring, field == Field.related.rawValue || field == Field.group.rawValue {
+                        continue
+                    }
+                    let score = matchClass.rawValue << UInt8(Field.bits) | UInt8(field)
                     if current[entry] == none {
                         touched.append(Int32(entry))
                         current[entry] = score
@@ -375,15 +547,19 @@ public final class SearchIndex: Sendable {
 
             let range = prefixRange(queryToken)
             for token in range {
-                visit(token: token, matchClass: tokenLength(token) == queryToken.count ? .whole : .prefix)
+                if tokenLength(token) == queryToken.count {
+                    visit(token: token, matchClass: .whole)
+                } else if matching >= .prefix {
+                    visit(token: token, matchClass: .prefix)
+                }
             }
-            if queryToken.count >= Self.substringMinimumLength {
+            if matching >= .substring, queryToken.count >= Self.substringMinimumLength {
                 tokenBytes.withUnsafeBufferPointer { buffer in
                     for token in 0..<tokenCount where !range.contains(token) {
                         let bytes = UnsafeBufferPointer(rebasing: buffer[Int(tokenOffsets[token])..<Int(tokenOffsets[token + 1])])
                         if bytes.count > queryToken.count, Self.contains(bytes, queryToken) {
                             visit(token: token, matchClass: .substring)
-                        } else if allowFuzzy, queryToken.count >= Self.fuzzyMinimumLength, bytes.first == queryToken.first {
+                        } else if matching >= .fuzzy, queryToken.count >= Self.fuzzyMinimumLength, bytes.first == queryToken.first {
                             let limit = queryToken.count >= 8 ? 2 : 1
                             if SearchText.editDistance(queryToken, bytes, limit: limit) <= limit {
                                 visit(token: token, matchClass: .fuzzy)
@@ -399,8 +575,8 @@ public final class SearchIndex: Sendable {
                 let score = current[entry]
                 current[entry] = none
                 matched[entry] = step &+ 1
-                worstClass[entry] = position == 0 ? score >> 2 : max(worstClass[entry], score >> 2)
-                worstField[entry] = position == 0 ? score & 3 : max(worstField[entry], score & 3)
+                worstClass[entry] = position == 0 ? score >> UInt8(Field.bits) : max(worstClass[entry], score >> UInt8(Field.bits))
+                worstField[entry] = position == 0 ? score & UInt8(Field.mask) : max(worstField[entry], score & UInt8(Field.mask))
                 survivors.append(entry32)
             }
             if survivors.isEmpty { return [] }
@@ -413,7 +589,7 @@ public final class SearchIndex: Sendable {
             let index = Int(entry32)
             let entry = catalog.entries[index]
             let matchClass = worstClass[index]
-            let fieldScore = 3 - Int(worstField[index])
+            let fieldScore = Int(Field.group.rawValue) - Int(worstField[index])
             switch matchClass {
             case MatchClass.whole.rawValue:
                 if let quality = exactQuality(entry, canonicalQuery: canonicalQuery) {
@@ -525,8 +701,16 @@ public final class SearchIndex: Sendable {
     /// alias first, then favourites and recents, then prominence before the
     /// finer quality: while a word is still being typed, a familiar symbol
     /// that might be meant is a better guess than a rare letter whose name
-    /// happens to contain the fragment as a whole word.
+    /// happens to contain the fragment as a whole word. Some-words matches
+    /// go by quality first, like exact ones, since their quality says how
+    /// many of the words they answer.
     private func finish(_ candidates: [Candidate], options: SearchOptions) -> [SearchHit] {
+        finishCounting(candidates, options: options).hits
+    }
+
+    /// Also counts every distinct match, not just the hits within the limit,
+    /// so that how many matched never depends on how many are shown.
+    private func finishCounting(_ candidates: [Candidate], options: SearchOptions) -> (hits: [SearchHit], matched: Int) {
         var best: [ExactString: Candidate] = [:]
         best.reserveCapacity(candidates.count)
         for candidate in candidates {
@@ -547,7 +731,7 @@ public final class SearchIndex: Sendable {
         let useBoost = !options.favourites.isEmpty || !options.recents.isEmpty
         let ordered = best.values.sorted { lhs, rhs in
             if lhs.tier != rhs.tier { return lhs.tier < rhs.tier }
-            let isPartial = lhs.tier >= .prefix
+            let isPartial = lhs.tier >= .prefix && lhs.tier != .someWords
             if isPartial {
                 let lhsLead = lhs.quality >= Quality.aliasPrefixFloor ? lhs.quality : 0
                 let rhsLead = rhs.quality >= Quality.aliasPrefixFloor ? rhs.quality : 0
@@ -569,7 +753,7 @@ public final class SearchIndex: Sendable {
             case (nil, nil): return lhs.entry.string.unicodeScalars.lexicographicallyPrecedes(rhs.entry.string.unicodeScalars)
             }
         }
-        return ordered.prefix(options.limit).map { SearchHit(entry: $0.entry, index: $0.index, tier: $0.tier) }
+        return (ordered.prefix(options.limit).map { SearchHit(entry: $0.entry, index: $0.index, tier: $0.tier) }, ordered.count)
     }
 }
 
