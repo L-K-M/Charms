@@ -92,9 +92,11 @@ final class BundledCatalogTests: XCTestCase {
         ("save", "\u{1F4BE}"),
         ("heart emoji", "\u{2764}\u{FE0F}"), ("command key", "\u{2318}"),
         ("symbol for infinity", "\u{221E}"), ("rockets", "\u{1F680}"), ("celebrating", "\u{1F389}"),
+        ("key board", "\u{2328}\u{FE0F}"), ("rain bow", "\u{1F308}"), ("hour glass", "\u{231B}"),
+        ("crossed arrows", "\u{1F500}"),
         ("news", "\u{1F4F0}"), ("glasses", "\u{1F453}"), ("diameter", "\u{2300}"),
         ("arrow right", "\u{2192}"), ("prescription", "\u{211E}"), ("bass clef", "\u{1D122}"),
-        ("iii", "\u{2162}")
+        ("iii", "\u{2162}"), ("fire truck", "\u{1F692}")
     ]
 
     func testEverydayWordsFindWhatTheySuggest() {

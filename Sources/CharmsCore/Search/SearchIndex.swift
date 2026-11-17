@@ -368,8 +368,13 @@ public final class SearchIndex: Sendable {
         } else {
             let found = candidates.count
             let isSparse = matched < Self.fuzzyThreshold
+            // Words are written as one only when, as typed, they do not even
+            // begin words of one entry together: `fire truck` is the fire
+            // engine's, not the firefighters' keyword `firetruck`.
+            let typedTogether = hits.first.map { $0.tier <= .prefix } ?? false
+            let readings = (typedTogether ? [] : QueryReadings.joined(tokens)) + QueryReadings.alternatives(tokens)
             // The most faithful reading that names something wins.
-            for reading in QueryReadings.alternatives(tokens) where reading.matching == .whole || isSparse {
+            for reading in readings where reading.matching == .whole || isSparse {
                 let found = readingCandidates(reading)
                 candidates.append(contentsOf: found)
                 if found.contains(where: { $0.tier == .exact }) { break }
@@ -498,13 +503,16 @@ public final class SearchIndex: Sendable {
             let key = Self.phraseKey(reading.tokens)
             return aliasCandidates(key) + curatedWordCandidates(key) + wordCandidates(reading.tokens, matching: .prefix)
         case .whole:
-            // A reduced form counts only if it names something exactly, as
-            // `cat` does for `cats`; then so do its other whole-word matches,
-            // such as the grinning cat.
+            // A single reduced word counts only if it names something
+            // exactly, as `cat` does for `cats`; then so do its other
+            // whole-word matches, such as the grinning cat. Several words
+            // that are all whole words of one entry are reason enough:
+            // `crossed arrows` is the shuffle button's `crossed` and `arrow`.
             let key = Self.phraseKey(reading.tokens)
             let curated = aliasCandidates(key) + curatedWordCandidates(key)
             let words = wordCandidates(reading.tokens, matching: .whole)
-            guard !curated.isEmpty || words.contains(where: { $0.tier == .exact }) else { return [] }
+            let isPhrase = reading.tokens.count > 1
+            guard !curated.isEmpty || words.contains(where: { $0.tier == .exact }) || isPhrase && !words.isEmpty else { return [] }
             return curated + words
         }
     }

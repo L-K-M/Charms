@@ -37,6 +37,9 @@ final class SearchIndexTests: XCTestCase {
     private static let exclamation = "\u{2757}"
     private static let policeLight = "\u{1F6A8}"
     private static let automobile = "\u{1F697}"
+    private static let rainbow = "\u{1F308}"
+    private static let ocrBowTie = "\u{2445}"
+    private static let bowtie = "\u{22C8}"
 
     private static func age(_ text: String) -> UnicodeAge { UnicodeAge(text)! }
 
@@ -65,6 +68,9 @@ final class SearchIndexTests: XCTestCase {
             emoji(exclamation, "red exclamation mark", ["!", "exclamation", "mark", "punctuation"], group: "Symbols/punctuation", related: [alias("important"), alias("urgent", 1)]),
             emoji(policeLight, "police car light", ["alarm", "beacon", "light", "police"], group: "Travel & Places/transport-ground", related: [alias("urgent"), alias("high alert", 1)]),
             emoji(automobile, "automobile", ["car"], group: "Travel & Places/transport-ground"),
+            emoji(rainbow, "rainbow", ["rain"], group: "Travel & Places/sky & weather"),
+            character(ocrBowTie, "ocr bow tie", rank: 3, group: "Optical Character Recognition"),
+            character(bowtie, "bowtie", rank: 2, group: "Mathematical Operators"),
             character(times, "multiplication sign", rank: 1, group: "Latin-1 Supplement", keywords: ["multiply", "times"], aliases: [alias("x"), alias("times")]),
             character(letterX, "latin small letter x", kind: .letter, rank: 3, group: "Basic Latin"),
             character(aMacron, "latin capital letter a with macron", kind: .letter, rank: 3, group: "Latin Extended-A"),
@@ -348,6 +354,29 @@ final class SearchIndexTests: XCTestCase {
         XCTAssertEqual(hits.map(\.entry.name), ["cjk unified ideograph-4e2d"])
     }
 
+    func testWordsWrittenApartFindTheWordWrittenAsOne() {
+        // `rain` names the rainbow and `bow` the bow and arrow; read apart,
+        // the bow came first.
+        let hits = Self.index.search("rain bow")
+        XCTAssertEqual(hits.first?.entry.string, Self.rainbow)
+        XCTAssertEqual(hits.first?.tier, .exact)
+    }
+
+    func testWordsThatBeginWordsOfOneEntryAreNotWrittenAsOne() {
+        // As typed, `bow tie` begins the words of the OCR bow tie; that
+        // `bowtie` names another character is no reason to change it.
+        XCTAssertEqual(Self.index.search("bow tie").first?.entry.string, Self.ocrBowTie)
+    }
+
+    func testBaseFormsOfSeveralWordsCountWhenTheyAreAllWordsOfOneEntry() {
+        // `police beacon` is no name or keyword, but both words are
+        // keywords of the police car light, as `crossed` and `arrow` are of
+        // the shuffle button.
+        let hits = Self.index.search("police beacons")
+        XCTAssertEqual(hits.first?.entry.string, Self.policeLight)
+        XCTAssertEqual(hits.first?.tier, .prefix)
+    }
+
     func testSeveralPastedCharactersOutsideTheCatalogueKeepTheirOrder() {
         // Characters the catalogue lacks are kept apart from it; each hit
         // must still show its own character, in the order typed.
@@ -501,6 +530,15 @@ final class QueryReadingsTests: XCTestCase {
         // A base form is never a filler word or too short to mean anything.
         XCTAssertFalse(bases("thing").contains("the"))
         XCTAssertEqual(bases("king"), [])
+    }
+
+    func testJoinedReadingsWriteNeighbouringWordsAsOne() {
+        XCTAssertEqual(QueryReadings.joined(words("key board")), [QueryReadings.Reading(tokens: words("keyboard"), matching: .whole)])
+        XCTAssertTrue(QueryReadings.joined(words("cup cakes")).contains(QueryReadings.Reading(tokens: words("cupcake"), matching: .whole)))
+        XCTAssertEqual(QueryReadings.joined(words("big key board")).map { text($0.tokens) }, ["bigkey board", "big keyboard"])
+        // Single letters are not joined, and one word has nothing to join.
+        XCTAssertEqual(QueryReadings.joined(words("a b")), [])
+        XCTAssertEqual(QueryReadings.joined(words("keyboard")), [])
     }
 
     func testReadingsDropFillerWordsFirstThenReduceOneWordAtATime() {

@@ -5,8 +5,9 @@ import Foundation
 /// People search the way they talk: `heart emoji`, `command key`, `symbol
 /// for infinity`, `rockets`, `approved`. The catalogue's names, keywords
 /// and curated words are mostly bare singular nouns and base verbs, so those
-/// queries used to find nothing or only fragments. A reading drops filler
-/// words or reduces one word to a base form; the search engine tries the
+/// queries used to find nothing or only fragments. A reading writes two
+/// words as one (`key board`), drops filler words or reduces one word to a
+/// base form; the search engine tries the
 /// readings only when the typed query has no exact match, so a word the
 /// catalogue does know, such as `glasses` or `news`, is never second-guessed.
 ///
@@ -50,12 +51,40 @@ enum QueryReadings {
     static let minimumInflectedLength = 4
     /// A base form shorter than this is too ambiguous to look up.
     static let minimumBaseLength = 3
+    /// Words are written as one only when each has at least this many
+    /// letters: `a b` is two letters, not `ab`.
+    static let minimumJoinedPartLength = 2
 
     /// The query's words without filler words, or all of them when nothing
     /// else would remain.
     static func significantWords(_ tokens: [[UInt8]]) -> [[UInt8]] {
         let kept = tokens.filter { !fillerWords.contains($0) }
         return kept.isEmpty ? tokens : kept
+    }
+
+    /// Two neighbouring words written as one, as typed or in a base form:
+    /// `key board`, `cup cakes`. These readings come before the others
+    /// because they change no letter, and the words they join may be
+    /// filler words (`key`) or words that name other things (`rain`,
+    /// `bow`), which the other readings would read apart: `key board`
+    /// would show boards and `rain bow` bows, ahead of the keyboard and
+    /// the rainbow that only substrings of the two words had found.
+    static func joined(_ tokens: [[UInt8]]) -> [Reading] {
+        guard tokens.count > 1, tokens.count <= maximumWords else { return [] }
+        var readings: [Reading] = []
+        for position in tokens.indices.dropLast() {
+            let first = tokens[position]
+            let second = tokens[position + 1]
+            guard first.count >= minimumJoinedPartLength, second.count >= minimumJoinedPartLength else { continue }
+            var joined = tokens
+            joined.replaceSubrange(position...(position + 1), with: [first + second])
+            readings.append(Reading(tokens: joined, matching: .whole))
+            for base in baseForms(first + second) {
+                joined[position] = base
+                readings.append(Reading(tokens: joined, matching: .whole))
+            }
+        }
+        return readings
     }
 
     /// Alternative readings, most faithful first: without filler words, then
