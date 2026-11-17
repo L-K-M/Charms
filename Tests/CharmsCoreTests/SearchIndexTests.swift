@@ -63,7 +63,7 @@ final class SearchIndexTests: XCTestCase {
             emoji(fireEngine, "fire engine", ["engine", "fire", "truck"], group: "Travel & Places/transport-ground", related: [alias("flame")]),
             // Catalogue order is the opposite of the related-word order.
             emoji(exclamation, "red exclamation mark", ["!", "exclamation", "mark", "punctuation"], group: "Symbols/punctuation", related: [alias("important"), alias("urgent", 1)]),
-            emoji(policeLight, "police car light", ["alarm", "beacon", "light", "police"], group: "Travel & Places/transport-ground", related: [alias("urgent")]),
+            emoji(policeLight, "police car light", ["alarm", "beacon", "light", "police"], group: "Travel & Places/transport-ground", related: [alias("urgent"), alias("high alert", 1)]),
             emoji(automobile, "automobile", ["car"], group: "Travel & Places/transport-ground"),
             character(times, "multiplication sign", rank: 1, group: "Latin-1 Supplement", keywords: ["multiply", "times"], aliases: [alias("x"), alias("times")]),
             character(letterX, "latin small letter x", kind: .letter, rank: 3, group: "Basic Latin"),
@@ -197,9 +197,11 @@ final class SearchIndexTests: XCTestCase {
     }
 
     func testRelatedWordIsFoundWhileTyped() {
+        // A partial match, ranked after names and keywords the fragment
+        // begins.
         let hits = Self.index.search("urg")
         XCTAssertEqual(Set(hits.map(\.entry.string)), [Self.policeLight, Self.exclamation])
-        XCTAssertEqual(Set(hits.map(\.tier)), [.prefix])
+        XCTAssertEqual(Set(hits.map(\.tier)), [.relatedWords])
     }
 
     func testRelatedWordIsNotMatchedInsideAWord() {
@@ -258,8 +260,18 @@ final class SearchIndexTests: XCTestCase {
         // names.
         assertResults("red car", [Self.automobile, Self.redHeart])
         XCTAssertEqual(Self.index.search("red car").map(\.tier), [.someWords, .relatedWords])
-        // A single word is still completed through a related word.
-        XCTAssertEqual(Self.index.search("cardio").map(\.tier), [.prefix])
+        // A single word is still completed through a related word, after
+        // whatever a name or keyword completes: `flam` shows the fire, whose
+        // keyword is `flame`, before the fire engine's related `flame`.
+        XCTAssertEqual(Self.index.search("cardio").map(\.tier), [.relatedWords])
+        assertResults("flam", [Self.fire, Self.fireEngine])
+        XCTAssertEqual(Self.index.search("flam").map(\.tier), [.prefix, .relatedWords])
+    }
+
+    func testWholeWordOfARelatedPhraseCountsLikeANameWord() {
+        assertResults("alert", [Self.policeLight])
+        XCTAssertEqual(Self.index.search("alert").map(\.tier), [.prefix])
+        XCTAssertEqual(Self.index.search("aler").map(\.tier), [.relatedWords])
     }
 
     func testSomeWordsComeAfterMatchesOfEveryWord() {

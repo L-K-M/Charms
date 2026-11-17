@@ -487,7 +487,7 @@ Start with a lightweight in-memory index rather than a database or external sear
 2. Exact familiar alias, preferred word, display-name, or CLDR keyword match, then exact related words in their curated order. A related word never outranks a name, keyword or alias. Neither kind of word changes an entry's rank or leads while it is still being typed, unlike an alias.
 3. Token-prefix matches. Related and preferred words take part as whole words and prefixes, never as substrings, so `port` does not reach what `important` suggests; block names are not matched inside words either. A related word may not begin an alias (`arr` before `arrow`), since it would interrupt the alias while it is typed; the generator rejects one.
 4. Some of several words: when the words together name nothing exactly, entries that one of them names exactly, more words first, then the last word's matches first (`blue car` shows cars, then blue things).
-5. Several words that all match, but some only through a related word: weaker than a word that names an entry, so `red car` does not show the red heart (related word `cardiovascular`) before the cars.
+5. Partial matches that rely on a related word: a fragment that only begins one, or a query of several words one of which matches only through one. They are weaker than names and keywords, so `opt` shows the optical disc before what `optimism` suggests, and `red car` does not show the red heart (related word `cardiovascular`) before the cars. A whole word of a related phrase counts like a name word (`delete` reaches the wastebasket through `forward delete`).
 6. All-token substring matches.
 7. Bounded fuzzy matching for genuine spelling variation, if it improves the fixtures.
 

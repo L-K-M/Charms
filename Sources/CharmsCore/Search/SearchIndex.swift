@@ -20,10 +20,11 @@ public struct SearchHit: Sendable, Equatable {
         /// cars, then blue things. Ranked above substrings, which for several
         /// words are mostly coincidences (`scared` holds `car` and `red`).
         case someWords
-        /// Every one of several query words starts a word of the entry, but
-        /// some only through a curated related word. That is weaker than a
-        /// word naming the entry: in `red car`, `car` starts the red heart's
-        /// related word `cardiovascular`.
+        /// Every query word starts a word of the entry, but some only
+        /// through a curated related word: a fragment that begins one, or
+        /// any word of several. That is weaker than a name or keyword: `opt`
+        /// begins `optimism`, and in `red car`, `car` begins the red
+        /// heart's related word `cardiovascular`.
         case relatedWords
         /// Every query word occurs inside a word of the entry.
         case substring
@@ -648,9 +649,13 @@ public final class SearchIndex: Sendable {
             let index = Int(entry32)
             let matchClass = worstClass[index]
             let fieldScore = Int(Field.group.rawValue) - Int(worstField[index])
-            // A related word may complete a single word as it is typed, but
-            // among several words it is weaker than a word naming an entry.
-            let partialTier: SearchHit.Tier = isPhrase && worstField[index] == UInt8(Field.related.rawValue) ? .relatedWords : .prefix
+            // A related word is weaker than a name or keyword: among several
+            // words, and when the typed word only begins it (`opt` is no
+            // reason to show what `optimism` suggests before the optical
+            // disc). A whole word of a related phrase still counts, as
+            // `delete` does for the wastebasket's `forward delete`.
+            let throughRelated = worstField[index] == UInt8(Field.related.rawValue)
+            let partialTier: SearchHit.Tier = throughRelated && (isPhrase || matchClass == MatchClass.prefix.rawValue) ? .relatedWords : .prefix
             switch matchClass {
             case MatchClass.whole.rawValue:
                 if let quality = exactQuality(at: index, canonicalQuery: canonicalQuery) {
