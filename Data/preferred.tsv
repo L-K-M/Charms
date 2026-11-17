@@ -7,3 +7,244 @@
 # the word is still being typed, the items rank like any other match, and a
 # preferred word does not change an item's rank. A word may be in only one
 # of aliases.tsv, related.tsv and this file.
+#
+# The lines were proposed in November 2026 by a language model for frequent
+# words whose first result was a poor guess, and confirmed by a second model
+# and by review (PLAN.md, section 8.1).
+accessibility	♿
+accident	💥
+adult	🧑
+again	🔄
+air	💨 🌬️
+american	🇺🇸
+aquarium	🐠
+arts	🎨 🎭
+australia	🇦🇺
+auto	🚗
+avalanche	🏔️ ❄️
+aviation	✈️
+back	🔙
+bags	🛍️ 👜 👝
+ball	⚽ 🏀
+band	🎸
+barrel	🛢️
+beauty	💄 💅
+biology	🧬
+book	📖 📕 📚
+born	👶
+boys	👦 👬
+branch	🌿 🪾
+bubble	🫧 🗨️
+bunny	🐰 🐇
+burn	🔥
+business	💼 🧑‍💼
+butterflies	🦋
+cake	🎂 🍰 🧁
+call	📞 📱
+car	🚗 🚙 🏎️
+cars	🚗
+case	💼 🧳
+championship	🏆 🥇
+changing	🔄 ♻️
+charge	💳 ⚡
+cherry	🍒 🌸
+children	🧒 👦 👧
+chinese	🇨🇳
+city	🏙️ 🌆
+climate	🌡️ 🌍
+closed	🔒 📕
+clothing	👕 👗
+contact	👤 📇
+correct	✅
+cost	💰
+cruise	🛳️ 🚢
+curious	🧐 🤔
+cut	✂️
+danger	⚠️
+dental	🦷
+dentist	🦷
+died	💀 ⚰️
+difficult	😖 😣 😩
+dinner	🍽️
+disability	♿
+disease	🦠 🤒
+doctor	🧑‍⚕️
+done	✅
+drawing	✏️
+dreams	💭 😴
+drive	🚗
+driving	🚗 🚙 🛣️
+drop	💧 💦
+drops	💧 💦
+dying	💀 😂 😵
+earth	🌍 🌎 🌏
+east	➡️
+end	🔚
+energy	⚡ 🔋
+europe	🇪🇺
+european	🇪🇺
+evil	😈 👿
+exercise	🏋️ 🤸 🏃
+fail	❌ ⛔
+fantasy	🦄 🧚 🧙
+fever	🤒 🥵
+fight	🥊 👊
+first	🥇 1️⃣
+five	5️⃣
+flag	🚩 🏁
+flight	✈️
+flower	🌸 💐
+folder	📁 📂
+force	💪
+forest	🌲 🌳
+four	4️⃣
+french	🇫🇷
+game	🎮 🎲
+games	🎮 🎲
+german	🇩🇪
+goodbye	👋
+gross	🤢 🤮
+group	👥
+growing	🌱 🌿 📈
+growth	🌱 📈
+hat	🎩 👒 🧢
+healing	❤️‍🩹
+heavy	🪨 🏋️ 💪
+help	🆘
+here	📍 🙋
+holding	🤝 🧑‍🤝‍🧑
+home	🏠 🏡
+hour	⌛ ⏰
+hours	⏰ ⏳
+huh	🤷
+image	🖼️
+improvement	📈 ⬆️ 🔧
+index	☝️ 👆
+indian	🇮🇳
+ink	🖋️ 🖊️
+interior	🛋️ 🏠
+jacket	🧥
+japan	🇯🇵
+japanese	🇯🇵
+jazz	🎷
+jelly	🪼
+job	💼 🏢 🧑‍💼
+journey	🧳 ✈️
+kisses	😘 💋
+knife	🔪
+lady	👩
+last	⏮️ 🔚
+late	⏰
+laugh	😂 🤣
+laughing	😂 🤣
+leaf	🍃 🍂 🍁
+legs	🦵
+letter	✉️ 📧
+life	🧬 🌱
+light	💡 🔦
+lightning	⚡ ⛈️
+line	_ | ―
+loot	💰
+luck	🍀
+lunar eclipse	🌑 🌕
+mad	😡 😠
+magnetic	🧲
+margarita	🍸 🍹
+marker	🖍️ 🖊
+meatball	🍝
+media	📺 📱
+medicine	💊 🏥
+meditation	🧘
+meteor	☄️
+mischievous	😈
+morning	🌅 🌄 ☀️
+mug	☕
+mugs	☕
+mute	🔇
+mwah	😘
+new	🆕
+north	⬆️
+ocean	🌊
+office	🏢
+oh	😮
+one	1️⃣ ☝️
+orchestra	🎻 🎼
+out	📤 🚪
+outdoors	🌲 🏕️ 🥾
+paint	🎨
+palace	🏰
+pan	🍳
+paper	📄 📃
+pause	⏸️
+phones	📱 📞
+plane	✈️ 🛩️ 🛫
+positive	👍 😊
+press	🖨️ 📰
+protection	🛡️ ⛑️
+pumpkin	🎃 🥧
+question	❓ ❔
+raised	🤚 ✋
+ready	✅
+recording	🎙️ ⏺️
+remove	🗑️ ❌
+repair	🔧 🔨
+rich	💰 🤑 🪙
+rise	🌅 📈 💹
+save	💾
+scene	🎬 🎭
+selling	🏷️ 💰
+serious	😐 😑
+seven	7️⃣
+shape	■ □ ▲
+shirt	👕 👔 👚
+six	6️⃣
+sky	🌌 ☁️
+smartphone	📱
+smoking	🚬
+sport	⚽ 🏅
+tell	💬 🗣️
+ten	🔟
+three	3️⃣
+throw	🤾
+thumb	👍 👎
+thunderstorm	⛈️
+time	⌛ ⏰ ⌚
+tiny	🤏 🐜 🔬
+tip	💡 💰 💁
+tombstone	🪦
+tool	🔧 🛠️ 🔨
+tortoise	🐢
+total	Σ 🧮
+tournament	🏆
+tracks	🛤️
+trans	🏳️‍⚧️
+trip	✈️ 🧳
+true	✅ 💯
+turn	↩️ 🔄
+two	2️⃣ 👯
+type	⌨️ 🔤
+typing	⌨️
+ufo	🛸
+undo	⎌ ↩️
+upper	⬆️ 🔼 🔝
+vibrate	📳
+video	📹 📺 📽️
+virus	🦠
+vitamin	💊
+wait	⏳ ⌛
+war	⚔️ 🪖
+water	💧 🌊
+waving	👋
+wealth	💰
+west	⬅️
+wheat	🌾
+wheels	🛞
+wild	🦁 🌿 🃏
+win	🏆 🥇
+wings	🪽
+winter	❄️ ⛄
+work	💼 👷 🏢
+worker	👷 🧑‍🏭 🧑‍💼
+yawn	🥱
+zero	0️⃣
+zodiac	♈ ♉ ♊

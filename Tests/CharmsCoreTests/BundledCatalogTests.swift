@@ -82,6 +82,51 @@ final class BundledCatalogTests: XCTestCase {
         }
     }
 
+    /// Everyday words and phrases that name no character, or name one few
+    /// people mean, then queries read another way, then words whose own
+    /// character a curated word must not push aside.
+    private static let everydayResults: [(String, String)] = [
+        ("urgent", "\u{1F6A8}"), ("important", "\u{2757}"), ("approved", "\u{2705}"),
+        ("deadline", "\u{23F0}"), ("thank you", "\u{1F64F}"), ("blocked", "\u{1F6AB}"),
+        ("to do", "\u{2705}"), ("book", "\u{1F4D6}"), ("car", "\u{1F697}"), ("cars", "\u{1F697}"),
+        ("save", "\u{1F4BE}"),
+        ("heart emoji", "\u{2764}\u{FE0F}"), ("command key", "\u{2318}"),
+        ("symbol for infinity", "\u{221E}"), ("rockets", "\u{1F680}"), ("celebrating", "\u{1F389}"),
+        ("news", "\u{1F4F0}"), ("glasses", "\u{1F453}"), ("diameter", "\u{2300}"),
+        ("arrow right", "\u{2192}"), ("prescription", "\u{211E}"), ("bass clef", "\u{1D122}"),
+        ("iii", "\u{2162}")
+    ]
+
+    func testEverydayWordsFindWhatTheySuggest() {
+        for (query, expected) in Self.everydayResults {
+            let first = index.search(query).first?.entry.string
+            XCTAssertTrue(first?.isExactly(expected) ?? false, "\(query): got \(first?.codePointDescription ?? "nothing"), want \(expected.codePointDescription)")
+        }
+    }
+
+    func testCuratedWordsFindAllTheirItemsAsExactMatches() {
+        // Guards the path from related.tsv and preferred.tsv to search: the
+        // builder's word keys, the catalogue fields and the index's lookups
+        // must agree. A full search per word is slow in a debug build, so
+        // an evenly spaced sample of the words is checked.
+        var items: [String: [String]] = [:]
+        for entry in catalog.entries {
+            for word in entry.relatedWords + entry.preferredWords {
+                items[word.text, default: []].append(entry.string)
+            }
+        }
+        XCTAssertFalse(items.isEmpty)
+        let words = items.keys.sorted()
+        let step = max(1, words.count / 300)
+        for word in stride(from: 0, to: words.count, by: step).map({ words[$0] }) {
+            let strings = items[word] ?? []
+            let exact = Set(index.search(word).filter { $0.tier == .exact }.map(\.entry.string.exact))
+            for string in strings where !exact.contains(string.exact) {
+                XCTFail("\(word): \(string.codePointDescription) is not an exact match")
+            }
+        }
+    }
+
     func testExplicitCodePointGivesExactlyThatCharacter() {
         XCTAssertEqual(index.search("U+2192").map(\.entry.string), ["\u{2192}"])
         XCTAssertEqual(index.search("U+00C5").map(\.entry.string.codePointDescription), ["U+00C5"])
@@ -123,7 +168,7 @@ final class BundledCatalogTests: XCTestCase {
         // (measured, Apple silicon); the bound here is loose enough for an
         // unoptimised test build on a slow runner and still catches a
         // search that has become quadratic.
-        let queries = Self.firstResults.map(\.0) + ["a", "e", "s", "la", "co", "small", "letter a", "latin small letter"]
+        let queries = Self.firstResults.map(\.0) + Self.everydayResults.map(\.0) + ["a", "e", "s", "la", "co", "small", "letter a", "latin small letter"]
         let start = Date()
         for query in queries {
             _ = index.search(query)
