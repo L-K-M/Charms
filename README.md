@@ -43,7 +43,7 @@ The catalogue and insertion policy are unchanged.
 | Key | What it does |
 | --- | --- |
 | `⌃P` (configurable) | Open the picker; press again to close it. |
-| Typing | Search by name, keyword or alias: `arrow`, `check`, `infinity`, `cmd`, `->`, `nbsp`. A pasted character or `U+2192` finds it exactly. |
+| Typing | Search by name, keyword or alias: `arrow`, `check`, `infinity`, `cmd`, `->`, `nbsp`. Everyday words find what they suggest: `urgent`, `approved`, `deadline`, `heart emoji`. A pasted character or `U+2192` finds it exactly. |
 | `→` at the end of the search, `↓`, `Tab` | Move into the results. Arrow keys then move between cells; `↑` from the first row returns to the search. |
 | `↵` | Insert the selected character where you were typing. The first one is selected as soon as the picker opens: your first favourite, or the best match once you search. |
 | `⌘↵` | Copy it instead. |
@@ -191,8 +191,9 @@ CODE_SIGN_IDENTITY="Apple Development" ./scripts/build-app.sh
 ```
 
 The character catalogue (`Resources/catalog.txt`) is generated from the
-Unicode and CLDR files pinned under `Data/` and from the curated aliases in
-`Data/aliases.tsv`. After changing either, run
+Unicode and CLDR files pinned under `Data/`, the curated aliases in
+`Data/aliases.tsv`, and the everyday words in `Data/related.tsv` and
+`Data/preferred.tsv`. After changing any of them, run
 `swift run CharmsCatalogTool generate` and commit the result.
 
 The design, and the measurements behind it, are in [PLAN.md](PLAN.md).

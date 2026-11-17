@@ -142,6 +142,15 @@ Release build, Apple M4 Max, macOS 27.0.1.
 | Catalogue load at launch | about 60 ms, off the main thread (43,548 entries) |
 | Search, per keystroke | median 0.2 ms, 95th percentile 3.6 ms, worst case about 27 ms for a single common letter |
 
+Search re-measured on 2026-11-17, same machine, after adding related and
+preferred words: the optimised search index alone, without the app, over
+327 timing queries. Main measured the same way gave median 0.12 ms, 95th
+percentile 1.2 ms and worst case 23 ms (`s`); with the words, median
+0.22 ms, 95th percentile 2.0 ms and worst case 5.4 ms (`s`), since search
+candidates no longer copy their entries. Building the index took 40 ms
+instead of 30 ms. Catalogue load at launch with the larger catalogue
+(3.3 MB) was not re-measured in the app.
+
 ## Impression prototype
 
 The native interaction prototype is documented in

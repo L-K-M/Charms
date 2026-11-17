@@ -105,6 +105,13 @@ not a mockup or a real document.
   re-seed an intentionally empty list or overwrite user edits when adding
   missing starters. Use native verbatim editors, not smart substitutions.
   Starter provenance and limits are documented in `docs/snippets.md`.
+- Everyday words live in `Data/related.tsv` (suggest a character; rank
+  after names, keywords and aliases) and `Data/preferred.tsv` (rank first;
+  for words whose names lead somewhere few people mean). Search reads a
+  query another way only when it names nothing exactly as typed (PLAN.md
+  §8.3), so list base forms and never let a line push aside a character
+  the word names. After editing either file, run `BundledCatalogTests`
+  and check results for related queries, not only the word edited.
 
 ## Critical Constraints
 
