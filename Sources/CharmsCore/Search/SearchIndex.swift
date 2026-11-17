@@ -357,9 +357,7 @@ public final class SearchIndex: Sendable {
         var (hits, matched) = finishCounting(candidates, outside: outside, options: options)
 
         // Only a query that names nothing exactly is read another way, so a
-        // word the catalogue knows is never second-guessed. Dropping filler
-        // words is for queries that found little: `letter with` already
-        // lists its letters and would otherwise add every other one.
+        // word the catalogue knows is never second-guessed.
         if let first = hits.first?.tier, first <= .exact {
             // Named exactly as typed.
         } else if CodePointQuery.isNotation(query) {
@@ -373,8 +371,19 @@ public final class SearchIndex: Sendable {
             // engine's, not the firefighters' keyword `firetruck`.
             let typedTogether = hits.first.map { $0.tier <= .prefix } ?? false
             let readings = (typedTogether ? [] : QueryReadings.joined(tokens)) + QueryReadings.alternatives(tokens)
+            // Without filler words, the last word may still be a prefix, but
+            // only among few results. Among many, the reading counts only if
+            // it names something exactly (`pi symbol` is the pi before the
+            // Greek pi symbol), and not at all when the query keeps a
+            // grammatical word, since those belong to names: `letter with`
+            // lists its letters and would otherwise lead with envelopes.
+            let keepsGrammaticalWords = tokens.contains(where: QueryReadings.stopWords.contains)
             // The most faithful reading that names something wins.
-            for reading in readings where reading.matching == .whole || isSparse {
+            for var reading in readings {
+                if reading.matching == .prefix, !isSparse {
+                    if keepsGrammaticalWords { continue }
+                    reading = reading.whole
+                }
                 let found = readingCandidates(reading)
                 candidates.append(contentsOf: found)
                 if found.contains(where: { $0.tier == .exact }) { break }

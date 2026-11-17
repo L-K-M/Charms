@@ -3972,7 +3972,7 @@
 0023	p	1	1.1	Basic Latin	hash sign	hash|hashtag|lb|number|pound|sign|number sign	
 0024	s	0	1.1	Basic Latin	dollar	money|peso|USD|dollar sign	dollar|usd|currency#4
 0025	p	1	1.1	Basic Latin	percent	cent|per|per-cent|percent sign		pct|percentage
-0026	p	1	1.1	Basic Latin	ampersand	and|et	
+0026	p	1	1.1	Basic Latin	ampersand	and|et		and sign|and symbol
 0027	p	1	1.1	Basic Latin	typewriter apostrophe	apostrophe|quote|single|typewriter		single quote
 0028	p	2	1.1	Basic Latin	left parenthesis			parentheses
 0029	p	1	1.1	Basic Latin	close parenthesis	bracket|close|paren|parens|parenthesis|round|right parenthesis		parentheses#1
@@ -3998,7 +3998,7 @@
 003D	s	1	1.1	Basic Latin	equal	equals|equals sign	
 003E	s	1	1.1	Basic Latin	greater-than	close|greater|tag|than|greater-than sign		angle brackets#1
 003F	p	1	1.1	Basic Latin	question mark	mark|question	
-0040	p	1	1.1	Basic Latin	at-sign	ampersat|arobase|arroba|at|commercial|mark|sign|strudel|commercial at		mention#1|mentions
+0040	p	1	1.1	Basic Latin	at-sign	ampersat|arobase|arroba|at|commercial|mark|sign|strudel|commercial at		at symbol|mention#1|mentions
 0041	l	3	1.1	Basic Latin	latin capital letter a		
 0042	l	3	1.1	Basic Latin	latin capital letter b		
 0043	l	3	1.1	Basic Latin	latin capital letter c		

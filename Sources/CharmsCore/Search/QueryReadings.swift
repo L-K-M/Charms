@@ -28,6 +28,9 @@ enum QueryReadings {
 
         let tokens: [[UInt8]]
         let matching: Matching
+
+        /// The same words, all of them whole.
+        var whole: Reading { Reading(tokens: tokens, matching: .whole) }
     }
 
     /// Words that describe what kind of thing is wanted rather than which
