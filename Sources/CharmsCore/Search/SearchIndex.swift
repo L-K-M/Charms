@@ -16,10 +16,15 @@ public struct SearchHit: Sendable, Equatable {
         /// Every query word starts a word of the entry.
         case prefix
         /// Some of several query words name the entry exactly, offered when
-        /// the words together name nothing exactly: `red car` shows the
-        /// cars, then red things. Ranked above substrings, which for several
+        /// the words together name nothing exactly: `blue car` shows the
+        /// cars, then blue things. Ranked above substrings, which for several
         /// words are mostly coincidences (`scared` holds `car` and `red`).
         case someWords
+        /// Every one of several query words starts a word of the entry, but
+        /// some only through a curated related word. That is weaker than a
+        /// word naming the entry: in `red car`, `car` starts the red heart's
+        /// related word `cardiovascular`.
+        case relatedWords
         /// Every query word occurs inside a word of the entry.
         case substring
         /// A near miss, offered only when little else matched.
@@ -505,7 +510,7 @@ public final class SearchIndex: Sendable {
     /// of them name exactly, each word read in its base form if it names
     /// nothing as typed. Entries named by more of the words lead; then the
     /// matches of later words, since the last word of an English phrase
-    /// usually names the thing (`red car`, `urgent message`).
+    /// usually names the thing (`blue car`, `urgent message`).
     private func someWordsCandidates(_ words: [[UInt8]]) -> [Candidate] {
         var scores: [Int: (words: Int, position: Int, quality: Int)] = [:]
         for (position, word) in words.enumerated() {
@@ -635,21 +640,25 @@ public final class SearchIndex: Sendable {
         }
 
         let canonicalQuery = SearchText.canonical(queryTokens)
+        let isPhrase = queryTokens.count > 1
         var result: [Candidate] = []
         result.reserveCapacity(survivors.count)
         for entry32 in survivors {
             let index = Int(entry32)
             let matchClass = worstClass[index]
             let fieldScore = Int(Field.group.rawValue) - Int(worstField[index])
+            // A related word may complete a single word as it is typed, but
+            // among several words it is weaker than a word naming an entry.
+            let partialTier: SearchHit.Tier = isPhrase && worstField[index] == UInt8(Field.related.rawValue) ? .relatedWords : .prefix
             switch matchClass {
             case MatchClass.whole.rawValue:
                 if let quality = exactQuality(at: index, canonicalQuery: canonicalQuery) {
                     result.append(Candidate(index: index, tier: .exact, quality: quality))
                 } else {
-                    result.append(Candidate(index: index, tier: .prefix, quality: Quality.wholeWords + fieldScore))
+                    result.append(Candidate(index: index, tier: partialTier, quality: Quality.wholeWords + fieldScore))
                 }
             case MatchClass.prefix.rawValue:
-                result.append(Candidate(index: index, tier: .prefix, quality: fieldScore))
+                result.append(Candidate(index: index, tier: partialTier, quality: fieldScore))
             case MatchClass.substring.rawValue:
                 result.append(Candidate(index: index, tier: .substring, quality: fieldScore))
             default:

@@ -36,6 +36,7 @@ final class SearchIndexTests: XCTestCase {
     private static let omega = "\u{3A9}"
     private static let exclamation = "\u{2757}"
     private static let policeLight = "\u{1F6A8}"
+    private static let automobile = "\u{1F697}"
 
     private static func age(_ text: String) -> UnicodeAge { UnicodeAge(text)! }
 
@@ -55,7 +56,7 @@ final class SearchIndexTests: XCTestCase {
             emoji(thumbsUp, "thumbs up", ["+1", "hand", "thumb", "up"], group: "People & Body/hand-fingers-closed"),
             emoji(thumbsUpMedium, "thumbs up: medium skin tone", ["+1", "hand", "medium skin tone", "thumb", "up"], group: "People & Body/hand-fingers-closed", kind: .variant),
             emoji(hundred, "hundred points", ["100", "full", "hundred", "score"], group: "Smileys & Emotion/emotion"),
-            emoji(redHeart, "red heart", ["heart", "love"], group: "Smileys & Emotion/heart", aliases: [alias("heart")]),
+            emoji(redHeart, "red heart", ["heart", "love"], group: "Smileys & Emotion/heart", aliases: [alias("heart")], related: [alias("cardiovascular")]),
             emoji(bow, "bow and arrow", ["archer", "arrow", "bow"], group: "Objects/tool"),
             emoji(rightArrowEmoji, "right arrow", ["arrow", "direction", "east", "right"], group: "Symbols/arrow"),
             emoji(fire, "fire", ["flame", "hot"], group: "Travel & Places/sky & weather"),
@@ -63,6 +64,7 @@ final class SearchIndexTests: XCTestCase {
             // Catalogue order is the opposite of the related-word order.
             emoji(exclamation, "red exclamation mark", ["!", "exclamation", "mark", "punctuation"], group: "Symbols/punctuation", related: [alias("important"), alias("urgent", 1)]),
             emoji(policeLight, "police car light", ["alarm", "beacon", "light", "police"], group: "Travel & Places/transport-ground", related: [alias("urgent")]),
+            emoji(automobile, "automobile", ["car"], group: "Travel & Places/transport-ground"),
             character(times, "multiplication sign", rank: 1, group: "Latin-1 Supplement", keywords: ["multiply", "times"], aliases: [alias("x"), alias("times")]),
             character(letterX, "latin small letter x", kind: .letter, rank: 3, group: "Basic Latin"),
             character(aMacron, "latin capital letter a with macron", kind: .letter, rank: 3, group: "Latin Extended-A"),
@@ -206,10 +208,11 @@ final class SearchIndexTests: XCTestCase {
     }
 
     func testRelatedWordJoinsOtherWordsOfTheQuery() {
-        // Both words match the police light, one by keyword and one as a
-        // related word. The exclamation mark answers only `urgent`.
+        // Both words name the police light, one by keyword and one as a
+        // related word, so it leads. The exclamation mark answers only
+        // `urgent`.
         assertResults("urgent police", [Self.policeLight, Self.exclamation])
-        XCTAssertEqual(Self.index.search("urgent police").map(\.tier), [.prefix, .someWords])
+        XCTAssertEqual(Self.index.search("urgent police").map(\.tier), [.someWords, .someWords])
     }
 
     // MARK: - Other readings of the query
@@ -247,6 +250,16 @@ final class SearchIndexTests: XCTestCase {
         // leads; the urgent items follow in their curated order.
         assertResults("urgent fire", [Self.fire, Self.fireEngine, Self.policeLight, Self.exclamation])
         XCTAssertEqual(Set(Self.index.search("urgent fire").map(\.tier)), [.someWords])
+    }
+
+    func testWordsMatchedThroughRelatedWordsComeAfterSomeWords() {
+        // `red` is in the red heart's name and `car` starts its related word
+        // `cardiovascular`: no reason to show it before the car that `car`
+        // names.
+        assertResults("red car", [Self.automobile, Self.redHeart])
+        XCTAssertEqual(Self.index.search("red car").map(\.tier), [.someWords, .relatedWords])
+        // A single word is still completed through a related word.
+        XCTAssertEqual(Self.index.search("cardio").map(\.tier), [.prefix])
     }
 
     func testSomeWordsComeAfterMatchesOfEveryWord() {
