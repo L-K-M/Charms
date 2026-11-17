@@ -14,9 +14,11 @@ final class SearchRankingTests: XCTestCase {
     private static let beer = "\u{1F37A}"
     private static let monkey = "\u{1F648}"
     private static let gesturingNo = "\u{1F645}"
+    private static let bookDingbat = "\u{1F56E}"
+    private static let openBook = "\u{1F4D6}"
 
-    private static func entry(_ string: String, _ name: String, _ kind: CatalogEntry.Kind, rank: UInt8, keywords: [String] = [], aliases: [CatalogAlias] = []) -> CatalogEntry {
-        CatalogEntry(string: string, kind: kind, rank: aliases.isEmpty ? rank : 0, age: UnicodeAge(major: 1, minor: 1), group: "Test", name: name, keywords: keywords, aliases: aliases)
+    private static func entry(_ string: String, _ name: String, _ kind: CatalogEntry.Kind, rank: UInt8, keywords: [String] = [], aliases: [CatalogAlias] = [], preferred: [CatalogAlias] = []) -> CatalogEntry {
+        CatalogEntry(string: string, kind: kind, rank: aliases.isEmpty ? rank : 0, age: UnicodeAge(major: 1, minor: 1), group: "Test", name: name, keywords: keywords, aliases: aliases, preferredWords: preferred)
     }
 
     private static let index: SearchIndex = {
@@ -28,6 +30,8 @@ final class SearchRankingTests: XCTestCase {
             entry(monkey, "see-no-evil monkey", .emoji, rank: 1, keywords: ["evil", "no", "see"]),
             entry(gesturingNo, "person gesturing NO", .emoji, rank: 1, keywords: ["forbidden", "no"]),
             entry(palette, "artist palette", .emoji, rank: 1, keywords: ["art", "museum"]),
+            entry(bookDingbat, "book", .symbol, rank: 2),
+            entry(openBook, "open book", .emoji, rank: 1, keywords: ["book", "open"], preferred: [CatalogAlias(text: "book", rank: 0)]),
             entry(hyphen, "hyphen-minus", .punctuation, rank: 2),
             entry(greater, "greater-than sign", .symbol, rank: 2),
             entry(alef, "arabic letter alef", .letter, rank: 4),
@@ -67,6 +71,13 @@ final class SearchRankingTests: XCTestCase {
     func testKeywordThatIsAWordOfTheNameComesFirst() {
         // Both carry the keyword "beer"; only one is called a beer.
         XCTAssertEqual(strings("beer"), [Self.beer, Self.ginger])
+    }
+
+    func testPreferredWordLeadsWhatTheWordNames() {
+        // The dingbat is named BOOK; people who type `book` want the open
+        // book, which only has it as a keyword.
+        XCTAssertEqual(strings("book"), [Self.openBook, Self.bookDingbat])
+        XCTAssertEqual(Self.index.search("book").map(\.tier), [.exact, .exact])
     }
 
     func testPartOfAHyphenatedNameIsNotAStandaloneWord() {

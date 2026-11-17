@@ -14,12 +14,15 @@ final class CatalogFormatTests: XCTestCase {
                              keywords: ["rightwards arrow", "east"],
                              aliases: [CatalogAlias(text: "->", rank: 0), CatalogAlias(text: "arrow", rank: 2)]),
                 CatalogEntry(string: "\u{1F44D}", kind: .emoji, rank: 1, age: age("0.6"), group: "People & Body/hand-fingers-closed", name: "thumbs up",
-                             keywords: ["+1", "hand", "thumb"]),
+                             keywords: ["+1", "hand", "thumb"],
+                             relatedWords: [CatalogAlias(text: "approve", rank: 0), CatalogAlias(text: "a|b#c", rank: 2)]),
                 CatalogEntry(string: "\u{1F44D}\u{1F3FB}", kind: .variant, rank: 1, age: age("1.0"), group: "People & Body/hand-fingers-closed", name: "thumbs up: light skin tone"),
                 CatalogEntry(string: "\u{1F44D}\u{1F3FD}", kind: .variant, rank: 1, age: age("1.0"), group: "People & Body/hand-fingers-closed", name: "thumbs up: medium skin tone"),
                 CatalogEntry(string: "\u{7C}", kind: .symbol, rank: 2, age: age("1.1"), group: "Basic Latin", name: "vertical line",
                              keywords: ["a|b", "back\\slash"],
-                             aliases: [CatalogAlias(text: "|", rank: 0), CatalogAlias(text: "#pipe", rank: 3)])
+                             aliases: [CatalogAlias(text: "|", rank: 0), CatalogAlias(text: "#pipe", rank: 3)]),
+                CatalogEntry(string: "\u{1F4D6}", kind: .emoji, rank: 1, age: age("0.6"), group: "Objects/book-paper", name: "open book",
+                             keywords: ["book"], preferredWords: [CatalogAlias(text: "book", rank: 0)])
             ],
             ranges: [
                 CodePointRange(first: 0x4E00, last: 0x9FFF, rule: .hexSuffix(prefix: "CJK UNIFIED IDEOGRAPH-"), group: "CJK Unified Ideographs", age: age("1.1")),
@@ -44,6 +47,10 @@ final class CatalogFormatTests: XCTestCase {
         let lines = text.split(separator: "\n").map(String.init)
         XCTAssertTrue(lines.contains("2192\ts\t0\t1.1\tArrows\tright arrow\trightwards arrow|east\t->|arrow#2"))
         XCTAssertTrue(lines.contains("1F44D 1F3FB\tv\t1\t1.0\tPeople & Body/hand-fingers-closed\tthumbs up: light skin tone\t\t"))
+        // Related and preferred words are a ninth and tenth field, written
+        // only when needed.
+        XCTAssertTrue(lines.contains("1F4D6\te\t1\t0.6\tObjects/book-paper\topen book\tbook\t\t\tbook"))
+        XCTAssertTrue(lines.contains("1F44D\te\t1\t0.6\tPeople & Body/hand-fingers-closed\tthumbs up\t+1|hand|thumb\t\tapprove|a\\pb\\hc#2"))
         XCTAssertTrue(lines.contains("@\t4E00\t9FFF\thex\tCJK UNIFIED IDEOGRAPH-\tCJK Unified Ideographs\t1.1"))
         XCTAssertTrue(lines.contains("@\tAC00\tD7A3\thangul\t\tHangul Syllables\t2.0"))
     }
@@ -53,6 +60,13 @@ final class CatalogFormatTests: XCTestCase {
         let pipe = decoded.entries[4]
         XCTAssertEqual(pipe.keywords, ["a|b", "back\\slash"])
         XCTAssertEqual(pipe.aliases, [CatalogAlias(text: "|", rank: 0), CatalogAlias(text: "#pipe", rank: 3)])
+    }
+
+    func testEightFieldLineHasNoRelatedWords() throws {
+        let text = "!format\t2\n!unicode\t18.0.0\n!emoji\t18.0\n!cldr\t49\n2192\ts\t0\t1.1\tArrows\tright arrow\t\tarrow\n2190\ts\t0\t1.1\tArrows\tleft arrow\t\t\tdirection#3\n"
+        let decoded = try CatalogFormat.decode(Data(text.utf8))
+        XCTAssertEqual(decoded.entries[0].relatedWords, [])
+        XCTAssertEqual(decoded.entries[1].relatedWords, [CatalogAlias(text: "direction", rank: 3)])
     }
 
     func testTabInFieldIsRejected() {
@@ -69,7 +83,7 @@ final class CatalogFormatTests: XCTestCase {
     }
 
     func testMalformedLinesReportTheirLineNumber() {
-        let text = "!format\t1\n!unicode\t18.0.0\n!emoji\t18.0\n!cldr\t49\n2192\ts\t0\n"
+        let text = "!format\t2\n!unicode\t18.0.0\n!emoji\t18.0\n!cldr\t49\n2192\ts\t0\n"
         XCTAssertThrowsError(try CatalogFormat.decode(Data(text.utf8))) { error in
             guard case .malformedLine(let number, _)? = error as? CatalogFormat.FormatError else {
                 return XCTFail("unexpected error \(error)")
@@ -80,7 +94,7 @@ final class CatalogFormatTests: XCTestCase {
 
     func testSurrogateAndOutOfRangeScalarsAreRejected() {
         for scalars in ["D800", "110000", "", "21 92Z"] {
-            let text = "!format\t1\n!unicode\t18.0.0\n!emoji\t18.0\n!cldr\t49\n\(scalars)\ts\t0\t1.1\tg\tn\t\t\n"
+            let text = "!format\t2\n!unicode\t18.0.0\n!emoji\t18.0\n!cldr\t49\n\(scalars)\ts\t0\t1.1\tg\tn\t\t\n"
             if scalars.isEmpty {
                 // A line that starts with a tab is still an entry line and must fail.
                 XCTAssertThrowsError(try CatalogFormat.decode(Data(text.utf8)), "scalars: '\(scalars)'")

@@ -1,8 +1,8 @@
 import Foundation
 import CharmsCore
 
-/// One alias line from `Data/aliases.tsv`: the alias text and its item
-/// strings in order of preference.
+/// One line from `Data/aliases.tsv` or `Data/related.tsv`: the word or
+/// phrase and its item strings in order of preference.
 struct CuratedAlias {
     let text: String
     let items: [String]
@@ -22,6 +22,8 @@ struct ExtraRow {
 
 enum CuratedFiles {
     static let aliasesFileName = "aliases.tsv"
+    static let relatedFileName = "related.tsv"
+    static let preferredFileName = "preferred.tsv"
     static let extrasFileName = "extras.tsv"
 
     /// The kind letters, kept in sync with `CatalogFormat`.
@@ -30,17 +32,19 @@ enum CuratedFiles {
         "l": .letter, "n": .number, "m": .mark, "z": .space
     ]
 
-    // MARK: - aliases.tsv
+    // MARK: - aliases.tsv, related.tsv and preferred.tsv
 
-    static func parseAliases(_ text: String) throws -> [CuratedAlias] {
+    /// Parses `aliases.tsv`, or `related.tsv` or `preferred.tsv`, which have
+    /// the same layout.
+    static func parseAliases(_ text: String, file: String = aliasesFileName) throws -> [CuratedAlias] {
         try SourceParsing.dataLines(text).map { line in
             let fields = line.text.split(separator: "\t", omittingEmptySubsequences: false)
             guard fields.count == 2, !fields[0].isEmpty, !fields[1].isEmpty else {
-                throw CatalogError.malformed(file: aliasesFileName, line: line.number,
-                                             reason: "expected 'alias<TAB>items'")
+                throw CatalogError.malformed(file: file, line: line.number,
+                                             reason: "expected 'word<TAB>items'")
             }
             let items = try fields[1].split(separator: " ").map { item in
-                try parseItem(item, line: line.number)
+                try parseItem(item, file: file, line: line.number)
             }
             return CuratedAlias(text: String(fields[0]), items: items, lineNumber: line.number)
         }
@@ -49,22 +53,22 @@ enum CuratedFiles {
     /// An item is a literal string, or `U+XXXX` notation with `+` joining
     /// several code points (`U+2764+U+FE0F`) for invisible or ambiguous
     /// characters. A malformed `U+` item is an error, never a silent literal.
-    private static func parseItem(_ item: Substring, line: Int) throws -> String {
+    private static func parseItem(_ item: Substring, file: String, line: Int) throws -> String {
         guard item.hasPrefix("U+") else { return String(item) }
         let parts = item.components(separatedBy: "+")
         var scalars: [UInt32] = []
         for index in stride(from: 0, to: parts.count, by: 2) {
             guard index + 1 < parts.count, parts[index] == "U" else {
-                throw CatalogError.malformed(file: aliasesFileName, line: line,
+                throw CatalogError.malformed(file: file, line: line,
                                              reason: "invalid U+ item '\(item)'")
             }
             scalars.append(try SourceParsing.hex(Substring(parts[index + 1]),
-                                                 file: aliasesFileName, line: line))
+                                                 file: file, line: line))
         }
         var view = String.UnicodeScalarView()
         for scalar in scalars {
             guard let value = Unicode.Scalar(scalar) else {
-                throw CatalogError.malformed(file: aliasesFileName, line: line,
+                throw CatalogError.malformed(file: file, line: line,
                                              reason: "surrogate in U+ item '\(item)'")
             }
             view.append(value)

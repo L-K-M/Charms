@@ -34,11 +34,17 @@ final class SearchIndexTests: XCTestCase {
     private static let noBreakSpace = "\u{A0}"
     private static let ohm = "\u{2126}"
     private static let omega = "\u{3A9}"
+    private static let exclamation = "\u{2757}"
+    private static let policeLight = "\u{1F6A8}"
+    private static let automobile = "\u{1F697}"
+    private static let rainbow = "\u{1F308}"
+    private static let ocrBowTie = "\u{2445}"
+    private static let bowtie = "\u{22C8}"
 
     private static func age(_ text: String) -> UnicodeAge { UnicodeAge(text)! }
 
-    private static func emoji(_ string: String, _ name: String, _ keywords: [String], group: String, aliases: [CatalogAlias] = [], kind: CatalogEntry.Kind = .emoji) -> CatalogEntry {
-        CatalogEntry(string: string, kind: kind, rank: 1, age: age("1.0"), group: group, name: name, keywords: keywords, aliases: aliases)
+    private static func emoji(_ string: String, _ name: String, _ keywords: [String], group: String, aliases: [CatalogAlias] = [], related: [CatalogAlias] = [], kind: CatalogEntry.Kind = .emoji) -> CatalogEntry {
+        CatalogEntry(string: string, kind: kind, rank: 1, age: age("1.0"), group: group, name: name, keywords: keywords, aliases: aliases, relatedWords: related)
     }
 
     private static func character(_ string: String, _ name: String, kind: CatalogEntry.Kind = .symbol, rank: UInt8, group: String, keywords: [String] = [], aliases: [CatalogAlias] = []) -> CatalogEntry {
@@ -53,11 +59,18 @@ final class SearchIndexTests: XCTestCase {
             emoji(thumbsUp, "thumbs up", ["+1", "hand", "thumb", "up"], group: "People & Body/hand-fingers-closed"),
             emoji(thumbsUpMedium, "thumbs up: medium skin tone", ["+1", "hand", "medium skin tone", "thumb", "up"], group: "People & Body/hand-fingers-closed", kind: .variant),
             emoji(hundred, "hundred points", ["100", "full", "hundred", "score"], group: "Smileys & Emotion/emotion"),
-            emoji(redHeart, "red heart", ["heart", "love"], group: "Smileys & Emotion/heart", aliases: [alias("heart")]),
+            emoji(redHeart, "red heart", ["heart", "love"], group: "Smileys & Emotion/heart", aliases: [alias("heart")], related: [alias("cardiovascular")]),
             emoji(bow, "bow and arrow", ["archer", "arrow", "bow"], group: "Objects/tool"),
             emoji(rightArrowEmoji, "right arrow", ["arrow", "direction", "east", "right"], group: "Symbols/arrow"),
             emoji(fire, "fire", ["flame", "hot"], group: "Travel & Places/sky & weather"),
-            emoji(fireEngine, "fire engine", ["engine", "fire", "truck"], group: "Travel & Places/transport-ground"),
+            emoji(fireEngine, "fire engine", ["engine", "fire", "truck"], group: "Travel & Places/transport-ground", related: [alias("flame")]),
+            // Catalogue order is the opposite of the related-word order.
+            emoji(exclamation, "red exclamation mark", ["!", "exclamation", "mark", "punctuation"], group: "Symbols/punctuation", related: [alias("important"), alias("urgent", 1)]),
+            emoji(policeLight, "police car light", ["alarm", "beacon", "light", "police"], group: "Travel & Places/transport-ground", related: [alias("urgent"), alias("high alert", 1)]),
+            emoji(automobile, "automobile", ["car"], group: "Travel & Places/transport-ground"),
+            emoji(rainbow, "rainbow", ["rain"], group: "Travel & Places/sky & weather"),
+            character(ocrBowTie, "ocr bow tie", rank: 3, group: "Optical Character Recognition"),
+            character(bowtie, "bowtie", rank: 2, group: "Mathematical Operators"),
             character(times, "multiplication sign", rank: 1, group: "Latin-1 Supplement", keywords: ["multiply", "times"], aliases: [alias("x"), alias("times")]),
             character(letterX, "latin small letter x", kind: .letter, rank: 3, group: "Basic Latin"),
             character(aMacron, "latin capital letter a with macron", kind: .letter, rank: 3, group: "Latin Extended-A"),
@@ -136,7 +149,8 @@ final class SearchIndexTests: XCTestCase {
     }
 
     func testHyphenatedNameMatchesSpacedQuery() {
-        assertResults("up right", [Self.upRightArrow])
+        XCTAssertEqual(strings("up right").first, Self.upRightArrow)
+        XCTAssertEqual(Self.index.search("up right").first?.tier, .prefix)
         XCTAssertEqual(Self.index.search("up-right arrow").first?.tier, .exact)
         XCTAssertEqual(Self.index.search("up right arrow").first?.tier, .exact)
     }
@@ -157,18 +171,118 @@ final class SearchIndexTests: XCTestCase {
         XCTAssertEqual(Self.index.search("\u{3A9}").first?.entry.name, "greek capital letter omega")
     }
 
-    func testBlockNameFindsItsCharactersThenNearMisses() {
-        // The four characters of the Arrows block match the block name as a
-        // whole word. With fewer than eight hits the near-miss pass adds the
-        // entries whose word `arrow` is one edit away. Both have it in their
-        // name and share a rank, so catalogue order decides.
-        assertResults("arrows", [Self.leftArrow, Self.rightArrow, Self.upRightArrow, Self.strokeArrow, Self.bow, Self.rightArrowEmoji])
-        XCTAssertEqual(Self.index.search("arrows").map(\.tier), [.prefix, .prefix, .prefix, .prefix, .fuzzy, .fuzzy])
+    func testBlockNameFindsItsCharacters() {
+        // Both characters of the Dingbats block match the block name as a
+        // whole word; the aliased check mark is more prominent.
+        assertResults("dingbats", [Self.check, Self.textHeart])
+        XCTAssertEqual(Self.index.search("dingbats").map(\.tier), [.prefix, .prefix])
+    }
+
+    func testBlockNameIsNotMatchedInsideAWord() {
+        // `motio` occurs only inside the group name "Smileys & Emotion".
+        assertResults("motio", [])
     }
 
     func testBlockNameFragmentsAreNotSearchWords() {
         // "Latin-1 Supplement" must not attach its characters to the query 1.
         XCTAssertFalse(strings("1").contains { $0.isExactly(Self.noBreakSpace) || $0.isExactly(Self.eAcute) })
+    }
+
+    // MARK: - Related words
+
+    func testRelatedWordListsItsItemsInCuratedOrder() {
+        assertResults("urgent", [Self.policeLight, Self.exclamation])
+        XCTAssertEqual(Self.index.search("urgent").map(\.tier), [.exact, .exact])
+        assertResults("Important", [Self.exclamation])
+    }
+
+    func testRelatedWordFollowsEverythingTheWordNames() {
+        // `flame` is a keyword of the fire and only a related word of the
+        // fire engine.
+        assertResults("flame", [Self.fire, Self.fireEngine])
+    }
+
+    func testRelatedWordIsFoundWhileTyped() {
+        // A partial match, ranked after names and keywords the fragment
+        // begins.
+        let hits = Self.index.search("urg")
+        XCTAssertEqual(Set(hits.map(\.entry.string)), [Self.policeLight, Self.exclamation])
+        XCTAssertEqual(Set(hits.map(\.tier)), [.relatedWords])
+    }
+
+    func testRelatedWordIsNotMatchedInsideAWord() {
+        assertResults("rgent", [])
+        assertResults("portant", [])
+    }
+
+    func testRelatedWordJoinsOtherWordsOfTheQuery() {
+        // Both words name the police light, one by keyword and one as a
+        // related word, so it leads. The exclamation mark answers only
+        // `urgent`.
+        assertResults("urgent police", [Self.policeLight, Self.exclamation])
+        XCTAssertEqual(Self.index.search("urgent police").map(\.tier), [.someWords, .someWords])
+    }
+
+    // MARK: - Other readings of the query
+
+    func testFillerWordsAreDroppedWhenNothingMatchesExactly() {
+        assertResults("heart emoji", [Self.redHeart, Self.textHeart])
+        assertResults("cmd symbol", [Self.command])
+        assertResults("symbol for infinity", [Self.infinity])
+        // A filler word on its own is still a word.
+        assertResults("key", [Self.command])
+    }
+
+    func testPluralReadsAsItsSingular() {
+        assertResults("fires", [Self.fire, Self.fireEngine])
+        assertResults("hearts", [Self.redHeart, Self.textHeart])
+        assertResults("grinning faces", [Self.grin])
+        XCTAssertEqual(Self.index.search("fires").first?.tier, .exact)
+    }
+
+    func testPluralOfABlockNameReadsAsItsSingularFirst() {
+        // `arrows` names nothing; read as `arrow` it finds the curated
+        // arrows first, then the keyword matches, then the rest of the
+        // Arrows block.
+        assertResults("arrows", [Self.rightArrow, Self.leftArrow, Self.bow, Self.rightArrowEmoji, Self.upRightArrow, Self.strokeArrow])
+    }
+
+    func testReducedWordMustNameSomethingExactly() {
+        // `grinnings` would reduce to `grinning`, which is only part of a
+        // name; a near miss is all that is left.
+        XCTAssertEqual(Self.index.search("grinnings").map(\.tier), [.fuzzy])
+    }
+
+    func testSomeWordsShowWhatEachWordFinds() {
+        // Nothing matches both words. The fire, named by the later word,
+        // leads; the urgent items follow in their curated order.
+        assertResults("urgent fire", [Self.fire, Self.fireEngine, Self.policeLight, Self.exclamation])
+        XCTAssertEqual(Set(Self.index.search("urgent fire").map(\.tier)), [.someWords])
+    }
+
+    func testWordsMatchedThroughRelatedWordsComeAfterSomeWords() {
+        // `red` is in the red heart's name and `car` starts its related word
+        // `cardiovascular`: no reason to show it before the car that `car`
+        // names.
+        assertResults("red car", [Self.automobile, Self.redHeart])
+        XCTAssertEqual(Self.index.search("red car").map(\.tier), [.someWords, .relatedWords])
+        // A single word is still completed through a related word, after
+        // whatever a name or keyword completes: `flam` shows the fire, whose
+        // keyword is `flame`, before the fire engine's related `flame`.
+        XCTAssertEqual(Self.index.search("cardio").map(\.tier), [.relatedWords])
+        assertResults("flam", [Self.fire, Self.fireEngine])
+        XCTAssertEqual(Self.index.search("flam").map(\.tier), [.prefix, .relatedWords])
+    }
+
+    func testWholeWordOfARelatedPhraseCountsLikeANameWord() {
+        assertResults("alert", [Self.policeLight])
+        XCTAssertEqual(Self.index.search("alert").map(\.tier), [.prefix])
+        XCTAssertEqual(Self.index.search("aler").map(\.tier), [.relatedWords])
+    }
+
+    func testSomeWordsComeAfterMatchesOfEveryWord() {
+        XCTAssertEqual(strings("up right"), [Self.upRightArrow, Self.rightArrow, Self.rightArrowEmoji, Self.thumbsUp])
+        XCTAssertEqual(Self.index.search("up right").map(\.tier), [.prefix, .someWords, .someWords, .someWords])
     }
 
     // MARK: - Code points
@@ -206,6 +320,9 @@ final class SearchIndexTests: XCTestCase {
         assertResults("U+110000", [])
         assertResults("U+ZZZZ", [])
         assertResults("U+0007", [])
+        // Code point notation is never read as words: `x` names the
+        // multiplication sign, but this query is not about it.
+        assertResults("U+D800 x", [])
     }
 
     // MARK: - Literals
@@ -235,6 +352,37 @@ final class SearchIndexTests: XCTestCase {
     func testPastedIdeographResolvesThroughItsRange() {
         let hits = Self.index.search("\u{4E2D}")
         XCTAssertEqual(hits.map(\.entry.name), ["cjk unified ideograph-4e2d"])
+    }
+
+    func testWordsWrittenApartFindTheWordWrittenAsOne() {
+        // `rain` names the rainbow and `bow` the bow and arrow; read apart,
+        // the bow came first.
+        let hits = Self.index.search("rain bow")
+        XCTAssertEqual(hits.first?.entry.string, Self.rainbow)
+        XCTAssertEqual(hits.first?.tier, .exact)
+    }
+
+    func testWordsThatBeginWordsOfOneEntryAreNotWrittenAsOne() {
+        // As typed, `bow tie` begins the words of the OCR bow tie; that
+        // `bowtie` names another character is no reason to change it.
+        XCTAssertEqual(Self.index.search("bow tie").first?.entry.string, Self.ocrBowTie)
+    }
+
+    func testBaseFormsOfSeveralWordsCountWhenTheyAreAllWordsOfOneEntry() {
+        // `police beacon` is no name or keyword, but both words are
+        // keywords of the police car light, as `crossed` and `arrow` are of
+        // the shuffle button.
+        let hits = Self.index.search("police beacons")
+        XCTAssertEqual(hits.first?.entry.string, Self.policeLight)
+        XCTAssertEqual(hits.first?.tier, .prefix)
+    }
+
+    func testSeveralPastedCharactersOutsideTheCatalogueKeepTheirOrder() {
+        // Characters the catalogue lacks are kept apart from it; each hit
+        // must still show its own character, in the order typed.
+        let hits = Self.index.search("\u{4E2D}" + Self.rightArrow + "\u{D55C}")
+        XCTAssertEqual(hits.map(\.entry.string), ["\u{4E2D}", Self.rightArrow, "\u{D55C}"])
+        XCTAssertEqual(hits.map(\.index).map { $0 == nil }, [true, false, true])
     }
 
     func testAsciiPunctuationFallsBackToTheCharacterItself() {
@@ -307,6 +455,99 @@ final class SearchIndexTests: XCTestCase {
     func testNoResult() {
         assertResults("zzzzqqq", [])
     }
+
+    func testHundredsOfWordsMatchNothing() {
+        // The per-word counter is a byte; a query this long must not wrap it
+        // and let an entry through on its last word alone.
+        assertResults(Array(repeating: "arrow", count: 256).joined(separator: " ") + " fire", [])
+    }
+}
+
+final class QueryReadingsTests: XCTestCase {
+    private func words(_ text: String) -> [[UInt8]] { SearchText.tokens(text) }
+    private func text(_ tokens: [[UInt8]]) -> String { String(decoding: SearchText.canonical(tokens), as: UTF8.self) }
+    private func bases(_ word: String) -> [String] { QueryReadings.baseForms(Array(word.utf8)).map { String(decoding: $0, as: UTF8.self) } }
+
+    func testFillerWordsAreDroppedOnlyBesideOtherWords() {
+        XCTAssertEqual(text(QueryReadings.significantWords(words("heart emoji"))), "heart")
+        XCTAssertEqual(text(QueryReadings.significantWords(words("the symbol for infinity"))), "infinity")
+        XCTAssertEqual(text(QueryReadings.significantWords(words("key"))), "key")
+        XCTAssertEqual(text(QueryReadings.significantWords(words("emoji symbol"))), "emoji symbol")
+    }
+
+    func testBaseFormsOfRegularInflections() {
+        XCTAssertTrue(bases("rockets").contains("rocket"))
+        XCTAssertTrue(bases("parties").contains("party"))
+        XCTAssertTrue(bases("boxes").contains("box"))
+        XCTAssertTrue(bases("movies").contains("movie"))
+        XCTAssertTrue(bases("approved").contains("approve"))
+        XCTAssertTrue(bases("blocked").contains("block"))
+        XCTAssertTrue(bases("stopped").contains("stop"))
+        XCTAssertTrue(bases("worried").contains("worry"))
+        XCTAssertTrue(bases("celebrating").contains("celebrate"))
+        XCTAssertTrue(bases("running").contains("run"))
+        XCTAssertTrue(bases("happier").contains("happy"))
+        XCTAssertTrue(bases("happily").contains("happy"))
+        XCTAssertTrue(bases("lovely").contains("love"))
+        XCTAssertTrue(bases("opening").contains("open"))
+        XCTAssertTrue(bases("cooking").contains("cook"))
+        XCTAssertTrue(bases("snowing").contains("snow"))
+    }
+
+    func testShortStemsTakeBackTheirSilentE() {
+        // `caring` is not a form of `car`, nor `rated` of `rat`.
+        XCTAssertEqual(bases("caring"), ["care"])
+        XCTAssertEqual(bases("rated"), ["rate"])
+        XCTAssertEqual(bases("coding"), ["code"])
+        XCTAssertTrue(bases("hopping").contains("hop"))
+        XCTAssertFalse(bases("hoping").contains("hop"))
+        // Only a consonant comes before a lost `e`.
+        XCTAssertFalse(bases("being").contains("bee"))
+        XCTAssertTrue(bases("seeing").contains("see"))
+        XCTAssertTrue(bases("agreed").contains("agree"))
+        XCTAssertTrue(bases("tied").contains("tie"))
+    }
+
+    func testPluralsOfFillerWordsStillReduce() {
+        // Filler words are real words of the catalogue when they stand alone.
+        XCTAssertTrue(bases("buttons").contains("button"))
+        XCTAssertTrue(bases("marks").contains("mark"))
+        XCTAssertTrue(bases("keys").contains("key"))
+    }
+
+    func testBaseFormsOfBritishSpellings() {
+        XCTAssertTrue(bases("colour").contains("color"))
+        XCTAssertTrue(bases("favourite").contains("favorite"))
+        XCTAssertTrue(bases("centre").contains("center"))
+        XCTAssertEqual(bases("grey"), ["gray"])
+    }
+
+    func testWordsThatAreNotInflectionsStayAlone() {
+        XCTAssertEqual(bases("bus"), [])
+        XCTAssertEqual(bases("glass"), [])
+        XCTAssertEqual(bases("virus"), [])
+        XCTAssertEqual(bases("caf\u{E9}s"), [])
+        // A base form is never a filler word or too short to mean anything.
+        XCTAssertFalse(bases("thing").contains("the"))
+        XCTAssertEqual(bases("king"), [])
+    }
+
+    func testJoinedReadingsWriteNeighbouringWordsAsOne() {
+        XCTAssertEqual(QueryReadings.joined(words("key board")), [QueryReadings.Reading(tokens: words("keyboard"), matching: .whole)])
+        XCTAssertTrue(QueryReadings.joined(words("cup cakes")).contains(QueryReadings.Reading(tokens: words("cupcake"), matching: .whole)))
+        XCTAssertEqual(QueryReadings.joined(words("big key board")).map { text($0.tokens) }, ["bigkey board", "big keyboard"])
+        // Single letters are not joined, and one word has nothing to join.
+        XCTAssertEqual(QueryReadings.joined(words("a b")), [])
+        XCTAssertEqual(QueryReadings.joined(words("keyboard")), [])
+    }
+
+    func testReadingsDropFillerWordsFirstThenReduceOneWordAtATime() {
+        let readings = QueryReadings.alternatives(words("red hearts emoji"))
+        XCTAssertEqual(readings.first, QueryReadings.Reading(tokens: words("red hearts"), matching: .prefix))
+        XCTAssertTrue(readings.contains(QueryReadings.Reading(tokens: words("red heart"), matching: .whole)))
+        XCTAssertTrue(readings.dropFirst().allSatisfy { $0.matching == .whole })
+        XCTAssertEqual(QueryReadings.alternatives(words("one two three four five six seven")), [])
+    }
 }
 
 final class SearchTextTests: XCTestCase {
@@ -348,5 +589,13 @@ final class SearchTextTests: XCTestCase {
         XCTAssertNil(CodePointQuery.parse("U+2192 zz"))
         XCTAssertNil(CodePointQuery.parse("f"))
         XCTAssertNil(CodePointQuery.parse("1234567"))
+    }
+
+    func testCodePointNotationIsRecognisedEvenWhenInvalid() {
+        XCTAssertTrue(CodePointQuery.isNotation("U+D800"))
+        XCTAssertTrue(CodePointQuery.isNotation("arrow u+2192"))
+        XCTAssertFalse(CodePointQuery.isNotation("2192"))
+        XCTAssertFalse(CodePointQuery.isNotation("c++"))
+        XCTAssertFalse(CodePointQuery.isNotation("menu+"))
     }
 }

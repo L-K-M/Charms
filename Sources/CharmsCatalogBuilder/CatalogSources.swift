@@ -2,7 +2,8 @@ import Foundation
 
 /// The pinned source files a catalogue build reads, laid out as in `Data/`:
 /// `unicode/18.0.0/` for the UCD and emoji files, `cldr/49/` for the CLDR
-/// JSON, and `aliases.tsv` plus `extras.tsv` at the top level.
+/// JSON, and `aliases.tsv`, `related.tsv`, `preferred.tsv` and `extras.tsv` at
+/// the top level.
 public struct CatalogSources {
     public var unicodeData: String
     public var nameAliases: String
@@ -14,6 +15,8 @@ public struct CatalogSources {
     public var annotationsDerived: Data
     public var aliases: String
     public var extras: String
+    public var related: String
+    public var preferred: String
 
     public init(
         unicodeData: String,
@@ -25,7 +28,9 @@ public struct CatalogSources {
         annotations: Data,
         annotationsDerived: Data,
         aliases: String,
-        extras: String
+        extras: String,
+        related: String = "",
+        preferred: String = ""
     ) {
         self.unicodeData = unicodeData
         self.nameAliases = nameAliases
@@ -37,6 +42,8 @@ public struct CatalogSources {
         self.annotationsDerived = annotationsDerived
         self.aliases = aliases
         self.extras = extras
+        self.related = related
+        self.preferred = preferred
     }
 
     /// Loads the files from a `Data` directory laid out like the repository's.
@@ -69,7 +76,9 @@ public struct CatalogSources {
             annotations: try data("\(cldr)/annotations-en.json"),
             annotationsDerived: try data("\(cldr)/annotations-derived-en.json"),
             aliases: try file("aliases.tsv"),
-            extras: try file("extras.tsv")
+            extras: try file("extras.tsv"),
+            related: try file("related.tsv"),
+            preferred: try file("preferred.tsv")
         )
     }
 }

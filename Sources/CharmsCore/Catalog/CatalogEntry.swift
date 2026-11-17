@@ -32,9 +32,10 @@ public struct UnicodeAge: Hashable, Comparable, Sendable, CustomStringConvertibl
     public var description: String { "\(major).\(minor)" }
 }
 
-/// A curated familiar name for an entry, such as `->` or `cmd`.
+/// A curated word for an entry: a familiar name such as `->` or `cmd`, or a
+/// related word such as `urgent`.
 ///
-/// `rank` orders the entries that share one alias: rank 0 is the entry a
+/// `rank` orders the entries that share one word: rank 0 is the entry a
 /// person most likely means, so `arrow` lists → before ⇒.
 public struct CatalogAlias: Hashable, Sendable {
     public let text: String
@@ -89,6 +90,16 @@ public struct CatalogEntry: Sendable, Equatable {
     /// when `name` differs from it, and formal name aliases.
     public let keywords: [String]
     public let aliases: [CatalogAlias]
+    /// Curated everyday words that the names and keywords do not use, such
+    /// as `urgent` for the police car light. A related word suggests the
+    /// entry; unlike an alias, it does not name it, so it ranks below names
+    /// and keywords and leaves the entry's rank alone.
+    public let relatedWords: [CatalogAlias]
+    /// Curated everyday words for which this entry comes first, before what
+    /// the word names: `book` for the open book rather than the dingbat named
+    /// BOOK. Like a related word, a preferred word leaves the rank alone and
+    /// does not lead while it is still being typed.
+    public let preferredWords: [CatalogAlias]
 
     public init(
         string: String,
@@ -98,7 +109,9 @@ public struct CatalogEntry: Sendable, Equatable {
         group: String,
         name: String,
         keywords: [String] = [],
-        aliases: [CatalogAlias] = []
+        aliases: [CatalogAlias] = [],
+        relatedWords: [CatalogAlias] = [],
+        preferredWords: [CatalogAlias] = []
     ) {
         self.string = string
         self.kind = kind
@@ -108,6 +121,8 @@ public struct CatalogEntry: Sendable, Equatable {
         self.name = name
         self.keywords = keywords
         self.aliases = aliases
+        self.relatedWords = relatedWords
+        self.preferredWords = preferredWords
     }
 
     public static func == (lhs: CatalogEntry, rhs: CatalogEntry) -> Bool {
@@ -119,6 +134,8 @@ public struct CatalogEntry: Sendable, Equatable {
             && lhs.name == rhs.name
             && lhs.keywords == rhs.keywords
             && lhs.aliases == rhs.aliases
+            && lhs.relatedWords == rhs.relatedWords
+            && lhs.preferredWords == rhs.preferredWords
     }
 
     /// The name with its first letter capitalised, as shown in the footer.

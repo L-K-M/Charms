@@ -1,0 +1,10894 @@
+# Everyday words for characters whose names and keywords do not use them.
+#
+# Format: word<TAB>items, as in aliases.tsv: items are separated by single
+# spaces, each a literal character or sequence, or U+XXXX notation for
+# invisible or ambiguous characters, in order of preference. Words are
+# matched case-insensitively and may be short phrases.
+#
+# A related word suggests its items without naming them. Searching for the
+# whole word lists them in this order after everything the word names
+# through a Unicode name, a CLDR keyword or an alias, and before any partial
+# match. A related word does not change an item's rank. Put a name people
+# use for a character in aliases.tsv instead.
+#
+# The generator rejects a word that is also an alias, an item the word
+# already finds by name, keyword or alias, and skin-tone variants. Search
+# reduces plurals, -ed and -ing forms and British spellings to their base
+# form when nothing matches them as typed, so list the base form (approve,
+# not approved) unless the inflected form means something else.
+#
+# The lines were drafted in November 2026 by language models for frequent
+# English words and everyday phrases that found nothing exactly, checked by
+# a further model, screened for offensive and misleading associations, and
+# corrected where a line pushed aside a character the word already names
+# (PLAN.md, section 8.1). Edit them like any other curated data.
+a plus	➕ 🅰️ 💯
+a11y	♿ 🧑‍🦯 🦻
+aaa	🔋 ⭐
+aac	🔊 🎵
+aah	😮 😲 😌
+ab test	🅰️ 🅱️ 🧪
+abandoned	🏚️
+abbey	⛪ 🏰
+abbreviation	🔤 ✂️
+abbreviations	✂️ …
+abdominal	🩺
+ability	💪 🧠
+able	💪
+abnormal	⚠️
+aboard	🚢 ✈️
+abroad	✈️ 🌍 🧳
+abs	💪
+absent	🚫
+absolute	💯
+absorb	🧽 💧
+abstracts	📄
+absurd	🤪 🙃
+abundance	🌾
+abundant	🌾 ✨
+acad	🎓 🏫
+academia	🎓 📚 🏫
+academic	🎓 📚 🏫
+academies	🏫 🎓
+academy	🎓 🏫
+accelerate	🚀 ⚡
+accelerated	⚡ 🚀
+acceleration	🚀 ⚡ 🏎️
+accelerator	🚗 🚀
+accents	🗣️ 🔤
+accept	✅ 👍 🤝
+acceptance	✅ 👍 🤝
+accepted	✅ ✔️ 👍 🎉
+accessed	🔑 🚪
+accesses	🔑 🔓 🚪
+accessible	♿
+accessing	🔑 🔓
+accessories	👜 👓 ⌚
+accessory	👜 👓 🕶️ 💍
+accidental	⚠️ 💥
+accidentally	🤦 😬
+accidents	🚗 💥 🚑
+acclaim	👏 🏆 ⭐
+acclaimed	🏆 ⭐ 👏 🌟
+accolades	🏆 🏅 🥇 👏 🎖️
+accommodate	🏨
+accommodation	🏨 🛏️
+accomodation	🏨 🛏️
+accompanied	👫 🤝
+accomplice	🤝 🦹
+accomplish	✅ 🏆 🎯
+accomplished	🏆 ✅ 🎉
+accomplishment	🏆 🎉
+accomplishments	🏆 🥇 🎖️ 🏅
+accord	🤝 📜
+account	👤 💳 🔐
+accountancy	🧾 📊
+accountant	💼 🧮 📊 🧾
+accountants	🧮 💼 🧾
+accounted	🧾
+accounts	💳 👤 📒
+accreditation	🏅 📜
+accredited	✅ 🎓
+accrued	📈 💰
+accumulate	📈 💰 🪙
+accumulation	📈
+accuracy	🎯 ✅
+accurate	🎯 ✅
+accused	⚖️
+ace	🂡 👍 🎾
+aces	🅰️ ♠️ ♥️ ♦️ ♣️
+acetate	🧪
+achieve	🏆 🎯
+achieved	🏆 ✅ 🎉
+achievement	🏆 🥇
+achieves	🏆 🎯 ✅ 🥇
+acid	⚗️ 🧪
+acids	🧪 ⚗️
+ack	✅
+acknowledge	✅ 👍
+acknowledged	✅ 👍 ✔️
+acknowledgement	✅
+acknowledgements	🙏 📝
+acl	🦵
+acorn	🌰 🐿️ 🌳
+acoustic	🎸 🎵
+acoustics	🔊 🎵
+acquires	🤝 💼
+acquiring	🤝 💰
+acquisition	🤝 💼
+acquisitions	🤝 💼 🏢 📈
+acre	🌾 📏
+acreage	🌾 🏞️
+acres	🌾 🏞️
+acrobat	🤸 🎪
+acrobatics	🤸 🤹 🎪
+acronym	🔤
+acrylic	🎨 💅
+acted	🎭 🎬
+acting	🎭 🎬
+action item	📋 ✅ ☑️
+action required	⚠️ 🚨 ❗
+activate	⚡ 🔌 🔛
+activated	✅ ⚡
+activation	🔛 ▶️ 🔑
+activism	✊ 📢
+activist	✊ 📢
+activists	✊ 🪧 📣
+activities	🏃 🎯 🎨
+activity	🏃 ⚡
+actors	🎭 🎬
+acts	🎭
+actuarial	📊
+acupuncture	💉
+ad	📣 📢 🪧
+adapt	🔄
+adaptation	🔄
+adapter	🔌 🔄 ⚙️
+adaptor	🔌
+add-on	🧩 ➕ 🔌
+added	➕
+addendum	📝 📄 ➕
+addictive	🎰
+adding	➕
+addition	➕
+additional	➕
+additive	➕ 🧪
+additives	🧪 ⚗️
+addr	📍
+addressed	✉️ 📫 📧
+addresses	📍 🏠 ✉️
+addressing	✉️ 📫
+adds	➕
+adequate	✅ 👍
+adhd	🧠
+adhesion	🩹 🧲
+adios	👋
+adjacent	↔️
+adjoining	🔗 🚪
+adjust	🔧 🎚️ ⚙️
+adjustable	🔧 ⚙️
+adjustment	🔧 ⚙️
+admin	🛠️ ⚙️
+administer	💊 🩺
+administered	📋 💉
+administering	💊 📋
+administration	🏛️ 🗂️
+administrative	📋 🗂️ 🏢
+administrator	🧑‍💼 ⚙️
+admins	🧑‍💻
+admiral	⚓ 🚢 🎖️
+admire	😍 ❤️ 👏
+admit	✅
+admits	🙋 🗣️
+adolescents	🧒 🧑‍🎓
+adopt	🏠 🐾
+adopted	👶 🏠 🤝 ❤️
+adopting	👪 👶
+adoption	👶
+adrenaline	⚡ 🏃 💥
+ads	📢 📣
+adsl	📶
+adults	🧑 👥
+advance	⏩ ➡️ 📈
+advanced	🚀 🎓
+advancement	📈 ⬆️ 🚀
+advances	📈 🚀
+advancing	➡️ 📈
+advantages	👍
+advent	🕯️ 🎄
+adventure	🗺️ 🧭 🎒 🏕️
+adventurer	🧭 🗺️ 🎒
+adventures	🗺️ 🧭 ⛰️
+advert	📣 📢
+advertise	📣 📢 🪧
+advertised	📢 📣
+advertisement	📣 📢 📺 🪧
+advertisements	📢 📺 📰
+advertiser	📣 📢 📺 💼
+advertisers	📢
+adverts	📢 📣 📺
+advice	💡 💬
+advise	🗣️ 💡 💬
+adviser	🧑‍💼 💼
+advisers	💼
+advising	💬
+advisor	👩‍💼 💼
+advisories	⚠️ 📢
+advisors	👥 💼 👔
+advisory	⚠️
+advocacy	📢 🗣️ ✊
+advocates	📣 ✊ 🗣️
+adware	💻 🦠 ⚠️
+aero	✈️
+aerobic	🏃 🤸 💪
+aerosol	💨 🧴
+aerospace	✈️ 🚀
+aesthetic	✨ 🎨
+aesthetics	✨ 🎨 🖼️
+afaik	🤔 ℹ️
+affair	💔
+affection	❤️ 🥰 💕
+affidavit	📜 ✍️ ⚖️
+affiliate	🔗 🤝
+affiliation	🤝
+affiliations	🤝 🔗
+affinity	❤️ 🤝
+affirm	✅ 👍 🆗
+affirmation	✨ 💪 🌟
+affirmative	✅ 👍
+afford	💰 💳
+affordable	💲 🏷️ ✅ 💰
+afforded	💵
+afghan	🇦🇫
+afghanistan	🇦🇫
+afk	⌨️ 🚶 💤
+aforementioned	☝️ ⬆️
+african	🌍
+afrobeats	🥁 🎶 🎵
+aft	🚢 ⛵
+aftermarket	🚗 🔧
+aftermath	🌪️ 🏚️
+afternoon	☀️ 🌤️ 🌇
+afterwards	⏭️
+aged	🧓 👴 👵
+ageing	👴 👵
+agencies	🏢 🏛️
+agency	🏢
+agenda	📋 📅 🗓️
+agendas	📋 📅 📝
+agent	🕵️
+ages	🎂 ⏳ 📅
+aggregate	📊 🧮
+aggregation	📊
+aggression	😠 💢
+aggressive	😠 💢
+agile	🤸 ⚡
+agility	🤸 🐕
+aging	🧓 👴 👵
+agp	🖥️
+agreed	🤝 ✅ 👍
+agreeing	🤝 👍 ✅
+agrees	🤝 ✅ 👍
+agri	🌾 🚜
+agricultural	🌾 🚜
+agriculture	🌾 🚜 🌱
+ahead	⏩ ➡️
+ahead of schedule	⏩ ⏰ 🏃
+ai	🤖 🧠 💻
+aide	🤝 🧑‍💼
+aids	🎗️ 🦻
+aim	🎯
+air conditioner	❄️ 🌬️ 🧊
+air fryer	🍟 🍗 🔥
+air sign	♊ ♎ ♒
+airborne	✈️ 🪂 🚁
+aircraft	✈️ 🛩️ 🚁
+aired	📺 📡
+airfare	✈️ 🎫
+airline	✈️ 🛫 🛬
+airmail	✈️ ✉️ 📮
+airplane mode	✈️ 📵
+airport	✈️ 🛫 🛬
+airsoft	🔫 🎯
+airways	✈️ 🛫 🛬
+aisle	🛒 ⛪
+aladdin	🧞 🪔 ✨
+alas	😔
+alaskan	🏔️ ❄️ 🐻‍❄️
+albania	🇦🇱
+albanian	🇦🇱
+album	💿 📀 🎶
+albums	💿 📀 🎵
+alchemy	⚗️ 🧪 🔮
+algae	🌿 🦠
+algebra	➗ 🔢
+algebraic	🧮 ➕ ➖ ✖️ ➗ 𝑥
+algeria	🇩🇿
+algorithm	🧮 🤖 💻
+alias	🎭
+aliases	🏷️
+align	📏 ↔️
+align center	↔️
+align left	⬅️
+align right	➡️
+aligned	↔️ 📏
+alignment	📏 📐 ↔️
+alike	🟰 👥
+alive	🌱 💓
+alkaline	🔋 🧪
+all done	✅ 🏁 🎉
+all in	💯 💰 🎰
+all the best	✨ 💐 🌟
+allegiance	🤝 🫡
+allegro	🎵 🎶
+allergic	🤧 🤒
+allergies	🤧 🤒 🌼
+allergy	🤧 🌾 💊
+alliance	🤝 🛡️ 🌐
+allied	🤝 🛡️
+alligator	🐊
+allow	✅ 🔓
+allowance	💵 💰
+allowances	💰 💵
+allowed	✅ ✔️ 🟢
+alloy	⚙️ 🔩
+ally	🤝 🫂
+almanac	📅 📖 🗓️
+almighty	🙏 👑 ⚡
+almost done	⏳ ✅ 🏁
+almost there	⏳ 🔜 🏁
+aloe	🌿 🪴
+aloha	🌺 🤙 🌴
+alone	🚶 🧍
+aloud	🗣️ 🔊
+alphabetical	🔤 🔡
+alphabetically	🔤 🔠
+alpine	🏔️
+alr	👍
+alright	👍 👌 ✅
+altar	⛪ 🛐 🕯️
+alteration	✂️
+alterations	✂️ 🪡 🧵
+altered	🔄
+altering	🔄 🧵
+alternate	🔀
+alternating	🔁 ↔️
+alternatively	↔️ 🔀
+alternatives	🔀
+altitude	⛰️ ✈️
+alto	🎤 🎵 🎶
+aluminium	🥫 ⚙️
+aluminum	🥫
+alumna	🎓 👩‍🎓
+alumni	🎓 🏫
+alumnus	🎓 👨‍🎓
+always	♾️ ∞ 🔁
+alzheimer	🧠
+ama	❓ 🎤 💬
+amazing	🤩 ✨ 👏
+amazingly	🤩 😲
+ambassador	🤝 🏛️
+amber	🟠
+ambient	🌫️ 🎶 🌙
+ambition	🎯 🏆
+amen	🙏 ⛪
+amended	✏️ 📝
+amending	✏️ 📝
+amendment	📜 ✍️
+amenities	🏨 🛜 🏊 🛎️
+america	🇺🇸
+americana	🇺🇸
+americano	☕
+americans	🇺🇸
+amethyst	💎 💜 🔮
+amino	🧬 🧪
+ammonia	⚗️
+amnesty	🕊️ ⚖️
+amor	❤️ 💕
+amortization	📉
+amounts	🔢 💰 📊
+ampere	⚡ 🔌
+amplification	🔊 📢
+amplified	🔊 📢 📣
+amplifier	🔊 🎸 🎚️
+amplifiers	🔊 🎸 🎛️
+amplitude	〰️ 📈
+amps	🔊 ⚡
+amusing	😂 😄 🤣
+analog	🕰️ 📻 📼
+analogous	≈
+analogue	🕰️ 📻
+analyse	🔍 📊
+analyses	📊
+analysis	📊 🔍 📈
+analyst	📊 📈
+analytic	📊 🔍 📈
+analytical	📊 🔍 🧠
+analyze	🔍 📊
+anatomy	🫀 🧠 🦴
+ancestor	🌳 👴 👵 🧬
+ancestry	🌳 👪 🧬
+anchovy	🐟
+ancient	🏛️ 🗿
+and sign	&
+and symbol	&
+andorra	🇦🇩
+android	🤖 📱
+anemia	🩸 😴
+anesthesia	💉 😴 🏥
+angle brackets	< >
+angles	📐 ∠ 📏
+anglican	⛪
+angling	🎣 🐟 🐠
+angola	🇦🇴
+anguilla	🇦🇮
+angular	📐 ∠
+animated	🎬
+animation	🎬 🎞️
+animations	🎞️ 🎬
+annals	📜 📚
+annex	🏢
+anniversary card	💌 🎂 💐
+annotate	📝 ✍️ ✏️ 🖊️
+annotation	📝 ✍️
+annotations	📝 📌
+announce	📣 📢
+announced	📢 📣
+announcement	📢 📣 🔔
+announces	📢 📣
+annoying	😤 😠 🙄 😒
+annual	📅 🔁
+annuity	💰 📈 🏦
+annum	📅 🗓️
+anomalies	⚠️ ❓
+anomaly	❓ ⚠️
+anonymous	👤 🕵️ 🎭
+another	➕
+ans	💬
+answered	💬 📞 ✅
+answering	📞 💬
+answers	✅ 💬
+antarctic	🐧 🧊 ❄️ 🇦🇶
+ante	💰 🃏
+antennas	📡
+anthem	🎵 🎶 🎤
+anthology	📚 📖
+anti	🚫
+antibiotic	💊 🦠
+antibodies	🛡️ 💉 🧬
+antibody	🦠 🛡️ 💉
+anticipate	⏳ 👀 🤞
+antigen	🦠 💉 🧪
+antigens	🦠 🧬 🔬
+antigua	🇦🇬
+antique	🏺 🕰️
+antitrust	⚖️
+antivirus	🛡️ 💻 🦠 🔒
+antler	🦌
+anyone	👤
+anything new	🆕 ✨
+anything right	✅
+anything wrong	❌ ⚠️
+anytime	⏰ ♾️
+apart	↔️
+apartment	🏠 🏢
+apartments	🏢 🏠
+aperture	📷
+apex	⛰️ 🏔️ 🔝
+aphrodite	🌹 💕 💘
+api	🔌 🔗
+apk	📦 📱
+apologies	🙏 😔 🙇
+apologize	🙏 😔
+apostle	✝️ ⛪ 📖
+apostles	✝️ ⛪ 🙏
+apparatus	⚙️ 🔬 🏋️
+apparel	👕 👗 👟
+appealed	⚖️
+appealing	😍 ✨
+appeals	⚖️ 🙏
+appearances	👀 🎭
+appellant	⚖️ 📜
+appellate	⚖️ 🏛️
+append	➕ 📎
+appendices	📎 📄 📚
+appendix	📎 📄
+appetite	😋 🍽️ 🍔
+appetizer	🥗 🍤 🧀
+appetizers	🍤 🧀 🥟 🍢
+apple juice	🧃 🍎
+apple pay	🍎 💳
+apples	🍎 🍏
+applets	📱 🧩 🖥️
+appliance	🔌
+applicant	📝 👤
+applications	📱 🖥️ 📄
+apply	📝 📩
+applying	📝 ✍️
+appoint	📅 ✅
+appointment	📅 ⏰ 🗓️
+appraisal	📝 ⭐ 💼
+appraisals	📋
+appreciate it	🙏 ❤️ 👍
+appreciate you	🙏 ❤️ 😊
+appreciation	🙏
+apprentice	🛠️
+apprenticeship	🛠️ 📚
+approaching	➡️ 🚶
+appropriate	✅
+appropriations	💰 🏛️
+approvals	✅ 👍 ✔️
+approve	✅ 👍 ✔️
+approved	✅ ✔️ 👍 🎉
+apps	📱
+apr	📅 💵
+apricot	🍑
+april	🌸 🌷 📅
+apron	🍳 🧑‍🍳
+apt	🏠 🏢
+apy	📈 💰
+aqua	💧 🌊
+aquaculture	🐟 🦐 🌊
+aquatic	🌊 🐟
+aqueous	💧 🌊
+arabian	🐪 🏜️
+arabidopsis	🌱 🌿
+arbitrary	🎲 ❓
+arbitration	⚖️
+arbor	🌳
+arcade	🕹️ 🎮 👾
+arch	🏛️ 🌉 ⛩️
+archaeological	🏺 🦴 ⛏️
+archaeology	🏺 ⛏️ 🦴 🗿
+archbishop	⛪ ✝️
+archipelago	🏝️ 🌊
+architects	🏗️ 📐
+architectural	🏛️ 🏗️ 📐
+architecture	🏛️ 🏗️
+archival	🗄️ 🗃️ 📁
+archive	🗄️ 📦
+archives	🗄️ 📚 📁
+archiving	🗄️ 📦 🗃️
+are you alright	🙂
+are you around	👀 📍
+are you asleep	😴 💤
+are you available	📅 ✅
+are you awake	👀 ☀️
+are you busy	⏳ 💼
+are you coming	🚶 🏃
+are you done	✅ 🏁
+are you free	📅 🆓
+are you going	🚶
+are you in	🏠 📍
+are you joining	🤝
+are you leaving	🚪 👋
+are you okay	🙂
+are you out	🚪
+are you ready	✅ 👍
+are you staying	🏠
+are you sure	🤔
+are you there	👀 📍
+are you up	☀️ ⏰
+areas	🗺️ 📍
+arena	🏟️ 🥊
+argentina	🇦🇷
+argentine	🇦🇷
+args	⌨️ 💻
+argue	😠 🗣️ 💢
+argued	😠 😤 💬 🗣️
+argues	🗣️ 💬 😠
+arguing	💬 😠 🗣️ 💢
+arguments	😠 💬 ⚔️
+aria	🎶 🎵 🎤
+arid	🏜️ 🌵 ☀️
+arithmetic	➕ ➖ ✖️ ➗ 🔢
+ark	🚢
+armada	🚢 ⚓
+armageddon	💥 ☢️ 🌋
+armchair	🛋️ 🪑
+armenia	🇦🇲
+armenian	🇦🇲
+armor	🛡️
+armour	🛡️ ⚔️
+arms	💪
+aroma	👃 🌸 ☕
+aromatherapy	🌿 🕯️ 🛁
+aromatic	🌸 🌿
+arrangement	📋
+arrangements	📅 📋
+arranging	📅 🗂️
+array	📊 🧮
+arrays	🔢 📊
+arrested	🚔 👮
+arrests	🚔 👮 ⛓️
+arrive	🛬 🏁
+arrives	🛬 🚗 📦
+arsenic	☠️ 🧪 ⚗️
+arte	🎨
+arterial	🩸 ❤️
+arteries	🫀 🩸
+artery	❤️ 🫀 🩸
+arthritis	🦴 🤕 💊
+article	📰 📄
+articulate	🗣️ 💬
+artifacts	🏺 🗿
+artificial	🤖
+artificial intelligence	🤖 🧠 💻
+artisan	🛠️ 🎨 🧵
+artistic	🎨 🖌️
+artists	🎨 🖌️ 🧑‍🎨
+artwork	🎨 🖼️
+aruba	🇦🇼
+asana	🧘
+asap	⚡ 🏃 ⏰
+asbestos	⚠️ ☠️
+ascendant	⬆️ 📈
+ascending	⬆️ 📈
+ascii	🔤 💻
+asean	🌏 🤝
+ash	🌋
+ashamed	😔 😳 🙈
+asked	❓ 🙋
+asking	❓ 🙋 🤔
+asks	❓ 🙋
+asleep	😴 💤
+asp	🐍
+aspen	🌲
+asphalt	🛣️
+aspirations	🌟 🎯
+aspire	🌟 🎯
+aspirin	💊
+assay	🧪
+assays	🧪 🔬
+assemble	🧩 🔧 🛠️
+assembled	🧩 🔧 🤝
+assemblies	👥 🏛️
+assembly point	📍 👥 🚨
+assess	🔍 📋
+assessed	📝 📋 ✅ 📊
+assessing	📋 🔍 ⚖️
+assessment	📋 ✅
+assessments	📝 📋 ✅ 📊
+assessor	🔍 🧐 📋
+asset	💰 📈
+assets	💰 🏦 📊
+assign	📋
+assigned	📋 ✅ 👤
+assigning	📋 👉
+assignment	📝 📚 ✅
+assist	🤝 🆘
+assistant	🤖 🧑‍💼
+assisted	🤝 🆘 🦽
+assisting	🤝 🙌 🆘
+associate	🤝 👥
+associated	🔗
+association	🤝 👥
+associations	🤝 🏢
+assortment	🧺 🎨
+asst	💼 📋
+assume	🤔 💭
+assure	✅ 👍
+asteroid	☄️ 🪨
+asthma	🫁 😮‍💨 💊
+astro	🚀 🌌
+astrology	🔮 ♈
+astronomical	🔭 🌌
+astrophysics	🌌 🔭
+asylum	🏥 🛡️
+async	⏳ 🔄
+at risk	⚠️ 🚨 ❗
+at symbol	@
+ate	😋 🍽️ 🍴
+athlete	🏃 🏅 ⚽ 🏋️
+athletes	🏃‍♂️ 🏋️‍♀️ 🏅
+atlas	🗺️ 🌍
+atmosphere	🌌 ☁️ 🌫️
+atmospheric	☁️ 🌫️
+atoll	🏝️ 🌊
+atomic	⚛️ ☢️
+attach	📎 🔗 📌 🖇️
+attachment	📎 ✉️ 📧
+attain	🎯 🏆
+attained	🏆 ✅
+attainment	🏆
+attempt	🎯 💪
+attempting	💪
+attend	📅 🎟️ 🙋
+attendance	✅ 🙋
+attendant	🛎️
+attendees	👥 🎟️
+attention	👀 📢 ⚠️
+attic	🏠 📦 🪜
+attitude	😎
+attn	📣
+attorney	⚖️
+attracted	😍 ❤️
+attracting	🧲
+attractions	🎡 🎢 🎠
+attractive	😍 ✨ 💖
+attracts	🧲
+attribute	🏷️
+attributed	✍️ 📝
+attribution	©️ ® ™
+atv	🏍️
+auburn	🟤
+auction	🔨 💰 🏷️
+audible	🔊 👂
+audience	👥 🎭
+audiences	👥 🎭 👏
+audio	🔊 🎧 🎵
+audiobooks	🎧 📚 🔊
+audit	🔍 🧾 📋
+audited	✅ 🧾 📋
+auditing	🔍 🧾 📊
+audition	🎤 🎭 🎬
+auditions	🎭 🎤
+auditor	🔍 📋 🧾
+auditorium	🎭 🏛️
+auditors	🧾 🔍 🧑‍💼
+auditory	👂 🔊 🎧
+audits	🔍 🧾 📊
+aug	📅 8️⃣ 🗓️
+augmentation	➕ 📈
+august	📅 🗓️ ☀️
+aunt	👩
+auntie	👩
+aura	✨ 🌟
+aurora	🌌
+aus	🇦🇺
+aussie	🇦🇺
+australian	🇦🇺
+austria	🇦🇹
+austrian	🇦🇹
+auth	🔐 🔑
+authentic	✅ 💯
+authenticated	✅ 🔐
+authentication	🔐 🔑 🪪
+authenticity	✅
+author	✍️ 📚 ✒️
+authored	✍️ 📝
+authoring	✍️ 📝
+authorisation	✅ 🔐
+authorised	✅ 🔓
+authoritative	📜 ⚖️
+authorities	👮 🏛️
+authority	⚖️
+authorization	🔐 ✅
+authorize	✅ 🔐
+authorizing	✅ ✍️
+authors	✍️ 📚 📝
+autobiography	📖 ✍️
+autograph	✍️ 🖊️
+automate	🤖 ⚙️
+automatic	🤖 ⚙️
+automatically	🤖 ⚙️
+automation	🤖 ⚙️ 🔄
+automotive	🚗 🚙
+autonomous	🤖
+autopay	💳 🔄 ✅
+autos	🚗 🚙
+aux	🔌 🎧
+availability	📅 🟢 ✅
+available	✅ 🟢
+avatar	👤 🖼️ 👥
+avatars	👤 🧑‍💻 🖼️
+ave	🛣️
+avenue	🛣️ 🏙️
+average	📊 ⚖️
+averaged	📊 ➗
+averages	📊 ➗
+averaging	📊 ➗
+avi	🎬 🎥
+avian	🐦
+avoid	🚫 🙅 🛑
+avoidance	🚫
+avoided	🚫 🏃
+avoiding	🚫 🏃
+avoids	🙈 🚫
+await	⏳ ⌛
+awake	☀️ 👀 ⏰
+awakening	⏰ 🌅
+awakenings	🌅
+awarded	🏆 🥇 🎖️
+awards	🏆 🥇 🏅 🎖️
+awareness	🎗️
+awesome work	👏 💪 🎉 🔥
+axial	🔄 ⚙️
+axis	↔️
+axle	🛞 🚗
+aye	👍
+azerbaijan	🇦🇿
+azure	🔵 💙
+baby shower	👶 🎈 🎉 🍼
+baccarat	🃏 ♠️ 🎰
+bachata	💃 🕺 🎶
+bachelor	🎓
+bachelorette	👰 🎉 💃 🥂
+back on track	🔙 🛤️
+backache	😣 💊 🤕
+backbone	🦴 💪
+backdoor	🚪 🔓 🔑
+backdrop	🖼️ 🎭
+backend	💻 🖥️ ⚙️
+backgammon	🎲
+background	🖼️
+backgrounds	🖼️ 🌄
+backlog	📋 📥
+backorder	📦 ⏳ 🛒
+backstage	🎭 🎬
+backup	💾 ☁️ 🔄
+backups	💾 🗄️
+backward	🔙 ⬅️
+backwards	⬅️ 🔙
+backyard	🏡 🌳 🌿
+bacterial	🦠
+bad idea	💡 ❌ 🚫
+bad vibes	😬 🌀 💀
+bad weather	⛈️ 🌧️ 🌪️
+badges	🎖️
+bagpipes	🪈 🎶 🏴󠁧󠁢󠁳󠁣󠁴󠁿
+bahamas	🇧🇸
+bahrain	🇧🇭
+baht	฿ 🇹🇭 💰
+bail	💰 💸 ⚖️
+bake	🍞 🧁 👩‍🍳
+baked	🍞 🥧 🧁 🥐
+baked potato	🥔 🧈
+baker	👨‍🍳 🥖 🍞
+baking	🧁 🍪 🥧 🎂 🍞
+baking powder	🧂 🥣 🍞
+baking soda	🧂 🥣 🧽
+baking tray	🧁 🍞 🥧
+balance sheet	📊 💰 ⚖️
+ballad	🎵 🎶 💔
+ballistic	🚀 💥
+ballots	🗳️
+ballroom	💃 🕺
+balls	⚽ 🏀 ⚾ 🎾 🏈
+balm	🧴 💆
+baltic	🌊
+bam	💥
+ban	🚫 ⛔ 🛑
+bands	🎸 🎶 🥁
+bandwidth	📶 🌐 📡
+bangladesh	🇧🇩
+bank holiday	🏦 📅 🎉
+banker	🏦 💼
+bankers	🏦 👔
+bankroll	💰 💵 🏦
+bankruptcies	💸 📉 🏚️
+bankruptcy	💸 📉
+banned	🚫 ⛔ 🚷
+banners	🚩
+banquet	🍽️ 🥂 🍾
+banshee	👻 😱 🗣️
+baptism	💧 ⛪ ✝️
+baptist	⛪ ✝️
+barbados	🇧🇧
+barbecue	🍖 🔥 🍗
+barcode	🏷️ 🔢
+bard	🎭 📜 ✒️
+bargaining	🤝 💬 💰
+bargains	🏷️ 💰
+bark	🐕 🌳
+barking	🐕 🐶
+barley	🌾 🍺
+barn	🚜 🐄 🐴
+baron	👑 🤵 🏰
+baroque	🎻 🏛️ 🎨
+barre	🩰
+barred	🚫 ⛔
+barrels	🛢️
+barricade	🚧 🧱 🛑
+baseline	📏 📊 ➖
+bases	⚾
+bash	🎉 🥳 💥
+basics	📘
+basil	🌿 🍃
+basin	🚰 🛁 🪣
+basins	🚰 🛁 🥣
+bass	🎸 🐟
+bass clef	𝄢 🎼
+bassoon	🪈 🎼 🎶
+bastille day	🇫🇷 🎆 🎉
+bathrooms	🚻 🚽 🚿 🛁
+baths	🛁 🚿
+baton	🏃
+battalion	🪖 🎖️
+batter	🥣 🥞 ⚾
+battery low	🪫 🔋
+batting	⚾ 🏏
+battle	⚔️ 🛡️
+battlefield	⚔️
+battles	⚔️ 🛡️ 💥
+bay	🌊 🏖️
+bays	🌊 🏖️ ⛵
+bazaar	🛍️ 🏪 🏺
+bbl	🔜 👋
+bbq	🍖 🔥 🍗
+bbs	💬 🖥️
+bcc	📧 ✉️ 👥
+be mine	💘 ❤️ 💌
+be right back	🔜 💬
+be right there	🏃 🔜 👋
+be safe	❤️ 🙏
+beaded	📿
+beaker	🧪 ⚗️
+beam	🔦 💡
+beams	💡 🔦 ✨
+bean	🫘
+beanie	🧢 🧶
+bearings	🧭 ⚙️ 🔩
+bearish	🐻 📉
+beats	🥁 🎵
+beautiful	😍 ✨ 🌸
+beautiful day	☀️ 🌞 🌈
+beautifully	✨ 🌸
+becoming	🌱 ➡️ ✨
+bedroom	🛏️
+bedrooms	🛏️ 🏠
+beech	🌳
+beef	🥩 🐄 🍖
+before	⏪ ⏮️
+began	▶️ 🚀
+begin	▶️ 🏁 🚀
+beginning	🌅 🆕
+beginnings	🌱 🐣 🌅 🔰
+begins	▶️ 🚀 🌅 🏁
+begun	▶️
+behalf	🤝 🙋
+behavior	🧠
+behold	👀 ✨
+beige	🟤 🟫
+belarus	🇧🇾
+belgian	🇧🇪
+belgium	🇧🇪
+belief	🙏
+beliefs	🙏 💭
+believed	🙏 💭
+believer	🙏
+believes	🙏 💭
+believing	🙏
+belize	🇧🇿
+belonging	🏠 ❤️
+beloved	❤️ 💕 💖 😍
+below	⬇️ 👇
+benches	🪑
+benchmark	📊 📏 📈
+benchmarking	📊 ⏱️ 📈
+bend	↩️ ↪️ ⤴️ ⤵️
+bending	🤸
+beneath	⬇️ 👇
+beneficial	✅ 👍
+benefit	🎁 ✅
+benefits	🎁 💼 ✅
+bengal	🐅
+benign	🏥
+benin	🇧🇯
+berg	🏔️ ⛰️
+beside	↔️ ➡️
+best	🏆 🥇
+best friend	👫 🧑‍🤝‍🧑 💕
+best man	🤵 💐 🎉
+best of luck	🍀 🤞
+best wishes	💐 💌 🎉
+bestseller	📚 🏆 ⭐
+bestselling	📚 🏆 ⭐
+bets	🎲 💰
+better	👍 ⬆️
+betting	🎰 🎲 💰
+beverages	🥤 ☕ 🍺 🍷
+beware	⚠️ 🚨
+bezel	⌚ 📱
+bhutan	🇧🇹
+biathlon	⛷️ 🎯 🎿
+bib	👶 🍼
+bible	📖 ✝️ 🙏
+biblical	✝️ 📖
+bibliographic	📚 📖 🔖
+bibliography	📚 📖
+bid	🔨 💰 🤝
+bidder	🔨
+bidders	🔨 💰
+bidding	💰 🔨
+bids	💰 🔨
+big data	📊 💾 🗄️
+big deal	💯 🔥
+big mood	💯 😤
+big respect	🙏 💪 🤝
+bigger	📈
+biker	🏍️ 🚴
+bikes	🚲 🚴
+bilateral	🤝
+bilingual	🗣️ 🌐
+billboard	🪧 📢
+billing	🧾 💳 💵
+bills	💵 🧾 💰
+binaries	0️⃣ 1️⃣ 💻
+bind	🔗 ⛓️ 📎
+binder	🗂️ 📒 📁
+bindings	🔗
+bingo	🎯 🎉
+binoculars	🔭
+bins	🗑️
+bio	🧬
+biochem	🧪 🧬 ⚗️
+biochemical	🧪 🧬
+biochemistry	🧪 🧬 🔬
+biodiversity	🦋 🌿 🌍
+biographical	📖 👤
+biographies	📖 👤
+biography	📖
+bioinformatics	🧬 💻 🔬
+biol	🧬 🔬
+biological	🧬 🔬
+biomass	🌿 🌱
+biomedical	🧬 🔬
+biopsy	🩺 🔬
+biosynthesis	🧬
+biotech	🧬 🧪
+biotechnology	🧬 🔬
+birch	🌳
+birthday card	🎂 💌 🎈
+birthday wish	🎂 🎁 🎉
+birthplace	🏠 👶 📍
+births	👶 🍼
+biryani	🍛 🍚 🥘
+biscuit	🍪 🥐
+bistro	🍽️ 🥐 🍷
+bites	🦷
+bitmap	🖼️
+bits	💾 0️⃣ 1️⃣
+bitter	😖 🫤
+biz	💼
+bizarre	🤪 👽 🌀
+bjj	🥋 🤼
+black history	✊ 📚 🖤
+black hole	🕳️ 🌌 ⚫
+black tea	🍵 ☕ 🫖
+blackberry	🫐 🍇
+blackjack	♠️ 🃏 🎰
+blade	🔪 🗡️
+blamed	👉
+blanco	⚪ ⬜ 🤍
+bland	😐
+blanket	🛏️ 🧣
+blankets	🛌
+blanks	⬜
+blast	💥 🎆
+blaster	🔫 💥
+blaze	🔥
+blazer	🧥
+bldg	🏢
+bleach	🧴 🧽 🧼
+blended	🥤 🔀
+blender	🥤 🍹 🧊
+blending	🌀
+blends	🥤 🌀 🎨
+bless you	🤧 🙏
+blessing	🙏 ✨
+blew	💨 🌬️
+blindness	🦯
+blinds	🪟
+bling	💎 ✨
+blink	👁️ 😉
+bliss	😌 🌈 ✨
+blissful	😌 🌈 😊
+blitz	⚡ 🏈
+blizzard	❄️ 🌨️ 🥶
+blockbuster	🎬 🍿 💥
+blockchain	🔗 ⛓️
+blocked	🚫 ⛔ 🔒
+blocker	🚫 🧱 🛑
+blocking	🚫 🛑 ⛔
+blocks	🧱
+blog	📝 ✍️
+blogger	✍️ 💻 📝
+blogging	✍️ 💻 📝
+blogosphere	💻 📝 🌐
+blogs	📝 💻
+blood moon	🌕 🔴 🌑
+bloodhound	🐕
+blooms	🌸 🌺 🌷 🌼
+blower	🌬️ 💨
+blowing a kiss	😘 💋 💨
+blowout	💥
+blows	💨 🌬️
+blue moon	🌕 🔵 🌙
+bluegrass	🎵
+blueprint	📐 🏗️
+blues	🎷 🎵 💙 😢
+bluetooth	🔵 📶 🎧
+bluff	🤥 🃏
+blur	🌫️
+blushing	😳 😊
+blvd	🛣️
+bmi	⚖️
+bmx	🚲
+boa	🐍 🪶
+boarding	🛫 🎫
+boarding pass	🎫 ✈️ 🛫
+boards	🪧 📋
+boating	⛵ 🚤 🛥️ 🛶
+boats	⛵ 🚤 🛶 🛥️
+bodies	🧍
+bodybuilding	🏋️ 💪
+bogus	🤥
+bohemian	🎨
+boil	♨️ 🔥
+boiled	🥚 🍲 ♨️
+boiler	🔥 ♨️
+boiling	♨️ 🔥 🌡️
+boing	🌀
+bold	🅱️ 💪
+bolivia	🇧🇴
+bollard	🚧 🛑
+bolts	⚡ 🔩
+bon voyage	🚢 ✈️ 👋
+bond	🔗 🤝
+bonding	🤝 🔗 ❤️
+bonds	🤝 📈 🔗
+bonfire	🔥 🏕️
+bongo	🥁 🪘 🎶
+bonsai	🌳 🪴 ✂️
+bonus	🎁 💰 ✨
+bonuses	💰 🎁
+boogie	💃 🕺 🎶
+booked	📅 🎫
+booking	📅 🗓️ 🎟️
+booklet	📖 📘
+booksellers	📚 🏪
+bookshelf	📚
+bookshop	📚 🏪
+bookstore	📚 🏬
+bookstores	📚 🏪
+bookworm	📚 🐛 🤓
+bool	0️⃣ 1️⃣ 💻
+boolean	✅ 0️⃣ 1️⃣
+boom gate	🚧 🛑
+boost	🚀 📈 ⚡
+booster	🚀 💉
+bootcamp	💪 🏃
+bootstrap	🚀 💻
+bop	🎵 💃 🎶
+border	🧱 🚧 🛂
+borders	🚧
+bore	😴
+boredom	😑 🥱 😐
+boring	😐 😑 🥱
+borough	🏘️ 🏙️
+borrow	💸
+borrower	💰 🏦
+borrowing	💰 🤝
+bosnia	🇧🇦
+bosses	👔 💼
+bot	🤖
+botanical	🌿 🌱
+botany	🌿 🌱
+both	2️⃣ ↔️
+bother	🙄 😒 🤦
+bothered	😒
+botnet	🤖 🕸️
+botswana	🇧🇼
+bottled	🍾 🍼
+bottles	🍾 🍼 🧴
+bottom	⬇️ 👇 🔽 ⏬
+bottoms up	🍻 🥂 🍺
+bought	🛒 💳
+boulevard	🛣️ 🏙️ 🌴
+bounce	🏀
+bound	🔗 ➡️
+boundary	🚧 🧱
+bounds	🚧
+bounty	💰
+bourbon	🥃 🧊
+bout	🥊 🤒
+boutique	🛍️ 👗
+bovine	🐄 🐂 🐮
+bowel	💩 🚽
+bowman	🏹
+bows	🎀 🙇 🏹
+boxed	📦
+boxer	🥊 👊 🐕
+boxes	📦
+boxing day	🎁 📦 🎄
+boycott	🚫
+boyfriend	💑 👫 ❤️
+boyz	👦
+bpm	🎵 🥁
+bps	📶 ⚡
+bra	👙
+bracelet	📿 💎
+braille	⠿
+brainstorm	💡 🧠
+brake	🛑 🚗
+brand	🏷️ ™️
+branded	🏷️ ™️ ®️
+branding	🏷️ ™️ ®️
+brands	🏷️ 🛍️
+brandy	🥃 🍷
+brasil	🇧🇷
+brave	🦁 💪 🛡️
+bravissimo	👏 🎉 🙌
+bravo	👏 🎉 🏅
+brazil	🇧🇷
+brazilian	🇧🇷
+brb	⏳ 🚶
+breach	🚨 💥 🧱
+breadcrumb	🍞 🧭
+breadth	↔️ 📏
+break a leg	🤞 🎭 🍀
+breakdance	🕺 🎶 🤸
+breakdown	💥
+breaker	🔌 ⚡
+breakers	🌊 ⚡
+breakfasts	🍳 🥞 ☕ 🥓
+breakout	🔓 🚪 🏃
+breakpoint	🐛 🛑 ⏸️
+breaks	☕ 💔
+breakthrough	🚀 💡
+breakup	💔 😢
+breastfeeding	🤱
+breathtaking	😍 🤩 🏔️
+bred	🐶 🐾
+breeders	🐶
+breeding	🐣
+breeds	🐶 🐱
+breeze	🍃 🌬️
+brewer	🍺 🍻
+brewery	🍺 🍻 🏭
+brewing	☕ 🍺
+bridal	👰 💍 💒
+bridal shower	👰 💐 🎁
+brides	👰
+bridesmaid	👰 💐
+brief	📄 📋
+briefing	📋 🗣️ 📰
+briefings	📋 📝 🗒️
+briefly	⏱️
+brigade	🚒 👨‍🚒
+brighter	💡 ☀️ ✨
+brilliant	💡 ✨ 🌟
+brings	🎁
+brit	🇬🇧
+britain	🇬🇧
+british	🇬🇧
+broad	↔️ 🌐 📏
+broadcast	📡 📺 📻
+broadcasters	📺 📻 🎙️
+broadway	🎭
+brochure	📄
+brochures	📄 📘
+broke	💸 😭
+broker	💼 📈 🤝
+brokerage	📈 💼
+brokers	📈
+broncos	🐴 🏈
+brook	💧 🏞️
+broomstick	🧹 🧙
+bros	👬
+broth	🍲 🥣
+brother	👬
+brother in law	👨‍👩‍👦‍👦 💒
+brotherhood	🤝 👬
+brownie	🍫 🍪 🧁
+browning	🍳
+browns	🟤 🤎
+browse	🔍 🌐
+browser	🌐 💻
+browsing	🌐 🔍 🖱️
+bruins	🐻 🏒
+bruise	🤕 🩹
+brunch	🥞 🍳 ☕ 🥂
+brunei	🇧🇳
+brushes	🖌️ 🪥 🧹
+brussels sprout	🥬
+bsc	🎓
+bse	🐄
+bst	🕒 🇬🇧
+btw	💬
+buck	🦌 💵
+buck party	🍻 🎉 🥂
+bucks	💵 💰 🦌
+bud	🌱
+buddha	🧘 ☸️ 🪷
+buddies	👫 🤝
+buddy	🤝 🫂
+budget	💰 💵
+budgetary	💰 📊
+budgeting	💰 📊
+budgets	💰 📊 🧾
+buds	🌱 🌷 🌼
+buff	💪
+buffet	🍽️ 🍱
+bugfix	🐛 🔧
+buggy	🐛
+bugle	🎺 🎶
+builder	👷 🔨 🏗️
+buildings	🏢 🏬 🏙️ 🏛️
+builds	🏗️ 🛠️
+built	🏗️ 🔨
+bulgaria	🇧🇬
+bulgarian	🇧🇬
+bulgur	🌾
+bulk	📦
+bulldog	🐶
+bulldogs	🐕 🐶
+bulletin	📢 📰 📌
+bullish	🐂 📈
+bullock	🐂
+bulls	🐂
+bumper	🚗 💥
+bunch	🍇 🍌 👥
+bundled	📦
+bundles	📦
+bungalow	🏠 🏡 🛖
+bunk	🛏️
+bunk bed	🛏️ 😴
+bunker	⛳
+bureau	🏢
+bureaucracy	📄 🗂️ 🏢
+burgundy	🍷
+burial	⚰️ 🪦
+buried	⚰️ 🪦
+burkina	🇧🇫
+burma	🇲🇲
+burn down	🔥 🏠 🚒
+burned	🔥 🥵
+burner	🔥 🍳
+burning	🔥 🚒
+burnout	🔥 😮‍💨 😩
+burns	🔥
+burnt	🔥
+burnt out	😮‍💨 😩 🫠
+burnup	🔥
+burst	💥 🎈 🧨
+burundi	🇧🇮
+bush	🌿 🌳
+business card	📇 🪪 💼
+businesses	🏢 💼 🏬
+businessman	💼 👔 🧑‍💼
+bussin	😋 🔥
+busted	🚨
+busy	🏃 🐝
+butcher	🔪 🥩 🍖
+butler	🤵 🛎️
+butte	🏜️ ⛰️
+buttons	🔘
+buy	🛒 💳
+buyer	🛒 💳 🛍️
+buyers	🛒 💳 👥
+buying	🛒 🛍️ 💳
+buzz	🐝
+buzzer beater	🏀 ⏰
+by the way	💬
+bye bye	👋
+bylaws	📜
+bypass	🛣️ ↪️ ➡️
+byte	💾
+bytes	💾 💻
+cabaret	🎭 💃 🎤
+cabernet	🍷 🍇
+cabin	🏡 🌲
+cabins	🛖 🏕️
+cables	🔌 🔗
+cabling	🔌
+cache	💾 🗄️
+cad	📐 💻
+cadet	🪖 🎖️
+cafeteria	🍽️
+cages	⛓️
+cairns	🪨
+cajun	🌶️ 🥘 🍤
+cakes	🎂 🍰 🧁
+calc	🧮
+calcium	🥛 🦴 🧀
+calculate	🧮 ➕ ➖ ✖️ ➗
+calendar invite	📅 ✉️
+calf	🐄
+caliber	🎯 🔫
+calibration	🎯 🔧 ⚖️
+callback	📞 ↩️
+called	📞 ☎️
+caller	📞 ☎️ 📱
+calling	📞 ☎️ 📲
+calls	📞 ☎️ 📱
+calorie	🔥 🍔 ⚖️
+calories	🔥 🍎 🥗
+cam	📷 📹
+cambodia	🇰🇭
+cameroon	🇨🇲
+camino	🛣️
+camp	🏕️ ⛺ 🔥
+campaign	🗳️ 📢 📣 🎯
+campaigns	📣 🗳️
+camper	🚐 🏕️ ⛺
+campers	⛺ 🏕️ 🚐
+campground	🏕️ ⛺ 🔥
+campgrounds	⛺ 🏕️ 🔥
+camps	⛺ 🏕️
+campsite	🏕️ ⛺ 🌲
+campus	🏫 🎓
+canada	🇨🇦
+canadian	🇨🇦
+canadians	🇨🇦 🍁
+canal	🛶 🚢
+canary	🐦 🐤 💛
+cancellation	❌ 🚫
+cancellations	❌ 🚫 📅
+cancers	🎗️
+candela	💡 🕯️
+candid	📸 📷
+candidate	🗳️ 👤 📋 🏛️
+candy cane	🍬 🎄
+canine	🐶 🐕 🦴
+canopy	🌳 ⛺
+canteen	🍽️ 🍱
+canvas	🎨 🖼️
+canyon	🏜️ 🏞️
+capabilities	💪 ⚙️ 🛠️
+capable	💪 ✅
+capacitor	⚡ 🔋
+capacity	🏟️ 📦
+cape	🦸 🧥
+capital	🏛️ 💰 🏙️
+capitalism	💰 📈
+capitalist	💰 📈 🤑
+capitals	🏛️ 🔠
+capitol	🏛️
+capoeira	🤸 🥋 💃
+capped	🧢
+cappuccino	☕
+capsule	💊
+captain	👨‍✈️ ⚓ 🎖️
+caption	💬 📝
+captive	⛓️ 🔒
+capture	📸
+captured	📸 ⛓️
+captures	📸 🎥
+caramel	🍮 🍯
+carat	💎
+caravan	🚐 🏕️
+carb	🍞 🍝
+carbohydrate	🍞 🍚 🥔 🍝
+carbon monoxide	⚠️ ☠️ 💨
+carbonate	🥤 🫧
+cardamom	🌿
+cardboard	📦
+cardinals	🐦
+cardiovascular	❤️ 🫀
+cared	❤️ 🤗
+career	💼 📈
+careful	⚠️
+caregivers	🤝
+carers	🤝
+cares	❤️ 🤗
+cargo	📦 🚢 ✈️
+caribbean	🏝️ 🌴 🌊 ☀️
+caring	❤️ 🤗
+carnival	🎪 🎡 🎠
+carol	🎄 🎶
+carrier	📦 🚚 ✈️ 🚢
+carries	📦 🎒
+carry	🎒 👜 💪
+carry on	🧳 ✈️
+carrying	📦
+carton	📦 🥛
+cartoons	📺 🎬
+cartridge	🖨️
+carved	🎃 🪵 🔪
+carving	🔪 🪵 🎃
+casa	🏠
+cascade	💦 🌊
+cases	💼 🧳
+cash flow	💵 💸
+cash game	♠️ 🃏 💰
+cashback	💳 ↩️ 💵
+cashier	🧾
+cashmere	🧶 🧥
+cassette	📼
+cassettes	📼 🎶
+cast	🎬 🎭
+casting	🎬 🎣
+casts	🎭 🎣
+casualty	🤕 🚑 🏥
+catalog	📖 📚
+catalogs	📚 🗂️ 📖
+catalogue	📖 📚 🗂️
+catalogues	📚 📇 📖
+catalyst	⚗️ 🧪
+catalytic	⚗️ 🧪
+catastrophic	💥 ⚠️
+catch up	☕ 💬 🤝
+catch up later	👋 🔜
+catch you later	👋 🔜
+catcher	⚾ 🧤
+catches	⚾ 🤲
+catching	🤾 🥅
+categories	🗂️ 📂
+categorized	🗂️ 📁 🏷️
+category	🗂️ 📁
+cater	🍽️ 🎂 🎉
+catering	🍽️ 🧑‍🍳 🥘
+cathedral	⛪
+catholic	⛪ ✝️
+cation	⚛️
+cattle	🐄 🐂
+caucus	🗳️ 🏛️
+cauldron	🧙 🍲
+cauliflower	🥦
+causal	🔗
+cause	🎗️
+cautious	⚠️ 🛡️
+cavalier	🐴
+cavaliers	🐎 ⚔️ 🏇
+cavalry	🐎 ⚔️
+caves	🕳️ 🦇 ⛰️
+caviar	🐟 🥚
+cavity	🦷
+cc	📧 🅭
+ccpa	📜 🔒
+cctv	📹 📷
+cdna	🧬
+cdr	💿
+cdrom	💿 📀
+cdrw	💿
+cds	💿 📀
+cease	🛑 ⏹️
+cedar	🌲 🌳
+celeb	🌟 🎬 📸
+celebrated	🎉 🥳 🎊 🏆
+celebrates	🎉 🥳 🎊
+celebrating	🎉 🥳 🎊
+celebrations	🎉 🥳 🎊
+celebrity	⭐ 🌟
+celestial	🌌 ✨ 🌙 🌟
+cellar	🍷 🪜
+cello	🎻
+cellphone	📱
+cells	🧫
+cellular	📱 📶
+celtic	☘️
+cement	🧱 🏗️
+censorship	🚫 🔇
+census	📊 📋
+centennial	🎉 💯
+center	🎯 📍
+centered	🎯 ⊙
+centers	🏢 🎯 📍
+centigrade	🌡️ °
+centimeter	📏
+central	🎯 📍
+centralized	🏢 🎯
+centred	🎯
+centric	🎯
+cents	🪙 ¢ 💰
+centuries	🕰️ 📜 🏛️
+century	💯 📅
+ceo	👔 💼 🧑‍💼
+ceramic	🏺
+cerebral	🧠
+ceremonies	🎉 🎓 🎊
+cert	📜 ✅
+certain	✅ ✔️
+certainly	✅ 👍
+certainty	✅
+certificate	📜 🎓
+certification	📜 ✅
+certifications	📜 🎓 ✅
+certified	✅ ✔️
+certify	✅ 📜
+cessation	🛑 ⏹️
+cet	🕐
+cfo	💼 📊 💰
+cgi	💻 🎬
+cha cha	💃 🕺 🎶
+chad	🇹🇩
+chalet	🏔️ 🏠
+chalk	🖍️
+challenge	🧗 🏆 💪
+challenged	💪
+challenger	🏆 ⚔️
+challenges	🧗 💪 🏆 ⚠️
+challenging	💪 🧗
+chamber	🏛️
+chambers	🚪 🛏️
+chameleon	🦎 🌈
+champ	🏆 🥇
+champagne	🍾 🥂 🎉
+championships	🏆 🥇 🏅
+chance	🎲 🍀
+chancellor	🏛️ 🎓
+chances	🎲 🍀 🤞
+chandelier	💡
+changed	🔄
+changelog	📝 🔄
+changer	🔄
+changes	🔄
+channel	📺 📣
+chanukah	🕎 ✡️ 🕯️
+chaos	🌪️ 😵‍💫
+chaotic	🌪️ 😵‍💫
+chap	👨
+chapter	📖 📘
+character	🎭 🔤
+characters	🔤 🎭
+charcoal	⚫ 🔥
+chargeback	💳 ↩️
+charged	🔋 ⚡ 💳
+charger	🔌 🔋
+chargers	🔌 ⚡
+charges	💳 ⚡ 🔌
+charging	🔋 ⚡ 🔌
+charitable	❤️ 🤝
+charity	❤️ 🎗️ 🤝
+charmed	😍 ✨
+charms	✨ 🧿 🍀
+charter	📜
+charts	📊 📈 📉
+chase	🏃 💨
+chaser	🏃 🍸 🍻
+chassis	🚗 🔧
+chat	💬
+chateau	🏰 🍷
+chats	💬 🗨️
+chatter	💬 🗣️
+cheap	🏷️ 💵
+cheaper	💲 🏷️
+cheapest	💲 🏷️
+cheat	😈 🃏
+checkboxes	☑️ ✅
+checkers	🔴 ⚫
+checking	✅ 🔍 ✔️
+checklist	✅ 📋 ☑️
+checkmate	♚ ♛
+checkout	🛒 💳
+checkpoint	🚧 🛂
+checks	✅ ✔️ ☑️
+cheddar	🧀
+cheek	😊
+cheeky	😜 😏
+cheer	📣 🎉 👏
+cheerio	👋
+cheerleader	📣
+cheers mate	🍻 🥂
+cheeseburger	🍔 🧀
+chem	🧪 ⚗️
+chemical	🧪 ⚗️
+chemically	⚗️ 🧪 🔬
+chemicals	⚗️ 🧪
+chemotherapy	🏥 💊
+cheque	🧾
+chesterfield	🛋️
+chew	😋
+chf	🇨🇭
+chic	👗 ✨ 💃
+chief	👑
+childbirth	🤱 👶
+childcare	👶 🧒 🧸
+childhood	👶 🧸
+children's day	🧒 🎈 🎁
+childrens	🧒 👶
+chile	🇨🇱 🌶️
+chilean	🇨🇱
+chili	🌶️ 🍲
+chili con carne	🌶️ 🥘
+chill	😎 🧊
+chilli	🌶️
+chilly	🥶 ❄️ 🧣
+chimes	🔔 🎐
+chimney	🏠 🏭
+chin up	💪 😊
+china	🇨🇳
+chinese new year	🧧 🐉 🏮 🧨
+chips	🍟
+chiropractic	🦴 💆
+chit	🧾
+chloride	🧪
+chlorine	🏊 🧪
+choice	🤔 ↔️
+choices	🔀 🤔
+choir	🎶 🎤
+cholesterol	❤️ 🩸 💊
+choose	✅ 👉
+chooses	👉
+choosing	🤔 ✅
+chopped	🔪 🪓
+chopper	🚁 🏍️
+choral	🎶 🎤
+chord	🎸 🎹 🎵
+chords	🎸 🎶
+chorus	🎶 🎤
+chose	✅
+chosen	✅ ☑️ 🌟
+chow	🍜 🍲 🥡
+christianity	✝️ ⛪
+chromatography	🧪 🔬
+chrome	🪞 💎
+chromium	🧪 ⚗️
+chromosome	🧬
+chronic	🤒 ⏳ 🩺
+chronicle	📜 📖
+chronicles	📜 📚
+chronological	📅
+chronology	📅 ⏳ 🕰️
+chunk	🧱 🍫
+cia	🕵️
+ciao	👋 🇮🇹
+cider	🍎 🍺
+cigar	🚬
+cilantro	🌿
+cinco de mayo	🇲🇽 🎉 🌮
+cinderella	👠 🏰
+cinemas	🎬 🍿 🎥
+cinnamon	🌿 🟤
+cio	💼 🖥️
+circa	📅
+circuit	⚡ 🔌
+circuits	🔌 ⚡ 💡
+circulated	🔁 📨
+circulating	🔁 🔄
+circulation	🔄 ❤️ 🩸
+cirrus	☁️ 🌤️
+citations	📄
+cite	📚
+cities	🏙️ 🌆 🏢
+citing	📚 📝
+citizen	🪪 🛂
+citizenship	🪪 🛂 🏛️
+city center	🏙️ 🌆 🏢
+city centre	🏙️ 🌆 🏢
+civic	🏛️ 🗳️ 🏙️
+civilization	🏛️ 🌍
+clad	👕
+clam	🐚 🦪
+clan	👪 👥 🛡️
+clarification	❓ 💬
+clarify	💡 🔍
+clarinet	🎷 🎶
+clarion	📣 🎺
+clarity	🔍 ✨
+clash	💥 ⚔️
+classes	🏫 📚 🎓
+classics	📚
+classification	🗂️ 🏷️ 📁
+classified	🔒 🗂️ 📁 🕵️
+classifieds	📰 🗞️
+classify	🗂️ 🏷️
+classmate	🧑‍🎓 🏫
+classmates	🧑‍🎓 🏫 👥
+classroom	🏫 🧑‍🏫 📚
+clause	📜 §
+clauses	§ 📜
+claw	🐾 🦀
+cleaned	🧹 🧼 ✨
+cleaner	🧹 🧽 🧼
+cleanliness	🧼 ✨ 🧽
+cleansing	🧼 🧽 🚿
+cleanup	🧹 🧽 🗑️
+clear	✅ 🧹
+clear sky	☀️ 🌞
+clearance	🏷️ ✅ 🛂
+clearer	🔍
+clears	✅ ☀️
+clef	🎼 🎵
+clergy	⛪ 🙏
+cleric	⛪ ✝️
+clerk	🧑‍💼
+cli	💻 ⌨️ 🖥️
+click	🖱️ 👆
+click and collect	🛒 📦
+client	🧑‍💼 🤝
+clients	👥 💼 🤝
+cliff	🏔️ ⛰️
+cliffs	⛰️ 🪨
+clinic	🏥 🩺
+clinical	🏥 🩺 💊
+clinically	🏥 🧪
+clinics	🏥 🩺 💉
+clip	📎 🎬
+clipart	🖼️ ✂️ 📎
+clippers	✂️ 💈
+clips	📎 ✂️ 🎬
+clone	🧬 👯 🐑
+clones	👯 🧬
+closely	🔍 👀
+closeout	🏷️ 💸
+closeouts	🏷️ 🛍️ 💸
+closer	🤏 ➡️
+closes	🚪 🔒
+closest	📍
+closing	🚪 🔒
+closure	🔒 🚪
+closures	🔒 🚧
+cloth	🧵
+clothesline	🧺 👕
+clove	🧄
+clubhouse	🏠
+clues	🔍 🕵️
+cluster	🍇
+clutter	🗑️ 📦
+coach	🚌 🏋️
+coaching	🏋️ 📣
+coal	🪨 ⛏️
+coalition	🤝
+coast	🌊 🏖️
+coastal	🌊 🏖️ 🐚
+coastline	🏖️ 🌊
+coatings	🎨 🖌️
+coaxial	🔌 📡 📺
+cobalt	🔵
+cobra	🐍
+cockpit	✈️ 🛩️
+coco	🥥
+cocoa	☕ 🍫
+cod	🐟 🎣
+code	💻 ⌨️ 🧑‍💻
+code review	🔍 💻
+codes	💻 🔣 #️⃣
+coefficient	🔢
+coffee break	☕ ⏸️
+coffee maker	☕
+coffee table	☕ 🛋️
+cognac	🥃 🍷
+cognition	🧠
+cognitive	🧠 💭
+cohort	👥
+coil	🌀 🔩
+cola	🥤
+colab	🤝 💻
+colander	🍝
+coleslaw	🥗 🥬
+coli	🦠 🧫
+collaborate	🤝 👥
+collaboration	🤝 👥
+collaborative	🤝 👥
+collapse	💥 🏚️ 📉
+collapsed	📉 🏚️ 💥
+collars	👔
+colleague	🧑‍💼 👥
+colleagues	👥 🤝
+collectables	🪙 🏺
+collected	📦 🗂️ 🧺
+collectible	🏆 🪙 🎴
+collectibles	🧸 🪙 🏆
+collecting	📦 🗃️
+collections	🗂️ 📚 🖼️
+collective	👥 🤝
+college	🎓 🏫
+colleges	🎓 🏫 📚
+collegiate	🎓 🏫
+collier	⛏️ 🚢
+cologne	🧴
+colombia	🇨🇴
+colombian	🇨🇴
+colonel	🎖️
+colony	🐜
+color	🎨 🌈
+colored	🎨 🌈 🖍️
+coloring	🎨 🖍️ 🖌️
+colours	🎨 🌈
+colt	🐴 🐎
+column	🏛️ 📰
+columnist	✍️ 📰
+columns	🏛️ 📊
+coma	😵 🏥
+combination	🔗 ➕
+combinations	🧩 🔀
+combine	🔀 ➕
+combined	➕ 🔗
+combines	🔗 ➕
+combustion	🔥 💥
+comeback	🔙 💪
+comedies	😂 🎭 🤣
+comedy	😂 🎭
+comfort food	🍲 🍕 🍗
+comfortably	🛋️ 😌
+comforter	🛏️ 🛌
+comics	💬 📚 🦸
+coming	🔜 ⏳
+command line	💻 ⌨️ 🖥️
+commanded	🫡
+commander	🎖️ 🫡 ⭐
+commanders	🎖️ 🪖
+commanding	🫡
+commandments	📜 ✝️
+commence	▶️ 🏁
+commencement	🎓 🎉
+commencing	▶️ 🚀
+comment	💬
+commentaries	💬 📝 🎙️
+commentary	💬
+commenting	💬 ✍️
+comments	💬 🗨️
+commentsblog	💬 📝
+commerce	🛒 💳 💼
+commercials	📺 📢
+commission	💰
+commissioners	🏛️
+commissioning	⚓ ✅
+commissions	💰 💼
+commit	✅ 💻
+commitment	🤝 💍 ✅
+commitments	🤝 💍 📅
+committed	🤝 💍 ✅ 💪
+committee	👥 🏛️
+commodities	📦 🌾 🛢️
+commodity	📦 💰 🛢️
+commons	🌳
+communal	🤝 🏘️
+communicate	💬 🗣️
+communications	💬 📞 📧 📡
+communicator	💬 📞 📱
+communion	⛪ 🍞 🍷
+communism	☭
+communities	👥 🏘️ 🤝
+community	👥 🏘️
+commute	🚇 🚌 🚗
+commuter	🚆 🚇 🚌
+comoros	🇰🇲
+compactflash	💾
+companies	🏢 🏭
+companion	🧑‍🤝‍🧑
+companions	🤝
+company	🏢 👥
+comparative	⚖️ 📊 ↔️
+compare	⚖️ ↔️
+compares	🆚 ⚖️
+comparing	⚖️ 🆚
+comparison	⚖️ 📊
+compartment	📦
+compassion	❤️ 🤗 🫂
+compassionate	❤️ 🤗
+compatibility	🤝 🧩
+compatible	✅ 🔌 🤝
+compelling	🤩 ✨
+compensate	💰 🤝
+compensated	💰 💵
+compensation	💰 💵
+compete	🏆 🥇 🏁 ⚔️
+competence	🎯 ✅
+competency	🎓
+competent	💪 ✅
+competing	🏁 🏆 ⚔️
+competition	🏆 🥇 ⚔️
+competitive	🏆 🥇
+competitiveness	🏆 💪
+competitor	🏁 🥇
+competitors	🏆 ⚔️
+compilation	📚 💿
+compile	💻 ⚙️
+compiler	💻 ⚙️
+complain	😠 😤
+complaining	😠 😤 💬
+complaint	😤 📝
+complaints	😠
+complementary	🤝 🧩
+completeness	✅
+completion	✅ 🏁
+complex	🧩
+complexes	🏢 🏘️
+complexity	🧩 🤯
+compliance	✅ 📋
+compliant	✅
+complications	⚠️ 😬
+complies	✅ ✔️
+compliment	👍 😊 💐
+complimentary	🆓 👍
+compliments	😊 💐 👏 👍 🙌
+comply	✅
+complying	✅ ✔️
+component	🧩 ⚙️
+components	🧩 ⚙️ 🔩
+compose	🎼 ✍️ 🎵
+composed	😌 🧘 🎼 🎵
+composer	🎼 🎹
+composers	🎼 🎵
+compositions	🎼 📝
+compost	🌱 ♻️
+compound	🧪 ⚗️ 🔬
+comprehension	🧠 📖 💡
+compressor	🗜️
+compromise	🤝
+comptroller	📊 🧮
+compulsory	❗
+computation	💻 🧮
+computational	💻 🖥️ 🧮
+compute	🖥️ 🧮 💻
+computerized	💻
+computers	💻 🖥️ ⌨️ 🖱️
+computing	💻 🖥️ ⌨️ 🖱️
+concealed	🙈
+conceived	💡
+concentrated	🧠 🎯
+concentrating	🤔 🧠
+concentrations	🧪
+concept	💡
+conception	💡 🤰
+concepts	💡 🧠
+conceptual	💡 🧠
+concerned	😟
+concerns	😟
+concert	🎤 🎶
+concerto	🎻 🎼 🎹
+concerts	🎤 🎶 🎸
+concession	🍿 🎟️
+concessions	🍿 🥤 🌭
+concierge	🛎️ 🏨
+concise	✂️
+conclude	🔚 🏁 ✅
+concluded	✅ 🏁 🔚
+concludes	🏁 🔚 ✅
+concluding	🏁 🔚
+conclusion	🏁 ✅
+concord	🤝
+concrete	🧱
+condemned	🏚️ 🚫
+condition	⚕️ 📋
+conditional	❓
+conditioner	🧴 💇
+conditioners	🧴 ❄️ 💨 💇
+condo	🏢 🏠
+condolence	🕯️ 🙏
+condominium	🏢
+condominiums	🏢 🏘️
+conducting	🎼 🎻
+conductivity	⚡ 🔌
+conductor	🎼 🚂
+conduit	🔌
+cone	🍦 🚧
+conference	🎤 👥
+conference call	📞 💻
+conference room	🏢
+conferences	🎤 🏢 👥
+conferencing	💻
+confess	🙏 🗣️
+confessions	🤫
+confidence	💪 😎 🌟
+confident	😎 💪
+confidential	🔒 🤫
+confidentiality	🔒 🤫
+config	⚙️ 💻
+configurable	⚙️ 🛠️
+configuration	⚙️ 💻
+configurations	⚙️ 🛠️
+configure	⚙️ 🔧 🛠️
+confined	🔒 ⛓️
+confinement	🔒 ⛓️
+confirm	✅ ✔️ ☑️ 👍
+confirmation	✅ ✔️
+conflict	⚔️ 💥
+conformance	✅
+conforming	✅
+confront	😠 ⚔️
+confrontation	⚔️ 🤼 😠
+congas	🥁 🪘
+congenital	🧬 👶
+congestion	🚗 🚦 🤧
+congo	🇨🇬 🇨🇩
+congratulations card	✉️ 🎉 🎊
+congregation	⛪ 🙏 👥
+congress	🏛️ 🗳️ ⚖️
+congressional	🏛️
+congressman	🏛️ 🗳️
+connect	🔗 🤝 🔌
+connected	🔗 🌐
+connection	🔗 📶
+connections	🔗 🤝 🌐 🔌
+connector	🔌 🔗
+conquer	⚔️ 🏆
+conquest	⚔️ 🏰 👑
+cons	👎 ➖
+consciousness	🧠 💭
+consecutive	🔢 ➡️
+consensus	🤝 ✅
+consent	✅ 🤝
+consequence	⚠️
+consequently	➡️
+conservation	🌿 ♻️
+conservatory	🌿 🪴 🎹
+conserve	♻️ 🌱 💧
+conserved	♻️ 🌿
+consideration	🤔 💭 ⚖️
+consistent	🔁 ✅ 📈
+console	🎮 🖥️
+consoles	🎮 🕹️
+consortium	🤝 🏢
+conspiracy	🕵️ 🤫 👁️
+constantly	🔁 ♾️
+constants	π 🔢
+constellation	✨ 🌌 ⭐
+constituency	🗳️
+constitution	📜 🏛️ ⚖️
+constitutional	📜 ⚖️
+constrained	⛓️ 🔒
+constraint	⛓️ 🔒
+construct	🏗️ 🔨 🧱
+constructing	🏗️ 🚧 🔨
+constructive	🏗️ 🛠️
+constructor	🏗️ 🔧
+consulate	🏛️ 🛂
+consult	💬 🗣️
+consultancy	💼 🤝 📊
+consultant	💼
+consultants	💼 🤝
+consultation	💬 🤝 🗣️
+consulting	💼 📊
+consumables	🧻 📦 🛒
+consume	🍽️ 😋 🥤
+consumer	🛒 💳
+consumers	🛒 💳 👥
+consumption	🍽️ 🛒
+contacted	📞 ✉️ 📱
+contacting	📞 📧 📱 💬
+contactless	💳 📶
+contacts	📇 👥 📞
+contained	📦
+containers	📦
+contaminants	☣️ 🦠
+contaminated	☣️ 🦠
+contamination	☣️ 🦠 ⚠️
+contempt	😒 🙄
+contender	🥊 🏆
+content	😌 📄
+contention	⚔️ 💥
+contents	📋 📑 🗂️
+contest	🏆 🥇 🏅
+contested	⚔️
+continent	🌍 🗺️ 🌎
+continents	🌍 🌎 🌏 🗺️
+continual	♾️ 🔄 🔁
+continually	🔁 ♾️
+continuation	⏩ ▶️
+continue	▶️ ➡️
+continued	➡️ ⏩
+continuing	➡️
+continuous	🔁 ♾️ ➡️
+continuum	♾️
+contraception	💊
+contract	📜 📄 ✍️
+contracted	📝 ✍️ 🤝
+contracting	📝 ✍️ 🤝
+contraction	🤰 ✂️
+contractor	👷 🧑‍🔧
+contractors	👷 🔨 🏗️
+contracts	📄 ✍️
+contractual	📄 ✍️
+contradiction	❌
+contrast	◐
+contribute	🤝 💝 🙌 ➕
+contributing	🤝 💡
+contribution	🤝 💰 🎁
+contributions	🤝 💝 🙌 ➕
+contributor	✍️ 🤝
+contributors	🤝 👥
+controlled	🎛️ 🕹️ 🔒
+controls	🎛️ 🕹️ ⚙️
+controversial	⚠️ 💬
+controversy	💬 ⚠️
+convection	🔥 ♨️ 🌀
+convention	👥 🎤
+conversation	💬 🗣️ 🗨️
+converse	💬 🗣️
+conversely	↔️
+conversion	🔄
+conversions	🔄 ⇄ ↔️
+convert	🔄
+converter	🔌 🔄 ⚙️
+converters	🔄 🔌
+convertible	🚗
+converting	🔄 🔁
+convey	💬 🗣️
+convicted	⚖️ ⛓️ 🔒
+conviction	⚖️ 🔒 💪
+convincing	👍
+convocation	🎓 🏛️
+cookbook	📖 🍳
+cooker	🍳 🔥
+cookout	🍖 🔥
+cooks	👨‍🍳 🍳
+cookware	🍳 🥘 🍲
+cool down	❄️ 🧊
+cooled	❄️ 🧊
+cooler	🧊 ❄️
+coolers	🧊 🧃
+coolest	😎 🆒 ❄️ 🧊
+coop	🐔 🏠
+cooperate	🤝
+cooperation	🤝
+cooperative	🤝
+coordinate	📍 🗺️
+coordinated	🤝
+coordinates	📍 🧭 🗺️
+coordination	🤝
+coordinator	📋 🗓️
+coordinators	📋 🗂️ 👥
+cope	🧘 💪
+copied	📋
+copier	🖨️
+copiers	🖨️ 📄
+copies	📄 📑
+copper	🟤 🪙
+copying	📋
+cordless	🔋
+cords	🔌
+coriander	🌿
+cornerstone	🧱 🏛️
+coronary	🫀 ❤️
+corp	🏢
+corporal	🎖️
+corporate	🏢 👔
+corporation	🏢 💼
+corpse	💀 ⚰️ 🧟
+corpus	📚 📄
+corrected	✅ ✔️ ✏️
+correcting	✅ ✏️ ✔️
+correctional	⛓️ 🏢
+corrections	✏️ ✅ 🔧
+corrective	🔧 🛠️
+correctly	✅ ✔️ ☑️
+correlated	📈
+correlation	📈 🔗 📊
+correlations	📊 🔗 📈
+correspond	✉️ 📧 📨
+correspondence	✉️ 📧
+correspondent	📰 🎤 📺 ✉️
+corresponding	↔️
+corridor	🚪
+corridors	🚪 🏢
+corrosive	⚠️ 🧪
+corrupt	🦹 💰
+corrupted	💾
+corruption	💸 🏛️
+corsair	🏴‍☠️ ⚓
+cortex	🧠
+corvette	🏎️ 🚗
+cosmetic	💄 💅
+cosmic	🌌 ✨
+cosmopolitan	🍸 🌆
+cosmos	🌌 🪐
+cosponsors	🤝 ✍️ 📝
+costing	💰 💲
+costly	💰 💸
+costs	💰 💸 💲 💵
+costume	🎭
+costumes	🎭 👗 🦸 🎃
+cot	🛏️ 👶
+cottage	🏡
+cotton	☁️ 🧶
+cough	😷 🤧
+council	🏛️ 👥
+council tax	🏠 💷
+councillors	🏛️ 🗳️
+counsel	⚖️ 💬
+counseling	💬 🛋️
+counselling	🛋️ 💬
+counselor	💬 🛋️
+count	🔢 🧮 #️⃣
+countdown	⏳ ⏱️
+counter	🏪 🧮
+counterparts	🤝 👥
+countless	♾️
+countries	🌍 🌎 🌏 🗺️
+country music	🤠 🎸
+countryside	🌾 🏡 🚜 🌳
+countrywide	🌍 🗺️ 🛣️
+county	🗺️ 📍
+coup	🏛️ ⚔️ 🚨
+coupe	🚗 🏎️
+couples	👫 💑 ❤️
+coupling	🔗
+coupon	🎟️ 🏷️
+coupons	🎟️ 🏷️ 💸
+courage	🦁 💪
+courgette	🥒
+courier	📦 🛵 🚚
+course	📚 🎓
+coursework	📚 📝
+court	⚖️ 🏀
+courtesy	🙏
+courthouse	🏛️ ⚖️
+courtroom	⚖️ 🏛️ 👩‍⚖️
+courts	⚖️ 🏛️
+courtyard	🏡 🌳 ⛲
+couscous	🍲 🍚
+cousin	👪
+couture	👗 🧵
+cove	🌊 🏖️
+covenant	🤝 📜
+coverage	📰 📶 🛡️
+covering	🧥 🛡️
+covers	📖 ☂️
+covert	🕵️ 🤫
+coward	🐔 😨
+coworker	🧑‍💼 👥
+coyote	🐺 🌵
+cozy	🛋️ ☕ 🔥 🧣
+cpi	📈 💹
+cpr	🫀 ❤️ 🚑
+cpu	💻 🖥️
+cpus	💻 🖥️
+cracks	💥
+cradle	👶 🍼 🛏️
+craft	🎨 ✂️
+crafted	🛠️
+crafts	🎨 ✂️ 🧵
+craftsman	🔨 🛠️ 👷
+cranberry	🫐
+crank	⚙️ 🔧
+craps	🎲 🎰
+crash	💥 🚗
+crash market	📉 🐻
+crashes	💥 🚗 📉
+crate	📦
+crater	🌋 🕳️
+creamy	🍦 🥛
+create	✨ 🛠️
+creates	🛠️ ✨ 🎨
+creatine	💪
+creating	🎨 ✨ 🛠️
+creation	🎨 ✨ 🛠️
+creativity	🎨 💡
+creators	🎨 ✍️ 🎬
+creatures	🐾
+credible	✅ 👍
+credit score	💳 📈
+creditor	💰 🏦
+credits	🎬 💳
+creed	✝️ 🙏
+creek	🏞️ 💧
+creep	🕷️ 🐛
+creepy	👻 🕷️ 😬
+creme	🍮 🍰
+crest	🌊 🏔️
+crew	👥 🚢
+crews	👷 👥
+crib	🛏️ 👶
+cries	😭 😢
+crimes	🚨 🚔
+crimson	🔴 🟥
+crises	🚨 😰
+crisis	🚨 ⚠️ 🆘
+crisp	🍟 🍎 🥔
+criteria	✅ 📋
+critic	📝 🎬 🎭
+critical	🚨 ⚠️
+criticism	👎
+criticized	👎 🗣️
+critics	👎 🧐 ⭐
+critique	📝 🔍
+critiques	📝 🔍 ⭐
+croatia	🇭🇷
+croatian	🇭🇷
+croix	✝️
+cron	⏰ 💻
+crooked	〰️
+crop	🌾 ✂️
+crosse	🥍
+crosses	✝️ ✖️
+crossfit	🏋️ 💪
+crossroads	🛣️ 🔀
+crosswalk	🚸 🚶
+crossword	🧩 ✏️ 🔤
+crowd	👥
+crowdfunding	💰 🤝
+crowds	👥 🧑‍🤝‍🧑
+crowne	👑
+crt	📺 🖥️
+crucial	❗
+crude	🛢️ ⛽
+cruelty	😡
+cruiser	🚓 ⛵ 🚗
+cruises	🛳️ 🚢
+cruising	🚢
+crunch	💥 😬
+crusade	⚔️ ✝️ 🛡️
+crushed it	💪 🏆 🎉
+crust	🍞 🥧
+crying laughing	😂 🤣
+crypt	⚰️ 🪦
+crypto	₿ 🪙
+cryptography	🔐 🔒
+crystals	💎 🔮
+css	💻 🎨
+cst	🕐
+csv	📊 📄
+ct scan	🏥 🩺
+cuba	🇨🇺
+cuban	🇨🇺
+cubic	🧊 📦
+cubs	🐻
+cuddle	🤗 🫂
+cue	🎱 🎬 👉
+cuff	⛓️ 👔
+cuisine	🍽️ 👨‍🍳 🍲 🍜
+culinary	🍳 👨‍🍳
+cultivated	🌱 🌾
+cultivation	🌱 🚜
+cultural	🎭 🏛️ 🌍
+cultures	🌍 🎭
+cumin	🧂
+cumulative	📈 ➕ 🧮
+cumulus	☁️
+cupboard	🗄️
+cups	☕ 🥤 🏆
+curbside	🚗 📦
+cure	💊 🩺 ❤️‍🩹
+cured	💊 🩹 ❤️‍🩹
+curiosity	🤔 ❓ 🧐
+currencies	💱 💵 💶 💷
+current	🌊 ⚡
+currently	🕒
+currents	🌊 ⚡ 💨
+curricula	📚 📖
+curricular	📚 🏫 🎓
+curriculum	📚 📖
+cursor	🖱️ 👉
+curtain	🎭 🪟
+curtains	🪟
+curved	〰️
+curves	〰️ ➰
+cushion	🛋️
+custody	⚖️ 🔒
+custom	🛠️ 🎨
+customer	🛒 👤
+customers	🛍️ 🧑‍🤝‍🧑 💼
+customise	⚙️ 🎨 🛠️
+customised	🛠️
+customizable	⚙️ 🛠️
+customization	🎨 ⚙️ 🛠️
+customize	⚙️ 🔧 🛠️
+customized	🛠️ ✨
+customizing	🛠️ ⚙️
+cutie	🥰 😍 💖
+cuts	✂️ 🔪
+cutter	✂️ 🔪
+cutting board	🔪 🍽️
+cv	📄 💼
+cyber	💻 🌐 🤖 🔒
+cyberspace	🌐 💻 🖥️
+cycle time	⏱️ 🔄
+cycles	🚲 🔄 ♻️
+cyclic	🔁 🔄 ♻️
+cylinder	🛢️ 🧴
+cylinders	🛢️ 🔩 ⚙️
+cymbal	🥁 🎶
+cymru	🏴󠁧󠁢󠁷󠁬󠁳󠁿 🐉
+cypress	🌲
+cyprus	🇨🇾
+czech	🇨🇿
+daddy	👨
+dads	👨 👨‍👧‍👦
+daemon	👻 💻
+daily	📅
+daily standup	💬 🗣️ 📅
+dairy free	🥛 🚫 🌱
+daisy	🌼 🌸
+dal	🍛
+damage	💥
+damaging	💥 ⚠️
+dame	👑 👩
+damp	💧 💦
+dancers	💃 🕺
+dane	🇩🇰
+dangers	⚠️ 🚨 ☠️
+danish	🇩🇰
+dansk	🇩🇰
+dare	😈
+daring	🦁 😎 🧗
+dark mode	🌙 🌚 🖤
+darker	🌑 ⬛
+darkness	🌑 🌃
+darling	❤️ 🥰 💕
+dashboard	📊 🧭
+data science	📊 🔬 📈
+database	🗄️ 💾
+databases	🗄️ 💾 📊
+dataset	📊 🗃️
+datasets	📊 💾
+datasheet	📄 📊
+dated	📅 🗓️ 💑
+dates	📅 🗓️
+datum	📊
+dau	📊
+dawn	🌅 🌄
+day of the dead	💀 🌼 🕯️
+day off	🏖️ 😴 😎
+day trip	🚗 🗺️ 🧳
+daycare	👶 🧸 🏫
+daylight	☀️ 🌞
+daylight savings	⏰ 🕐
+days	📅
+daytime	☀️ 🌤️
+dazzling	✨ 🌟 💫
+ddos	💻 🚫 🛡️
+dds	🦷
+dead inside	💀 😑
+deadline	⏰ 📅 ⏳
+deadly	☠️ 💀 ⚠️
+dealership	🚗 🏬
+dealings	🤝 💼
+debates	🗣️ 💬 ⚖️
+debit	💳
+debit card	💳 🏦
+debris	🧱 🗑️ 🚧
+debt	💸 📉
+debtor	💸 💳 🧾
+debts	💸 💳 📉
+debug	🐛 🔧
+debugger	🐛 💻 🔧
+debugging	🐛 🔧 🔍
+debuginfo	🐛 💻
+debut	🎬 ✨
+dec	📅 ❄️
+decade	🔟 🗓️
+decal	🏷️
+decathlon	🏃 🏅
+decay	🦷 🍂
+deceased	⚰️ 💀 🕯️
+december	🎄 ❄️ ⛄
+decent	👍 🙂
+deception	🤥 🎭
+decide	🤔 ⚖️ ✅
+decided	✅
+decimal	🔢
+decision	🤔 ⚖️
+deck	🃏 🚢
+declaration	📜
+declarations	📜 📝
+declare	📢
+declared	📢 📜
+declares	📣 📢 🗣️
+declaring	📣 🗣️
+decline	📉 ⬇️ 🔻
+declined	💳 ❌ 🚫
+decoding	🔍 🧩 💻 🔓
+decomposition	🍂 🦠
+decorate	🎨 ✨ 🎄
+decorating	🎨 🖼️
+decorations	🎀 🎉 🎈 ✨
+decrease	📉 ⬇️
+decree	📜 👑 ⚖️
+decrypt	🔓 🔑
+ded	💀
+deducted	➖ 💸
+deductible	💸 🧾
+deduction	🧾
+deductions	➖ 🧾 💰
+deed	📜
+deeds	📜 ✅
+deep	🌊
+deep learning	🧠 🤖
+deep work	🧠 💻 🧘
+deeper	⬇️
+default	⚙️
+defaults	⚙️ 🔄
+defeat	🏳️ 😞 🥊
+defeated	😞 🏳️
+defect	❌ ⚠️ 🐛
+defective	⚠️ ❌ 🚫
+defects	⚠️ 🐞
+defence	🛡️
+defend	🛡️ ⚔️
+defendant	⚖️
+defendants	⚖️ 👨‍⚖️ 🏛️
+defender	🛡️ ⚔️ 🧱
+defense	🛡️ ⚔️
+defensive	🛡️
+deferred	⏳
+defi	💰 🏦
+defibrillator	⚡ ❤️ 🏥
+deficiencies	📉 ⚠️
+deficient	📉 ❌
+deficit	📉 💸
+define	📖
+definite	✅ 💯
+definition	📖 🔍
+deity	🙏
+delay	⏳ ⏰ 🕒 ⏸️
+delayed	⏰ ⏳
+delays	⏳ ⏰ 🚧 🕒
+delegated	📤 👥
+delegates	🧑‍💼 🤝 🗳️
+delegation	👥 🤝
+deleted	🗑️ ❌
+deleting	🗑️ ❌ ⌫
+deletion	🗑️ ❌
+deli	🥪 🧀 🥓
+deliberate	🤔 🧠
+delicate	🌸
+delight	😊 😄
+delighted	😄 🤩
+delightful	😊 😄 ✨
+delights	😋 ✨ 😄
+deliver	📦 🚚 📨
+deliverable	📦 ✅
+delivered	📦 🚚 ✅
+deliveries	📦 🚚
+deluge	🌊 🌧️ 💦
+delulu	🤪 🙃 ✨
+deluxe	💎 ✨
+demand	📈 📢
+dementia	🧠
+demi	½
+demo	💻 🎬
+democracy	🗳️ 🏛️
+democrat	🗳️
+democratic	🗳️ 🏛️ ⚖️
+demographic	👥 📊 📈
+demolition	💥
+demonstrate	🧑‍🏫 📊 👉
+demonstrates	📊 👉
+demonstrating	✊ 🗣️
+demonstrations	✊ 🪧 📢
+demote	⬇️ 📉 👎
+demotion	⬇️ 📉
+denial	🚫 🙅
+denied	❌ 🚫
+denies	❌ 🙅 🚫
+denmark	🇩🇰
+denote	➡️ 👉
+dentistry	🦷 🪥 😁
+dentists	🦷 🪥
+deny	🚫 🙅
+denying	🙅 🚫 ❌
+depart	🛫 ✈️ 👋
+departed	✈️ 🚪
+departments	🏢 🗂️
+depend	🤷 🔗
+dependable	✅ 🤝
+dependency	🔗 📦
+depending	🔀 🤔 ↔️
+depletion	🔋 📉
+deploy	🚀 📦
+deployed	🚀 ✅
+deploying	🚀 💻
+deployment	🚀 📦
+deposit	🏦 💰
+deposition	⚖️ 📜
+depot	📦
+deprecated	⚠️ 🚫
+depreciation	📉
+depression	🌧️ 😞 💔
+dept	🏢
+depth	🌊 ⬇️
+deputy	👮
+derby	🐎 🏇 🏆
+derivatives	📈 📊 🧪
+dermatology	🧴 🩺
+desc	⬇️ 🔽
+descendants	👨‍👩‍👧 👶
+descending	⬇️ 📉
+descent	⬇️
+describes	📝
+description	📝 📄
+descriptor	🏷️
+deserve	🏆 ⭐ 👏
+design	🎨 ✏️ 📐
+designer	🎨 ✏️
+designing	🎨 ✏️ 📐 🖌️ 💻
+desirable	😍 ✨ 🔥
+desire	❤️ 🔥
+desired	😍 ✨ 💭
+desk	🪑 🖥️
+desks	🖥️ 🪑
+despair	😞 😩 😭 💔
+desperate	😩 😫 🆘 🙏
+desperately	😰 😩 🙏
+desserts	🍰 🍨 🍩 🧁
+destination	📍 🗺️ 🏁
+destinations	🗺️ ✈️ 📍 🏖️
+destiny	🔮 ✨
+destroy	💥
+destroyed	💥 🔥 🏚️
+destruction	💥 🔥
+destructive	💥
+detached	🏡
+detail	🔍 🔎 🧐
+detailed	🔍 📝
+detailing	🔍 🧽
+details	🔍 📋 ℹ️
+detained	🚔 ⛓️
+detainees	⛓️ 🔒 🚔
+detect	🔍 🕵️
+detection	🔍 🕵️
+detector	🔍 📡
+detectors	🔍 🚨 📡
+detention	⛓️ 🚔
+deter	🛑 🚫 ⛔
+detergent	🧼 🧴 🫧
+deterioration	📉 ⬇️
+determination	💪 🔥
+determined	💪 😤 🎯
+determines	✅ ⚖️
+determining	🔍
+detour	↩️ 🛣️ 🚧
+detox	🧘 🥗
+deuce	🎾 2️⃣
+deutsch	🇩🇪
+deutsche	🇩🇪
+deutschland	🇩🇪
+dev	💻 👨‍💻
+devastating	💔 😢 😭
+develop	🛠️ 🌱 📈
+developed	🏗️
+developers	👩‍💻 👨‍💻 💻
+developing	🏗️ 🌱 💻
+development	🚀 📈 🛠️
+developments	📈 📰 🏗️
+device	📱 💻 🖥️
+devised	💡 🛠️
+devops	⚙️ 🔄 🐳
+devoted	❤️ 🙏
+devotion	🙏 ❤️
+devtools	🛠️ 🔧
+dew	💧 🌿
+dhcp	🌐 📡
+dia de los muertos	💀 🌼 🕯️
+diabetes	🩸 💉
+diabetic	🩸 💉
+diagnose	🩺 🔬 🩻
+diagnosis	🩺
+diagnostic	🩺 🔍 🧪
+diagram	📊 📈 📐
+diagrams	📊 📈 🗺️
+dial	📞 ☎️
+dialogue	💬 🗣️
+dialup	📞 💻 🌐
+dialysis	🏥 🩸 💉
+diamonds	💎 ♦️
+diapers	👶 🍼
+diaries	📔 📓 ✍️
+diarrhea	💩 🚽 🤢
+diary	📔 📖
+dictionaries	📖 📚
+dictionary	📖 📕
+diecast	🚗 🏎️
+dies	💀 ⚰️ 🪦
+dietary	🥗 🍎 🥦
+diets	🥗 🍎 ⚖️
+differ	≠
+differences	↔️ ⚖️ 🔀
+different	≠ 🔀
+differing	↔️ ⚖️
+differs	≠ ↔️
+difficulties	😓 😣
+difficulty	😓
+diffs	↔️
+diffusion	💨
+digest	📖 📰
+digestion	🍽️
+digging	⛏️ 🕳️
+digit	🔢
+digital	💻 📱 🖥️
+digital nomad	💻 ✈️ 🌴
+dilemma	🤔 😕
+diligence	💪 📚
+dill	🌿 🥒
+diluted	💧
+dime	🪙
+dimension	📏 📐
+dimensional	📐 📏 🧊
+dimensions	📏 📐 📊
+diminished	📉
+din	🔊 📢
+dinar	💵 💰
+dine	🍽️ 🍴
+diner	🍽️ 🍔 🍳
+diners	🍽️ 🍔 ☕
+ding	🔔
+dining room	🍽️ 🪑 🏠
+dining table	🍽️ 🪑
+dinners	🍽️ 🥘 🍲
+dinnerware	🍽️ 🍴 🥄
+dino	🦖 🦕
+diocese	⛪
+diode	⚡ 🔌 💡
+dioxide	💨 🫧
+dip	🫕 🥣
+diploma	🎓 📜
+diplomacy	🤝 🕊️ 🌍
+diplomatic	🤝 🕊️
+dire	⚠️ 😰
+direct debit	💳 🏦
+directed	🎬 ➡️
+directing	🎬
+directional	➡️ ⬅️ ⬆️ ⬇️ 🧭
+directions	🧭 🗺️ ➡️
+directives	📋 📜
+directly	➡️
+director	🎬 🎥
+directorate	🏛️
+directory	📁 📂 🗂️
+directs	👉 🎬
+dirt	🟤 🪴
+dirty	💩
+disabilities	♿ 🦽 🦼 🦯
+disabled	♿ 🦽 🦼
+disadvantage	👎 ⬇️
+disadvantages	👎 📉
+disagree	👎 🙅 ❌
+disappeared	💨 👻
+disappointing	😞 😔 🙁 👎
+disappointment	😞
+disapprove	🙅 👎
+disasters	🌪️ 🌋 🔥
+discard	🗑️ 🚮
+discharged	🏥 🔋
+disciplines	📚 🎓
+disclaimer	⚠️ 📄
+disclose	📢 🔓
+disclosure	📄 🔓
+disclosures	📄 🔍
+discography	💿 🎵 🎶
+discomfort	😣 😖
+disconnect	🔌 ❌
+disconnected	🔌 📵
+discontinued	🚫 ⛔
+discord	💬 🎮
+discounted	🏷️ 💸
+discounts	🏷️ 💸 💰
+discourse	💬 🗣️
+discover	🔍 🧭
+discovered	🔍 💡
+discovers	🔍 💡
+discovery	🔍 💡 🧭
+discreet	🤫
+discretion	🤫
+discs	💿 📀
+discuss	💬 🗣️
+discussion	💬 🗣️
+diseases	🦠 🤒 💊
+disgust	🤢 🤮
+disgusted	🤢 🤮 😖
+dish towel	🧽 🍽️
+dishes	🍽️ 🍲 🥘
+dishwasher	🍽️ 🫧
+disks	💿 💾
+dismissal	🚪 👋 ❌
+dismissed	❌
+dispatch	🚚 📦
+dispatched	📦 🚚
+dispenser	🚰
+dispensing	💊 🧴 ⛽
+display	🖥️ 📺
+displayed	🖥️ 🖼️ 📺
+disposable	🗑️ 🥤 🧻
+disposal	🗑️ ♻️ 🚮
+dispose	🗑️ ♻️
+disposed	🗑️ 🚮
+dispute	⚖️ 🗣️
+disputes	⚖️ 💢 😠
+disregard	🙈 🚫
+disruption	⚠️ 💥 🚧
+dissemination	📢 🌐
+dissent	✊ 🗣️
+dissertation	🎓 📄
+dissolution	💧 🧪
+dissolved	💧
+distance	📏 ↔️
+distances	📏 🛣️ ↔️
+distinction	🏅 ⭐
+distinctive	✨ ⭐
+distortion	〰️ 🔊 📉
+distress	😟 😫 🆘
+distressed	😟 😰 😫 😩
+distribute	📦 🚚
+distributed	🌐 📦
+distribution	📦 🚚
+distributions	📦 📊
+distributors	📦 🚚
+district	🏙️ 🏘️ 🗺️
+districts	🏘️ 🗺️
+disturbing	😟 😨
+ditch	🕳️
+diva	🎤 👑 💃
+diver	🤿 🌊
+diverse	🌈
+diversified	🌈 🎨
+diversion	🚧 ↪️
+diversity	🌈 🤝 🌍
+divided	➗ ↔️
+dividend	💰 📈
+dividing	➗ ✂️
+divine	✨ 🙏 😇
+divisions	➗
+divorce	💔 ⚖️
+divorced	💔 📄
+diwali	🪔 ✨ 🎆
+diy	🔨 🛠️ 🧰
+dj	🎧 🎛️ 🎵
+djembe	🥁 🪘
+djibouti	🇩🇯
+djs	🎧 🎛️ 🎶
+dll	💻 🧩
+dm	💬 ✉️
+dnd	🔕 🚫 ⛔
+dns	🌐 💻
+do not disturb	🌙 🔕 🚫
+do not enter	🚫 ⛔
+do you accept	✅ 🤝
+do you agree	👍 🤝
+do you approve	✅ 👍
+do you concur	👍 🤝
+do you consent	✅ 🤝
+do you get it	💡
+do you object	🚫 ✋
+do you understand	🧠
+doc	📄 📃
+dock	⚓ 🚢
+docker	🐳 📦
+docket	📋 ⚖️
+docking	⚓ 🚢 🔌
+docs	📄 📑 📁
+doctoral	🎓 📜
+doctorate	🎓 📜
+doctors	🧑‍⚕️ 🩺 💉
+doctrine	📜 ⛪
+documentary	🎥 🎬 📽️
+documentation	📄 📚 📝
+documented	📄 📝 📑
+documenting	📝 📄
+documents	📄 📃 🗂️ 📁
+dodge	🤸 ↪️
+doe	🦌
+does that make sense	🧠
+does that work	✅
+doing	🏃
+dollars	💵 💲 💰
+domain	🌐 🔗
+dome	🕌 🏛️
+domestic	🏠 🏡
+dominance	👑 💪
+dominant	💪 👑
+dominate	👑 💪
+dominated	👑 🏆 💪
+domination	👑
+dominica	🇩🇲
+dominican	🇩🇴
+dominion	👑
+domino	🁢 🁣
+don't mention it	😊 🤫
+donate	💝 🤝
+donated	🎁 🤲 💝
+donations	🎗️ 💝 🤲
+donor	🎁 🩸
+doom	💀 ☠️
+doomed	💀 ☠️ ⚰️
+doomsday	☢️ 💥 🌋
+doppler	📡
+dorm	🛏️ 🏫
+dos	✅ 💻
+dosage	💊 💉
+dose	💊 💉
+double quote	“ ” " ❝ ❞
+doubled	2️⃣
+doubles	2️⃣ ✌️
+doubts	🤔 ❓
+dough	🍞 🥐
+downhill	⛷️ ↘️
+downing	⬇️
+download	⬇️ 💾 📥
+downloadable	⬇️ 📥 💾 💻
+downpour	🌧️ ☔ 🌊
+downs	⬇️ 📉
+downstairs	⬇️ 🪜
+downstream	⬇️ 🌊
+downtime	⏸️ 🛑 😴
+downtown	🏙️ 🌆
+dozens	🔢
+dpi	🖨️ 🔍
+draft	📝 📄 ✍️
+drafting	✏️ 📐
+drag	🖱️ 🏁
+dragon boat	🐉 🛶
+dragon fruit	🐉 🍈
+drain	🕳️ 🚿 💧
+drainage	🚰 💧
+dram	֏ 🥃
+drama	🎭 📺
+dramas	🎭 🎬
+dramatic	🎭 😱
+drank	🍺 🥤 🍷
+draw	✏️ 🎨 🖌️ 🖍️
+drawer	🗄️
+drawings	🎨 ✏️ 🖍️
+drawn	✏️ 🎨 🖌️
+dread	😨 😰
+dreamcast	🎮
+dreamy	😴 💭 ✨
+dreidel	🕎 ✡️
+drift	🏎️ 🌊 💨
+drill	🪛 🛠️
+drilled	🔩 🪛
+drilling	⛏️ 🛢️
+drills	🔩 🛠️
+driven	🚗
+driver	🚗 🧑‍✈️
+drives	🚗 💾
+driveway	🚗 🏠
+drizzle	🌦️ 🌧️ 💧
+drm	🔒 ©️
+dropdown	🔽 ⬇️
+dropper	💧 🧪
+dropping	⬇️
+drosophila	🪰
+drowning	🌊 🆘
+drug	💊
+druid	🌳 🌿 🧙
+drum kit	🥁 🎶
+drummer	🥁 🎶 🪘
+drunken	🍺 🥴 🍻
+dryer	🌀 👕 🧺
+drying	☀️ 💨
+drying rack	🧺 👕 ☀️
+dsp	🎛️ 🔊
+dst	🕒 ⏰
+dual	2️⃣
+dubbed	🎙️ 🎬
+dubstep	🎧 🔊
+duchess	👑 👸
+dude	😎 🧑
+due	📅 ⏰
+due date	📅 ⏰
+dues	💵 🧾
+dug	⛏️ 🕳️
+dui	🚗 🍺 ⛔
+duke	👑 🤴
+dull	😐
+dumbbell	🏋️ 💪
+dump	🗑️ 💩
+dumped	🗑️ 💔
+dumping	🗑️ 🚮
+dun	🟤
+dune	🏜️ 🐪
+dunes	🏜️ 🏖️
+dungeon	🏰 ⛓️ 🗝️
+dungeons	🏰 🐉
+dunk	🏀 💦
+duo	👥 2️⃣
+duplex	🏘️ 🏠
+duplicate	📋 📄
+duplicated	📄 📋
+duplication	📄 📋
+durability	💪 🛡️
+durable	💪 🛡️
+duration	⏱️ ⏳
+durian	🥭 🍈
+during	⏳
+dust	🧹 🧽 💨
+dust storm	🌪️ 🏜️ 💨
+duster	🪶 🧹
+dustpan	🧹 🗑️
+dusty	💨 🌫️
+dutch	🇳🇱
+duties	📋 💼
+duty	💼 🎖️
+duvet	🛏️ 🛌
+dvr	📺 ⏺️
+dwell	🏠
+dwellings	🏠 🏡 🏘️
+dye	🎨 💇
+dyes	🎨 🧪
+dying of laughter	😂 🤣 😆 💀
+dynamic	⚡ 🔄
+dynasty	👑 🏯
+dystopia	🏚️ ☢️
+eager	🤩 😄 🙌
+earlier	⏪ ⏰
+earliest	⏰ 📅
+early	⏰ 🌅 🐦
+early access	🎮 🕹️ 🔜
+earn	💰 💵 💸
+earned	💰 🏆
+earning	💰 💵 📈
+earth day	🌍 🌱 ♻️ 🌳
+earth sign	♉ ♍ ♑ 🌍
+ease	😌
+easel	🎨 🖼️ 🖌️
+easter	🐰 🥚 🐣 🌷
+easter bunny	🐰 🐇 🥚
+easter egg	🥚 🐰 🐣
+eastern	🧭 🌅
+eaten	🍽️ 😋
+eater	🍽️ 😋
+eating	🍽️ 😋 🍴
+eats	🍽️ 😋 🍴
+eau	💧
+ebony	⬛ 🖤
+ebook	📱 📖
+ebooks	📱 📚
+ebusiness	💻 🛒 💼
+ecard	💌 📧
+echo	🔊 🔁
+echoes	🔊 🗣️
+eclipse	🌑 🌒 ☀️
+eco	🌱 ♻️ 🌍 🍃
+ecological	🌍 🌱
+ecology	🌿 🌍 ♻️ 🌱
+ecommerce	🛒 💳
+econ	📊 📈 💰
+economic	💰 📈 🏦
+economical	💰
+economics	📈 💰 📊
+economies	📈 💹
+economist	📊 📈 💰
+economists	📈 💰
+economy	💹 📈 💰
+ecosystem	🌿 🌍
+ecosystems	🌿 🌳 🌍
+ecstasy	🤩 😍 🥳
+ecstatic	🤩 😄 🥳
+ecuador	🇪🇨
+eddy	🌀
+eden	🌳 🍎 🐍
+edit	✏️ 📝 ✂️
+edited	✏️ 📝 ✂️ 🖊️
+edition	📖 🗞️
+editions	📚
+editor	✏️ 📝
+editorial	📰 ✍️ 📝
+editors	✏️ 📝 📰
+educ	🎓 📚
+educate	📚 🎓 🏫
+educated	🎓
+educating	📚 👩‍🏫 🎓 🍎
+educational	🎓 📚 🏫
+educator	👩‍🏫 📚 🍎
+educators	👩‍🏫 👨‍🏫 📚
+effect	✨ 💥
+effective	✅ 🎯
+effectiveness	✅ 📈 🎯
+efficacy	✅ 📈
+efficiency	⚡ ⏱️ 📈
+efficient	⚡ ⏱️ 📈
+effluent	💧 🚰
+effort	💪 🏋️ 🏃
+egg roll	🥚 🌯 🥢
+eggnog	🥛 🥚 🎄
+ego	🪞
+egypt	🇪🇬
+egyptian	🇪🇬
+eh	🤷 😐 🫤
+eid	🌙 🕌 🐑
+eid mubarak	🌙 🕌 ✨
+eighty	8️⃣ 0️⃣
+elapsed	⏳ ⏱️
+elastic band	➰
+elated	🤩 🥳 😄
+elbow	💪
+elder	👴 👵
+elec	⚡ 🔌
+elect	🗳️ ✅
+election	🗳️ 🏛️
+electives	📚
+electoral	🗳️
+electrical	⚡ 🔌 💡
+electrode	⚡ 🔋
+electrodes	⚡ 🔌 🔋
+electromagnetic	🧲 ⚡
+electron	⚛️ ⚡
+electronica	🎧 🎶
+electronically	💻 ⚡
+electronics	💻 📱 🖥️ 🔌
+electrons	⚡ ⚛️
+elegance	✨ 👗 💎
+elemental	🔥 💧 🌬️ 🌍 ⚛️
+elementary	🏫 📚 🎒
+elements	⚛️ 🧪 🔥 💧
+elevated	⬆️ 🚡
+elevation	⛰️ ⬆️
+eligibility	✅ 📋
+eligible	✅
+eliminate	❌ 🗑️ 🚫
+elimination	❌ 🚫
+elite	👑 🌟 🏆
+elixir	⚗️ 🧪 ✨
+elm	🌳
+elsewhere	🌍 ✈️
+email me	📧 ✉️
+embarrassing	😳 🙈
+embassy	🏛️ 🛂
+embraced	🤗 🫂
+embroidered	🧵 🪡
+embryos	🧬 🤰 🧫
+emerald	💎 💚 🟢
+emerged	🌅 🐣
+emergence	🌱 🐣
+emergencies	🚨 🆘 🚑
+emergency exit	🚪 🏃 🚨
+emerges	🌱
+emerging	🌱 🌅 ⬆️
+emeritus	🎓 🧓
+emigration	🧳 ✈️ 🛂
+eminent	⭐
+emirates	🇦🇪
+emission	💨
+emissions	🏭 💨
+emo	🖤 🎸
+emoticon	😀 🙂
+emoticons	😀 😄 😉
+emotional	😭 💔
+emotionally	😢 💔 😭
+emotions	😊 😢 😡 😮 ❤️
+emperor	👑
+emphasis	❗ ✨
+emphasize	❗ 🔊
+empire	👑 🏰 🏛️
+empirical	🔬 🧪 📊
+employ	💼 🤝
+employee	🧑‍💼 💼 🪪
+employees	👥 🧑‍💼 🏢
+employer	🧑‍💼 🏢 💼
+employers	💼 🏢
+employment	💼 👔 🏢
+emporium	🏪 🛍️
+empower	💪 ✊
+empowerment	💪
+empty state	🕳️ ⬜
+ems	🚑 🚨
+emu	🐦
+emulation	🖥️ 🎮
+emulator	🕹️ 💻
+enable	✅ 🟢 🔛
+enabled	✅ 🟢 ⚙️
+enabling	✅ 🔓 ⚙️ 🛠️
+enacted	📜 ⚖️
+enamel	🦷
+enchanted	✨ 🪄 🧚
+enchilada	🌯 🌶️ 🌮
+enclosed	📦 ✉️
+enclosure	📦 📎
+enclosures	📎 ✉️ 📦
+encode	💻 🔐
+encoded	🔐 💻 🔒
+encore	👏 🎤 🎶
+encounter	🤝 👀
+encourage	👏 💪 🙌 🌟
+encouragement	💪 🤗
+encourages	👍 💪
+encrypted	🔒 🔐
+encryption	🔐 🔒 🔑
+encyclopedia	📚 📖
+end key	🔚
+endangered	⚠️
+endeavor	🚀
+endeavour	💪 🛠️
+ended	🔚 🏁
+ending	🔚 🏁
+endless	♾️
+endorse	👍 ✅
+endorsed	✅ 👍
+endorsement	👍 ✅ 🤝
+endowment	💰 🏦 🎓
+endpoint	🔚 ➡️ 📍
+ends	🔚 🏁
+endurance	💪 🏃
+endure	💪 ⏳
+enduring	♾️
+enemy	😠 😡
+energetic	⚡
+energies	⚡ 🔋
+energy drink	🥤 ⚡ 🧃
+energy gel	⚡ 🧪 🏃
+enforce	👮 🚔 ⚖️
+enforced	⚖️ 👮
+enforcement	👮 🚔
+eng	🏴󠁧󠁢󠁥󠁮󠁧󠁿
+engineered	⚙️ 🛠️ 🏗️
+engineering	⚙️ 🛠️ 🏗️ 📐
+engineers	🧑‍🔧 🔧 ⚙️ 🛠️
+engines	⚙️ 🚗 🚂
+england	🏴󠁧󠁢󠁥󠁮󠁧󠁿
+english	🇬🇧
+engraved	✒️
+engraving	✒️ 🖋️
+enhance	✨ 📈 ⬆️ 🔧
+enhancement	⬆️ ✨ 👍
+enhancements	✨ ⬆️ 🔧
+enjoy	😊 😋 🎉
+enjoyable	😊 😄 😃 🎉
+enjoying	😊 😄 🎉
+enjoyment	😄 😊 🎉
+enjoys	😄 😊
+enlarge	🔍 🔎
+enlargement	🔍
+enlisted	🪖 🎖️
+enormous	🐘 🏔️
+enough	✅ 👍
+enquire	❓ 🔍
+enquiry	❓ 📧 📞
+enrichment	📚 🌱 ✨
+enroll	📝 🎓
+enrollment	📝 🎓
+enrolment	📝 ✅
+ensemble	🎻 🎼 🎺
+ensure	✅
+enter key	⏎ ↵
+entered	🚪 ➡️
+entering	🚪
+enterprise	🏢 💼 🚀
+enters	🚪 ➡️
+entertain	🎭 🎉
+entertaining	🎉 🍿 🎭
+enthusiasm	🎉 🔥
+enthusiastic	🤩 😃 🙌 🎉
+enthusiasts	🤩
+entirely	💯
+entitlement	📜
+entity	🏢
+entrance	🚪 ➡️ 🎟️
+entrepreneur	💼 🚀 📈
+entrepreneurial	💼 🚀 📈
+entrepreneurship	💼 🚀
+entropy	🌀 🌪️
+enumeration	🔢 📋
+env	🌍 ⚙️
+envious	😒 💚
+environ	🌍 🌿
+environment	🌍 🌱 ♻️ 🌳
+environmental	🌍 🌱 ♻️
+envy	💚 👀
+enzyme	🧪 ⚗️ 🧬
+eod	🌇 ⏰
+eom	📅 🗓️ 🏁
+eow	📅 🗓️ 🎉
+epidemic	🦠 😷
+epidemiology	🦠 📊
+episcopal	⛪ ✝️
+episode	📺 🎬 ▶️
+epoch	⏳ 🕰️
+epoxy	🔧 🧪
+equally	⚖️
+equation	🧮 ➕
+equations	➗
+equatorial	🌍 🌴 ☀️
+equilibrium	⚖️
+equinox	🌗 ⚖️
+equip	🧰 🛠️ 🔧
+equipment	🛠️ ⚙️ 🔧
+equities	📈 💹
+equity	⚖️
+equivalence	⚖️ 🟰
+equivalents	🟰 ⚖️
+era	⏳ 🕰️ 📜
+erected	🏗️
+ergonomic	💺
+eritrea	🇪🇷
+erm	🫤 🤔 🤷
+err	❌
+erroneous	❌ ⚠️
+error state	❌ ⚠️ 🐞
+errors	❌ ⚠️ 🐛
+escalate	⬆️ 🚨
+escalator	⬆️ ⬇️ 🛗
+escaped	🏃 💨
+escapes	🏃 💨
+escherichia	🦠 🧫 🔬
+escrow	🤝 💰 🏦
+esd	⚡
+espanol	🇪🇸
+especially	⭐
+esports	🎮 🕹️ 🏆
+espresso	☕
+espresso machine	☕ ⚙️ 🛠️
+essay	📝 📄 ✍️
+essence	✨ 💧
+essential	❗ 🔑
+established	🏛️
+establishes	🏗️ ✅
+establishment	🏢 🏛️
+estate	🏠 🏡
+estates	🏡 🏰 🏘️
+estimate	📊 🧮 🔢
+estimated time	⏱️ ⏳ 🕐
+estimation	≈ 🧮
+estonia	🇪🇪
+estonian	🇪🇪
+estuary	🌊 🏞️
+etc	…
+etd	✈️ 🛫 ⏰
+eternal	♾️ 🕰️
+eternity	♾️ ∞ ⏳
+ethanol	⛽ 🧪
+ether	🌫️ ☁️
+ethereal	✨
+ethernet	🔌 🌐 💻
+ethics	⚖️
+ethiopia	🇪🇹
+ethiopian	🇪🇹
+etiology	🔬 🩺
+euphoria	🤩 😄 💖
+euphoric	🤩 🥳 😄
+eureka	💡 ❗
+evacuation	🚨 🏃 🚒
+eval	📝
+evaluate	📊 📝
+evaluated	📊 ✅
+evaluates	🔍 📝
+evaluation	📊 📝
+evaluations	📝 📊 📋
+evangelical	✝️ ⛪
+even	⚖️ ➗ 2️⃣
+event	📅 🎉 🎟️
+events	📅 🎉 🎫
+eventually	⏳ 🔜
+everest	🏔️ ⛰️
+everlasting	♾️
+everybody	👥 🧑‍🤝‍🧑
+everyday	📅 ☀️ 🔁
+everywhere	🌍 🌎 🌏
+evidenced	🔍 📄
+evident	👀 ✅ 💡
+evolutionary	🧬
+evolve	🧬 🌱
+evolving	🔄 🌱 🦋
+eww	🤢 🤮
+exactly	🎯 ✅ 💯
+exam	📝 📚
+examination	📝 🔍 🧪 📋
+examinations	📝 📚
+examine	🔍
+examiners	📝 🔍
+examines	🔍 🧐
+examining	🔍 🔎
+example	💡
+exams	📝 ✏️ 📚
+excalibur	🗡️ 👑
+excavation	🚜 ⛏️
+exceed	📈
+exceeded	📈 ⬆️
+exceeding	📈 🚀
+exceeds	📈 ⬆️
+excellence	🏆 ⭐ 🌟
+excellent	👍 💯 🌟
+exception	⚠️ ❗ 🚫
+exceptional	⭐
+exceptionally	🌟
+excerpts	📄 📝
+exchanged	🔄 🤝
+exchanges	🔄 💱
+excite	🤩 🎉
+excitement	🤩 🎉
+exciting	🎉 🤩 ✨
+excl	❗
+exclamation point	❗ ‼️ ❕
+exclude	🚫
+excludes	🚫 ❌ ⛔
+excluding	➖ 🚫
+exclusive	💎 🔒 ⭐
+excursion	🚌 🧳 🗺️
+excuse	🙇 🙏 🙄
+excuse me	🙏 🙇
+exe	💾 ⚙️
+exec	💼 👔
+executable	💻 ▶️ 🖥️
+execute	▶️
+executing	▶️ 💻 ⚙️
+execution	⚙️ ▶️ ✅
+executive	💼 👔 🏢
+executives	🧑‍💼 👔 💼 🏢
+exemplary	⭐ 🏆 ✅
+exercised	🏋️ 💪 🏃
+exercises	🏋️ 🤸 🏃
+exercising	🏋️ 💪 🏃
+exhaust	💨 🚗 😮‍💨
+exhibit	🖼️ 🏛️ 🎨
+exhibition	🖼️ 🎨
+exhibitions	🖼️ 🏛️ 🎨
+exhibitor	🖼️ 🎪
+exif	📷 🖼️
+exit	🚪 ➡️ 🔚
+exit sign	🚪 ➡️ 🪧
+exodus	🚶
+expandable	↔️
+expanding	📈 ↔️ ➕
+expands	↔️ 📈 ➕
+expansion	📈 ↔️ 🏗️ ➕
+expat	🧳 ✈️ 🌍
+expectancy	⏳ 🤞
+expectation	🤞
+expected	⏳ 📅
+expecting	🤰 👶
+expedited	⚡ 🚀 📦
+expedition	🧭 🗺️ ⛺ 🏔️ 🎒
+expeditions	🧭 🗺️ ⛰️ 🎒
+expenditure	💸 🧾 💰
+expense	💸 🧾 💳
+expenses	💸 💰 🧾
+experience	⭐ 🧠 🎓
+experimental	🧪 🔬
+experimentation	🧪 🔬 ⚗️
+experiments	🧪 🔬 ⚗️
+expertise	🎓 🧠
+experts	🎓 🧠
+expiration	⏳ 📅
+expire	⌛ ⏳
+expired	⏰
+expires	⏳ ⌛ 📅
+expiry	📅 ⏳
+explain	💬 🗣️
+explanation	💬 💡 📝
+explanatory	ℹ️ 💬
+exploded	💥
+exploit	💻 🔓 🛡️
+exploration	🧭 🗺️ 🔍
+explore	🧭 🗺️ 🔍
+explorer	🧭 🗺️ 🏔️
+explorers	🧭 🗺️ ⛵
+expo	🎪 🏢
+exponential	📈 ♾️
+export	📤 📦 🚢
+exported	📦 🚢 📤
+exporter	📦 🚢 🌍
+exporters	🚢 📦
+exporting	📦 🚢 ✈️ 🌍
+exports	📦 🚢 📤
+exposing	📢 👀
+exposures	📷 ☀️
+express	🚄 ⚡ 📦
+expresses	🗣️ 💬
+expressing	💬 🗣️
+expression	😊 🎭
+expressions	😀 😮 😢
+expressive	😃 🎭
+expressway	🛣️ 🚗
+extend	↔️ ➡️ 📏
+extension	🧩 🔌 📎
+extensive	📚 🌐 ↔️
+exterior	🏠 🧱 🌳
+extra time	⏱️ ➕
+extracted	⛏️
+extracting	📤 ⛏️
+extraction	🦷 ⛏️
+extraordinary	✨ 🤩
+extras	✨ ➕ 🎁
+extremes	🌡️
+eye roll	🙄 😒 👀
+ezine	📰
+fab	✨ 💅
+fable	📖 🦊
+fabric	🧵 🧶 🪡
+fabricated	🏭 🤥
+fabrication	🏭
+fabrics	🧵 🧶 👕
+fabulous	✨
+face mask	😷
+facial	💆
+facials	💆 🧖
+facilitating	🤝
+facilitation	🤝 🧑‍🏫
+facilitator	🤝
+facility	🏢 🏭
+facsimile	📠
+fact	✅ ℹ️
+factorial	🧮 ❗
+factoring	🧮 ➗
+facts	📊 ℹ️
+faculties	🎓 🏫
+faculty	🏫 🧑‍🏫 📚
+faded	🌫️
+fading	🌇 🌫️
+failed	❌ ⚠️ 📉
+failing	❌ 📉
+fails	❌ 📉
+failure	❌ 📉
+failures	❌ ⚠️ 💥
+faint	😵 😵‍💫
+fair	⚖️ 🎪 🎡
+fairness	⚖️
+fairs	🎡 🎪
+faith	🙏 ✝️
+fajita	🌯 🌶️ 🥩
+fake	🎭 🤥
+falcon	🦅
+falkland	🇫🇰
+fallen leaves	🍂 🍁 🍃
+false	❌ 🚫 ✖️
+fam	👪 👨‍👩‍👧‍👦
+fame	🌟 ⭐ 🏆
+families	👨‍👩‍👧‍👦 👪
+family day	👨‍👩‍👧‍👦 👪 ❤️
+famous	⭐ 🌟
+fang	🦷 🧛 🐺
+fantasies	🦄 🧚 ✨
+fantastic	🤩 🌟 ✨
+fantastic work	👏 🏆 💯
+faq	❓ ℹ️
+far	🗺️ 🌌
+farad	⚡ 🔋
+fare	🎫 💵 🚌
+farmhouse	🏡 🌾 🚜
+farms	🚜 🌾 🧑‍🌾
+faroe	🇫🇴
+fashionable	👗 👠 🕶️ ✨
+fashions	👗 👠
+fast food	🍔 🍟 🍕 🥤
+fasteners	🔩
+faster	⚡ 🏃 💨
+fastest	⚡ 🏎️ 💨
+fatal	💀 ☠️
+fate	🔮 🎲
+father christmas	🎅 🎁 🎄
+father in law	👨‍👩‍👧‍👦
+fathers	👨
+fatigue	😴 🥱 🪫
+fats	🧈 🥓
+faucet	🚰 💧
+fault	⚠️ ❌ 🐞
+faults	❌ ⚡
+faulty	⚠️ ❌ 🔧
+fauna	🐾 🦁
+fav	⭐ ❤️
+fave	⭐ ❤️ 👍
+favicon	🌐 📌 🔖
+favorable	👍 ✅
+favored	⭐ 👍 ❤️
+favorite	⭐ ❤️ 👍
+favour	🤝
+favourites	⭐ ❤️
+fda	💊 🏛️
+feared	😨 😱
+fears	😨 😱
+feasibility	✅ 🤔
+feast	🍽️ 🍗 🦃
+feat	🏆 ⭐
+feature	⭐ ✨
+feature flag	🚩 ⚙️ 🧪
+features	✨ ⭐
+featuring	⭐ 🎬 🎤
+feb	📅 2️⃣ 🗓️
+february	📅 💘 ❄️
+federal	🏛️
+federation	🏛️ 🤝
+fedora	🎩
+fee	💸 💰 🧾
+feedback	💬 📝 👍
+feeders	🐦
+feeds	📰 📡 🔔
+feel	😊 💭 😢
+feel better	🤗 💖
+feeling	💭 ❤️ 😊
+fell	🤕 ⬇️
+fellow	🤝
+fellows	👥 🤝
+fellowship	🤝 🎓
+feminism	♀️ ✊
+femme	👩
+fence	🚧 🪵
+fennel	🌿 🥬
+fern	🌿
+fertile	🌱 🌾 🤰
+fertility	👶 🌱 🤰 🌾
+fertilizer	🌱 🪴
+fest	🎉 🎊 🎪
+festivals	🎉 🎊 🎪 🎆
+fetal	🤰
+fiance	💍 🤵 💒
+fiancee	💍 👰 💒
+fiber	🥦 🌾 🧵
+fiberglass	🛶 🏄
+fibers	🧵 🧶 🌾
+fibre	🧵 🥦
+fiction	📖
+fictional	📖 🎭
+fiddle	🎻 🎶
+fielding	⚾
+fields	🌾 🏟️
+fierce	🦁 🔥
+fiery	🔥
+fiesta	🎉 🪅 💃
+fighters	🥊
+fighting	🥊 ⚔️
+fights	🥊 ⚔️
+figure	📊 🔢
+figured	💡 🤔
+figurine	🗿 🧸
+fiji	🇫🇯
+filename	📄
+filesize	💾
+filesystem	📁 🗂️ 💾
+filings	📁 🗂️ 📄
+filipino	🇵🇭
+fills	🫗
+filme	🎬 🎥 🎞️
+filmed	🎬 🎥 📹
+filming	🎬 🎥 📹
+filmmakers	🎬 🎥
+filmography	🎬 🎥 📽️
+films	🎬 🎥 🎞️ 📽️
+filter	🔍 📷 ☕
+filth	🤢 🗑️
+filthy	💩 🤢 🦠
+filtration	🧪
+fin	🦈 🏁
+final	🔚 🏁 🏆
+final table	🏆 🏁
+finale	🎬 🏁 🎆
+finalised	✅ ✔️ 🔚
+finalized	✅ ✔️ 🔚
+finally	🏁 🎉
+finals	📚 📝 🏆
+finance	💰 💵 📈 🏦
+financed	💰 🏦 💳
+finances	💰 💵 🏦 💳 📊
+financial	💰 📈 🏦
+financially	💰 💵 🏦
+financials	💰 📊 📈 💵 🧾
+financing	💰 🏦 💳 💵
+finch	🐦
+find	🔍 🔎
+finder	🔍
+finding	🔍 🔎 🕵️
+findings	🔍 📊 📋
+fined	💸
+finely	✨
+fines	💸
+finest	⭐
+fingers crossed	🤞 🍀
+fingertips	👆 🖐️
+finished	✅ 🏁
+finland	🇫🇮
+finnish	🇫🇮
+fins	🐟 🦈 🤿
+fir	🌲
+fire alarm	🚨 🔥 🧯
+fire blanket	🧯 🔥
+fire exit	🚪 🏃
+fire sign	♈ ♌ ♐ 🔥
+firefly	✨ 🌟
+fireplace	🔥 🪵
+firewall	🔥 🧱 🛡️
+firewire	🔌
+firm	🏢 💼 💪
+firmware	🖥️ 💾
+first aid	⛑️ 🩹 🚑 🏥
+firstly	1️⃣
+fiscal	💰
+fisher	🎣 🐟
+fisheries	🎣 🐟
+fisherman	🎣 🐟
+fishermen	🎣 🐟
+fishery	🐟 🎣
+fist bump	🤜 🤛 👊
+fit	💪 🏋️
+fitness	💪 🏋️ 🏃
+fitting	📐 👌
+fittings	🔩 🔧 🚰
+five star	⭐
+five stars	⭐
+fixes	🔧 🛠️
+fixing	🔧 🛠️
+fixture	💡 🚿
+fixtures	🔧 💡
+fjord	🏔️ 🌊 🇳🇴
+flagship	🚢 ⭐
+flammable	🔥 ⚠️
+flare	🔥 🚨 💥
+flashcards	🗂️ 📇 📚
+flashes	⚡ 📸
+flashing	⚡ 💡 🚨
+flask	⚗️ 🧪 🍶
+flatmate	🏠 👥
+flavored	😋 👅
+flavors	😋
+flavour	😋 👅
+flaw	⚠️
+flawless	✨ 💯 💎
+fled	🏃 💨
+flee	🏃 💨
+fleece	🐑 🧥 🧶
+fleet	🚗 🚚 🚢 ✈️
+flesh	🥩 🍖
+flew	✈️ 🛫
+flexibility	🤸 🧘
+flexible	🤸
+flights	✈️ 🛫 🛬
+flint	🔥 🪨
+flood	🌊 🌧️
+flooded	🌊 💧
+flooding	🌊 🚨
+flooring	🪵
+floors	🪵
+floral	💐 🌸 🌷 🌺
+florist	💐 🌸
+florists	💐 🌷 🌸 🌹
+flour	🌾 🍞
+flow	🌊 ➡️
+flowering	🌸 🌺 🌼
+flowers	🌸 🌷 🌹 🌻 💐
+flown	✈️
+fluctuations	📈 📉
+fluid	💧
+fluids	💧 💦
+fluorescence	💡 ✨ 🔆
+fluorescent	💡
+flush	🚽
+flux	🔄 〰️
+flyer	📄 ✈️
+flyers	📄 📣 ✈️
+foam	🫧 🧼 🍺
+fob	🔑
+focal	🎯 🔍
+focused	🎯 🔍
+focuses	🎯 🔍
+focusing	🎯 🔍
+foil	🤺
+fold	👕 🧺
+folders	📁 📂
+folds	📄
+foliage	🌿 🍃 🍂
+folio	📁 📄
+folk	👥 🎸 🎻
+folks	👪 👥
+follow	➕ 👤 👣
+follow up	📧 ⏰
+followed	👣 ➡️
+follower	👥 👤
+following	👥 ➡️ 🔔
+follows	➡️ 👣
+followup	🔁 📩
+fomo	😰
+fond	❤️ 🥰 😊
+font	🔤
+fonts	🔤 ✍️
+foods	🍔 🍕 🍲
+fool	🤡 🃏
+foolish	🤡 🤪
+footage	🎥 📹
+footer	⬇️ 📄
+footwear	👟 👞 👠 🥾 👢 🩴
+for sure	✅ 💯 👍
+for your information	ℹ️
+forcing	💪
+fore	⛳ 🏌️
+forecasting	🌦️ 📈 🔮
+forecasts	🌦️ 📈 🔮
+foreclosure	🏚️ 🏠 📉
+forefront	🔝
+foreign	🌍 ✈️
+foreigner	🌍 ✈️
+foreman	👷 🏗️
+foremost	🔝
+forensic	🔬 🔍
+forestry	🌲 🌳
+forests	🌲 🌳
+foreword	📖 📝
+forex	💱 💹
+forge	⚒️ 🔥
+forgive me	🙏
+forgiveness	🙏
+forks	🍴
+form	📋 📝
+formally	👔 🎩
+format	📄 🗂️
+formations	🪨 🪖 🛩️
+formatting	📝 🔤
+former	⏮️
+forms	📝 📋
+formula	🧮 ➗ 🧪
+formulas	🧮 ➗ ✖️ 📐
+formulate	📝 💡
+fort	🏰
+forte	💪 🎵
+forthcoming	🔜 📅 ⏳
+fortress	🏰 🛡️
+fortunate	🍀
+forum	💬 🗣️
+forums	💬 👥
+forward delete	⌦ 🗑️
+forwards	➡️ ⏩
+fossil	🦴 🪨 🦕
+fossils	🦴 🦖 🦕 🐚
+foster	🏠 🤗
+fostering	🏠 ❤️
+foto	📷 📸
+fought	⚔️ 🥊
+foul	🤢 🤮
+found	🔍 ✅
+foundation	🏗️
+founders	🏗️ 🚀
+founding	🏛️ 📜 🏗️
+foundry	🏭 🔥
+fourth of july	🇺🇸 🎆 🎇
+foxtrot	💃 🕺
+fps	🎮 🔫
+fractional	½ ¼ ¾
+fracture	🦴 🩹 ⛑️
+fractures	🦴 🤕 🩼
+fragment	🧩
+fragmentation	🧩
+fragrance	🌸 🌹 🌺 💐
+fragrances	🌸 🌹 👃
+framework	🏗️ 🧩
+francais	🇫🇷 🥐
+francaise	🇫🇷
+france	🇫🇷
+franchises	🏪
+franchising	🏪 🤝
+francs	💶
+frankenstein	🧟 ⚡
+frankly	🗣️ 💬
+fraternity	🏛️ 🎓
+fraud	💳 🚨 💸
+fraudulent	🚫 💳 ⚠️
+frauen	👭 👩
+free kick	⚽ 🥅
+free shipping	🚚 📦
+freebies	🎁 🆓
+freed	🔓 🕊️
+freedoms	🕊️ 🗽
+freelance	💻 🏠 💼
+freelancer	🧑‍💻 💻 💼
+freeroll	🃏 🎰
+freeware	💻 🆓
+freeway	🛣️ 🚗
+freeze	🥶 🧊 ❄️
+freezer	🧊 ❄️
+freezing rain	🌧️ ❄️ 🧊
+freight	🚛 📦 🚂 🚚
+fren	🫂 🤗 👫
+french toast	🍞 🍳
+frenzy	🤪 🤯 🌀 😵‍💫
+freq	📻
+frequencies	📶 📡
+frequency	📶 📻 📈
+frequent	🔁
+frequently	🔁 🔄
+freshly	🌿
+freshman	🎓 📚 🏫
+freshmen	🎓 📚
+freshwater	💧 🐟
+fri	📅
+friction	🔥
+friday	📅 🍻
+fridays	🎉 📅
+fridge	🧊 ❄️ 🥛 🧀
+fried rice	🍚 🍳
+friendly	😊 🤝
+friendship day	🤝 🧑‍🤝‍🧑 💛
+frontal	🧠 ⬆️
+frontend	💻 🧑‍💻 🎨
+frontier	🤠 🌵 🌄
+frontiers	🗺️ 🌄 🧭
+frontpage	📰
+frost	❄️ 🥶
+frosting	🧁 🍰
+frozen	🧊 ❄️ 🥶
+fruits	🍎 🍌 🍇 🍊 🍓 🍉
+frustrating	😤 😩 😫
+frying pan	🍳 🥘
+ftfy	🔧 ✅
+ftse	📈 💹
+ftw	🏆 🎉
+fud	😨 😰
+fudge	🍫 🍬
+fulfil	✅
+fulfill	✅
+fulfilled	✅ 😊
+fulfilling	😊 ✨
+fulfillment	📦 ✅ 😊
+full screen	⛶ 🖥️
+full stack	💻 🧑‍💻
+fullstack	💻 🧑‍💻
+fully	✅ 💯
+fun	🎉 😄 🥳 🎈
+func	ƒ
+function	ƒ
+functional	✅ ⚙️ 🛠️
+functions	⚙️
+fund	💰 🏦 🪙
+fundamental	🧱
+fundamentals	📚
+funding	💰 💵 🏦
+fundraiser	💰 🎗️
+fundraising	💰 🤝 🎗️
+funds	💰 💵 🏦
+fungal	🍄
+funk	🎸 🎺 🎷 🕺
+fur	🦊 🧥 🐺
+furnace	🔥
+furnish	🛋️ 🪑
+furnished	🛋️ 🏠
+furnishings	🛋️ 🪑
+furniture	🛋️ 🪑 🛏️
+furry	🐾 🦊 🐺
+futuna	🇼🇫
+futures	📈
+fuzzy	🧸 🧶 ☁️
+fwd	➡️ 📧 📩
+fwiw	🤷 💭
+fyi	ℹ️ 📋
+gabon	🇬🇦
+gadget	📱 ⌚ 🔧
+gadgets	📱 ⌚ 🔌
+gaelic	🇮🇪 ☘️
+gagged	🤐
+gain	📈
+gained	📈 ⬆️
+gala	🎉 👗
+galactic	🌌 🪐 ✨ 🚀
+galaxy	🌌 ✨ 🌠
+gale	🌬️ 💨
+galerie	🖼️ 🎨 🏛️
+gallery	🖼️ 🏛️ 🎨
+gallon	🥛 🪣
+gallons	⛽
+galore	✨ 🎉 💫
+gambia	🇬🇲
+game over	🎮 💀 ☠️
+gamepad	🎮 🕹️
+gameplay	🎮 🕹️
+gamers	🎮 🕹️
+gaming	🎮 🕹️ 👾
+gap	🕳️ ↔️
+garage	🚗 🏠
+garages	🚗 🏠 🅿️
+garbage can	🗑️ 🚮
+gardening	🌱 🌻 🪴
+gardens	🌷 🌻 🌳 🌿 🌱
+garland	🌸
+garment	👕 👗 👖 🧥
+garments	👕 👗 👚
+garnet	💎 🔴
+garrison	🏰
+gas fee	⛽ 💸
+gas station	⛽ 🚗
+gases	💨
+gasket	🔩
+gastric	🤢
+gastrointestinal	🤢 🤮 🩺
+gate	🚪 ✈️
+gateway	🚪 🌉
+gateways	🚪 🌐
+gathered	👥 🧺
+gathering	👥 🎉 🫂
+gauge	📏
+gauges	🌡️ 🎛️ ⏲️ 📏
+gaussian	🔔
+gave	🎁
+gaze	👀
+gazette	📰 🗞️
+gdp	📈
+gdpr	🔒 🇪🇺 🛡️
+gecko	🦎
+gel	🧴 💧
+gemstone	💎 💍
+gender	⚧️ ♀ ♂
+genealogical	🌳 🧬
+genealogy	🌳 👨‍👩‍👧‍👦 📜
+general	⭐ 🎖️
+generals	🎖️ 🪖
+generate	⚙️ ⚡
+generated	🤖 ⚙️
+generates	⚙️ 🔄
+generation	👨‍👩‍👧‍👦
+generator	⚡
+generators	⚡ 🔌 🔋
+generosity	🎁 🤲 ❤️
+generous	🎁
+genesis	🌱 ✨
+genetic	🧬
+genetically	🧬
+genius	🧠 💡
+genome	🧬
+genomic	🧬
+genomics	🧬 🔬
+genre	🎭 🎬 🎵
+genres	🎭 🎶
+gentle	🕊️ 🤗
+gentleman	🤵 🎩 👔
+gentlemen	🤵 🎩 👔
+genuine	✅
+genus	🧬
+geo	🌍 🗺️
+geographic	🌍 🗺️
+geographical	🗺️ 🌍
+geography	🌍 🗺️
+geological	🪨 🌋 ⛰️
+geology	🪨 🌋
+geometry	📐 📏
+geophysical	🌍
+geophysics	🌍
+georgia	🇬🇪
+georgian	🇬🇪
+germ	🦠 🧼
+germany	🇩🇪
+get back to me	↩️ 💬
+get back to you	↩️ 💬
+get well	🤒 💐 💌
+get well soon	🤒 💐 💌 🙏
+getaway	✈️ 🏖️
+getaways	🏖️ ✈️ 🌴 🚗
+getwell	🤒 🌷
+geyser	♨️ 🌋
+gg	🎮 🏆
+ghana	🇬🇭
+gibraltar	🇬🇮
+giclee	🖼️
+gif	🎞️ 🖼️ 🎬
+gift card	🎁 💳
+gig	🎸 🎤 🎶
+gigabyte	💾 💻
+gigahertz	⚡ 💻
+gigantic	🐘 🏔️
+gigs	🎤 🎸 🎶
+gill	🐟 🐠
+gin	🍸
+gingerbread	🍪 🏠 🎄
+girlfriend	💕 👩
+gis	🗺️ 🌍
+git	🔀 💻
+give	🎁 🤲
+give me a minute	⏳ 1️⃣
+give me a sec	⏳ ⏱️
+give way	🛑 🚗
+glacier	🧊 🏔️ ❄️
+glad to see you	😊 👋 🤗
+glad you are here	😊 🤗
+gladiator	⚔️ 🛡️ 🏟️
+glamour	✨ 💄
+glamping	⛺ 🏕️
+glance	👀
+glassware	🍷 🥂 🍸
+glaze	🍩 🍯
+glazing	🪟
+gleeful	😄 🥳
+glimpse	👀
+global	🌍 🌐
+globalisation	🌍 🌐 🤝
+globalization	🌍 🌐
+globally	🌍 🌐 🌎
+globes	🌍 🌎 🌏
+glockenspiel	🔔 🎶
+glorious	✨ 🌟 👑
+gloss	💄 ✨
+glossaries	📖 📚
+glossary	📖
+glossy	✨ 💅 🖼️
+glow up	✨ 💄 💅
+glucose	🩸 🍬 🧪
+glue	🧴
+gluten free	🌾 🚫
+gm	🌅 ☀️
+gmt	🕐 🌐 🌍
+gn	🌙 😴
+gnd	⏚ ⚡
+gnocchi	🥟 🥔 🍝
+go for it	🚀 💪 👍
+goals	🎯 ⚽ 🥅 🏆
+goat	🏆
+goblet	🍷 🏆
+god	🙏 😇
+godchild	👶
+goddess	👑 ✨
+godfather	🤵 👨
+godmother	👩
+gods	🙏 ⚡
+goes	➡️
+goin	🚶
+going	🚶 ➡️
+golang	🐹
+gold medal	🥇 🏅
+golden	🥇 ✨ 🌟
+gong	🥁
+good afternoon	☀️ 👋
+good call	👍
+good catch	🎯 👀
+good effort	👍 💪 👏
+good energy	✨ 🌟 😊
+good evening	🌆 👋 🌙
+good health	💪 ❤️ 🍎
+good idea	💡 👍
+good job	👍 👏
+good luck	🍀 🤞
+good luck with that	🍀 🤞
+good morning	🌅 👋 ☀️ ☕
+good news	📰 🎉
+good night	🌙 😴
+good night sleep tight	🌙 😴 🛏️
+good point	👍 💡
+good to hear	😊 👍
+good to know	👍
+good to see you	👋 😊
+good vibes	✨ ✌️ 🌈
+good weather	☀️ 🌤️
+good work	👍 👏 💯
+goodbye party	👋 🎉 🥳
+goodies	🎁 🍬
+goodluck	🍀 🤞
+goods	📦 🛒 🛍️
+gorge	🏔️ 🏞️
+gorgeous	😍 ✨
+gospel	📖 ⛪ 🎶
+goth	🖤 🦇
+gothic	🦇 🏰 🖤
+gotta go	👋 🏃
+gourmet	🍽️ 👨‍🍳 😋
+gov	🏛️ 🗳️
+govern	🏛️ ⚖️ 👑
+governance	🏛️ ⚖️
+governed	🏛️ 📜 ⚖️
+government	🏛️ ⚖️
+governmental	🏛️ 🗳️ ⚖️
+governor	🏛️
+govt	🏛️
+gown	👗
+gowns	👗 🎓 👘
+gpa	🎓
+gps	📍 🗺️ 🧭
+gpu	🎮 💻
+grab	✊
+grace	🕊️
+graceful	🦢 💃
+grad	🎓
+graded	📝 ✅
+graders	📝 🏫 🍎
+grades	🎓 📝
+gradient	🌈 🎨
+grading	📝 📊
+gradually	🐌 📈 ⏳
+graduated	🎓
+graduates	🎓
+graduating	🎓
+graffiti	🎨 🖌️ 🧱
+gram	⚖️
+grammar	📖 ✍️ 📝
+gramme	⚖️
+gran	👵
+grandad	👴
+grandchildren	👨‍👩‍👧‍👦 👪 👶
+grandparents	👴 👵
+grange	🌾 🚜 🏡
+granite	🪨
+granola	🥣 🌾 🥜
+grant	💰
+granted	✅
+granting	✅
+graphic	🎨 🖼️ 🖌️
+graphical	📊 🎨 🖼️
+graphics	🎨 🖼️ 💻
+graphite	✏️ ⬛
+graphs	📈 📉 📊
+grasp	✊
+grass	🌿
+grassroots	🌱
+gratis	🆓 🎁
+grats	🎉 👏
+gravel	🪨
+graves	🪦 ⚰️
+gravy	🍗 🥣
+grazing	🐄 🌾
+grease	🛢️
+great idea	💡 ✨
+great job	👍 👏 🎉
+great news	📰 🎉
+great work	👍 👏 🏆
+greater or equal	≥
+greatest	🏆 🥇
+greatest of all time	🐐 🏆 👑
+greece	🇬🇷
+greed	💰 🤑
+greedy	🤑
+greeks	🇬🇷
+green candle	🕯️ 🟢
+green energy	♻️ ⚡ 🌱
+green tea	🍵 🍃
+greenfield	🌱 🌿
+greenhouse	🪴 🌱
+greenland	🇬🇱
+greens	🥬 🥗 🥦 💚
+greet	👋 🤝 😊
+greeting	👋 🙋 🤝 😊
+greeting card	💌 ✉️
+grenada	🇬🇩
+grew	🌱
+greyhound	🐕
+grid	▦ 🔲
+grief	😢 💔
+grievance	😠 ⚖️
+grieving	😭 😢 💔
+griffin	🦅 🦁
+grill	🔥 🍖 🍔
+grill pan	🍳 🔥
+grille	🚗
+grilled	🍖 🔥 🥩
+grills	🍖 🔥
+grim	💀 😬
+grim reaper	💀 ☠️
+grind	☕ 💪
+grinder	⚙️
+grinding	💪 ⚙️ ☕
+grips	✊
+groceries	🛒 🥦
+grocery	🛒
+groovy	🕺
+ground and pound	🥊 🤼
+grounds	🌳 🏞️
+groundwater	💧 🚰
+group chat	💬 👥
+group stage	⚽ 🏆
+grouped	👥 🗂️
+grouping	👥 🗂️
+groups	👥
+grove	🌳 🌲
+grower	🌱 🧑‍🌾 🌾
+grown up	🧑 💼
+grows	🌱 📈 🌿
+gsm	📶 📱
+gst	🧾 💲
+guacamole	🥑
+guadeloupe	🇬🇵
+guarantee	✅ 🛡️
+guarantees	✅ 🤝 🛡️
+guard dog	🐕 🛡️
+guardian	🛡️
+guardians	🛡️ 🦸
+guardrail	🚧 🛣️
+guards	🛡️ 💂
+guatemala	🇬🇹
+guessing	🤔 ❓
+guest	🛎️ 🧳
+guestbook	📖 ✍️
+guests	👥 🏨
+guidebook	📖 🗺️ 📘
+guided	🧭
+guideline	📋 📏
+guidelines	📋 📝
+guides	🧭 🗺️ 📖
+guiding	🧭 🗺️
+guilt	😔
+guilty	😔 😬 ⚖️
+guinea	🇬🇳
+guinea pig	🐹 🧪
+guinness	🍺
+guitarist	🎸 🎶
+gulf	🌊
+gull	🐦
+gum	🍬
+gust	💨 🌬️
+guy	👨 🧑
+guyana	🇬🇾
+guys	👥
+gym bag	🎒 🏋️
+gymnast	🤸 🏅
+gyms	🏋️ 💪
+gzip	🗜️ 📦
+habit	🔁 📅
+habitats	🏞️ 🌲
+hack	💻 💡
+hacked	💻 🔓
+hacker	🧑‍💻 💻
+hackers	💻 ⌨️
+hacking	💻 🔓
+hacks	💻 💡 🛠️
+hai	👋
+hairdresser	💇 ✂️ 💈
+hairdryer	💨 💇
+haiti	🇭🇹
+haitian	🇭🇹
+half brother	👦
+half marathon	🏃 🏅
+half past	🕧
+half sister	👧
+half way	½ ↔️
+halfway	↔️ ½
+hall	🏛️
+halogen	💡 🔦
+halving	½ ✂️
+ham	🍖 🥓
+hamlet	🏘️
+hanami	🌸 🇯🇵
+handbook	📘 📖 📚
+handcrafted	🛠️ 🧶
+handful	🤏
+handheld	📱 🎮
+handler	🐕 🧑
+handling	📦 🤲
+handmade	🧶 🪡 ✋
+handouts	📄
+handover	🤝 📤
+handset	📱 📞
+handsets	📱 ☎️
+handsfree	🎧
+handsome	😎
+handwriting	✍️ 📝
+hang in there	💪 ✊
+hang on	✋ ⏳
+hanger	👕 🧥
+hangout	🍻 🫂
+hangover	🤕 🤢 🍺
+hangs	🖼️
+happening	🎉 📅
+happier	😊 😄
+happily	😊 😄
+happiness	😊 😄 ☀️
+happy anniversary	💍 🥂 🎉
+happy birthday	🎂 🎉 🎈 🥳
+happy easter	🐰 🥚 🐣
+happy father's day	👨 👔
+happy halloween	🎃 👻
+happy holidays	🎄 🎁 🎅
+happy mother's day	👩 💐
+happy new year	🎆 🎊 🎉
+happy pride	🏳️‍🌈 🎉
+happy thanksgiving	🦃 🥧 🍂
+harbor	⚓ 🚢
+hard drive	💾 💽
+hard worker	💪 👷
+hardback	📕 📚
+hardcover	📕 📚
+harder	💪
+hardship	😞 😓 💔
+hardware	🔧 🔨 🖥️
+hardwood	🪵 🌳
+hardy	💪 🌿
+hare	🐇
+harm	🤕 ⚠️ 🩹
+harmful	⚠️ ☠️ 🚫
+harmonic	🎵 🎶
+harmonica	🎵 🎶
+harmony	🎶 ☮️
+harness	🪢 🦺 🐕 ⛑️
+harvest	🌾 🚜 🧺
+harvest moon	🌕 🍂
+hashrate	⛏️ ₿
+hassle	😫 😤
+hatch	🐣 🥚
+hatchback	🚗
+hated	😠 💔
+hates	😡 💢
+hats off	🎩 👏
+haul	📦 🚚
+haunted	👻 🏚️ 🎃
+haute	👗 ✨ 💃
+have a good day	☀️ 😊
+have a good flight	✈️ 😊
+have a good journey	🧳 😊
+have a good morning	🌅 ☀️
+have a good night	🌙 😴
+have a good one	👋 😊
+have a great day	☀️ 😄
+have a great trip	🧳 ✈️
+have a great weekend	🎉 📅
+have a nice day	😊 ☀️ 👋
+have a safe trip	🧳 ✈️ 🛡️
+have fun	🎉 😄
+haven	🏡 🛡️
+havoc	💥 🔥 🌪️
+hawaiian	🌺 🏝️ 🌴 🍍
+hawk	🦅
+hay	🌾
+hazard	⚠️
+hazardous	⚠️ ☣️ ☢️
+hazards	⚠️ ☣️
+haze	🌫️
+hazel	🌰
+hazy	🌫️
+hbd	🎂 🎉
+hdd	💾
+hdmi	🔌 📺
+hdtv	📺 🖥️
+headaches	🤕 😣
+header	🔝 📄
+heading	🧭
+headland	🌊 🏔️
+headlights	🚗 💡
+headline	📰 🗞️
+headquartered	🏢 🏛️
+headquarters	🏢
+heads	👤 🧠
+headset	🎧
+headsets	🎧 🎤
+heal	🩹 ❤️‍🩹 💊
+healing heart	❤️‍🩹 🩹
+healthy	🥗 💪 🍎
+heard	👂 🔊
+hearings	👂 ⚖️
+hears	👂
+hearse	⚰️
+heart pulse	💓 ❤️
+heartbreak	💔 😢
+heartland	🌾 🏞️
+heat pack	🔥 ♨️
+heated	🔥 ♨️ 🌡️
+heater	🔥 🌡️
+heaters	🔥 ♨️
+heating	♨️ 🔥 🌡️
+heatwave	🔥 🥵 ☀️
+heaven	😇 ☁️
+heavens	☁️ 🌌 ✨
+heavier	🏋️ ⚖️
+heavyweight	🥊 🏋️
+hectare	📐 🌾
+hedge	🌿 🌳
+heh	😏 😄
+height	📏 📐
+heights	⛰️ 🏔️
+helium	🎈 ⚛️
+helix	🧬
+helm	🚢 🧭
+helmets	⛑️ 🪖
+helpdesk	🎧 💻 🛟
+helped	🤝 🙌 ✅
+helper	🤝 🧑‍🔧 🆘
+helpers	🤝 🙌
+helpful	🤝 🙌
+helping	🤝 🙌 🆘
+helpless	😢 😩 😣
+helpline	📞 🆘
+helps	🤝 🆘 🙌
+hem	🧵 👗
+hemisphere	🌍 🌎
+hemp	🌿
+hen	🐔 🥚
+hen party	🎉 🥂 🍾
+hence	➡️
+herbal	🌿 🍵 🪴
+herbal tea	🍵 🌿
+heritage	🏛️ 🏺
+heroic	🦸 🏅 ⚔️
+herring	🐟
+hertz	〰️ 📡
+hesitate	🤔 😬
+hex	⬡ 🔮 ⬣
+hexagon	⬡ ⬢ ⬣
+heya	👋 😊
+hf	🎮
+hickory	🌳 🪵
+hid	🙈
+hides	🙈
+hierarchical	🌳 🗂️
+hifi	🎧 🔊
+high five	🙌 ✋ 🖐️
+high school	🏫 🎓 📚
+high score	🏆 🥇 🎮 💯
+highbeam	🚗 🔦
+higher	⬆️ 📈
+highest	🏆 ⬆️
+highkey	📢 💯
+highland	⛰️ 🏔️
+highlands	🏔️
+highlight	🖍️ ✨ ⭐
+highlighted	✨ 🖍️ 🔆
+highlighter	🖍️ 📝
+highlights	✨ 🌟
+highs	📈 ⬆️
+hihi	😆 😄 😂
+hiit	🏋️ 🏃 💪
+hiker	🥾 🚶 🏔️ ⛰️
+hill	⛰️ 🏔️ 🌄
+hillside	⛰️ 🌄
+hindi	🇮🇳
+hinge	🚪
+hinges	🚪 🔩
+hint	💡
+hints	💡 🔍
+hip hop	🎤 🎧 🕺 💃
+hipaa	🏥 🔒
+hire	💼 🤝
+hired	✅ 💼 🎉
+hires	💼 🤝 📝
+hiring	💼 📋 🧑‍💼
+historian	📜 🏛️
+historians	📜 🏛️ 📚
+historic	🏛️ 📜
+historical	🏛️ 📜
+history	📜 🏛️ 📚
+hitch	⚠️
+hitting	👊 🥊 💥
+hiya	👋 😊
+hmmm	🤔
+hms	🚢 ⚓
+hobbies	🎨 🎮 🎣
+hobby	🎨 🧩 🎣
+hodl	💎 🙌 ₿
+hog	🐷
+hoho	🎅 😂
+hold on	✋ ⏳
+holdem	🃏 ♠️ ♥️ ♦️ ♣️
+holding hands	👫 👬 👭 🧑‍🤝‍🧑
+holdings	💼 📈
+holds	🤲 ✋
+holiday	🏖️ ✈️
+holiday pay	🏖️ 💰 💷
+holidays	🏖️ ✈️ 🎉 🌴
+holistic	🧘 🌿
+holland	🇳🇱 🌷
+holly	🎄 🌿
+holster	🔫
+holy	🙏 ✨
+home key	⌂ 🏠
+home office	🏠 💻 🖥️
+home run	⚾ 🏟️ 🎉
+homecoming	🏫 🎓 💃 🏈
+homeland	🏠
+homemade	🏠
+homeowner	🏠 🔑
+homeowners	🏠 🔑 🏡
+homepage	🏠 🌐
+homepages	🏠 🌐 💻
+homer	⚾
+homes	🏠 🏡
+homestead	🏡 🌾
+hometown	🏠 🏡 🏘️
+homework	📚 📝 ✏️
+honduras	🇭🇳
+honest	🤝
+honeydew	🍈
+honeymoon	💍 ✈️ 🏖️
+honor	🏅 🎖️
+honorable	🎖️ 🤝 ⚖️
+honorary	🎖️ 🏅
+honored	🏅 🎖️ 🏆
+honors	🏆 🏅 🎖️
+honours	🏅 🎖️ 🏆
+hooded	🧥
+hoodia	🌵
+hoodie	🧥
+hoof	🐴 🐎 🐄
+hooked	🎣 🪝
+hop	🐇 🦘 🐸
+hoped	🤞 🙏
+hopeful	🤞 🌈 🙏
+hopeless	😔 😞 💔
+hopes	🤞 🌟
+hoping	🤞 🙏
+hopper	🦗
+horde	🧟 👥
+horizon	🌅 🌄
+hormone	🧪 💉
+hormones	🧬
+horseback	🐎 🏇
+horsepower	🐎 ⚡
+horticulture	🌱 🪴 🌿 🌻
+hospice	🏥 🕊️
+hospitality	🏨 🛎️ 🍽️
+host	🎤 🎉
+hostel	🛏️ 🎒 🧳
+hostels	🛏️ 🎒 🏨
+hostile	😠 ⚔️
+hosting	🎉 🎤 💻
+hostname	💻 🖥️ 🌐
+hot chocolate	☕ 🍫
+hot spring	♨️ 🛁
+hoteles	🏨
+hotfix	🔧 🐛 💻
+hotline	☎️ 📞
+hotspots	📶 🔥
+hottest	🔥 🥵 🌶️
+hottie	🔥
+hound	🐕 🐶
+hourly	⏰ 🕐
+household	🏠 👨‍👩‍👧‍👦
+householder	🏠
+housekeeping	🧹 🧺 🧽
+housemate	🏠 🧑‍🤝‍🧑 👥
+housewares	🍽️ 🛋️
+housewarming	🏠 🎉 🎁 🔑
+hover	🖱️
+how	❓ 🤔
+how are things	🙂
+how are you	👋 😊 ❓
+how can i assist	🤝 🆘
+how can i help	🤝 🆘
+how far	📏
+how far away	📏
+how far is it	📏
+how far to go	📏 ➡️
+how have you been	🙂
+how is everything	🙂
+how is it going	🙂 👋
+how is life	🙂
+how is work	💼
+how is your day	☀️ 🙂
+how is your family	👨‍👩‍👧‍👦 ❤️
+how is your week	📅 🗓️
+how is your weekend	🎉 📅
+how long	⏳ ⏱️ ⌛
+how long ago	⏳ 🕰️ 📅
+how long until	⏳ ⏰ 📅
+how many	🔢 🧮 #️⃣
+how may i assist	🙋 🤝
+how much	💰
+how much is it	💰 🏷️
+how's it going	👋 😊
+howdy	🤠 👋
+howto	📖 💡 🛠️
+hr	👥 💼 🏢
+href	🔗
+html	💻 🌐
+http	🌐 🔗
+https	🔒 🌐
+hub	🔗
+hubs	🔗 🌐
+huge	🐘
+hulk	💪 🟢
+hull	🚢
+hum	🎶 🎵
+human resources	👥 💼 🧑‍💼
+humane	🐾
+humanitarian	🤝 ❤️
+humanities	📚 🎭 🏛️
+humanity	🌍 🤝
+humans	🧑 👥
+humble	🙏
+humid	💧 🥵 💦
+humidity	💧 🌫️ 🥵
+humiliation	😳 🙈
+hummus	🫓 🧆 🥙
+humor	😂 🤣 😄
+humorous	😂
+humour	😂 🤣 😄 😆
+hungarian	🇭🇺
+hungary	🇭🇺
+hunger	🤤 😋 🍽️ 🍔
+hunk	💪
+hunt	🏹 🦌
+hunter	🏹 🦌 🎯
+hunting	🏹 🦌 🎯
+hurry up	🏃 ⏰ 💨
+husband	👨 💍 🤵
+husbands	💍 👨
+hush	🤫 🔇 🤐
+husky	🐕 🐺 ❄️
+hustle	🏃 💼 💪
+hvac	🌡️ ❄️ 🔥 🌬️
+hwy	🛣️
+hybrid	🚙 🔋 ⚡
+hydrant	🚒 🚰
+hydration	💧 🥤 🚰 💦
+hydraulic	💧 ⚙️ 🔧
+hydro	💧 ⚡
+hydrogen	⚛️
+hymn	🎶 ⛪ 🎼
+hype	🔥 📣 🎉
+hyped	🤩 🔥 🎉
+hyper	⚡ 🤪
+hyperlink	🔗
+hypertension	🩺 ❤️ 💊
+hypertext	🔗 🌐
+hypnosis	🌀 😵‍💫 👀
+hypotheses	🧪 🔬
+hypothesis	🔬 💭 🧪
+hypothetical	🤔 💭
+i agree	👍 ✅ 🤝
+i am angry	😠 😡 💢
+i am at work	💼 🏢
+i am available	✅ 🟢
+i am back	🔙 👋
+i am bored	🥱 😒
+i am busy	🏃 ⏳
+i am coming	🚶 🏃
+i am confused	😕 🤔
+i am done	✅
+i am drinking	🥤
+i am early	⏰
+i am eating	🍽️ 😋
+i am excited	🤩 🎉
+i am fine	🙂 👍
+i am finished	✅ 🏁
+i am free	🆓
+i am going	🚶
+i am happy	😊 😄
+i am here	📍 👋
+i am home	🏠
+i am hungry	🍽️ 🤤
+i am late	⏰ 🏃
+i am leaving	👋 🚪
+i am lost	🗺️ 😕
+i am not sure	🤔 🤷
+i am offline	📴
+i am okay	👌 🙂
+i am on time	⏰ ✅
+i am online	🟢 🌐
+i am ready	✅
+i am sad	😢 😞
+i am sick	🤒 🤧
+i am sleeping	😴 💤
+i am sorry	🙏 😔
+i am starting	▶️ 🚀
+i am stuck	🚧
+i am thinking	🤔 💭
+i am thirsty	🥤 💧
+i am tired	😴 🥱
+i am unavailable	🚫 ⛔
+i am waiting	⏳ ⌛
+i am waking up	🌅 ⏰
+i am working	💼 🧑‍💻
+i apologize	🙏 😔
+i appreciate it	🙏 ❤️ 💐
+i disagree	👎 ❌ 🙅
+i doubt it	🤨 🤔
+i guess	🤷
+i hope so	🤞 🙏
+i love you	❤️ 😘 💕
+i miss you	😢 💔
+i think so	🤔 👍
+i'm dead	💀 😂
+ibuprofen	💊 🤕 🤒
+ice bath	🧊 🛁 🥶
+ice pack	🧊 ❄️ 🩹
+iceland	🇮🇸
+icelandic	🇮🇸
+icicle	🧊 ❄️
+icing	🎂 🧁
+icon	⭐ 🖼️
+iconic	⭐ ✨ 🔥
+icy	🧊 ❄️ 🥶
+idc	🤷 🙄
+ideal	⭐
+ideals	🌟 ✨
+ideas	💡 🧠 ✨
+identifiable	🪪
+identifier	🆔 🏷️
+identify	🔍 🪪 🏷️
+identities	🪪 🆔
+idk	❓
+idle	💤 😴 ⏸️
+idol	⭐ 🎤
+ids	🆔 🪪 💳
+if and only if	⇔ ⟺ ↔
+if you please	🙏
+iftar	🌙 🍽️ 🤲
+igloo	🧊 ❄️
+ignition	🔑 🚗 🔥
+ignore	🙈 🚫
+iguana	🦎
+ii	Ⅱ ⅱ
+iii	Ⅲ ⅲ
+iirc	🤔 💭
+illegal	🚫 ⛔ ❌
+illegally	🚫 👮 ⚖️
+illicit	🚫 ⛔
+illness	🤒 🤧
+illnesses	🤒 🤢
+illuminated	💡 ✨ 🕯️
+illumination	💡 ✨
+illusion	🪄 🎩
+illusions	🎩 🪄 ✨
+illustrate	🎨 ✏️ 🖌️ 🖼️
+illustrates	🎨 ✍️
+illustration	🎨 🖼️ ✏️
+illustrator	🎨 ✍️
+ilo	🇺🇳
+ilu	❤️ 💕 🥰
+imagery	🖼️ 📷 🎨
+images	🖼️ 📷 📸
+imaginary	🦄 💭
+imagination	💭 ✨
+imaginative	🎨 💭 ✨
+imagine	💭 ✨
+imaging	🩻 📷
+imam	🕌
+img	🖼️
+imho	🤔 💬
+immediate	⚡
+immediately	⚡ 🔜 ⏰
+immersion	🌊 🤿
+immigrant	🧳 🌍 ✈️
+immigration	🛂 🧳 🌍
+imminent	⏳ ⚠️ 🚨
+immune	🛡️ 💉
+immunity	🛡️ 💉
+immunization	💉 🛡️
+immunology	🦠 🛡️ 💉 🧬
+imo	🤔 💬
+impact	💥
+impairment	♿
+impartial	⚖️ 🤝
+impedance	⚡
+imperative	❗ ⚠️
+imperial	👑
+implant	🦷
+implants	💉 🦷
+implement	🛠️
+implementation	🛠️ ⚙️
+implemented	✅ 🛠️
+implements	🛠️ 🔧 ⚙️
+implicit	🤫 💭
+import	📥 📦 🚢
+importance	⭐ ❗
+important	❗ ⭐ 📌
+imported	🚢 📦
+importer	🚢 📦
+importers	📦 🚢
+importing	📦 🚢 🌍
+imports	📦 🚢
+imposed	🚫 📜
+imposing	🏛️
+impossible	🚫 ❌
+impress	😮 ✨
+impressions	👣 ⭐ 💭
+impressive	👏 🤩 🔥
+imprint	👣 🖨️ 📜
+imprisonment	⛓️ 🔒
+improper	🚫 ❌
+improv	🎭 🎤
+improve	📈 ⬆️
+improvements	📈 🔧 ⬆️
+impulse	⚡
+in a while crocodile	🐊 👋
+in love	❤️ 😍 💕 🥰
+in my opinion	💬 🤔
+in progress	🚧 ⏳ 🔄
+in review	👀 🔍 📋
+in stock	✅ 📦 🛒
+in testing	🧪 🔬 🐛
+inaccuracies	❌ ⚠️
+inaccurate	❌ ⚠️
+inactive	💤
+inadequate	❌ 👎
+inaugural	🎉 🏛️
+inbound	📥 ✈️
+inc	🏢
+incense	🪔 💨
+incentive	💰 🎁 🏆
+inch	📏 📐
+incidence	📊
+incident	🚨 ⚠️
+incl	➕
+inclined	↗️
+include	➕
+inclusion	🤝 👥 ♿ 🌈
+inclusive	🤝 👥 ♿ 🌈
+income	💰 💵 💼
+income tax	💰 🧾 💵
+incompatible	🚫 ❌
+incomplete	🚧 ❌ ⏳
+inconvenience	🙄 😤
+incorporate	🏢 📝
+incorporating	➕
+incorrect	❌ ✖️ 🚫
+increase	📈 ⬆️ ➕
+increasingly	📈 ⬆️
+incredible	🤯 🔥 😲
+incremental	📈
+increments	➕ 📈
+incumbent	🏛️
+incurred	💸 📉
+ind	🇮🇳
+indemnity	🛡️ 📜 💰
+indent	⇥
+independence	🗽 🎆
+independence day	🇺🇸 🎆 🗽 🎉
+indexed	🗂️ 📇 🔍
+indexes	📇
+indexing	🔍 📇
+india	🇮🇳
+indicated	👉 ☝️ 📍
+indicates	👉 ☝️ 📍
+indicating	👉 ☝️
+indication	👉
+indicators	📊 📈
+indices	📈 📊 🔢
+indictment	⚖️ 📜
+indie	🎸 🎬
+indies	🎸 🎶
+indispensable	🔑
+individual	👤
+individuals	👤 👥 🧑
+indonesia	🇮🇩
+indonesian	🇮🇩
+indoor	🏠 🛋️
+induction	🧲
+indulgence	🍰
+industries	🏭 ⚙️ 🏗️
+industry	🏭 ⚙️
+inequalities	⚖️ ≠
+inexpensive	🏷️ 🪙
+infantry	🪖
+infect	🦠 🤒 🤢
+infection	🦠 🤒 💉
+infectious	🦠 🤒
+inferior	👎 ⬇️
+infertility	🩺
+infinite	♾️ ∞
+inflammation	🔥 🤒 🩹
+inflammatory	🔥
+inflatable	🎈 🛟
+inflation	📈 💸
+influencing	📣 💡
+influenza	🤒 🤧 🦠
+inform	ℹ️ 📢
+informal	👕
+informatics	💻 📊
+informative	ℹ️ 💡 📘
+informed	ℹ️ 📰
+informing	📢 🗣️ ℹ️
+informs	ℹ️ 📰
+infra	🏗️ 🛤️
+infrared	🌡️
+infrastructure	🏗️ 🌉 🛣️ 🛤️
+infringement	© 🚫 ⚖️
+infusion	💉 🫖
+ingredient	🥕 🧂 🥣 🍳
+ingredients	🥕 🍅 🥦 🛒
+inhabitants	👥 🏘️ 🧑‍🤝‍🧑
+inheritance	💰 📜
+inherited	🧬 📜
+initial	1️⃣ 🔤
+initialize	🔄 ▶️
+initials	🔤 ✍️
+initiate	▶️ 🚀
+initiating	🚀 ▶️
+initiative	🚀 💡 🌱
+injected	💉
+injection	💉 💊
+injunction	⚖️ 🚫 📜
+injustice	⚖️ ✊
+inkjet	🖨️
+inks	🖋️
+inland	🏞️ 🌲
+inlet	🌊
+inmates	🚔 ⛓️
+inn	🏨 🛏️
+inning	⚾
+innocence	😇 🕊️
+innovation	💡 🚀
+innovations	💡 🚀 ✨
+innovative	💡 🚀
+inorganic	🧪 ⚗️
+inpatient	🏥
+inputs	⌨️
+inquire	❓ 💬
+inquiries	❓ ℹ️ 📩
+inquiry	❓ 🔍 ✉️
+insects	🐛 🐜 🦋 🪲
+inserting	📥 ➕
+insertion	➕ 📥
+inside	🏠 📦
+insider	🕵️ 🤫
+insight	💡 🧠
+insightful	💡 🧠 🤔
+insomnia	🌙 😴 ☕
+inspect	🔍 🔎
+inspected	🔍 ✅
+inspection	🔍 🧐 📋 ✅
+inspector	🕵️
+inspectors	🕵️ 🔍
+inspiration	💡 ✨
+inspirational	✨ 🌟
+inspire	✨ 💡
+inspired	💡 ✨
+inspiring	🌟 ✨
+instability	⚠️ 📉
+install	📥 💻
+installation	⚙️ 🛠️ 💿
+installations	🔧 ⚙️
+installed	⬇️ ✅ 🛠️
+installer	📥 ⚙️ 🔧
+installing	🔧 ⬇️
+installment	💳 💰
+installs	⬇️ 💾
+instant	⚡ ⏱️
+instead	🔄
+institut	🏛️ 🏫
+institute	🏛️ 🎓 🏫
+institution	🏛️
+institutional	🏛️ 🏢
+institutions	🏛️ 🏫 🏦
+instruct	🧑‍🏫 🗣️ 📖
+instruction	📝 📖
+instructional	📚
+instructions	📋 📝
+instructors	👩‍🏫 👨‍🏫 🧑‍🏫
+instrumental	🎸 🎹 🎺 🎷 🎻 🥁
+instrumentation	🎛️ 🔧
+instruments	🎸 🎹 🎻 🎷 🎺 🥁
+insulated	🧥
+insulation	🏠 🧣 🧤
+insulin	💉
+insurance	🛡️ 📄
+insure	🛡️ 📄
+insured	🛡️ 📋
+insurer	🛡️ 📄
+intake	📥 🍽️
+integer	🔢 1️⃣
+integrate	🔗 🧩
+integrated	🧩 🔗
+integration	🔗 🧩 🔌
+intellect	🧠 💡
+intellectual	🧠 📚
+intelligence	🧠 🤖
+intense	🔥 💥 😤
+intensity	🔥 ⚡ 💥 💪
+intention	🎯
+intentional	🎯
+intentions	💭 🎯
+interact	🤝 💬
+interaction	🤝 💬
+interactions	💬 🤝
+interchange	🔄
+interconnect	🔗 🔌 🌐
+interconnection	🔗 🌐
+intercontinental	✈️ 🌍
+interest	📈 💰 💡
+interest rate	📈 🏦 💰
+interested	🤔 👀
+interesting	🤔 ✨
+interests	❤️ ⭐
+interface	🖥️ 🖱️
+interference	📡 ⚡
+interim	⏳ 📅
+interiors	🛋️
+intermittent	⏯️ 🔄
+intern	💼 🧑‍💼
+international	🌍 🌐 ✈️
+internship	💼 👔
+internships	💼 🎓
+interoperability	🔗 🔄
+interpretations	💭
+interpreter	🗣️ 🌐
+interpreters	🗣️ 🎧
+interpreting	🗣️
+interrupt	✋ ⛔
+interrupted	⛔ ✋
+interruption	⏸️ ✋
+interstate	🛣️ 🚗
+interval	⏱️
+intervene	✋ 🛑
+interventions	🛠️
+interview	💼 🎤 🗣️
+interviewed	🎤
+interviewing	🎤 💼 🗣️ 📝
+interviews	🎤 💼 🗣️ 📋
+intl	🌐 🌍 ✈️
+into	➡️
+intracellular	🧬 🔬
+intranet	🌐 💻 🖥️
+intravenous	💉 🏥
+intriguing	🤔
+intro	🎬 ▶️
+introduce	👋
+introduced	👋 🤝
+introduces	👋 🤝
+introduction	👋
+introductions	👋 🤝
+intrusion	🚫 🚨 🔒
+intuition	💡 🔮 🧠
+invalid	❌ 🚫
+invaluable	💎
+invasive	🚫 🌿
+invented	💡 🛠️
+inventions	💡
+inventory	📦 📋 🗃️
+inverter	⚡ 🔌 🔋
+invest	📈 💰 💹
+invested	💰 📈 💵
+investigate	🔍 🕵️ 🔎
+investigation	🔍 🕵️
+investigations	🔍 🕵️ 🔎 📁
+investigative	🔍
+investigator	🕵️ 🔍
+investment	💰 📈
+investments	📈 💰 💹
+investor	📈 💼 💰
+investors	💰 📈
+invitation	💌 ✉️ 📩
+invitational	🏆 📩
+invitations	✉️ 💌
+invite	✉️ 🎟️
+invited	✉️ 🎉
+invites	✉️ 💌
+invoke	🪄
+involved	🤝
+involvement	🤝
+ion	⚛️ 🧪
+ionic	⚛️
+ipo	📈 💹 🏦
+iran	🇮🇷
+iranian	🇮🇷
+iraq	🇮🇶
+iraqi	🇮🇶
+iraqis	🇮🇶
+irc	💬
+ire	😠 😡 💢
+ireland	🇮🇪
+irl	🌍
+ironically	🙃 😏
+irony	🙃
+irregular	〰️
+irrigation	💧 🌾
+irritation	😤 😠 💢
+is that alright	👌
+is that fine	👌
+is that good	👍
+is that okay	👌
+isbn	📚 🔢
+ish	🤷
+islamic	☪️ 🕌
+islander	🏝️
+isle	🏝️
+isles	🏝️ 🌊
+isolate	🦠
+isolated	🏝️ 😔 🧍
+isolates	🧪 🔬 🦠
+isolation	🏝️ 😔
+isotope	⚛️ 🧪
+israel	🇮🇱
+israeli	🇮🇱
+israelis	🇮🇱
+iss	🛰️ 🚀
+issue	⚠️ 🐛
+issued	📄
+issuer	🏦 💳
+issues	⚠️ ❗ 🐛
+issuing	📤
+it'll be ok	🤗 👍
+italia	🇮🇹
+italian	🇮🇹 🍝 🍕
+italiano	🇮🇹 🍝 🍕
+italicized	𝘈
+italy	🇮🇹
+item	📦 📄 🧾
+iteration	🔁 🔄
+itinerary	🗺️ ✈️ 📅
+iv	Ⅳ ⅳ
+ivory	🐘
+ivy	🌿
+ix	Ⅸ ⅸ
+iykyk	😏 🤫
+jabber	💬 🗣️
+jackets	🧥
+jacking	🔧
+jackpot	🎰 💰 💵
+jacks	🃏 🔧
+jacuzzi	🛁 ♨️
+jade	💎 🟢
+jaguar	🐆
+jail	🚔 🔒 ⛓️
+jalapeno	🌶️
+jam	🍓 🍞 🫙 🚗
+jamaica	🇯🇲
+jams	🚗 🍓 🎶
+jan	📅
+janitorial	🧹 🧼 🪣 🧽
+january	🗓️ ❄️ 📅
+jargon	💬 🤷 🔤
+jasmine	🌼 🌸
+java	☕ 💻
+javascript	💻 🧑‍💻
+jaws	🦈 🦷
+jays	🐦
+jersey	🎽
+jerseys	👕 🏀
+jet lag	😴 ✈️
+jeux	🎮
+jewellery	💍 💎 📿
+jewelry	💍 💎 📿
+jingle	🔔 🎶
+jinx	🧿 🐈‍⬛
+jiu jitsu	🥋 🤼
+jive	🕺 💃 🎷
+jk	😜 😂 🤭
+jobs	💼
+jog	🏃 👟
+joined	🤝 🔗
+joining	🤝 🔗
+joins	🔗 🤝
+joint	🦴 🤝
+jointly	🤝
+jokes	😂 🤣 😆
+jordan	🇯🇴
+joule	⚡ 🔋
+journal	📔 📓 ✍️
+journalism	📰 ✍️
+journalist	📰 🖊️ 🎤
+journals	📓 📔 📚
+journeys	🧳 ✈️ 🗺️
+joyful	😄 😊 🥳
+jpeg	🖼️ 📷
+jpg	🖼️ 📷
+jpop	🎤 🇯🇵 🎵
+json	💻
+jubilant	🎉 🥳 🙌
+jubilee	🎉 🎊 🥳
+judged	⚖️
+judgement	⚖️ 📜
+judges	⚖️ 🧑‍⚖️
+judging	⚖️
+judgment	⚖️
+judgment day	⚖️ 🔥 💀
+judgments	⚖️ 👨‍⚖️
+judicial	⚖️ 🏛️
+judiciary	⚖️ 🏛️
+juicer	🍊 🍋 🧃
+juices	🧃 🍹
+juicy	🍊 🍉 💦 🍇
+jukebox	🎶 🎵
+jul	📅 7️⃣ 🗓️
+july	🗓️ ☀️ 🎆
+jumbo	🐘
+jump rope	🤸 🪢
+jumped	⬆️ 🦘
+jumping	🤸 🦘
+jumps	🤸 🦘 ⬆️
+jun	📅 6️⃣ 🗓️
+junction	🔀 🚦 🛣️
+june	🗓️ 🌞
+jungle	🌴 🐒 🦜 🌿
+juniper	🌿 🌲
+junk	🗑️ 🚮
+junk food	🍔 🍟 🍕
+jupyter	📓 🐍
+jurisdiction	⚖️ 🏛️
+jury	⚖️ 👥 🏛️
+just a minute	⏱️
+just a sec	⏱️
+just now	🕐 ⏳
+justified	✅ ⚖️
+justify	↔️ 📐
+kanban	📋 📌
+kaomoji	😊
+karma	☯️ 🔄
+kart	🏎️
+kayak	🛶 🚣 🌊
+kayaker	🚣 🛶
+kazakhstan	🇰🇿
+kbps	📶 💻
+kbytes	💾
+keep calm	😌 🧘 🕊️
+keep going	💪 ➡️
+keep it up	💪 👍 🙌
+keep me posted	🔔 📩 📬
+keep me updated	🔄 🔔 📩
+keep out	🚫 ⛔ 🛑
+keep safe	🛡️ 🙏
+keeping	🤲 🔒
+keeps	🔒 📦 💾
+kennel	🐶 🏠
+keno	🎰 🎲
+kenya	🇰🇪
+kernel	🌽 💻 ⚙️
+kernels	🌽 🍿
+ketchup	🍅 🍟 🌭
+kettle	🫖 ☕ ♨️
+kettlebell	🏋️ 💪
+keyboard instrument	🎹
+keyframes	🎞️ 🎬
+keygen	🔑 💻
+keynote	🎤
+keypad	🔢
+keystone	🧱
+keyword	🔑 ⌨️
+keywords	🔑 🏷️
+kg	⚖️
+kickboxing	🥊 👊 🥋
+kicked	🦶
+kicking	⚽
+kicks	🦶 ⚽
+kilobyte	💾 💻
+kilocalorie	🔥 🍔
+kilogram	⚖️ 🏋️
+kilohertz	📻 🎵 🔊
+kilometer	📏 🛣️ 🏃
+kilometers	📏 🛣️ 🚗
+kilometres	📏 🛣️
+kilowatt	⚡ 💡 🔌
+kin	👪 👨‍👩‍👧‍👦
+kinara	🪔 🕯️
+kinase	🧬 🧪
+kind	😊 🤗 🥰
+kind regards	✉️ 🤝 💌
+kinda	🤷 🙂
+kindergarten	🏫 🧒 🧸
+kindly	😊 🥰 🙏
+kindness	❤️ 🤗
+kinetic	🏃 ⚡ 💨
+kingdom	👑 🏰
+kings	👑 🤴 ♔
+kiosk	🏪 🖥️
+kiribati	🇰🇮
+kismet	🔮 ✨
+kissed	💋 😘
+kit	🧰
+kitchens	🍳 🔪
+kitts	🇰🇳
+km	📏 🛣️
+kmh	🚗 💨 🏎️
+knight	♞ 🛡️ ⚔️
+knives	🔪
+knob	🚪
+knock	🚪 👊 ✊
+knock out	🥊 💥 😵
+knockout	🥊 💥 😵
+knowing	🧠 💡 🤓
+knowledgeable	🧠 📚
+knowledgebase	📚 🧠 💾
+kool	😎 🧊
+korea	🇰🇷
+korean	🇰🇷
+kosher	✡️
+kosovo	🇽🇰
+kpi	📊 📈 🎯
+kpop	🎤 🇰🇷 🎵
+kudos	👏 🏆 ⭐
+kudoz	👏
+kung fu	🥋 🐼
+kuwait	🇰🇼
+kwanzaa	🪔 🕯️
+kyrgyzstan	🇰🇬
+labor	👷 💼 💪
+laboratories	🧪 🔬
+laboratory	🔬 🧪 🥼
+labour	👷 🛠️ ⚒️ 💪
+labrador	🐕
+labs	🧪 🔬 🧫 ⚗️
+lace	🎀 👗 🧵
+lack	❌ 🚫
+lad	👦
+laden	📦
+ladle	🥄 🍲 🥣
+lag	🐌 ⏳ 🐢
+lager	🍺 🍻
+lagoon	🏝️ 🌊 🐠
+laguna	🏖️ 🌊
+laid off	💼 😢
+lakes	🏞️ 🌊 🛶
+lakeside	🏞️ 🌊
+lama	🦙
+laminated	📄
+lamp post	🏮 💡 🌃
+lamps	💡 🪔
+lance	🗡️ ⚔️
+landed	🛬
+landfill	🗑️
+landlord	🏠 🔑
+landmark	🗽 📍 🏛️
+landmarks	🗽 🗼 🏛️
+lands	🌍 🛬 🏞️
+landscapes	🏞️ 🌄 🌅
+landscaping	🌿 🌳 🏡
+lane	🛣️ 🚗
+language	🗣️ 🌍 🔤
+languages	🗣️ 🌐 🔤
+lao	🇱🇦
+laps	🏊 🏃
+larger	📈 ⬆️
+largo	🎵 🐌
+larvae	🐛
+lasagna	🍝 🧀 🍅
+lasagne	🍝 🧀 🍅
+laser	🔴 ⚡
+lasers	🔦 💥
+lasik	👁️
+lasted	⏳ ⌛
+lastly	🔚
+lasts	⏳ ⌛
+latch	🔒 🚪
+late fee	💸 ⏰
+late night	🌙 🌃 😴
+latency	⏱️ 📶 🐌
+later gator	🐊 👋
+lateral	↔️
+latest	🆕 🕒
+latex	🧤 🎈
+latitude	🌍 🧭 📍
+latte	☕ 🥛
+lattice	🔲
+latvia	🇱🇻
+latvian	🇱🇻
+laughed	😂 🤣 😆
+laughs	😂 🤣 😆
+laughter	😂 🤣 😆 😄
+laundering	🧺 💸 💰
+laurel	🌿
+lava	🌋 🔥
+lawful	⚖️ 📜
+lawmakers	🏛️ ⚖️
+lawn	🌱 🌿
+lawn mower	🚜
+laws	⚖️ 📜 🏛️
+lawsuit	⚖️ 📜 📄
+lawyer	⚖️ 👔 🏛️
+lawyers	⚖️ 👩‍⚖️
+lax	😌
+layered	🧅 🍰 📚
+layers	📚 🧅
+layoff	💼 😢
+layout	📐 📄 🖼️
+layup	🏀
+lbs	⚖️
+lcd	🖥️ 💻 📺
+lead	➡️ 🧭
+lead time	⏳ ⏰
+leader	👑 🥇 🏅
+leaders	👑 🧭
+leadership	👑 🧭
+leading	🥇 🏆
+leads	📈 🎯
+leaflet	📄
+league	🏆 🏅
+leagues	🏆 ⚽
+leak	💧 🚰
+leakage	💧 🚰
+leap	🦘 🐸 ⤴️
+leap year	🐸 🗓️ 📅
+learn	📚 🎓 🧠
+learner	📚 🎓
+learners	🎓 📚
+learnt	📚
+lease	🏠 🔑 📝
+leased	🏠 🔑 📄
+leases	🔑 🏠 📜
+least	⬇️
+leather	🧥 👞 👜
+leave	👋 🚪 ✈️
+leaves	🍃 🍂 🌿
+leaving	🚪 👋
+lebanese	🇱🇧
+lebanon	🇱🇧
+lecture	🎓 📚 🗣️
+lectures	🎓 🧑‍🏫
+leds	💡 🔆
+legal	⚖️ 📜 🏛️
+legalise	⚖️ ✅ 📜
+legalize	⚖️ ✅ 📜
+legend	🏆 📖 🗺️
+legendary	🏆 ⭐ 🐉
+legends	🏆 ⭐ 🌟
+legion	⚔️ 🛡️
+legislation	📜 ⚖️ 🏛️
+legislative	🏛️ 📜 ⚖️
+legislators	🏛️ ⚖️ 📜
+legislature	🏛️ 🗳️ ⚖️
+legitimacy	✅ ⚖️ 📜
+legitimate	✅ ✔️ ⚖️
+lei	🌺
+leisure	🏖️ 😌
+lemonade	🍋 🥤 🧊
+lend	🤝 💸
+lender	🏦 💰
+lending	💰 🏦
+length	📏 ↔️ 📐
+lengthy	📏 ⏳
+lenses	🔍 📷 👓
+lent	✝️
+lentils	🫘 🍲 🥣
+lesions	🩹 🏥 🤕
+lesotho	🇱🇸
+less or equal	≤
+lesson	📚 📝 🎓
+lessons	📚 🎓 🧑‍🏫 📝
+let me check	🔍 🧐 👀
+let me know	💬 🔔 📩
+let me know when	🔔 ⏰ 📩
+let me see	👀 🔍 🤔
+let me think	🤔 💭 🧠
+let's go	🚀 💪 🏃
+letras	🔤
+lets go	🚀 💪 🏃
+lettering	✍️ 🔤
+letting	🏠 🔑
+leukemia	🎗️ 🩸
+level up	⬆️ 🎮 🆙
+leverage	⚙️ 📈
+levy	💰
+lexicon	📖 🔤
+lgtm	👍 ✅
+liability	⚖️
+liable	⚖️
+liaison	🤝 🔗
+liberation	🕊️ ✊
+liberia	🇱🇷
+libertarian	🗽 🦅
+librarian	📚 👓
+libraries	📚 🏛️
+libs	📚
+libya	🇱🇾
+libyan	🇱🇾
+licence	📜 🪪 🚗
+licences	📄 🪪
+licensed	📜 ✅
+licensee	🪪 📄
+licensees	📜
+licensing	📜 ✅
+licensors	©️ 📜
+licensure	📜 ✅
+lid	🫙 🧢
+liechtenstein	🇱🇮
+lien	⚖️
+lieu	↔️
+lieutenant	🎖️ 🪖
+lifecycle	♻️ 🔄 🌱
+lifestyle	🌿 🧘 🏡 ☕
+lifetime	⏳ ♾️
+lifted	🏋️ ⬆️
+lifts	🏋️ ⬆️ 🛗
+light color	🎨 🌈 💡
+light mode	☀️ ⚪
+lightbox	💡 📷
+lighted	💡 🕯️
+lighter	🔥
+lighting	💡 🔦 🕯️
+lightly	🪶
+lights	💡 🔦 ✨
+lightweight	🪶
+likelihood	🎲 📊
+lily	🌸 🪷
+limerick	📜
+limestone	🪨
+limit	🚫 ⛔
+limitation	🚫 ⛔
+limited	🚫 🔒
+limiting	🚫 🛑
+limits	🚫 ⛔ 📏 ⚠️
+limo	🚘 🚗
+limousine	🚘
+limp	🥀
+linden	🌳
+line break	⏎ ↩️
+line chart	📈 📉
+line spacing	↕️ 📏
+lineage	🌳 👨‍👩‍👧‍👦 🧬
+linear	📈 📏 ➡️
+linen	👕 🧵 🛏️
+linens	🛏️ 🧺
+liner	🚢
+liners	🚢 ✈️
+lines	➖ 〰️
+lineup	📋 👥
+lingere	👙
+linguistic	🗣️ 🔤
+linguistics	🗣️ 📚
+linkage	🔗
+linkages	🔗 ⛓️
+linter	🧹 🔍
+linux	🐧 💻
+lipid	🧈 🧪
+liquidation	📉 💸 🏷️
+liquidity	💧 💰 🏦
+liquids	💧 🫗
+listened	🎧 👂
+listener	🎧 👂
+listeners	🎧 👀
+listings	📋 🏠 🔍
+listprice	🏷️ 💲
+liter	🥛
+literacy	📖 ✍️
+literally	💯
+literary	📖 ✍️
+literature	📚 📖 ✍️
+lithium	🔋 ⚛️
+lithuania	🇱🇹
+lithuanian	🇱🇹
+litigation	⚖️
+litres	💧 🧪
+little italy	🇮🇹 🍝 🍕
+live	🔴 🎤
+livecam	📹 🎥
+lived	🏠
+lively	🎉 ⚡ 💃
+livestock	🐄 🐑 🐖
+livid	😡
+living	🌱 🏠
+llc	🏢 💼
+llp	🤝 💼
+lmfao	😂 🤣
+lo-fi	🎧
+load	📦 🚚 ⬇️
+loaded	💰 📦
+loading	⏳ 🔄 ⌛
+loads	📦 🚚 💪
+loan	🏦
+loans	💰 🏦
+lobby	🏨 🛋️
+lobbying	🏛️
+local	📍
+local time	🕐 ⏰
+locale	📍 🌍
+localhost	💻 🖥️
+locality	📍 🏘️
+localization	🌐 📍 🗺️
+localized	📍 🌐
+locally	📍 🏘️
+locals	🏘️ 👥
+locate	📍 🔍 📌
+locating	📍 🔍 🗺️
+locator	📍 🗺️ 🔍
+loch	🏞️ 🌊
+locker room	🔒 🚿
+locus	📍
+lodge	🛖 🏨 🏕️
+lodged	🏨 🛏️
+lodges	🏕️
+lodging	🏨 🛏️ 🏠
+loft	🏠 🛏️
+log in	🔑 🔐
+log out	🚪 👋 ⬅️
+logged	📝 📒 🗂️
+logger	🪓 🪵 🌲
+logical not	¬ ❎
+login	🔑 🔐
+logistics	🚚 📦
+logo	™️ ®️
+logon	🔑 💻 🔐
+logout	🚪 👋
+lone	🧍 🐺
+long time no see	👋 🤗
+long weekend	🏖️ 📅
+longevity	🐢 ⏳
+longhorn	🐂
+longitude	🧭 🌐
+look after yourself	🧘 💆 💖
+lookout	👀 🔭
+lookup	🔍
+lord	👑
+lore	📜 📚 🧙
+loser	👎
+losers	🤡
+loses	❌ 📉
+loss	💔 📉
+losses	📉 💸 😞
+lottery	🎰 🎟️ 💰
+lotto	🎰
+lounge	🛋️
+love all	❤️ 💕
+love is love	🏳️‍🌈 ❤️
+love song	🎵 ❤️ 💕
+lovely day	☀️ 😊
+lovers	❤️ 💕 💑
+loveseat	🛋️
+low fat	🥗
+lowering	⬇️ 📉
+lowest	⬇️ 📉
+lowkey	🤫 😏
+lows	📉 ⬇️
+loyal	🤝 ❤️
+loyalty	🤝 ❤️
+loyalty card	💳 ⭐
+lps	💿
+ltd	🏢
+lubricants	🛢️
+lucifer	😈
+lug	🏋️
+lumen	💡
+luna	🌙
+lunar	🌙 🌕
+lunar new year	🧧 🐉 🏮
+lunch break	🍽️ 🥪
+luncheon	🍽️ 🥪 🥗
+lush	🌿 🌴
+luv	❤️ 💕
+lux	💡
+luxembourg	🇱🇺
+lymph	🩸 💧
+lyric	🎵 🎶 🎤
+lyrics	🎤 🎵
+macaroni	🍝 🧀
+macau	🇲🇴
+macchiato	☕
+macedonia	🇲🇰
+mach	💨 ✈️
+machine learning	🤖 🧠
+machinery	⚙️ 🏭
+machines	⚙️ 🤖 🏭
+machining	⚙️ 🏭 🔩
+macroeconomic	📈 📉
+macs	💻
+mad respect	👏 💯
+madagascar	🇲🇬
+madam	👩
+made	🛠️ 🏭
+maestro	🎼 🎻 🎶
+mafia	🔫 🤵 🎩
+mag	📰
+magazine	📰 📖
+magazines	📰 📖 📚
+magenta	🟣
+magistrate	⚖️
+magnesium	🧪 ⚗️
+magnificent	✨ 🌟 🤩 😍
+magnitude	📏 📈
+magnolia	🌸
+magnum	🍾
+mags	📰 📚
+mah	🔋
+mahogany	🪵 🟤
+maid	🧹 🧽 🧺
+maiden	👰 🚢 ⛵
+mail carrier	📮 📬 ✉️
+mailer	✉️ 📧
+mailman	📮 📬 ✉️
+mails	📧 ✉️ 📬
+mailto	✉️ 📧
+main	⭐
+main character	⭐ 🎬
+main course	🍽️ 🥩
+mainframe	🖥️
+mains	🔌 ⚡
+maintain	🔧 🛠️
+maintainer	🛠️ 🔧
+maintenance	🔧 🛠️
+majestic	👑 ✨
+majesty	👑
+majordomo	🤵
+majors	🎓
+make	🛠️ 🔨
+make a wish	🌠 ⭐ 🕯️
+makefile	📄 🛠️
+makeover	💄 💅 💇 ✨
+maker	🛠️
+makes	🛠️ 🏗️
+makes sense	👍 💡 ✅
+maki	🍣
+making	🛠️ ✨
+malawi	🇲🇼
+malaysia	🇲🇾
+malaysian	🇲🇾
+maldives	🇲🇻
+mali	🇲🇱
+malicious	😈 👿
+malignant	🦠 ☠️
+mall	🏬 🛍️
+malpractice	⚖️
+malta	🇲🇹
+malware	🐛 🦠 💻
+mama	👩 ❤️
+mambo	💃 🕺 🎶
+mammalian	🐾 🦁 🦣
+mammals	🐾
+mana	✨ 🔮
+managed	📋 ✅ 🗂️
+management	📊 👔 🗂️
+managerial	💼
+managers	👔 📋
+manages	📋 🗂️
+managing	📋 🗂️
+mandarin	🍊 🇨🇳
+mandate	📜 🗳️
+mandated	📜 ✅
+mandatory	❗
+mandolin	🎸 🎻
+mandrake	🌿 🪴
+manga	📖
+mania	🤪 🔥 😵‍💫
+manicule	☞ 👉
+manifest	📋 📜
+manifesto	📜 📢
+mankind	🌍 👥
+manners	🙏 🤝
+manor	🏰
+manpower	👷 💪
+mansion	🏰
+mantle	🌋
+manually	✋ 🛠️
+manuals	📖 📘
+manufacture	🏭 ⚙️
+manufactured	🏭 ⚙️ 🔧 📦
+manufacturer	🏭
+manufacturers	🏭 ⚙️
+manufacturing	🏭 ⚙️ 🛠️
+manure	💩 🌱
+manuscript	📜 ✍️ 📝
+many happy returns	🎂 🎉
+many thanks	🙏
+maori	🇳🇿
+mar	📅 3️⃣ 🗓️
+march	📅 🚶
+mardi	🎭 🎉
+mardi gras	🎭 🎉
+mare	🐴
+margin	📄 📏
+marginal	📉
+marimba	🥁 🪘
+marina	⚓ ⛵
+mariner	⛵ ⚓ 🚢
+mariners	⚓
+marines	⚓ 🪖
+marital	💍 👰
+markers	🖊️ 🖍️
+market cap	📈 💹 💰
+marketed	📣 📈 🛒
+marketing	📣 📈 📢 🎯
+marketplace	🛒 🏪
+markets	🏪 🛒 📈
+marking	✏️ 📝 ✅ 🖊️
+markup	🏷️ 💲
+marlin	🐟
+maroon	🟥 🟫
+marquis	👑 🏰
+marriage	💍 💒 👰
+marriages	💍 💒 ❤️
+marry	💍 💒
+mars	🔴 ♂ 🚀
+marsh	🐸 🌿 🌾
+marshal	⭐ 🎖️
+marshmallow	🍬
+mart	🏪 🛒
+martial arts	🥋 🥊
+marvelous	✨ 🤩 😍
+mashed potato	🥔 🥣
+masks	🎭 😷
+mason	🧱 👷 🛠️
+masonry	🧱
+mass	⛪ ⚖️
+masses	👥
+mast	⛵
+master	🎓 🥇
+mastering	🎓 🏆
+masterpiece	🎨 🖼️
+masters	🎓 🏆
+mastery	🏆 🥇
+match	🔥 ⚽ 💑
+match point	🎾 🏆
+matcha	🍵
+matched	🟰 👥
+matches	🔥 ⚽ 🎮
+matching	🧩
+material	🧵 🧶
+materials	🧱 📦 🧵
+maternal	🤱 👶
+maternity	🤰 👶
+mates	👫 🤝
+maths	➕ ➖ ✖️ ➗
+matrices	🔢
+mats	🧘
+mattress	🛏️ 😴
+mattresses	🛏️ 🛌
+matzo	🫓
+mauritania	🇲🇷
+mauritius	🇲🇺
+max	🔝 📈
+maxi	👗
+maximal	🔝 🔼
+maximizing	📈 ⬆️
+maximum	🔝 📈
+may	🌸 📅
+may i	🙏 ❓ ✋
+maybe later	🤷 ⏳
+mayday	🆘 🚨
+mayhem	💥 😱 🔥
+mayor	🏛️
+mayotte	🇾🇹
+mba	🎓 💼
+mbps	📶 📡
+mds	🩺 🧑‍⚕️ 🏥
+mead	🍯 🍺
+meadow	🌿 🌼
+meadows	🌾 🌼
+meal	🍽️ 🍛
+meals	🍽️ 🍲
+meaning	💡 🤔
+meanings	📖 💬 💭
+meantime	⏳
+meanwhile	⏳
+measurable	📏 📊
+measured	📏 📐 ⚖️
+measurement	📏 📐 ⚖️
+measures	📏 📐 ⚖️
+measuring	📏 📐 ⚖️
+meatloaf	🍖 🥩
+meats	🥩 🍗 🍖
+mechanics	🔧 🛠️ ⚙️
+mechanism	⚙️ 🔧
+med	💊 🏥
+medals	🥇 🥈 🥉
+media query	💻 📱
+median	📊
+mediation	🤝 ⚖️
+mediator	🤝 ⚖️
+medicaid	🏥 💊
+medically	🏥 ⚕️ 💉
+medicare	🏥 💊
+medication	💊 💉 🏥
+medications	💊 💉 🩺 🧪
+medicinal	💊 🌿 ⚕️
+medicines	💊 💉
+meditator	🧘
+mediterranean	🌊 ☀️ 🏖️
+medley	🎵 🎶 🎼 🔀
+meds	💊 💉
+meet	🤝 👋
+meeting room	🏢 💼
+meetings	📅 🗓️ 🤝 💼
+meets	🤝 📅
+meetup	👥 🤝
+mega	💥 🚀 💪
+megabyte	💾
+megahertz	📡
+megapixel	📷 📸
+melanoma	🎗️ 🏥
+melody	🎵 🎶
+members	👥
+memberships	🪪 💳
+membrane	🧫 🧬
+meme	😂 💀
+memoir	📖 ✍️
+memorabilia	🏆 🖼️ 🎖️
+memorable	🌟 ✨
+memorandum	📝 📄
+memorials	🕯️ 🪦
+memories	📸 💭 🧠
+memory	🧠 💾
+memory card	💾 🗃️
+men at work	🚧 👷
+menace	😈 ⚠️
+menopause	🌡️ 🔥
+mens	👨 🚹
+mental	🧠 💭
+mental health	🧠 💚
+mention	💬 @
+mentioned	💬 🗣️
+mentions	@ 💬
+mentor	🧑‍🏫 🤝
+menu	📋 🍽️
+menus	📋 🍽️
+merchandise	🛍️ 🏷️ 📦
+merchant	🏪 💳 🛍️
+merchants	🏪 💰 🛒
+mercury retrograde	☿ 🔁
+merengue	💃 🎶
+merge	🔀
+merge conflict	⚠️ 🔀
+merged	🔀 🤝 🔄
+merger	🤝 🏢
+meridian	🌐 🗺️
+merit	🏅 ⭐ 👍
+merits	⭐
+merry christmas	🎄 🎅 🎁
+mesa	🏜️
+mesothelioma	🏥 🎗️
+message me	💬 📩 📱
+messenger	💬 📩 📱
+messiah	✝️
+messy	🌀
+met	🤝 👋
+metabolic	🔥 🧬
+metabolism	🔥 🧬 ⚡
+metadata	🏷️ 🗂️ 💾
+metallic	🔩 🪙
+metals	⛓️ 🔩 ⚙️
+metasearch	🔍 🌐
+meteorological	🌦️ 🌡️
+meteorology	🌦️ 🌡️ 🌪️
+meter	📏 🅿️
+metering	📏 ⏱️
+methane	💨
+method	🛠️ 📋 ⚙️
+methodist	⛪ ✝️
+methyl	🧪 ⚗️
+metres	📏
+metric	📊 📏
+metrics	📊 📈
+metropolis	🏙️ 🌆
+metropolitan	🏙️ 🌆
+mets	⚾
+mexico	🇲🇽
+mfa	🔐 🔑
+mfg	🏭
+mfr	🏭
+mgmt	💼 📊
+mice	🐭 🐁
+microbial	🦠
+microbiology	🦠 🔬
+micron	🔬
+micronesia	🇫🇲 🏝️
+microscopic	🔬
+microscopy	🔬
+microsecond	⏱️
+microservice	🧩
+mid autumn	🥮 🌕
+mid autumn festival	🥮 🌕 🏮
+middleware	🔗 🖥️
+midi	🎹 🎵
+midnight	🌙 🕛 🌃
+midtown	🏙️
+midway	🎡 🎢
+might i	🙏 ❓ ✋
+mighty	💪 ⚡
+migraine	🤕 💊
+migrant	🚶 🧳
+migrate	🐦 🦋
+migrating	🐦 🦋 ✈️
+mikes	🎤
+mile	🛣️
+mileage	🚗 ⛽
+milestone	🏁 🚩
+milestones	🏁 🎯 🚩
+militia	⚔️ 🔫 🛡️
+milkshake	🥤 🥛
+millenium	🎉 🎊 🎆
+milliliter	💧 🧪
+millimeter	📏
+milling	⚙️ 🏭
+millisecond	⏱️ ⚡
+mills	🏭 🌾 ⚙️
+mime	🎭
+mind blown	🤯 💥
+mind the gap	🚇 ⚠️
+minded	🧠
+mindfulness	🧘 🪷
+mindless	🤖 😵‍💫 😶
+minds	🧠
+mine	⛏️ 💎
+miner	⛏️
+mineral	💎 🪨 ⛏️
+miners	⛏️ 👷 💎
+mini	🤏
+miniature	🔬
+minimizing	📉
+minimum	⬇️ 📉
+minister	🏛️ 👔
+ministerial	🏛️
+ministers	🏛️ 👔 ⛪
+ministry	🏛️ ⛪
+minor	👶 ♭
+minors	🧒 👦
+mins	⏱️
+mint	🌿 🍃 💚
+minus plus	∓ ±
+minute	⏱️
+miracle	✨ 🙏
+miracles	✨ 🙏 🌟
+mirage	🏜️ 🌵
+miscellaneous	🗂️ 📦
+misconduct	🚫 ⚠️
+miserable	😞 😭 😩
+misery	😢 💔
+misleading	🤥 🚫
+miso soup	🍲 🥣
+misplace	🔍
+miss you	🥺 💔
+missed	📞 ❌ 💔
+missed call	📞 📵
+misses	💔 😢
+missile	🚀
+missing	🔍 ❓
+mission	🎯 🚀
+missionaries	⛪ ✝️ 🙏
+mist	🌫️
+mistaken	❌ 🤦
+mistakes	❌
+mister	🤵
+mistletoe	🌿 💋
+misty	🌫️
+misuse	⚠️ 🚫 ❌
+mix	🔀 🎛️ 🥣
+mixer	🎛️ 🍹
+mixing	🥣 🔀
+mixture	🧪 🥣
+mixtures	🧪 ⚗️
+ml	🤖
+mlb	⚾
+mls	🏠 ⚽
+mm	📏
+mma	🥊 🥋
+mmm	😋 🤤
+mmo	🎮 👾
+mms	📱 💬 🖼️
+moby	🐋
+mocha	☕ 🍫
+mod	🛠️ 🎮
+model	👗 🚗
+modeling	📸 👗
+modem	📡 📶
+modems	📶 📡 💻
+moderation	⚖️ 🎚️
+moderator	🛡️
+modern	🏙️ 💻
+modernization	🏗️ 🏙️
+modes	🎛️ ⚙️
+modification	🔧 ✏️
+modifications	🛠️ ✏️
+modify	✏️ 🔧 🔄
+modifying	✏️ 🛠️
+mods	🔧 🛠️
+modular	🧩
+module	🧩 📦
+moist	💧
+moisture	💧 💦
+mojo	🪄 ✨
+mold	🦠 🍞
+moldova	🇲🇩
+mole	🕵️
+molecular	⚛️ 🧬 🔬
+molecule	⚛️ 🧪
+molecules	⚛️ 🧬 🔬
+moment	⏱️ ⏳
+moments	📸 ⏱️
+momentum	🚀 📈 💨
+momma	👩 ❤️ 👶
+mommy	🤱 👩
+mon	📅 🗓️
+monaco	🇲🇨
+monastery	⛪ 🧘
+monday	📅 💼
+mondays	📅 😩
+monetary	💰 💵
+mongolia	🇲🇳
+monies	💰 💵 💸
+monitored	👀 📹 📡
+monitoring	📊 👀 🖥️
+monk	🧘
+monks	🧘 🙏
+mono	⚫ ⚪
+monoclonal	🧬 🧪
+monogram	🔤 ✒️
+monolith	🗿 🏛️
+monopoly	🎲 🎩 🏠 💰
+monsoon	🌧️ 🌊
+montenegro	🇲🇪
+month	📅 🗓️
+monument	🏛️ 🗽
+monuments	🗿 🏛️
+mood	😌 💭
+moody	😒 😠 🌧️
+moon sign	🌙
+mooncake	🥮 🌕
+moonlight	🌙 🌕
+mop	🧹 🪣
+morale	💪 🙌 😊
+morality	⚖️ 😇 🧭
+more	➕
+mornings	🌅 ☀️ ☕
+moroccan	🇲🇦
+morocco	🇲🇦
+morphology	🔬 🧬
+morse	• —
+mortal	💀 ⚰️
+mortality	⚰️ 💀
+mortarboard	🎓 👨‍🎓
+mortgage	🏠 🏦
+mortgages	🏠 💰
+mosaic	🧩 🎨
+moss	🌿
+motel	🏨 🛏️
+moth	🦋
+mother in law	👵
+mother's day	💐 🌹 🌷
+motherboard	💻 🖥️ 🔌
+motherboards	🖥️ 💻
+mothers day	💐 🌹 🌷
+motif	🎨
+motion	🏃 💨
+motions	🔄 ➡️
+motivate	💪 🔥 🎯
+motivation	💪 🔥
+motivational	💪
+motley	🎨 🤡
+moto	🏍️
+motorbike	🏍️
+motoring	🚗 🛣️
+motors	⚙️ 🔧
+motorsport	🏎️ 🏁
+motto	📜 📢
+mound	⛰️
+mountaineering	🧗 ⛰️
+mounted	🐎 🖼️
+mounts	⛰️ 🏔️
+mourning	🕯️ 😢 ⚰️
+mov	🎬 📹
+movable	📦 🚚
+moved	🚚 📦 🏠
+movement	🏃 🚶
+movements	🚶 💃 ✊
+mover	🚚 📦
+movers	📦 🚚
+moves	🚚 🏃 📦 💃
+movies	🎬 🍿
+moving	🚚 📦 🏠
+mozambique	🇲🇿
+mozzarella	🧀 🍕
+mp3	🎵 🎧
+mp4	🎬 📹
+mpegs	🎞️ 📹 🎬 🎥
+mpg	⛽ 🚗
+mph	🚗 💨
+mps	🏛️ 🗳️
+mr	👨 🎩
+mri	🧠 🏥
+mrna	🧬 💉
+ms	👩
+msg	💬 ✉️
+msrp	🏷️ 💲
+mst	⏰
+muay thai	🥊 🇹🇭
+much appreciated	🙏
+much obliged	🙏
+mud	🟤
+muddy	🟤 🌧️
+muesli	🥣 🫐
+muffin	🧁
+muggy	🥵
+multicultural	🌍 🌐 🤝
+multifunction	🖨️
+multilateral	🤝 🌐
+multilingual	🌐 🗣️
+multimedia	🎬 🎵 📷 🖼️
+multinational	🌍 🌐
+multiplayer	🎮 👥
+multiple	✖️ 🔢
+multiplied	✖️
+multitude	👥
+mum	🤱 👩
+mummy	🤱 👩
+mundo	🌍 🌎 🌏
+municipal	🏛️
+municipalities	🏙️ 🏛️
+municipality	🏛️ 🏙️
+muscular	💪 🏋️
+muse	🎨 💭
+museums	🏛️ 🖼️
+musica	🎵 🎶 🎼
+musical theater	🎭 🎶
+musicals	🎭 🎶 🎤
+musician	🎸 🎤
+musicians	🎤 🎸 🥁 🎹 🎷 🎶
+musik	🎵 🎶
+musings	💭
+mussel	🦪 🐚
+must	❗
+mustang	🐎 🚗
+mustard	🌭 🟡
+mutant	🧬 🦸
+mutants	🧬 ☢️
+mutation	🧬
+mutations	🧬 🦠
+mutual	🤝
+mvp	🏆 🥇 ⭐
+my apologies	🙏 😔
+my bad	🙏 😅
+my condolences	🙏 💔 🕊️
+my pleasure	😊 🙇
+myanmar	🇲🇲
+mybad	😅 🙏
+myocardial	🫀 ❤️
+myrtle	🌿
+myself	🙋
+mysteries	🔍 🕵️ ❓
+mystic	🔮
+mystical	🔮 ✨
+myths	🐉 🦄
+nachos	🌮 🧀
+nah	👎 🤷
+nailed it	💪 ✅ 🔨
+naive	😇
+namibia	🇳🇦
+naming	🏷️ ✍️
+nan	👵
+nana	👵
+nano	🔬
+nanosecond	⏱️
+nanotechnology	🔬 ⚛️
+napkin	🧻 🍽️
+narrative	📖 ✍️
+narrator	🎙️ 📖 🗣️
+narrow	↔️ 📏
+nasa	🚀 🛰️ 🌌
+nasal	👃
+nasdaq	📈 📉
+nation	🌍
+nationality	🛂 🌍
+nations	🌍 🌎 🌏
+nationwide	🗺️
+naturally	🌿 🌱
+naturals	🌿 🌱
+naughty	😈 😏
+nauru	🇳🇷
+nausea	🤢 😖
+nauseous	🤢 😖
+nautical	⚓ 🚢 ⛵
+naval	⚓ 🚢
+navbar	🧭
+navigate	🧭 🗺️
+navigational	🧭 🗺️
+navigator	🧭 🗺️
+navy	⚓ 🌊 🟦
+nay	👎 ❌
+near	📍
+nearby	📍
+nearest	📍
+nearly	≈
+nearly there	🏁
+neat	✨
+nebula	🌌 ✨
+necessary	❗
+necromancer	💀 ⚰️
+nederland	🇳🇱 🌷
+needed	❗
+needs review	👀 🔍
+negatively	➖ 👎 📉
+neglected	🏚️ 🥀
+negligence	⚖️ ⚠️
+negotiable	🤝 💬
+negotiate	🤝 💬 📝
+negotiation	🤝 💬
+neighbor	🏘️ 🤝
+neighborhood	🏘️ 🏙️
+neighborhoods	🏘️ 🏡
+neighboring	🏘️ 🏡
+neighbors	🏘️ 🏠
+neighbours	🏘️ 🏡 👋
+neither	🚫
+nemesis	😈 🦹
+neon	💡
+neon sign	💡
+neonatal	👶 🍼
+neoplasms	🎗️
+nepal	🇳🇵
+nephew	👦
+nerve	😬 😰
+nested	🪆
+netball	🏀
+netherlands	🇳🇱
+networked	🌐 🔗
+networking	🤝 🌐
+networks	🌐 🔗 🛜 📡
+neural	🧠 🤖
+neural network	🧠 🕸️
+neurological	🧠
+neurology	🧠
+neurons	🧠 ⚡
+neuroscience	🧠 🔬
+neutron	⚛️
+never	🚫 ⛔
+never give up	💪 🔥
+never mind	🤷 🙅
+new arrival	👶 📦
+new baby	👶 🍼
+new home	🏠 🔑
+new job	💼 🎉
+new town	🏘️
+new year	🎉 🎆 🥳 🎊
+new year's day	🎉 🎆 🥳
+new year's eve	🎆 🥂
+newbie	🆕 👶
+newbies	🐣 👶 🆕
+newcomers	👋 🆕
+newer	🆕
+newest	🆕 ✨
+newly	✨ 🆕 🌱
+newsfeed	📰 📱 🔔
+newsgroup	💬 📰 🗞️
+newsgroups	💬 📰 🌐
+newsletter	📰 ✉️
+newsletters	📰 📬 ✉️ 📧
+newsroom	📰 🎙️ 🎥
+newswire	📰
+newt	🦎
+next day	📅 ⏭️
+nexus	🔗
+nfc	📱 💳
+nfl	🏈
+nft	🖼️ 🎨
+ngl	😅 😬
+ngmi	💀
+ngo	🤝 🌍
+nhl	🏒 🏆 🥅
+nhs	🏥
+nicaragua	🇳🇮
+nice job	👍 👏 🎉
+nice one	👍 😄
+nice to meet you	🤝 😊
+nice to see you	👋 😊
+nice work	👏 💯
+niche	🎯
+nickel	🪙
+nickname	🏷️
+nicotine	🚬
+niece	👧
+nifty	👍
+niger	🇳🇪
+nigeria	🇳🇬
+nigerian	🇳🇬
+night night	🌙 😴
+night sky	🌌 ⭐ 🌙
+nightclub	🪩 🎶 🍸 💃
+nightlife	🌃 🍸 🎉
+nightly	🌙 🌃
+nightmare	😱 👻
+nights	🌙 🌃 ⭐
+nigiri	🍣
+nikkei	📈
+nile	🌊
+nimbus	☁️
+nineteenth	⑲
+ninety	9️⃣
+nis	₪
+nite	🌙
+nitpick	🔍 🧐
+nitro	🏎️ 💨 🔥
+nitrogen	🧪
+niue	🇳🇺
+no cap	🧢
+no doubt	💯 👍 ✅
+no hurry	🐢 ⏳ 😌
+no parking	🚫 🅿️
+no pressure	😌 🧘 🐢
+no problem	👌 ✅
+no rush	🐢 ⏳ 😌
+no thanks	🙅 🚫 ❌
+no way	😱 ❌
+no worries	😌
+nobel	🏆 🥇
+nobody	👤 🚫
+nodded	👍
+nodes	🔗
+noel	🎄 🎅 🎁
+noir	🕵️ 🎬 🖤
+noise	🔊 📢 🔉
+noisy	🔊 📢
+nom	😋 🍴
+nomad	🚐 🏕️
+nominate	🗳️ 📣
+nominated	🏅 🗳️
+nomination	🏆 🗳️ 📋
+nominations	🏆 🎖️
+nominee	🏆 🎖️
+nominees	🏆 ⭐ 🎖️
+none	🚫 0️⃣
+nonfiction	📚 📖
+nonlinear	〰️ 🔀
+noon	🕛 🌞
+nord	🧭 ⬆️
+nordic	❄️ 🇸🇪 🇳🇴 🇩🇰 🇫🇮 🇮🇸
+nori	🍣
+norms	📏
+northeastern	↗️ 🧭
+northern	⬆️ 🧭 ❄️
+norway	🇳🇴
+norwegian	🇳🇴
+nosql	🗄️
+nostalgia	📼 🕰️ 💭
+nostalgic	📼 🕰️
+not at all	🙅 😊
+not available	🚫 ❌ 📅
+not bad	👍 👌 😐
+not element of	∉
+not exists	∄
+not good	👎 😕
+not great	😕 👎
+not happening	🚫 ❌ 🙅
+not interested	🙅 🚫 😒
+not now	⏳ 🚫
+not possible	🚫 ❌ 🙅
+not really	🤷 🙅 😕
+not started	🔲 ⏳
+not sure	🤷 🤔
+not today	📅 🚫 ❌
+not working	❌ 🔧 🛠️ ⚠️
+not yet	⏳ 🚫 ⏰
+notable	⭐ 🏅
+notation	🎵 📝
+notch	🔝
+noted	📝 📌
+noteworthy	⭐
+noticeable	👀
+noticed	👀 🔍
+notices	📢 🔔 📄
+notification	🔔 📲
+notified	🔔 📩
+notify	🔔
+noting	📝 ✍️
+notion	💡
+nougat	🍬 🥜
+nous	🧠
+nouveau	🆕
+nov	📅 🍂
+nova	💥 🌟 ✨
+novel	📖 📚
+novelties	🎁 🪄
+novelty	🎉 🎁 ✨
+november	🍂 📅
+novice	🐣 🔰
+now	⏰
+nowadays	📅 🗓️
+np	👌 👍
+nsf	🔬 🧪
+nsfw	🔞
+nth root	√ ∛
+nuclear	☢️ ⚛️
+nuclei	⚛️ 🧬
+nucleic	🧬
+nucleotide	🧬
+nucleus	⚛️ 🧬
+nudge	👉
+nuevo	🆕 ✨
+nuggets	🍗 🐔 🪙
+nuisance	😤 🙄
+nuke	☢️ 💣 💥
+null	∅ ␀
+numbered	🔢
+numbering	🔢
+numeric	🔢
+numerical	🔢
+nun	⛪ 🙏
+nursery	👶 🍼 🧸
+nutmeg	🌰
+nutrient	🥗 🥦 🍎
+nutrients	🥦 🍎
+nutrition	🥗 🍎 🥦
+nutritional	🥗 🍎
+nuts	🥜 🌰
+nvm	🤷
+nylon	🧵 👕
+nylons	🧦
+nyse	📈 💹
+oak	🌳
+oasis	🏜️ 🌴 💧
+oath	✋ 📜
+oats	🥣 🌾
+obedience	🙇 🐕
+obituaries	📰 ⚰️
+obituary	🪦 ⚰️ 📰 🕯️
+object	📦
+objection	✋ ⚖️
+objections	✋ 🙅 ❌
+objective	🎯 📌
+obligated	🤝
+obliged	🙏 🤝
+oboe	🎵
+obon	🏮 ⛩️
+observation	👀 🔍
+observations	👀 🔍 📝
+observatory	🔭 🌌
+observe	👀 👁️ 🔍
+observer	👀 🔭 👁️
+observing	👀 🔭
+obsessed	😍
+obsession	❤️‍🔥 💭
+obsolete	🗑️ 💾 ⏳
+obstacle	🚧 ⛔ 🧱
+obstetrics	🤰 👶
+obstruction	🚧 🚫
+obtain	📥 🤲
+obvious	👀 💡 ❗
+obviously	🙄
+occasion	🎉 🎊 📅
+occult	🔮 ✨
+occupancy	🏨 🛏️ 🚪
+occupation	💼
+occupational	💼
+occupations	💼 👷 👩‍⚕️ 👨‍🏫
+occupied	🚫 🚻 🔒
+occupy	✊ 🏠
+oceanic	🌊 🐋
+oceans	🌊
+ocr	📄 🔍
+oct	📅 🎃
+octagon	🛑
+octave	🎵 🎼
+octet	8️⃣
+october	🎃 🍂 🍁
+odds	🎲
+ode	📜 🎵
+odyssey	🗺️ 🧭 ⛵
+of course	👍 😌
+off track	🚂 🛤️
+offboard	👋 🚪
+offboarding	👋 💼
+offence	😤
+offended	😠 😤
+offenders	⛓️ 👮 ⚖️
+offense	😤
+offenses	⚖️ 🚫
+offerings	🎁 🙏
+offers	🏷️
+office party	🎉 🥳
+offices	🏢 🏬
+official	✅ 🏛️
+officially	✅ 📜
+officials	🏛️ 👔
+offline	📴 ✈️
+offshore	🌊
+offside	⚽ 🚩
+offspring	👶
+often	🔁
+oh no	😱 😨 😰
+oh well	🤷
+oi	📣
+oki	🆗 👌
+okr	🎯 📊
+old town	🏘️ 🏰
+older	👴 👵 🧓
+oldest	👴 🕰️ 📜
+oldies	📻 🎶 🎵
+olive oil	🫒
+olympic	🏅 🥇 🏟️
+olympics	🏅 🥇 🏆
+oman	🇴🇲
+ombudsman	⚖️
+omelet	🍳 🥚
+omelette	🍳 🥚
+omg	😱
+omitted	➖
+omw	🚗 🏃
+on call	📞 📱
+on cloud nine	☁️ 😊
+on fire	🔥
+on hold	⏸️ 📞 ⏳
+on leave	🏖️ 🛫
+on my way	🚗 🏃
+on time	⏰ ✅
+on track	🛤️ ✅
+onboard	👋 🚀
+onboarding	👋 🤝 📋
+oncology	🎗️ 🏥
+one hundred percent	💯
+one moment	⏳ ✋ 🕐
+one on one	👥 🤝
+one sec	⏱️ ⏳ ✋
+one star	⭐
+one way	➡️ 🛣️
+ongoing	🔄
+online	🌐 💻 🟢
+only child	🧒 👶
+onsite	📍 🏢
+onwards	➡️
+onyx	💎 🖤 ⚫
+oof	😬 🫠
+ooh	😮 🫢
+ooo	😮 😯
+oopsie	😅 🤦 🙈
+opacity	░ ▒ ▓
+opal	💎
+open source	🐧 🔓
+opened	🔓 🚪 📬
+opener	🔓
+openings	🚪 🕳️
+openness	🔓 🤝
+opens	🔓 🚪
+opera	🎭 🎶 🎤
+operate	⚙️
+operated	⚙️ 🛠️
+operation	⚙️
+operational	⚙️ ✅
+operators	☎️ 👷 🎛️
+ophthalmology	👁️
+opinion	💬 💭 🗣️
+opinions	💭 💬 🗣️
+opponent	⚔️ 🆚 🥊
+opportunity	🚪 🌟
+oppose	✊ 🚫
+opposed	❌ 🚫 ✋
+opposite	↔️ ↕️ 🔄
+oppression	⛓️
+opted	☑️ ✅
+optic	👁️ 👓 🔭
+optics	👓
+optimal	⭐ 🎯
+optimism	😊 🌈 ✨
+optimistic	😊 ☀️ 🌈
+optimization	⚙️ 📈
+optimizations	⚙️ 📈 🚀
+optimize	⚙️ 📈 🚀
+optimized	⚡ 📈 ⚙️
+optimizing	⚙️ 📈 🔧
+optimum	🏆 💯
+optional	☑️ 🔘
+opus	🎼 🎵
+oracle	🔮 🧙 🏛️
+oral	🗣️ 👄
+orange juice	🍊 🧃
+orb	🔮 ⚪
+orbit	🪐 🛰️
+orbital	🛰️ 🪐
+orc	👹 🧌
+orchard	🍎 🌳
+orchid	🪻 🌸
+order book	📊 📒
+ordered	🛒 📦 ✅
+ordering	🛒 📦 📝
+orders	📦 🛒 🧾
+ordinal	º ª 1️⃣ 2️⃣ 3️⃣
+ordinance	📜 ⚖️
+ordination	⛪ ✝️ 🙏
+ore	⛏️ 🪨
+oregano	🌿
+org	🏢
+organic	🌱 🥬 🥦
+organisation	🏢 👥
+organisational	🏢
+organise	🗂️ 📋
+organised	📋 🗂️
+organisers	📋
+organising	🗂️ 📅 📋
+organism	🦠 🧬 🌱
+organisms	🦠 🌱 🐛
+organization	🏢 👥
+organizations	🏢 👥 🏛️
+organize	🗂️ 📋
+organizer	🗂️ 📋 📅
+organizers	📅 🗂️
+organizing	🗂️ 📁 📋 🗃️
+orientation	🧭
+origin	📍 🌱
+origins	🌱 🧬 📜
+orioles	🐦
+orion	🌌 ✨
+ornament	🎄 🎀 ✨
+ornamental	🎀 🌸
+ortho	🦷 🦴
+orthopedic	🦴 🩼
+os	💻 🖥️
+oscar	🏆 🎬
+otc	💊
+others	👥
+otp	💑 🔐
+ottoman	🛋️ 🪑
+ounce	℥
+ounces	⚖️
+out of office	🏖️ 📴
+out of stock	📦 ❌
+out to lunch	🥪 🍽️
+outage	🔌 ⚡
+outback	🦘 🌵
+outbound	✈️ ↗️
+outbreak	🦠
+outdent	⇤ ⬅️
+outdoor	🌳 🏕️ ☀️
+outer	🌌
+outerwear	🧥 🧣 🧤
+outfit	👗 👔
+outfits	👗 👕 👔 🧥
+outfitters	🎒 🏕️ 👕
+outing	🏞️
+outlaw	🤠 🏴‍☠️
+outlet	🔌 🏬 🛍️
+outlets	🔌 🏪 🛍️
+outline	📝 📋
+outlook	🔮 🌤️ 📈
+outpatient	🏥 🩺
+outpost	🛖 🏕️ ⛺
+output	📤
+outrageous	😱 🤯
+outside	🌳 ☀️
+outstanding	🌟 🏆
+outward	➡️ ↗️
+oval	⬭ 🥚
+oven	🔥 🍞
+oven glove	🧤
+oven mitt	🧤
+ovens	🔥 🍞 🍕
+over the moon	🌙 🥳
+overall	📊
+overcast	☁️ 🌥️
+overcoming	💪
+overdraft	💳 🏦 💸
+overdrive	🚀 ⚡
+overdue	⏰ 📅
+overflow	🌊 💦
+overhaul	🔧 🛠️ ⚙️
+overjoyed	🥳 🤩
+overland	🚙 🛣️ ⛰️
+overload	🤯 ⚡ 🔌
+overlooking	👀 🏞️
+overnight	🌙
+override	⛔ 🔄
+overseas	✈️ 🌍 🌊
+oversee	👀
+oversight	👁️ 🔍
+oversized	🐘
+overstock	📦 🏷️
+overtime	⏰ 💼
+overture	🎼
+overview	🗺️
+overweight	⚖️
+overwhelmed	😵‍💫 🤯
+overwhelming	😵 😰
+ow	🤕 😣
+owe	💸
+owed	💸 💰
+owing	💸 🧾
+owner	👤
+owners	🔑 🏠
+ownership	🔑 🏠
+owning	🔑 🏠
+oxidation	🧪 ⚗️
+oxide	🧪 ⚗️
+oxygen	💨 🫁
+ozone	🌍 ☁️ ☀️
+pacific	🌊
+pack	📦 🎒 🧳
+packet	📦 ✉️
+packs	🎒 📦
+pact	🤝 📜
+paddy	🌾 🍚
+padlock	🔒 🔐
+pads	📝
+pagan	🌙 🕯️ 🌿
+page break	📄 ⏎
+page down	⇟ ⬇️ 📄
+page up	⇞ ⬆️ 📄
+pagina	📄
+pagination	📄 🔢
+paging	📟
+painful	😣 🤕
+painkiller	💊
+pains	🤕 😖
+paintball	🔫 🎯 🎨
+painted	🎨 🖌️
+paints	🎨 🖌️
+pairs	👫
+pakistan	🇵🇰
+pakistani	🇵🇰
+pal	🤝 👬
+paladin	🛡️ ⚔️
+palau	🇵🇼
+palestine	🇵🇸
+palestinian	🇵🇸
+pallet	📦 🪵
+pals	🧑‍🤝‍🧑 🤝 🫂 👯
+panama	🇵🇦
+pandemic	😷 🦠 🌍
+pane	🪟
+panini	🥪 🍞
+panorama	🏞️ 🌄 🌅 🖼️
+panoramic	🌄 🏞️
+pans	🍳
+pant	👖
+panther	🐆
+panthers	🐆 🐈‍⬛
+pantie	🩲
+pantry	🥫 🍞
+pantyhose	🧦
+papa	👨
+papaya	🥭
+paperback	📖 📕 📘
+paperbacks	📚 📖
+papers	📄 📰
+paperwork	📄 📝 🗂️
+paprika	🌶️ 🫑
+papua	🇵🇬
+paracetamol	💊
+parade	🎊 🎉 🎺
+paradise	🏝️ 🌴
+paradox	🤔 🔄
+paraguay	🇵🇾
+paralegal	⚖️ 📄 💼
+paralympics	♿ 🏅
+paramedic	🚑 🏥
+parameter	⚙️ 🔧 📊
+parameters	⚙️ 📐
+paramount	⭐
+paranoid	😰 👀 🤨
+paranormal	👻 🔮 🛸
+pardon	🙏
+pardon me	🙏 🙇
+parental	👪
+parentheses	( )
+parenting	👨‍👩‍👧‍👦 🍼 👶
+parents	👨 👩 👪
+parents day	👪 ❤️
+parfum	🌸 💐 🧴
+paris	🗼 🇫🇷
+parish	⛪
+parity	⚖️ ↔️
+parked	🅿️ 🚗
+parking meter	🅿️ ⏱️
+parking ticket	🅿️ 🎫 💸
+parks	🌳 🏞️ 🌲
+parkway	🛣️
+parliament	🏛️
+parliamentary	🏛️ 🗳️
+parmesan	🧀 🍝
+parody	🎭 🎬
+parse	🔍 🧩
+parsley	🌿
+partial derivative	∂
+participant	🙋 👥 👤
+participants	👥 🙋
+participated	🙋 🤝
+participates	🙋 🤝
+participating	🙋 🤝
+participation	🙋 🤝
+participatory	🤝 🗳️
+particle	⚛️
+particulars	📋 📝 ℹ️
+particulate	🌫️ 🏭
+partition	➗ 🧱
+partly	½ 🌗 ⛅
+partly cloudy	⛅ 🌤️
+partner	🤝 💑
+partnering	🤝 👥
+partnership	🤝
+parts	⚙️ 🔩 🧩
+passages	📖 🚪
+passcode	🔢 🔐
+passed	✅ 🏁
+passengers	🧳 🚌 ✈️ 🚆
+passes	🎟️ 🪪
+passion	❤️ 🔥
+passionate	❤️ 🔥
+passover	🫓 🍷
+past	⏪ 🕰️ 📜
+paste	📋
+pastel	🎨 🩷
+pastor	⛪ ✝️ 🙏
+pastoral	🐑 🌾
+pasture	🐄 🌾
+patch	🩹
+patent	📜 💡 ⚖️
+patented	®️ ™️
+paternity	👨‍👧 👶 🧬
+path	🛤️ 🥾
+pathetic	🙄 😒
+pathfinder	🧭 🗺️ 🥾
+pathogens	🦠 🧫
+pathology	🔬 🧪 🧫
+pathway	🛤️ 🚶 👣 ➡️
+patient	🏥 🤒
+patio	🪴
+patriotic	🎖️ ❤️
+patron	🎭
+patrons	🎭 👥
+patty	🍔
+paused	⏸️
+paved	🛣️ 🧱
+pavement	🛣️ 🚶
+pavilion	🏛️ ⛺
+paving	🛣️ 🚧
+pax	☮️ 🕊️
+payable	💳 💰
+payday	💰 💵
+payload	📦 🚀
+payment	💳 💰 🧾
+payments	💳 💸 💰 🧾
+payout	💸 💰
+payouts	💰 💵 💸
+payroll	💰 💼 🧾
+pays	💳 💰
+pcb	🖥️ 💻 🔌
+pcr	🧪 🧬
+pcs	💻 🖥️
+pct	%
+pdf	📄
+pdfs	📄 📑
+pdt	🕒
+peace out	✌️ 👋 ☮️
+peace sign	✌️ ☮️
+peak	⛰️ 📈 🏔️
+peanut butter	🥜 🧈 🍞
+pearls	📿 🦪
+pebble	🪨
+pedal	🚲 🦶
+pedals	🚲 🚴
+pedestrian crossing	🚸 🚶
+pediatric	👶 🩺 🧒 🍼
+pediatrics	👶 🩺 🏥
+pedigree	🐕 📜
+pee	🚽
+peel	🍌 🍊
+peer	👥
+peg	📌 🧷 🪝
+pegasus	🐎 🪽
+pelican	🐦
+penalties	🟨 🟥
+pencils	✏️
+pendant	📿 💎
+pending	⏳ ⌛
+peninsula	🏝️ 🌊 🗺️
+pension	💰 🏦
+pentagon	⬟
+pentathlon	🏃 🏅 🏆
+penthouse	🏙️
+pep	⚡ 💪
+pepper mill	🌶️ 🧂
+peptide	🧬 🧪
+per ten thousand	‱
+perceive	👁️ 👀
+percentage	% 💯
+percentages	📊
+percentile	📊
+perception	👁️ 🧠
+perennial	🌿 🌱
+perfection	💯 ✨
+perform	🎭 🎤
+performance	📈 🚀
+performance review	📝 📊 💼
+performances	🎭 🎤 🎶 🎬 👏
+performer	🎭 🎤
+performers	🎤 🎭
+perfume	🧴 🌸 💐
+perimeter	📏 ⭕
+periodic	🔁
+periodic table	🧪 ⚗️ 🔬
+periodical	📰
+periodically	🔁 ⏰ 📅
+periodicals	📰 📚
+periods	⏳ 📅
+peripheral	🖱️ ⌨️ 🖨️
+permalink	🔗
+permanent	♾️ 📌 🔒
+permissible	✅ ✔️
+permission	✅ 🔓
+permissions	🔐
+permit	📄 🪪 ✅
+permitted	✅ 👍
+permitting	✅
+perpetual	♾️ 🔁
+persist	🔁 ⏳
+personal best	🏆 🥇 🎯
+personalised	✏️ 🎁
+personalize	✏️ 👤
+personnel	👥 💼 🧑‍💼
+persuade	🗣️ 🤝
+persuasion	🗣️ 🤝
+pertinent	📌
+peru	🇵🇪
+peruvian	🇵🇪 🦙 🏔️
+pesos	💰
+pesticide	🐛 ☠️
+pesticides	🐛 ☠️ 🧪
+petite	🤏
+petition	📝 ✍️
+petitioner	⚖️ 📜
+petitions	✍️ 📝
+petrol	⛽ 🚗
+petrol station	⛽ 🚗
+petroleum	🛢️ ⛽
+pfc	🎖️ 🪖
+pgp	🔐 🔒
+phantom	👻
+pharaoh	👑
+pharma	💊 💉 🧪
+pharmaceutical	💊
+pharmacist	💊 🏥 ⚕️
+pharmacists	💊 🧑‍⚕️
+pharmacology	💊 🧪
+pharmacy	💊 🏥 ⚕️
+phase	🌙 🔄
+phases	🌑 🌒 🌓 🌔 🌕 🌗
+phat	😎 🔥
+phd	🎓
+phenotype	🧬 🧪
+phew	😮‍💨 😅
+philanthropy	💝 🤝 ❤️
+philippine	🇵🇭
+philosopher	🤔 🧠 📚
+philosophers	🤔 📜
+philosophers stone	🪨 ⚗️ ✨
+philosophical	🤔 💭 📚
+phishing	🎣 📧 ⚠️
+phone call	📞 ☎️ 📱
+phonephone	📱 📞 ☎️
+phosphate	🧪 ⚗️
+phosphorus	🔥 ⚗️ 🧪
+photograph	📷 📸 🖼️
+photographer	📷 📸
+photographers	📸 📷
+photographic	📷 📸
+photography	📷 📸 🖼️
+photon	💡 ✨ ⚛️
+php	🐘 💻
+phrase	💬
+phrases	💬 🗨️
+physical	💪
+physically	💪 🏃 🏋️
+physician	🩺 👨‍⚕️ 👩‍⚕️
+physicians	🧑‍⚕️ 🩺 👩‍⚕️
+physics	⚛️ 🔬
+physiological	🫀 🧠
+physiology	🫀 🧠 🫁 🔬
+physiotherapy	🏥 💪 🧑‍⚕️
+pianist	🎹
+piazza	🏛️ ⛲ ☕
+pic	📷 🖼️
+picked	✅ 👉
+picking	👆
+picks	✅ ⛏️
+pics	📷 🖼️ 📸
+pictorial	🖼️ 📷
+picturesque	🏞️ 🌄
+pier	🌉 ⚓
+pierce	🪡 📌
+pierced	👂 🪡
+pigeon	🐦 🕊️
+pigment	🎨 🖌️
+pigs	🐷 🐖
+pilates	🧘 🤸 💪
+piles	📚
+pilgrim	🙏 ⛪ 🚶
+pillar	🏛️
+pillow	🛏️
+pilots	👨‍✈️ 👩‍✈️ ✈️
+pinball	🕹️
+pinecone	🌲
+pines	🌲
+pinnacle	⛰️
+pins	📌 📍
+pioneering	🚀 🧭
+pioneers	🧭
+pipeline	🛢️ 🔧
+pipelines	🛢️ ⛽
+piper	🎶
+pipes	🚰
+pipette	🧪 💧
+piracy	🏴‍☠️ ☠️
+piston	⚙️ 🔧
+pit	🕳️
+pitbull	🐕 🐶
+pitcairn	🇵🇳
+pitched	⚾
+pitcher	⚾ 🏺
+pitching	⚾
+pivot	🔄
+pix	📷 🖼️
+pixel	🖥️
+pixels	🖼️ 🔲 💻
+pkg	📦
+placebo	💊
+placed	📍 📌
+placemat	🍽️
+placement	📍 📌
+places	📍 🗺️
+placing	📍
+plague	🦠 🐀 ☠️
+plaid	👕 🧥
+plains	🌾 🏞️
+plaintiff	⚖️ 🏛️
+plaintiffs	⚖️ 📜
+plan	📋 📝 📅
+planes	✈️ 🛩️
+planet earth	🌍 🌎 🌏
+planetary	🪐 🌍
+planned	📅 🗓️ 📝 ✅
+planner	📅 🗓️ 📒
+planners	📅 🗓️ 📒 📝
+planning	📅 📝 📋
+planning poker	🃏
+plans	📅 📝 🗺️
+plant based	🌱 🥗 🥦
+plantation	🌴 🌱
+planted	🌱 🌿 🪴
+planting	🌱 🌿
+plaques	🏅
+plaster	🩹
+plastic	♻️ 🥤 🧴
+plateau	⛰️ 🏔️
+platform	🚉 🛤️
+platinum	🪙 💍
+plausible	🤔
+playa	🏖️ 🌊
+playback	▶️ ⏯️ 🎬
+players	⚽ 🎮 🏀 🏈
+playhouse	🏠 🎭
+playlist	🎵 🎶 📃
+playlists	🎵 🎶 ▶️
+playoff	🏆 🏈 🏀
+playoffs	🏆 🏅 🏈
+plays	🎭 ▶️
+plaza	⛲ 🏙️
+plea	🥺 🙏
+pleasant	😊 🙂
+please forgive me	🙏 😔
+please note	📝 ⚠️ ℹ️
+pleased	😊
+pleased to meet you	🤝 😊 👋
+pleasing	😊 😌 👍
+pleasure	😊 😌
+pleasures	😌 🍷
+pledge	🤝
+pledged	🤝 💰
+plenary	🏛️ 👥
+plot	📈 📖 🗺️
+plots	📖 📈
+plotting	📈 📝 🗺️
+pls	🙏 🥺
+plugin	🔌 🧩
+plumbers	🪠 🔧 👨‍🔧
+plumbing	🔧 🪠 🚰
+plunge	🏊 📉 ⬇️
+plz	🙏 🥺
+pneumatic	💨 🔧
+pneumonia	🤒 🫁
+png	🖼️
+pocket	👖 👛
+pockets	👖 🧥
+podcast	🎙️ 🎧
+podium	🏆 🥇 🎤
+poem	📜 ✍️ 📝
+poet	✍️ 📜
+poetic	📝 ✒️
+poetry	📜 ✍️
+poets	✍️ 📜 📖
+pointe	🩰
+pointers	👉 🖱️
+pointless	❌ 🙅
+points	⭐ 💯
+poised	🧘 😌
+poison	☠️ 🧪
+poisoning	🤢 ☠️
+poker	🃏 ♠️ ♥️ ♦️ ♣️
+poland	🇵🇱
+polarization	🧲 ⚡
+polarized	🕶️
+polaroid	📸 📷
+pole dance	💃
+policies	📜 🏛️ 📋
+policy	📜 📋 ⚖️
+polished	✨ 💎
+polishing	✨ 🧽
+polite	🙏 😊
+political	🏛️ 🗳️
+politician	🏛️ 🎙️
+politics	🏛️ 🗳️
+poll	📊 🗳️
+pollen	🌼 🤧 🌸
+polling	🗳️ 📊
+polls	🗳️ 📊
+pollutant	🏭 ☣️ 🌫️
+pollutants	🏭 💨
+pollution	🏭 🌫️ 🚯
+polski	🇵🇱
+polyester	👕 🧵
+polymer	🔗 🧪
+polymerase	🧬
+polymers	🧪
+polyphonic	🎶 🎵 🎼
+polytechnic	🎓 🏫
+pomodoro	🍅 ⏲️
+pond	🐸 💧 🌿
+ponds	🪷 🐸
+pony	🐴 🐎
+pools	🏊 🎱
+poorly	🤒 😞 👎
+pope	⛪ ✝️
+popped	🎈 🍿 💥
+poppy	🌺
+pops	🍾 💥
+popsicle	🍧 🍦
+popular	🔥 ⭐
+popularity	📈 ⭐ 👍 🔥
+population	👥 🌍
+popup	💬 🪟
+porcelain	🏺 🍽️
+porch	🏡 🏠
+port	⚓ 🚢 🛳️
+portable	📱 🎒
+portage	🛶
+portal	🚪 🌀
+porter	🧳
+portfolio	💼 📁 📊
+portion	🍽️
+portrait	🖼️
+portraits	🖼️ 📸
+portrayed	🎭 🖼️
+portugal	🇵🇹
+portuguese	🇵🇹
+pose	📸 🧍 🤳
+positioned	📍
+positions	📍 📌
+positive vibes	✨ 😊 🌈 ☀️
+positively	👍
+positives	➕ ✅ 👍
+possessed	👻 😈
+possessions	🎒 📦
+possibilities	♾️ 💭
+post it	📝 🗒️ 📌
+postage	📮 ✉️
+postcard	✉️ 📮 🖼️
+postcards	✉️ 📮 🖼️ 🏖️
+postcode	📮 ✉️
+posted	📮
+poster	🖼️ 📃
+posters	🪧 🖼️
+postgraduate	🎓 📚
+postgresql	🐘
+posting	📮 📨 📝
+postings	📮 📋 📝
+postmortem	🔍 📋
+postponed	⏳ 📅 🔜
+posts	📝
+postscript	✍️ 📝
+posture	🧘 🧍
+pot holder	🧤 🍲
+potent	💪 ⚡
+potential	🌟
+potion	🧪 ✨ ⚗️
+potluck	🍲 🥘 🍽️
+potter	🏺
+pottery	🏺
+pound sterling	£ 💷
+pounding	🔨 🥊
+powered	⚡ 🔋 🔌
+powerful	💪 ⚡ 🔥
+powers	⚡ 💪
+ppl	👥
+pr review	🔍 👀 💻 ✅
+practice	🎯 📝 🏋️
+practiced	🎯 🔁
+practicing	🏋️
+practise	📝 ✍️ 🎯
+practitioner	🧑‍⚕️
+practitioners	🧑‍⚕️ 🩺
+prairie	🌾 🏞️
+praised	👏 🙌
+prayers	🙏 🛐 📿
+praying	🙏
+preacher	⛪ 🙏
+preaching	⛪ 🙏
+precautions	⚠️
+preceded	⏮️ ⬅️
+precedence	🔝 🥇
+preceding	⬅️ ⏮️
+precinct	🚔 🏘️
+precious	💎 ✨ 💖
+precipitation	🌧️ ❄️ 🌨️ ☔
+precise	🎯
+precisely	🎯 ✅
+precision	🎯
+precursor	⏮️ 🔜
+predators	🦁 🦈
+predict	🔮 📈
+prediction	🔮
+predictive	🔮 📈
+preface	📖
+preferable	👍 ✅
+preferences	⚙️ 🔧
+preferred	⭐ 👍
+prefers	👍 ❤️
+prefix	🔤
+pregnancy	🤰
+prelude	🎼 🎹
+premature	⏰ 👶
+premier	🥇 ⭐ 👑
+premiere	🎬 🌟
+premiership	🏆 ⚽
+premises	🏢
+premium	⭐ 💎 👑
+premiums	💰 💎
+prenatal	🤰 👶
+preorder	🛒 📦
+prep	📚 📝 🎒
+prepaid	💳 💵
+preparation	📝 📋
+preparations	📋 📝
+prepare	📋 📝 🧰 ⏳
+prepared	✅ 📋
+preparedness	🎒 🧰
+prepares	🍳 📝 🎒
+prerequisites	📋 ✅
+presbyterian	⛪ ✝️
+preschool	🏫 🧒
+preschooler	🧒
+prescribe	💊 📝
+prescribing	💊 📝 🧑‍⚕️
+prescription	℞ 💊
+prescriptions	💊 🧾
+presentation	📊 🎤 🖥️
+presented	📊 🎤
+presenter	🎤 📊
+presenters	🎤 🎙️ 📺
+preservation	🏛️ 🌿 🫙 🥫
+preserved	🥫 🫙 🍯
+preserves	🍓 🫙
+preserving	🥫 🫙
+preset	🎛️ ⚙️
+presidency	🏛️
+president	🏛️
+presidential	🏛️ 🗳️
+presidents	🏛️ 👔
+presiding	⚖️
+presses	🗞️
+pressure	😰 💨
+pressure cooker	🍲 ♨️ ⏲️
+pressures	😰 😓
+prestige	⭐
+prestigious	🏆 🌟
+pretend	🎭
+prev	⬅️ ◀️ ⏮️
+prevalence	📈 📊
+prevent	🚫 ⛔ 🛑 🛡️
+prevention	🛡️ 🚫
+preventive	🛡️ 💉
+prevents	🚫 🛡️ ❌
+preview	👀 🔍
+previews	🎬 ▶️ 👀
+previously	⏪ 🔙 ⏮️
+preworkout	💪 🥤 ⚡
+prey	🐇 🦌
+price	💲 🏷️ 💰
+price tag	🏷️ 💲
+priced	🏷️ 💰
+pricetool	🏷️ 💲
+pricing	🏷️ 💲 💰
+priest	⛪ ✝️ 📿
+primary	1️⃣ 🥇
+primitive	🪨
+principals	🏫
+principle	⚖️
+principles	⚖️ 📜 🧭
+printable	🖨️
+printed	🖨️ 📄
+printing	🖨️ 📄
+printprinter	🖨️
+prior	⏮️
+priorities	⭐ 📋
+priority	🔝 ❗ 1️⃣
+prism	🌈 🔺
+prison	⛓️ 🚔 🏢
+prisoner	⛓️ 🔒
+prisoners	⛓️ 🚔
+pristine	✨ 🧼
+privat	🔒
+prix	🏆 🏎️
+probability	🎲 📊
+probate	⚖️ 📜
+probation	⚖️
+probes	🛰️ 🔬
+problem	⚠️ ❗
+problematic	🚩 ⚠️
+procedure	📋 📝
+proceed	➡️ ▶️
+proceeded	▶️ ⏩
+proceedings	⚖️ 📄
+process	⚙️ 🔄
+processing	⚙️ 🔄 ⏳
+processor	💻 ⚙️
+processors	💻 🖥️ 🧠
+proclaimed	📣 📢 🗣️
+procurement	🛒 📦
+produce	🥦 🍎 🥕 🏭
+producer	🎬 🎥
+production	🏭 🎬
+productions	🎬 🎥
+productive	📈
+productivity	📈 ✅
+products	📦
+prof	🎓 🧑‍🏫 📚
+profession	💼 👔 🎓
+professional	💼 👔
+professionalism	💼 🤝 ⭐
+professionals	👔 💼 👩‍💼 👨‍💼
+professors	🎓 📚
+proficiency	🎓 ⭐
+proficient	⭐ ✅
+profile	👤 🪪
+profileprofile	👤 🪪
+profiles	👤 🪪 📄
+profit	💰 📈 💵
+profitability	📈 💰 💹
+profitable	💰 📈 💵 💸
+prog	💻
+prognosis	🔮
+program	💻 📋 📺
+programmable	💻
+programme	📺 📅
+programmed	💻 ⌨️ 🤖
+programmer	👨‍💻 💻 ⌨️
+programmers	💻 🧑‍💻
+programmes	📺 📋
+programming	💻 ⌨️
+progress	📈 ⏳
+progress bar	📊 ⏳
+progress flag	🏳️‍🌈
+progression	📈 ➡️
+progressive	📈 ➡️
+prohibition	🚫 🍺
+prohibits	🚫 ⛔
+project	📁 📋 🛠️
+projection	📽️
+projections	📈 📊
+projects	📁 🛠️ 📊
+prolonged	⏳ ⏱️
+prominent	⭐ 🌟 👑
+promise	🤞 🤝
+promising	🌟 ✨ 👍
+promo	🏷️ 📣 🎟️
+promote	⬆️ 📈 📣
+promoted	⬆️ 🎉 📈
+promoter	📣 🎤
+promotes	📣 👍 📈
+promoting	📢
+promotion	🎉 ⬆️ 📈
+promotional	📢 🏷️
+promotions	📢 🏷️
+prompt	⌨️ 💬
+prompted	💬
+promptly	⏱️ ⚡ 🕒
+prompts	💬
+pronto	⚡ 🏃
+pronunciation	🗣️ 🔤 🔊
+proofs	✅ 📄
+propaganda	📢 📣 📰
+propagation	🌱 🌿
+propane	🔥 ⛽
+properly	✅ 👍 ✔️
+property	🏠 🏢 🔑
+property tax	🏠 💰 🧾
+prophet	📖 📜
+prophets	📜 🙏
+proportions	⚖️ 📊
+proposal	💍 📄 🤝
+proposals	📄
+propose	💍 💡
+proposed	📝
+proprietary	🔒 ©️
+props	👏 🙌
+propulsion	🚀
+pros	👍 ✅
+prosciutto	🍖 🥓 🇮🇹
+prose	📝 ✍️ 🖊️ 📖
+prosecution	⚖️ 🏛️
+prosecutor	⚖️ 🧑‍⚖️ 🏛️
+prospectus	📄
+prosperity	💰 📈 ✨
+protected	🛡️ 🔒
+protecting	🛡️
+protections	🛡️
+protective	🛡️
+protector	🛡️
+protects	🛡️ 🔒
+protein	🥩 💪 🍗
+protein powder	🥤 💪
+proteins	🥩 🥚 💪
+protestant	⛪ ✝️
+protesters	✊ 📢 🪧
+protests	✊ 🪧 📢
+protocol	📜 📋
+protocols	📋 📜
+proton	⚛️ ➕
+prototype	🛠️ 🧪
+prototypes	🛠️ 🧪 ⚙️
+proud of you	👏 🥹 🎉
+prove	✅
+proven	✅
+proverbs	📖 📜 💬
+provide	🤲
+provider	🏢 🤝
+provides	📦
+providing	🤝
+province	🗺️ 🏞️
+provisional	⏳
+provisions	📦 🥫
+provost	🎓
+proximity	📍
+prudent	🤔 ⚖️
+psa	📢 ⚠️
+psalm	📖 🙏 ✝️
+psalms	📖 🙏 🎶 ✝️
+psu	🔌 💻
+psychiatric	🧠 🏥 💊
+psychiatry	🧠
+psychic	🔮
+psychological	🧠 💭
+psychologist	🧠 🛋️
+psychology	🧠
+psychotherapy	🛋️ 🧠 💬
+ptal	👀
+pto	🏖️ ✈️ 🌴 📅
+pub	🍺 🍻
+public holiday	🎉 📅 🏖️
+publication	📰 📖 📚
+publicity	📣 📢
+publish	📤 📰 📢
+published	📰
+publisher	📰 📚
+publishers	📚 📰 🖨️
+publishes	📰 📚
+publishing	📚 📰
+puddle	💧 🌧️
+puff	💨
+puffy	☁️
+pull	⬅️ 🪢
+pull request	🔀 💻
+pullback	↩️ 📉 ⬇️
+pulmonary	🫁
+pulp	🍊 🧃
+pulsar	✨ ⭐ 🌌
+pulses	💓 🫀
+puma	🐆
+pumped	💪 🔥
+pundit	🎙️ 📺
+punish	👮
+punishment	⚖️
+punt	🏈 🦵
+pupil	🧑‍🎓 👁️
+pupils	🧑‍🎓 🎓 👁️
+puppet	🎭
+purchase	🛒 💳 🛍️
+purchased	🛒 💳 🧾 ✅
+purchaser	🛒 💳 🧾
+pure	💧 ✨ 🤍
+purification	💧 🧼 ✨
+purified	💧 ✨
+purifier	💧 🌬️ 🫧
+purpose	🎯
+pursuing	🏃 🎯
+pursuit	🏃 🎯
+pushes	🫸
+pussycat	🐱 😺
+put	📥 ⬇️
+putting	⛳
+puzzled	🤔 😕
+pyramid	🔺 🏜️
+python	🐍
+q1	1️⃣ 📅
+q2	2️⃣ 📅
+q3	3️⃣ 📅
+q4	4️⃣ 📅
+qa	✅ 🔍 🧪
+qatar	🇶🇦
+qr code	📱
+qty	🔢
+quad	4️⃣
+quake	🌋 💥 🌍
+qualification	🎓 📜 ✅
+qualified	✅ 🎓 🏅
+qualifier	🏆 ✅
+qualify	✅ 🎯
+qualifying	✅ 🏁
+qualities	⭐ ✨
+quality	⭐ 💎
+quantitative	📊 🔢
+quantities	🔢 📦
+quantity	🔢 #️⃣
+quantum	⚛️
+quark	⚛️
+quarry	⛏️ 🪨
+quarter past	🕒 ⏰
+quarter to	⏰
+quarterback	🏈
+quarterfinal	🏆 ⚽ 🏟️
+quarterly	📅
+quartet	4️⃣ 🎶
+quartz	💎 🪨 ⌚
+quasar	🌌 ✨ ⭐
+quay	⚓ 🚢
+queens	👑
+queries	❓ 🔍 💬
+query	❓ 🔍
+quesadilla	🫓 🧀
+quest	🗺️ ⚔️ 🧭
+questionable	🤔 ❓
+questioned	❓ 🤔
+questioning	❓ 🤔
+questionnaire	📝 ❓ 📋
+questionnaires	📋 📝
+questions	❓
+queue	👥 ⏳
+queued	⏳ ⏱️
+quicker	⚡ ⏩
+quickly	⚡ 🏃 ⏩
+quietly	🤫 🔇
+quilt	🧵 🧶 🛏️
+quilting	🧵 🪡
+quilts	🛏️ 🧵
+quinceanera	👗 🎉 💃
+quinoa	🌾 🥣
+quit	🚪 🛑 ❌
+quiz	❓ 📝 🧠
+quizzes	❓ 📝 🧠
+quota	📊
+quotations	💬 “ ”
+quoted	💬
+quoting	❝ ❞ 💬
+rabbi	✡️ 🕍
+racer	🏎️ 🏁
+races	🏁 🏎️ 🏃
+radar	📡
+radian	📐
+radiant	✨ 🌟 ☀️
+radiation	☢️ ⚠️
+radiator	🔥 ♨️
+radiology	🩻 ☢️ 🏥
+radius	⭕ 📐
+raffle	🎟️ 🎁
+rag	🧽 🧹
+ragnarok	⚔️ 🌋 🔥
+raid	🚨 🚔 ⚔️
+raider	🏴‍☠️ ⚔️
+railroad	🚂 🛤️
+rails	🛤️ 🚆
+railways	🚆 🛤️ 🚉
+raincoat	🧥 🌧️
+rainfall	🌧️ ☔ 💧
+rainforest	🌳 🌿 🐒
+raining	🌧️ ☔
+rains	🌧️ ☔
+rainy	🌧️ ☔
+raised hands	🙌
+raises	📈 ⬆️ 🙌
+raisin	🍇
+rake	🍂 🧹
+rally	📣 🏁
+ramadan kareem	🌙 🕌 ☪️
+ramblings	💬 🗣️
+ramp	♿ ↗️
+ramps	🛹 ♿
+rancho	🤠 🐎 🌵
+random	🎲 🔀
+randomized	🎲
+ranger	🌲 🏕️ 🧭 🤠
+rangers	🏞️ 🌲 👮
+ranges	🏔️
+rank	🥇 🏅 🎖️ #️⃣
+ranked	🏆
+ranking	🏆 📊 🥇
+ranks	📊 🏅
+ransomware	💻 🔒 ⚠️
+rant	😤 🗣️ 😡
+rap	🎤 🎶
+rapid	⚡ 💨 🏃
+rapids	🌊
+rare	💎 🦄
+rash	🤒 🩹
+rate	⭐ 📊
+rated	⭐ 🌟
+rates	📊 💲
+ratification	✅ 📜
+rating	⭐ 🌟
+ratings	⭐ 📊
+rational	🧠 🤔
+ratios	➗
+rave	🎉 🪩 🎶 💃
+ravioli	🥟 🍝
+raw	🥩
+ray	☀️ 🔆
+reached	🏁 🤝 📍
+reaction	😮 💬
+reactions	😮 😂 😢
+reactive	🧪 ⚡
+reactor	☢️ ⚛️ 🏭
+read	📖 📚 📰
+readable	📖 👓 🔍
+reader	📖 👓
+readers	📖 👓 📚
+readiness	✅
+readme	📄 ℹ️ 📘
+ready to go	✅ 🚀 🏁
+realise	💡
+reality	🌍
+realized	💡
+realizing	💡
+realm	🏰 👑
+realms	🏰 🌍 🗺️
+realtime	⏱️ ⚡
+realtor	🏠 🔑
+realty	🏡
+reap	🌾 🧑‍🌾 🚜
+reaper	💀 ⚰️
+rear	🔙 ⬅️
+reasoning	🧠 💭
+rebate	💵 💸 🧾
+rebates	💸 💰
+rebel	✊ 🏴 🔥
+rebellion	✊ 🔥
+rebels	🏴 ⚔️
+reboot	🔄 💻 🔌
+rebounds	🏀
+rebuilding	🏗️ 🔨
+rebuilt	🔨 🏗️ 🔧
+recalls	↩️ 🔙
+recap	🔁 📝
+receivable	💵 🧾 💰
+received	📥 📬 ✉️
+receives	📥 📩 🤲
+receiving	📥 🤲 📦
+recent	🆕 🕒
+recently	🕒
+reception	🛎️ 🏨
+receptors	🧬
+recess	🛝 🏫
+recession	📉
+recharge	🔋 ⚡ 🔌
+rechargeable	🔋 🔌 ⚡
+recherche	🔍
+recipe	📖 🍳
+recipes	🍳 📖 🥘 🧑‍🍳
+recipient	📥 🎁
+recipients	📩 📬 👥
+reclamation	♻️ 🌱
+recognise	👀 🔍
+recognised	✅ 🏅
+recognition	🏆 👏 🌟 🎖️
+recognized	✅ 🏅
+recognizes	👁️
+recombinant	🧬
+recommend	👍 ⭐ ✅
+recommendation	👍 ⭐
+recommendations	👍 ⭐ 💡
+recon	🕵️ 🔍
+reconciliation	🤝
+reconditioned	🔧 ♻️
+reconstruction	🏗️ 🔧
+recorders	🎙️ 📹
+recordings	🎙️ 📹 🎥 📼
+records	💿 📀 🎙️ 🗂️
+recover	🩹
+recovered	💪 🩹
+recovery	🩹 💪 🔄
+recreation	⚽ 🏕️ 🎣
+recruit	🧑‍💼 📋 🤝
+recruiter	🧑‍💼 💼 📋
+recruiters	💼 🧑‍💼 📋
+recruitment	💼 📋
+recruits	🪖 👥 🎖️
+rectangular	▬
+recurrence	🔁 🔄
+recurrent	🔁
+recurring	🔁 🔄
+recursion	🔁 ♾️ 💻
+recursive	🔁 🔄
+red candle	🕯️
+red wine	🍷
+redeem	🎟️ 🎁
+redesign	🎨 ✏️ 🔄
+redevelopment	🏗️
+redhead	🧑‍🦰
+redirect	↪️ 🔀
+redirected	↪️ ➡️
+redistribute	🔁 ♻️
+redistributed	🔄
+redo	↪️ 🔁
+reds	🔴
+reduce	📉 ➖ ♻️
+reduced	📉 ⬇️
+reducing	📉 ⬇️
+reduction	📉 ⬇️
+redwood	🌲
+reed	🌾 🌿
+reel	🎞️ 🎣
+reels	🎞️ 🎣 📱
+ref	🧑‍⚖️
+refactor	🛠️ 💻 🔧
+referee	🧑‍⚖️ 🟨 🟥
+referenced	🔗 📎 📑
+references	📚 🔖 🔗
+referendum	🗳️
+referral	🔗 🤝 📩
+referring	👉
+refill	🔄 ⛽ 🥤
+refinance	🏦 💰
+refine	✨
+refined	✨ 🎩 💎
+refinement	✨
+refining	🛢️ ⚗️ 🏭
+reflect	🪞 💭
+reflective	🪞 🤔 🦺
+reflex	⚡
+reform	🔄 ⚖️ 🛠️ 📜
+reforms	🔄 📜 🔧
+refrain	🚫
+refrigeration	❄️ 🧊
+refrigerator	🧊
+refrigerators	🧊 ❄️
+refuge	🏠 ⛺ 🛟
+refund	💸 ↩️
+refundable	💸 ↩️ 💵
+refunds	💸 💰 ↩️
+refurbished	♻️ 🔧
+refusal	🚫 🙅 ❌
+refused	🚫 🙅
+refuses	🙅 ❌ 🚫
+refusing	🙅 ❌ 🚫
+regain	🔄
+regarded	⭐
+regeneration	♻️ 🌱
+regent	👑
+regents	👑 🏛️
+regex	🔍 💻
+reggae	🎶 🇯🇲
+reggaeton	🎶 💃 🔊
+regime	🏛️ 👑
+regimen	💊 📅
+regiment	🪖 🎖️
+region	🗺️ 🌍
+regional	🗺️ 📍
+registered trademark	®️
+registering	📝 ✅
+registers	💵 🧾 📝
+registrant	📝
+registrar	📋 🎓 📝
+registration	📝 📋 ✅
+registry	📋 🗂️
+regression	📉 ↩️
+regular	🔁
+regulate	⚖️
+regulating	🎚️ ⚖️
+regulation	📜 ⚖️
+regulations	📜 ⚖️ 🚫
+regulators	⚖️
+regulatory	⚖️ 📜 🏛️ 📋
+rehab	🏥 💊 🩺
+rehabilitation	🏥 ♿
+rehearsal	🎭 🎤 🎶
+reign	👑
+reiki	🙏 ✨
+reimbursement	💸 🧾 💵
+reindeer	🦌 🎄
+reinforce	💪 🧱 🔧
+reinforced	💪 🛡️
+reits	🏢 💰 📈
+reject	❌ 🚫
+rejection	❌ 🙅 🚫
+rekt	📉 💥
+related	🔗 ↔️
+relates	🔗
+relating	🔗 🤝 💬
+relations	🤝 👥
+relationships	❤️ 💑 🤝
+relatives	👪 👨‍👩‍👧‍👦
+relativity	🌌 ⏳ ⚛️
+relaxation	😌 🧘 🛀
+relay	🏃 🔁 📡 🔗
+release	🚀 📦 🎉
+released	🚀 📦 ✅
+relevant	🎯
+reliability	✅ 🔒
+relieve	😌 💆
+religious	⛪ 🙏 🛐 🕌
+relocate	📦 🚚 🏠
+relocating	🚚 📦 🏠
+relocation	🚚 📦 🏠
+reluctant	😬
+rely	🤝 🫂
+rem	😴 💤
+remain	📍 ⏳
+remainder	➗ 🔢
+remaining	⏳ ➡️
+remake	🎬 🔄
+remark	💬
+remarkable	✨ 🌟
+remarked	💬 🗣️
+remedial	📚
+remedy	💊 🌿 🩹
+remember	🧠 💭 📝
+remembers	💭 🧠
+remembrance	🕯️ 🌹 🎖️
+remind	⏰ 🔔
+reminded	🔔
+reminders	⏰ 🔔 📝
+reminds	🔔 💭
+remix	🎧 🎶 🔄
+remodeling	🔨 🛠️ 🏗️
+remortgage	🏠 💳
+remote	📺 🏠
+remotely	💻 📡
+removal	🗑️ ❌
+removed	🗑️ ❌
+remover	🧽 🧴
+removes	🗑️ ❌
+removing	🗑️ ❌
+remuneration	💰 💵
+renaissance	🎨 🏛️
+rename	✏️ 🏷️
+render	🖥️ 🎨
+rendered	🖼️
+renders	🖼️ 🎨
+renew	🔄 ♻️ 🆕
+renewable	♻️ ☀️ 🌱
+renovated	🔨 🏗️ 🏠
+renovation	🏗️ 🔨 🧱
+renovations	🔨 🛠️ 🏗️
+renowned	🌟 🏆 ✨
+rent	🏠 🔑 💵
+rental	🏠 🔑 🚗
+rents	🏠 💸
+reopened	🔓
+reorganization	🔄 🗂️
+rep	🏋️ 🧑‍💼
+repaired	🔧 🛠️
+repairing	🔧 🛠️
+repay	💸 💰
+repayment	💸 💳
+repeal	🚫 📜
+repealed	📜 🚫
+repertoire	🎭 🎶 📚
+repetition	🔁 🔂
+repetitive	🔁 🔄
+replace	🔄 ♻️
+replaced	🔄 🔁
+replacement	🔄 🔁
+replacements	🔁
+replaces	🔄 🔁
+replacing	🔄 🔁
+replay	🔁 ▶️
+replication	🧬
+replies	💬 ↩️
+reply	↩️ 💬
+reply all	↩️ 💬 👥
+reply please	↩️ 🙏 💬
+repo	📁 💻
+report	📄 📊
+report card	📝 🏫
+reported	📰 📢
+reporter	🎤 📰
+reporters	📰 🎤
+reporting	📰 📝 📊
+repository	📁 🗄️ 💻
+representative	🏛️ 🧑‍💼
+reprint	🖨️ 📄
+reprinted	🖨️ 📄 🔁
+reprints	📄 🖨️
+reproduce	🔁 🧬
+reps	🏋️ 💪 🔁
+republic	🏛️ 🗳️
+republican	🐘
+reputable	⭐ ✅ 👍
+reputation	⭐
+request	🙏 📩
+requesting	🙏 📩 📨
+requests	🙏 📩 📨
+require	❗
+required	❗ ⚠️
+resale	🏷️ 💰
+rescheduled	📅 🔄 ⏰
+rescued	🛟 🚑
+research	🔬 📚 🔍
+researched	🔬 🔎 📚
+researcher	🔬 🧑‍🔬 📚 🧪
+reseller	💼 🛒
+reservation	📅 📝
+reservations	📅 🏨 🍽️
+reserve	📅 🏨
+reservoir	💧 🌊 🏞️
+reset	🔄 🔁
+resets	🔄 ↩️ 🔁
+reside	🏠
+residence	🏠 🏡
+residences	🏠 🏘️
+residency	🏠
+resident	🏠 🏡
+residential	🏠 🏘️ 🏡
+residents	🏠 👥 🏘️
+residual	➖ 📉
+resign	🚪 📄
+resignation	📄 🚪
+resigned	😮‍💨
+resistance	✊
+resistant	🛡️
+resistor	⚡ 🔌
+resize	↔️ ↕️
+resolution	🎯 📝 ✅
+resolve	✅ ✔️
+resolving	🔧 ✅ 🤝
+resonance	🔊 🎵
+resorts	🏖️ 🏨 🌴
+resource	📚 🗂️
+resources	📚 🧰 🗂️
+respawn	🔄 🎮
+respectful	🙏
+respecting	🙏 🤝
+respects	🙏 🤝
+respiratory	🫁
+respond	💬 ↩️
+responded	↩️ 💬
+responding	💬 ↩️ 📩
+responds	💬 ↩️ 🗣️
+responses	💬 ↩️ 📩
+responsive	📱 💻
+rest	😴 🛌 💤
+rest in peace	🕊️ ⚰️ 🙏
+restart	🔄
+restaurants	🍽️ 🍴
+resting	😴 🛌 💤 😌
+restless	😣 😬
+restock	📦 🔄
+restoration	🛠️
+restore	🔄 🛠️
+restored	♻️ 🔄
+restraint	🔒 ⛓️
+restrict	🚫 🔒 ⛔
+restricted	🔒 🚫 ⛔
+restrictions	🚫 ⛔ 🔒
+restrictive	🚫 ⛔
+restructuring	🔄 🏢 🛠️
+result	📊 ✅
+resulting	➡️ 📊
+results	📊 📈 ✅
+resume	📄 💼
+resumed	▶️
+resurrection	✝️ 🌅 🐣
+retail	🛒 🏬
+retailer	🏪 🛒
+retailers	🏬 🛒
+retailing	🛒 🛍️ 🏪 🏬
+retained	📌
+retains	📌 🗃️
+retention	🧠 🗄️ 📥
+retina	👁️
+retire	🏖️ 👴 🎉
+retirement	🏖️ 🎉 👴
+retirement card	💌 🎉 🏖️
+retreat	🏕️ 🧘 🌿
+retreats	🏕️ ⛺ 🧘
+retrieval	🔍 📥
+retrieve	🔍 📥 ↩️
+retrieved	📥 ↩️
+retriever	🐕 🐶
+retrieving	📥 🔄
+retro	📼 🕹️ 📻
+retrograde	↩️ 🪐
+retrospective	🔍 📝 🔄
+return key	⏎ ↩️
+returned	↩️ 🔄 📦
+returning	↩️ 🔄 🔙
+returns	↩️ 🔄 📦
+retweet	🔁
+reunion	🤗 👨‍👩‍👧‍👦 🎉
+reusable	♻️
+reuse	♻️ 🔄
+rev	🏎️
+revealed	🔍 👀 ✨
+revealing	👀 🔍
+revelation	💡
+revenge	⚔️ 😠 🔥
+revenue	💰 📈
+revenues	💰 📈 💵
+reverend	⛪ 🙏 📖
+reversal	🔄 ↩️
+reversible	🔄 🔁 ↩️
+reverted	↩️
+review	⭐ 📝 🔍
+reviewed	✅ 🔍 📝
+reviewers	🔍 👀 ⭐
+reviewing	🔍 📝 👀
+revise	✏️ 📝
+revised	📝 ✍️
+revision	✏️ 📝 🔄
+revisions	📝 ✏️
+revisited	🔁 🔄
+revocation	🚫 ❌
+revoked	🚫 ❌ 🔒
+revolt	✊ 🔥 🚩
+revolution	✊ 🚩
+revolutionary	✊ 🚩
+reward	🏆 🎁 ⭐
+rewarding	🏆 🎁 🌟
+rewrite	✏️ ✍️ 📝
+rewritten	✍️ 📝
+rfid	📶 🏷️ 💳
+rfp	📄 📝
+rgb	🎨 🌈
+rhapsody	🎵 🎶 🎼
+rheumatoid	🦴 🩺 💊
+rhino	🦏
+rhymes	🎵 🎤 📝
+rhythms	🥁 🎶 🎵
+rib	🍖
+rice cooker	🍚
+richer	💰 💵
+riches	💰 💎
+richest	💰 🤑 💎
+riddle	❓ 🧩 🤔
+rider	🚴 🏍️ 🏇
+riders	🏇 🚴
+rides	🎢 🎠 🚗
+ridge	⛰️ 🏔️
+ridiculous	🤪 🙄 😂
+rifles	🔫
+right now	⏰ ⚡
+righteous	😇
+rightly	✅ 👍 ✔️
+rim	⭕
+rims	🛞
+ringer	🔔 📳
+ringing	🔔 📞
+ringtone	📱 🔔 🎵
+rinse	🚿 💧
+riot	🔥 🚨 🪧
+rip	⚰️
+rip current	🌊 ⚠️
+risen	🌅 ⬆️
+rises	⬆️ 📈 🌅
+rising	📈 ⬆️ 🌅
+rising sign	🌅
+risk	⚠️ 🎲
+risky	⚠️ 🎲
+risotto	🍚
+rite	🕯️ ⛪
+ritual	🕯️ 🙏
+rival	⚔️
+rivalry	⚔️ 🔥
+rivals	🆚 ⚔️ 🥊 🏆
+rivers	🌊 🏞️
+riverside	🌊 🏞️
+rizz	😏 ✨
+rna	🧬
+rnb	🎤 🎶 🎧
+road trip	🚗 🛣️ 🧳 🗺️ ⛽
+roadmap	🗺️ 🛣️ 🧭
+roadside	🛣️
+roadway	🛣️ 🚗
+roadwork	🚧 👷 🚜 🛠️
+roaming	📱 🌍
+roast	🍖 🍗 🔥
+roast dinner	🍖 🍗 🥔 🥕 🍽️
+robbery	🦹 💰 🚨
+robe	👘
+robin	🐦
+robotic	🤖
+robotics	🤖 ⚙️ 🦾
+robust	💪
+rocker	🎸 🤘
+rockies	⛰️ 🏔️
+rockin	🎸 🤘 🎶
+rocking	🎸 🤘
+rocky	🪨 ⛰️ 🏔️
+rod	🎣
+rode	🐎 🚴
+rodeo	🤠 🐎
+roi	📈 💰
+role	💼 🎭
+roles	🎭
+rollback	↩️ 🔙 🔄
+rollerblade	🛼
+rollers	🛼
+rolling on the floor	🤣 😂
+rollover	🔄
+rolls	🥖
+rom	💾 💿
+roman	🏛️
+romania	🇷🇴
+romanian	🇷🇴
+romans	🏛️ ⚔️
+roof	🏠
+roofing	🏠 🔨
+roommate	🧑‍🤝‍🧑 🏠 🛏️
+roommates	👥 🏠
+rooms	🚪 🛏️ 🛋️
+rooted	🌱 🌳
+rooting for you	📣 👍 💪 🤞
+roots	🌱 🥕 🌳
+rose wine	🍷 🌹
+rosemary	🌿
+roster	📋 🗓️ 📝
+rot	🤢
+rotary	🔄 ⚙️
+rotate	🔄 🔃
+rotating	🔄 🔁 🔃
+rotation	🔄
+rotor	🚁 ⚙️
+rotten	🤢 🍎 🦠
+rouge	💄 🔴
+roughly	≈
+roulette	🎰
+roundabout	🔄 ⭕ 🚗
+roundtable	🪑 👥 🗣️
+roundup	🤠 🐄 🐎
+route	🗺️ 🛣️
+routers	📶
+routine	🔁 📅
+routines	🔁 📋
+routing	🗺️ ➡️ 🔀
+rover	🤖 🚙
+rower	🚣
+royale	👑
+royals	👑 🤴 👸
+royalties	👑 💰
+rpg	🎲 🎮 ⚔️ 🐉
+rpm	⚙️ 🔄
+rrp	🏷️ 💲
+rss	📡 📰
+rsvp	✉️ 💌 📩
+rt	🔁 🔄
+rtf	📄
+rts	🎮 ♟️ ⚔️
+rubbing	🧽 ✋
+rubbish	🗑️ 🚮
+rubbish bin	🗑️ 🚮
+ruby	💎 ❤️
+rude	😠
+rugged	⛰️ 🏔️ 🪨
+ruin	🏚️ 💥
+ruined	🏚️ 💔 💥
+ruins	🏛️ 🏚️
+rules	📜 ⚖️ 📏
+ruling	⚖️ 👑
+rulings	⚖️ 📜
+rum	🥃 🍹
+rumba	💃 🕺 🎶
+rumble	🔊 🌩️ 🥊
+rumor	🗣️ 💬 👂
+rumors	🗣️ 💬 🤫
+runaway	🏃 💨
+runner	🏃 👟
+running late	🏃 ⏰ 💨
+runtime	⏱️ ▶️ 💻
+runway	🛫 ✈️ 👗
+rural	🌾 🚜 🏞️
+russian	🇷🇺
+rust	🟤
+rustic	🏡 🪵
+rwanda	🇷🇼
+rye	🌾 🍞 🥃
+sabbath	✡️ 🕯️ ⛪
+sack	🎒 🛍️
+sacks	🛍️
+saddle	🐎 🏇
+sadly	😢 😞
+sadness	😢 😞 🥀
+safaris	🦁 🐘
+safe	🔒 🛡️ ✅
+safe travels	✈️ 🧳 🛫
+safeguard	🛡️ 🔒
+safeguards	🛡️ 🔒 🔐
+safely	🛡️ ✅ 🔒
+safer	🛡️ 🦺 ✅
+safety goggles	🥽
+saffron	🌼
+saga	📖
+sage	🌿
+said	💬 🗣️
+sail	⛵ 🌊
+sailor	⛵ ⚓
+sailors	⚓ ⛵
+saint	😇 ⛪
+saints	😇 ⛪ ✝️
+sakura	🌸
+salamander	🦎
+salami	🍖 🍕
+salary	💰 💵
+sale	🏷️ 🛍️ 💸
+sale sign	🏷️ 🪧
+sales	💰 🛒 📈
+sales tax	🧾 💵
+saline	🧂 💧
+salmon	🐟 🍣
+salons	💇 💅
+saloon	🍺 🤠
+salt shaker	🧂
+saltwater	🌊 🧂
+salvage	🛟 ♻️
+samba	💃 🕺 🎶
+same	🟰
+same day	📅 🗓️
+samoa	🇼🇸
+samosa	🥟
+sample	🧪
+sampled	🎧 🎵
+samples	🧪 📦
+samurai	⚔️
+sanction	🚫 ⚖️
+sanctions	🚫 ⚖️ ⛔
+sanctuary	⛪ 🕊️ 🛡️ 🌿
+sandbox	🏖️ 🏰 🪣
+sands	🏖️ 🏜️ ⏳
+sandstorm	🌪️ 🏜️ 💨
+sandwich board	🪧
+sandy	🏖️
+sang	🎤 🎶
+sanitary	🧼 🧽
+sanitation	🧼 🚽 🚮
+sanitizer	🧴 🧼 🦠
+sanity	🧠
+sapiens	🧑
+sapphire	💎 🔵
+sardine	🐟 🥫
+sars	🦠 😷
+sashimi	🍣 🐟
+sass	😏 💅
+sat	📅 🗓️
+sata	💾 🔌
+satan	😈 👿
+satire	🎭 🤡
+satisfaction	😊 😌 👍
+satisfactory	✅ 👍 👌
+satisfies	✅ 😊
+satisfy	😌 ✅
+satisfying	😌 👍
+saturday	📅
+saucepan	🍳 🥘
+sauces	🍅 🥫
+saudi	🇸🇦
+sauvignon	🍷 🍇
+savanna	🌾 🦁 🐘
+savannah	🌾 🦁
+saved	💾 ✅ 🔖
+savers	💰
+saves	💾
+savesave	💾
+saving	💾 💰
+savings	💰 🏦 🐖
+savior	✝️ 🦸 🛟
+savory	🍲
+savvy	🧠 💡
+say	💬 🗣️
+saying	💬 🗣️ 💭
+scalability	📈
+scalable	📈
+scaled	📈 ⚖️
+scaling	📈 🧗
+scallop	🐚
+scam	🚨 💸 ⚠️
+scams	🚨 ⚠️ 📞
+scan	🔍 📄
+scandal	📰
+scandinavian	🇸🇪 🇳🇴 🇩🇰
+scanned	📄 🖨️ 🔍
+scanner	🖨️
+scanning	🔍 📠
+scans	🖨️ 📄 🔍
+scar	🩹
+scare	😱 👻
+scarlet	🔴
+scars	🩹 🤕
+scarves	🧣
+scattered	🔀
+scenery	🏞️ 🌄
+scenes	🎬 🎭
+scenic	🏞️ 🌄 📸
+scent	👃 🌸
+scented	🌸 🌺 👃
+schedule	📅 🗓️ ⏰
+scheduler	📅 🗓️ ⏰
+schema	🗂️ 📊
+schematic	📐 🗺️
+scholarly	📚 🎓
+scholarship	🎓 💰 📚
+scholastic	🎓 📚
+sciences	🔬 🧪 ⚗️ 🧬
+scientific	🔬 🧪
+scooters	🛴
+scopes	🔭 🎯
+scoreboard	🔢 🏟️
+scorecard	📊 🏆 📝 📋
+scored	🏆 🥅
+scores	🏆 💯 📊
+scoring	🏆 🥅
+scotland	🏴󠁧󠁢󠁳󠁣󠁴󠁿
+scots	🏴󠁧󠁢󠁳󠁣󠁴󠁿
+scottish	🏴󠁧󠁢󠁳󠁣󠁴󠁿
+scout	🧭 🏕️
+scouting	⚜️ 🏕️ 🔭
+scouts	🏕️ ⛺ ⚜️
+scrap	🗑️ ♻️
+scrapbook	📔 ✂️ 🖼️
+scrapbooking	✂️ 📒 📸
+scratch	🐾 ✍️
+scratches	🤕
+screen share	🖥️ 📤
+screened	📺 🖥️
+screening	🎬 📺 🔍
+screenplay	🎬 📜 ✍️
+screens	📱 🖥️ 📺
+screensaver	🖥️ 💻
+screenshot	📸 🖥️ 📱
+screwed	🔩 🪛
+screws	🔩 🪛
+script	📜 🎬
+scripting	💻 📜
+scripts	📜 💻 ✍️
+scripture	📖 ✝️ 🕊️
+scriptures	📜 📖
+scrolling	📱
+scrub	🧽 🧼
+scrubber	🧽 🧼
+scrum	🏉
+scrutiny	🔍
+sculptor	🗿 🎨 🛠️
+sculpture	🗿 🎨
+sdk	💻 🧰 📦
+sdram	💾 🖥️
+seagull	🐦 🌊
+sealed	🔒 ✉️ 📦
+sealing	🔒
+seam	🧵 🪡
+searchable	🔍 🔎
+searchsearch	🔍
+seas	🌊
+seaside	🏖️ 🌊
+season	🌸 ☀️ 🍂 ❄️
+seasonal	🌸 ☀️ 🍂 ❄️
+seasoned	🧂 🍳 🌶️
+seated	🪑 💺
+seats	🪑 💺
+seaweed	🌿 🌊
+secondary	2️⃣
+seconded	👍 🤝
+secondly	2️⃣
+seconds	⏱️ ⏲️
+secrecy	🤫 🔒 🕵️
+secretarial	💼 ⌨️ 📋
+secretary	🧑‍💼 🗂️
+secretion	💧
+secretly	🤫
+secrets	🤫 🔒
+secs	⏱️ ⏲️
+sectional	🛋️
+sections	📑 🗂️
+sectors	📊 🧩
+secured	🔒 🛡️
+securely	🔒 🔐 🛡️
+securing	🔒 🔐 🛡️
+securities	📈 🛡️
+sedan	🚗 🚘
+seder	🍷
+sediment	🪨 🌊
+see ya	👋
+see you	👋
+see you later	👋 🔜
+see you later alligator	🐊 👋
+see you soon	👋
+see you tomorrow	👋 📅
+seed	🌱
+seek	🔍
+seeker	🔍 🔎
+seeking	🔍 👀
+seeks	🔍 👀
+seen	👀
+segmentation	✂️
+seize	✊
+seized	🚔 ⛓️
+seizures	🧠 🏥 🚑
+select	☑️ ✅
+selected	✅ ☑️
+selecting	☑️ 🖱️ ✅
+selection	☑️ ✅
+selections	☑️ ✔️
+selector	🖱️ ☑️
+selects	☑️ ✅ 🖱️
+self	👤
+selfcare	🧘 💆 🛀
+selfish	🤑 🐷
+sell	💰 🏷️ 🛒
+seller	🧑‍💼 🏷️ 💰
+sellers	🛒 💰
+semester	📚 🎓 🗓️
+semiconductor	💻 🔌
+semifinals	🏆
+seminar	🎓 🗣️
+seminary	⛪ 📖
+senate	🏛️ 🗳️
+senator	🏛️ 🗳️
+sender	📤 ✉️
+sending	📤 ✉️ 📩
+sending hugs	🤗 🫂
+sending love	❤️ 💌 💕
+sendmail	📧 ✉️
+sends	📤 ✉️
+senegal	🇸🇳
+senior	👴 👵
+sensation	✨ 🤯
+senses	👁️ 👂 👃 👅 ✋
+sensor	📡
+sensors	📡 🌡️
+sensory	👁️ 👂 👃 ✋ 👅
+sentence	✍️ 📝
+sentenced	⚖️
+sentences	📝 ✍️
+sentencing	⚖️ 👨‍⚖️
+sentiment	💭 ❤️
+sentinel	💂 🛡️
+seo	🔍 🌐 📈
+sep	📅 9️⃣ 🗓️
+separate	✂️
+separately	↔️ ➗ 🔀
+separates	✂️ ↔️
+separating	✂️ ↔️ ➗
+seperate	↔️ ✂️
+sept	9️⃣
+september	📅 🍂
+septic	🚽 🦠
+sequel	2️⃣ 🎬
+sequence	🔢
+sequencing	🧬 🔢
+sequential	🔢 ➡️
+serbia	🇷🇸
+serbian	🇷🇸
+serendipity	✨ 🍀
+sergeant	🎖️
+serials	📺 🎬
+series	📺
+serif	🔤
+sermon	⛪ 📖 🙏
+sermons	⛪ 📖 🎙️
+serum	🧴 💉 🧪
+servants	🛎️ 🧹 🍽️
+served	🍽️ 🍴
+server	🖥️
+serverless	☁️
+servers	🖥️ 🗄️
+serves	🍽️ 🎾
+serviced	🛠️ 🔧
+servicing	🔧 🛠️ 🚗
+serving	🍽️
+servings	🍽️ 🍴 🥘
+servlet	💻
+sesame	🌱
+session	⏱️ 🗓️
+sessions	📅 💻 🗣️
+setting	⚙️ 🔧
+settled	🤝 ✅
+settlement	🤝
+settlements	🏘️
+settlers	🏕️ 🚜 🌾
+settling	🏡 🤝
+setup	⚙️ 🛠️
+seventh heaven	😇 ☁️ ✨
+seventy	7️⃣
+severe	⚠️ 🚨
+severity	⚠️ 🔴
+sewage	💩 🚽
+sewer	🕳️ 🚰
+seychelles	🇸🇨
+sfw	✅
+sgd	🇸🇬 💵 💰
+sgt	🎖️ 🪖
+shack	🛖
+shaded	🌳 ⛱️ 😎
+shadows	🌑 👤
+shady	🌳 🕶️
+shah	👑
+shakes	🥤
+shall i	❓ 🙋 ✋
+shaman	🔮 🌿
+shame	😳 🙈
+shapes	🔺 🔵 ◼️ ⭐
+share	📤 🔗
+shared	🤝 🔗 📤
+shareholder	📈 💼
+shares	📈 📊
+sharing	🤝 📤 🔗
+sharpener	✏️
+sharper	🔪 ✂️
+sharply	🔪
+shattered	💔 🪞 💥
+shaving	🪒
+shawarma	🌯 🥙
+shear	✂️
+shed	🛖
+sheds	🏚️ 🛖
+sheet	📄 🛏️
+shelf	🗄️ 📚
+shelters	🏠 ⛺
+shelves	📚 🗄️
+shelving	📚 🗄️
+shepherd	🐑 🐕 🧑‍🌾
+sheriff	⭐ 🤠 👮
+sherry	🍷
+shifted	🔄
+shifting	🔄
+shifts	🔄 ⏰
+shilling	🪙 💷
+shin	🦵
+shines	✨ 🌟 ☀️
+ship it	🚀 📦
+shipment	📦 🚚
+shipments	📦 🚚 🚢 ✈️
+shipped	📦 🚚
+shirts	👕 👔
+shivering	🥶 ❄️
+shocking	😲 ⚡ 😱
+shocks	⚡ 😲
+shockwave	💥 🌊
+shook	😱 😲 😳
+shoot	📸 🎯
+shoots	🌱 📸
+shop	🛍️ 🏪
+shoppe	🏪 🛍️
+shopper	🛍️ 🛒
+shops	🛍️ 🏪 🛒 🏬
+shore	🏖️ 🌊
+shoreline	🏖️ 🌊
+short	📏
+shortage	📉 ⚠️
+shortcut	⌨️ 🛣️ 🔗
+shortcuts	⌨️ ⌘
+shortest	📏
+shortlist	📋 ✅
+shortly	⏳ 🔜
+shots	📸 🥃 💉
+should i	🤔 ❓ 🤷
+shout	📣 🗣️
+shouted	📢 🗣️
+shouting	🗣️ 📣 📢
+show	🎭 🎬 📺
+showcase	🖼️
+showdown	⚔️
+showed	👀 👉
+showroom	🏬
+shows	📺 🎬 🎭
+showtimes	🎬 🎟️
+shrink	📉
+shrubs	🌿 🪴
+shutdown	⏻ 🔌
+shutter	📷 🪟
+shuttle	🚀 ✈️
+siam	🇹🇭
+sibling	🧑‍🤝‍🧑
+sick day	🤒 🛌 📅
+sick leave	🤒 📝 🛌
+sick pay	🤒 💵
+sickness	🤒 🤢 💊
+side dish	🥗
+side table	🛋️ 🪑
+sidebar	📑
+sidekick	🤝
+sides	◀️ ▶️ ↔️
+sidewalk	🚶 🛣️
+sideways	↔️
+siege	🏰 ⚔️
+sight	👁️ 👀
+sights	👀 📸 🏞️ 🗺️
+sightseeing	📸 🗺️ 🏛️
+sign in	🔑
+sign off	👋
+sign out	🚪
+sign up	✍️ 📝
+signage	🪧 🚏
+signaling	🚦 📶
+signalling	🚦 📶
+signals	📶 🚦 📡
+signature	✍️ 🖊️
+signatures	✍️ 🖊️ 📝
+signed	✍️ 📝
+significant	❗ ⭐
+significant other	💑 ❤️
+signing	✍️
+signs	🪧 ⚠️ 🚸
+signup	📝 ✍️
+silently	🤫
+silica	🧪
+silicon	💻 🧪 🔲 🖥️
+silk	🧵 👗
+similarities	🟰
+similarity	≈ 🟰
+simpler	✂️ ➖
+simplify	✂️ ➖
+simulate	🎮 🖥️
+simulated	🖥️
+simulation	🖥️ 🎮
+simulations	💻 🎮 🧪
+simulator	🎮 🕹️
+sin	😈
+sincere	💚
+sincerely	💌 ✉️
+singapore	🇸🇬
+singers	🎤 🎶
+single quote	' ‘ ’
+singled	1️⃣
+singular	1️⃣
+sinister	😈 👿
+sink	🚰
+sinking	⬇️ 🚢 🌊
+sinus	🤧 👃
+sip	🥤 ☕
+sire	👑 🤴
+sirius	⭐
+sis	👧 👭
+sister	👧 👭 👩
+sitar	🪕
+site	🌐
+sitemap	🗺️ 🌐 📄
+sites	🌐 🗺️
+situated	📍 🗺️
+sixteen	1️⃣ 6️⃣ 🎂
+siyabona	👋
+size	📏 📐
+ska	🎺 🎶
+skeletal	💀 🦴
+sketch	✏️ 🎨
+skies	🌤️ ☁️ 🌌
+skilled	💪 ⭐
+skillet	🍳
+skincare	🧴 💆 ✨
+skinny	👖 🦴
+skip	⏭️ ⏩
+skirt	👗
+skyline	🌆 🏙️ 🌃
+skyscraper	🏙️ 🏢
+slab	🧱 🪨
+slam	💥
+slang	💬 🗣️
+sleep well	😴 🌙 💤 🛌
+sleepaway	⛺ 🏕️
+sleeper	😴 💤 🛏️ 🚂
+sleeps	😴 🛌 💤
+sleet	🌨️
+sleeve	👕
+sleeves	👕 🧥
+slept	😴 💤 🛏️
+sliced	🔪
+slideshow	🖼️ 📽️ 📊
+sling	🩹
+slipped	🤕 🍌
+slippery	⚠️ 🧊
+slogan	📣 🪧
+slopes	⛷️ ⛰️
+slovak	🇸🇰
+slovakia	🇸🇰
+slovenia	🇸🇮
+slovenian	🇸🇮
+slow cooker	🍲
+slow down	🐢 🐌
+slowed	🐢 🐌
+slower	🐢 🐌
+slowing	🐢 🐌
+slowly	🐢 🐌 ⏳
+slr	📷 📸
+sludge	💩 🛢️
+smallest	🤏 🐜
+smarter	🧠 💡
+smartwatch	⌚
+smash	💥
+smashing	💥 🔨
+smh	🙄
+smiled	😊 😄 🙂
+smiles	😊 😄 😁
+smilies	😊 😄
+smog	🌫️
+smoke break	🚬
+smoke detector	🚨
+smoked	🚬
+smoker	🚬
+smoky	🌫️ 💨
+smooth	🧈
+smoothie	🥤
+smtp	📧 ✉️
+snack	🍿 🍪 🍫
+snapshot	📸 📷
+sneak	🤫 🥷
+snippets	✂️ 📝
+snooker	🎱
+snoop	🕵️ 👀
+snooze	😴 ⏰ 💤
+snore	😴 💤
+snowball	❄️ ☃️
+snowing	🌨️ ❄️ ☃️
+snowmobile	🛷 ❄️
+snowstorm	🌨️ ❄️
+snowy	🌨️ ❄️ ☃️
+so far so good	👍 🙂
+so happy	😄 😁 😊
+so long	👋
+soaring	🦅 🚀
+soba	🍜
+sober	🚫 🍺 ☕
+social	👥 🗣️
+socialism	✊ 🌹 🚩
+societies	👥 🌍 🏘️
+society	🏛️ 👥
+sociology	👥 📊
+sock	🧦
+socket	🔌
+sodium	🧂 🧪
+sofa	🛋️
+softcover	📖 📘
+softly	🤫
+soil	🌱 🪴
+soils	🌱 🪴 🌍
+soju	🍶
+sol	☀️
+solar	☀️ 🔆
+solar eclipse	🌒 🌑 🌞
+sold	💰 🏷️ ✅
+sold out	🚫 🎟️
+solder	🔥 🔧
+soldiers	🪖 💂 🎖️
+soleil	☀️
+solicitor	⚖️ 💼
+solicitors	⚖️ 👩‍⚖️
+solids	🧱
+solitaire	🃏 ♠️ ♥️ ♦️ ♣️
+solo	🧍 🎤
+solstice	☀️ 🌞
+soluble	🧪 💧
+solution	💡 ✅ 🛠️
+solve	🧩 💡
+solved	✅ ✔️ 🧩 💡
+solvent	🧪
+somalia	🇸🇴
+someday	⏳ 🔮
+someone	👤
+somewhere	📍 🗺️
+sonar	📡
+sonata	🎼 🎹 🎵
+song	🎵 🎶
+songs	🎵 🎶 🎤
+songwriter	🎵 ✍️ 🎤
+sonic	🔊 💨
+sooner	⏰ ⏳
+soonest	⏱️ 🏃
+soothing	😌 🧘
+sophisticated	🎩 👔 🍸
+sophomore	🎓
+soprano	🎤 🎶 🎼
+sorbet	🍧 🍨
+sore	🤕 🩹 😣
+sore throat	🤒 😷
+sorrow	😢 😭 💔 😞
+sorry about being late	🙏 ⏰ 😔 🏃
+sorry about that	🙏 😔
+sorry for being late	🙏 ⏰ 😔 🏃
+sorry for bothering you	🙏 😔
+sorry for your loss	🙏 💔 🕊️
+sorry if i forgot	🙏 😔 🧠
+sorry if i misunderstood	🙏 😕 😔
+sorry to bother you	🙏 😔
+sorry to disappoint	🙏 😞
+sorry to hear that	🙏 😔 😢
+sorry to interrupt	🙏 ✋
+sorted	🗂️ ✅
+sorting	🗂️ ↕️ 🔀
+sought	🔍
+souk	🛍️
+souls	👻
+sounded	🔊
+sounding	🔊
+sounds	🔊 🔉 🎵 👂
+sounds good	👍 ✅ 👌
+sounds great	👍 😄 🔥
+sounds like a plan	👍 ✅ 📋
+sounds perfect	👌 ✨ 💯
+soundtrack	🎬 🎵 🎶 🎧
+soundtracks	🎵 🎶 🎬 🎧
+source	🔗 📚
+source code	💻
+sources	📚 📰
+sourcing	🔍 📦
+southeastern	↘️ 🧭 🗺️
+southern	⬇️ 🧭 ☀️
+southwestern	🌵 ☀️
+souvenir	🎁
+souvenirs	🎁 📸
+sovereign	👑
+sovereignty	👑 🏛️
+soy	🫘
+sp500	📈
+space bar	⌨️
+space shuttle	🚀
+space station	🛰️
+spacebar	⌨️
+spacecraft	🚀 🛰️ 🛸
+spaces	🚀 🌌
+spaceship	🚀 🛸
+spacious	🏠 ↔️ 🌄
+spain	🇪🇸
+spam	📧 🚫
+spammers	📧 🚫 🤖
+span	↔️
+spanish	🇪🇸
+spanning	🌉 ↔️
+spans	🌉 ↔️
+spares	🔧 🧰 🛞
+sparkling water	🫧 💧
+sparks	✨ ⚡ 🔥
+sparrow	🐦
+spatula	🍳
+spawn	🥚 🎮
+speakers	🔊 📢 🎤
+speaks	🗣️ 💬 🎤
+spear	🔱
+speciality	⭐
+specialization	🎓 🔬
+specialize	🎯 🧠
+specials	⭐ ✨ 🏷️
+specialty	⭐ 🏅 🎯
+species	🐾 🧬
+specific	🎯
+specification	📄 📋
+specifications	📋 📐
+specifics	🔍 📋
+specified	📌
+specimen	🔬 🧪
+specimens	🧪 🔬
+spectacular	🎆 ✨
+spectator	👀 🏟️
+specter	👻
+spectra	🌈 🔬 📊
+spectral	👻
+spectroscopy	🌈 🔬
+spectrum	🌈
+speculation	🤔 💭 📈
+speeches	🎤 🗣️
+speed bump	🚧
+speed camera	📷 🚗
+speed limit	🚦
+speed up	⚡ 🚀 ⏩ 💨
+speeding	🚗 💨
+speedrun	⏱️ 🎮
+speeds	⚡ 🏎️ 💨 🚀
+speedway	🏁 🏎️
+speedy	⚡ 🏃 💨
+spelled	🔤 ✍️
+spelling	🔤 ✏️
+spells	🪄 ✨ 🔮
+spend	💸
+spending	💸 💰 🛍️
+spends	💸 💳
+spent	💸
+spf	🧴 ☀️
+sphere	⚪ 🌐
+spheres	🔵 ⚪ 🌐
+spices	🌶️
+spicy	🌶️ 🔥
+spies	🕵️
+spikes	📈 ⚡
+spin class	🚴
+spinach	🥬
+spinal	🦴
+spindle	🧵
+spine	🦴
+spinner	🌀
+spires	⛪ 🏰 🗼
+spirited	✨
+spirits	👻 🥃
+spiritual	🙏 🕊️ ✨
+spirituality	🙏 🧘 ✨
+spit	💦
+spite	😤 😠
+splash	💦 🌊
+splendid	✨ 🌟
+splinter	🪵 🩹
+splits	➗
+splitter	🔀 ✂️
+splitting	✂️ ➗
+spoiler	⚠️ 🚗
+spoilers	⚠️ 🚫
+spoke	🗣️ 💬
+spoken	🗣️ 💬 🎤
+spokesman	🗣️ 🎤 📣
+spokesperson	🎤 🗣️ 📢
+sponsor	🤝 💰
+sponsored	💰 📣
+sponsorship	🤝 💰
+spooky	👻 🎃
+sporting	🏅 ⚽ 🏀
+sports drink	🥤
+sportsbook	🏈 🎰 📊
+sportswear	👟 🏃 👕
+spot	📍
+spotlight	🔦 💡
+spotted	👀
+spotting	👀 🔍
+spouse	💍 💑
+spouses	💍 💑 👫
+sprain	🤕 🩹
+spray	💦 🧴
+spread	🧈
+spreading	📣 🦠
+spreads	🧈 🍞
+spreadsheet	📊
+spreadsheets	📊 💻 🧮
+spring festival	🧧 🧨 🏮
+spring roll	🥢
+sprinkler	💦
+sprint	🏃
+spruce	🌲
+spun	🌀
+spying	🕵️
+spyware	🕵️ 💻
+sql	💾
+sqlite	💾
+squad	👥
+squadron	✈️
+squares	⬛ ◼️ ◻️
+sre	🛠️
+ssd	💾
+ssl	🔒
+st patrick	☘️
+st patrick's day	☘️ 🍀
+stability	⚖️ 🧱
+stabilization	⚖️ 🛠️
+stable	⚖️
+stack	📚
+stacked	📚 🥞 🍔
+stacks	📚 🗂️
+stag	🦌
+stag party	🎉 🍻
+stage	🎭
+stair	🪜
+stairway	🪜
+stakeholder	👥 💼
+stakeholders	🤝 👥 💼
+stalled	⏸️ 🚧
+stamp	📮
+stamped	📮 ✉️
+stamps	📮 ✉️
+stance	🧍
+stand up	🧍 🎤
+standardization	📏 📐
+standardized	📏 ✅
+standards	📏 ✅ 📜
+standby	⏳
+standing order	🏦
+standing ovation	👏
+standings	🏆 📊
+standup	🧍 🎤
+staple	📎
+stapler	📎
+staples	📎 🖇️
+star performer	⭐
+star rating	⭐
+star sign	⭐ ✨
+star wish	🌠 ⭐
+starch	🥔 🌽
+stared	👀
+staring	👀
+starlight	✨ ⭐
+starring	⭐ 🌟 🎬
+starry	🌟 ✨
+start	▶️ 🚀 🏁
+starters	🏁 🚀
+startup	🚀
+starved	😫 🍽️
+stat	📊
+state	🏛️
+stated	💬 🗣️ 📝
+statement	📄
+statements	📝 💬
+statesman	🏛️
+stating	🗣️ 💬
+stationary	⏸️ 🛑
+stationery	✏️ 📎
+statistic	📊 📈 📉
+statistical	📊 📈 📉
+statistically	📊 📈 🧮
+stats	📊 📈 📉
+statues	🗿
+status	📊
+statute	⚖️ 📜
+stay	🏨 🛌
+stay safe	🛡️
+stay strong	💪
+stay well	🙏
+staycation	🏠 🏖️
+stayed	🏨 🛏️ 🏠
+staying	🏠 🛏️
+stays	🏨 🛏️
+stderr	💻
+steady	⚖️ 🧘
+steals	🦹 💰
+steam room	♨️
+steel	🔩 🏗️
+steep	⛰️ 📈
+stellar	⭐ 🌟 ✨
+stems	🌱 🌿
+stepbrother	👦
+stepdad	👨
+stepdaughter	👧
+stepfather	👨
+stepmom	👩
+stepmother	👩‍👧 👩‍👦
+steppe	🌾
+stepped	👣 🚶
+stepping	👣
+steps	👣 🪜
+stepsister	👭
+stepson	👦
+stereo	🔊 🎵 📻
+sterile	🧼 🧫
+sterling	💷
+stewardship	🌱 🌍
+sticker	🏷️
+sticking	📌
+sticks	🥢
+sticky	📌
+stills	📷 🖼️
+stimulate	⚡ 💡
+stimuli	⚡
+stimulus	💵 📈
+stir	🥄 🍲 🔄
+stir fry	🥘 🍲
+stitch	🪡 🧵
+stochastic	🎲 📊
+stock	📈 📉
+stocked	📦 🛒 🏪
+stockholders	📈 💼 💰
+stoke	🔥
+stoked	🤩 🔥
+stolen	🚨
+stomach	🤢
+stomachache	🤢 🤕
+stones	🪨
+stony	🪨
+stool	🪑 💩
+stopped	🛑 ⏹️ ✋
+stopping	🛑 ⛔
+stops	🛑 🚏
+storage	📦 🗄️
+stored	📦 🗄️ 💾
+storesshop	🏪 🛍️ 🛒
+storey	🏢
+stories	📖 📰
+storing	📦 🗄️
+storm	⛈️ 🌩️ 🌧️
+storm cloud	⛈️ 🌩️ ☁️
+storms	⛈️ 🌩️ 🌧️ 🌪️
+stormwater	🌧️ 💧
+stormy	⛈️ 🌩️ 🌧️
+story	📖 📚
+storytelling	📖 🗣️
+stout	🍺
+stove	🍳 🔥
+straightforward	➡️ ✅
+strain	😣 😫
+strait	🌊
+stranded	🏝️ 🆘
+strands	🧵
+strange	👽
+stranger	👤
+strategic	♟️ 🎯
+strategies	♟️ 🧠 🎯
+strategy	♟️ 🧠
+stratus	☁️ 🌫️
+stray	🐈 🐕
+streak	🔥
+stream	🌊 📺
+streaming	📺 ▶️ 📡 🎥 🎧
+street	🛣️ 🏙️
+streetlight	💡
+strength	💪 🏋️
+strengthen	💪 🏋️
+strengthened	💪 📈
+stresses	😰 😫
+stretch	🤸 🙆
+stretched	↔️ 🤸
+stretches	🤸 🧘
+stretching	🤸 🧘
+strict	🚫 📏
+strikes	⚡ 💥
+striking	⚡ 💥
+strings	🎻 🧵
+strips	🥓
+strive	💪 🎯
+strokes	🖌️ 🏊
+stroller	🚼 👶
+stronger	💪 🏋️
+strongest	💪 🏋️
+struck	💥 ⚡
+structural	🏗️
+structures	🏗️ 🏢
+struggled	😓 💪
+struggles	😓 😣 💪
+struggling	😣 😓
+stuck	😣
+students	🎓 📚
+studios	🎬 🎥 🎙️
+studs	🔩
+stuff	📦
+stuffing	🦃
+stunning	😍 🤩 ✨
+stunt	🤸 🎬
+stupid	🤦 🤪
+sturdy	💪 🧱
+styled	💇 💅 ✨
+styles	🎨 👗 ✨
+stylesheet	💻 🎨
+styling	💇 ✂️ 💅
+stylish	😎 👗 ✨
+stylus	✍️ 🖊️
+subcategories	🗂️ 📁
+subdivision	🏘️ 🏡
+subdivisions	🏘️ 🗺️
+subject	📚 📝
+subjective	🧠 💭 🤔
+sublime	✨ 🌟
+submission	📤
+submissions	📤 📨
+submit	📤 ✅
+submitted	📤 ✅ 📨
+submitting	📤 📨
+subparagraph	📄 ¶
+subroutine	💻
+subscribe	🔔
+subscribed	🔔 ✅
+subscriber	👤 🔔
+subscribers	🔔 👥 📺 ➕
+subscription	🔔 📅
+subscriptions	🔁 💳 🔔
+subsection	📑
+subsequent	➡️ ⏭️
+subsidiary	🏢
+subsidies	💰 🏛️
+subsidy	💰
+substitute	🔄 ↔️
+substitution	🔄
+substrates	🧪 🧱 🪨
+subsystem	⚙️
+subtitle	💬
+subtle	🤫
+subtotal	🧾
+suburb	🏘️ 🏠
+suburbs	🏡 🏘️ 🌳 🚗
+subwoofer	🔊
+succeeded	✅ 🏆 🎉
+succeeding	🏆 ✅ 🎉
+success	🏆 🎉 ✅
+successes	🏆 🎉 🥇
+successful	🏆 🎉 ✅ 📈
+successfully	✅ 🎉
+succession	👑 🔄
+successor	👑 ➡️
+succulent	🪴 🌵
+suche	🔍
+sudan	🇸🇩
+suddenly	⚡ 💥
+sudo	💻 ⌨️
+sudoku	🔢 🧩
+sue	⚖️
+sued	⚖️ 📜
+suffer	😣 😢
+suffered	😢 🤕
+suffers	😣 😖 🤕
+sufficiently	✅ 👍
+suffix	🔤
+sugar free	🚫 🍬
+suggest	💡
+suggesting	💡 💬 🤔
+suggestion	💡 💬
+suggests	💡 💬
+suite	🏨 🛏️ 🛋️
+suited	👔 🤵
+suits	🤵 👔 ♠️ ♥️ ♦️ ♣️
+sulfur	🟡 🧪
+sulphur	⚗️ 🧪 🟡
+summaries	📝 📄
+summarize	📝
+summary	📝 📋
+summer camp	🏕️ ⛺ ☀️
+summers	☀️ 🏖️
+summit	⛰️ 🏔️
+sumo	🤼
+sums	➕
+sun cream	🧴 ☀️
+sun sign	☀️
+sunbeam	☀️ 🌤️
+sunday	📅
+sunlight	☀️ 🌞
+superannuation	💰 🏦 👴 🧓
+superb	🌟 ✨
+superintendent	🏫 👷
+superman	🦸 💪
+supermarket	🛒 🏪
+supermoon	🌕 🌝
+supernova	💥 🌟
+superstar	🌟 🤩
+superstore	🏬 🛒
+supervise	👀 📋
+supervision	👀
+supervisor	👔
+supervisors	👔 🧑‍💼 📋
+supper	🍽️ 🍲
+supplement	💊
+supplemental	➕
+supplementary	➕
+supplemented	💊 🥗
+supplied	📦 🚚
+supplier	📦 🚚
+supplies	📦 🧰
+supply	📦
+supply chain	📦 🚚 🔗
+supplying	📦 🚚
+support	🤝
+supported	✅ 👍 🤝
+supporter	🙌 📣
+supporters	🙌 👏 📣
+supportive	🤝 ❤️
+supports	🤝 👍
+suppose	🤔
+supposedly	🤔 💭
+suppressed	🤐 🔇
+supreme	👑 🏆 ⭐ ⚖️
+surcharge	💸 ➕
+sure thing	👍 ✅
+surely	✅ 💯
+surge	📈 🌊 ⚡
+surgeon	🧑‍⚕️
+surgeons	🩺 🏥
+surgery	🏥 🩺 ⚕️
+surgical	🏥
+suriname	🇸🇷
+surname	📛
+surplus	📦 ➕ 💰
+surprise party	🎉 🎂 🥳
+surprises	😲 🎉 🎁
+surprising	😲 😮
+surrender	🏳️
+surround	⭕ 🔄
+surrounding	🌳 🏘️ 🌍
+surroundings	🌳 🏞️
+surveillance	📹 👁️
+survey	📋 📊
+surveying	📐 📏
+surveyor	📐 🗺️
+surveyors	📐 📏 🧭
+survival	🏕️ 🆘 ⛺
+survive	💪 🌱
+survived	😮‍💨 ❤️‍🩹
+survivor	💪
+survivors	💪 🛟
+sus	🤨
+suspect	🕵️
+suspected	🕵️ 🤔 ❓
+suspects	🕵️ 🔍 ❓
+suspend	⏸️ 🚫 ⏳
+suspense	😱 😰 🎬
+suspicion	🤨 🕵️
+sustain	♻️ 🌱
+sustainability	♻️ 🌱 🌍
+sustainable	♻️ 🌱 🌍
+sustained	🔁
+suv	🚙
+svenska	🇸🇪
+svg	🖼️ 💻
+swallow	🐦
+swamp	🐊 🌿 💧
+swap	🔄 ↔️
+swapping	🔄 🔁
+swaziland	🇸🇿
+swear	🤬
+sweater	🧶 🧣
+sweaters	🧥 🧶
+sweatshirt	👕 🧥
+sweaty	😅 💦
+sweden	🇸🇪
+swedish	🇸🇪
+sweep	🧹
+sweepstakes	🎟️ 🏆 🎉 💰
+sweet dreams	😴 🌙 💤
+sweet potato	🍠
+sweet sixteen	🎂 🎉
+sweetheart	❤️ 💕 💖
+sweets	🍬 🍭 🍫
+swept	🧹
+swift	⚡
+swimwear	🩱 🩳
+swiss	🇨🇭
+switch	🔀 🔘
+switchboard	☎️ 📞
+switched	🔀 🔄
+switching	🔀 🔄
+switzerland	🇨🇭
+swivel	🔄
+sworn	⚖️ ✋
+syllabus	📚 📄 📝
+sympathetic	🤗 💛
+sympathy card	💐 🕊️
+symphony	🎻 🎼 🎺
+symptom	🤒 🤧 💊 🩺
+symptoms	🤒 🤧 🤕 🩺
+sync	🔄
+synchronicity	✨
+synchronization	🔄
+synchronized	🔄 ⏱️
+synchronous	🔄 ⏱️
+syndicated	📰 📺 📡
+syndrome	🩺 🏥
+synergy	🤝
+synonym	↔️ 📖 🔁
+synopsis	📄 📝
+syntax	💻 ⌨️
+synth	🎹 🎛️ 🎶
+synthase	🧬 🧪
+synthesis	🧪 ⚗️ 🔬
+synthetic	🧪 🧬
+syria	🇸🇾
+syrian	🇸🇾
+syrup	🍯 🥞
+system	⚙️ 💻
+systematic	📋 ⚙️ 🗂️
+systems	⚙️ 🖥️
+ta ta	👋
+tabla	🪘 🥁
+table tennis	🏓
+tables	🪑 🍽️ 📊
+tablespoon	🥄
+tablet	📱 💊
+tabletop	🎲 ♟️
+tablets	💊 📱
+taboo	🚫
+tackle	🏈 🎣
+tackles	🏈 🤼
+tackling	🤼 🏉 🏈
+tactic	♟️ 📋
+tactical	🎯 🪖 ♟️
+tactics	♟️ 🧠
+taiga	🌲
+tailor	🧵 ✂️
+tailored	👔 ✂️ 🧵
+tails	🐾
+tailwind	💨
+taiwan	🇹🇼
+tajikistan	🇹🇯
+take a break	☕ ⏸️
+take care	🤗
+take it easy	😌
+takeaway	🥡
+takedown	🤼
+takeover	🏢 🤝 💼
+talent	🌟 ⭐ 🎭 🎤
+talented	🌟 🎨
+tales	📖 📚 🧚
+talk soon	💬 🔜 👋
+talk to you later	💬 👋 🔜
+talkback	🗣️ 💬 📢
+tall	🦒 📏
+tally	🔢 📊
+tambourine	🪘
+tandem	🚲 👥
+tang	🍊 🥤
+tangible	🖐️
+tank	🛢️
+tanned	☀️ 🏖️
+tanning	☀️
+tanzania	🇹🇿
+tap	🚰 👆
+tap dance	🕺 👞
+tap out	🤼 🏳️
+tape measure	📏
+tapestry	🧵 🖼️ 🪡
+tapped	👆
+tapping	👆 📱
+taps	🚰 💧
+tar	🛢️
+tariff	💰 🧾
+tarot	🔮 🃏
+tart	🥧
+task	✅ 📋
+tasks	✅ 📋 📝
+tastes	😋 👅
+tasting	😋 👅
+tattoo	💉 🖋️
+tattoos	🎨 🖋️ 💉
+taught	📚 👩‍🏫
+tavern	🍺 🍻
+tax	💰 🧾
+taxable	🧾 💰
+taxation	🧾 💸 🏛️
+taxes	💸 🧾
+taxis	🚕 🚖
+taxonomy	🗂️ 🏷️
+taxpayer	🧾 💰
+taxpayers	💸 🧾
+tba	📅 ❓
+tbc	📅 ❓
+tbd	❓ ⏳
+tbh	😅 🙃 😶
+teach	🧑‍🏫 📚 🏫
+teaches	👩‍🏫 📚
+teaching	👩‍🏫 📚
+teachings	📚 📖
+teak	🪵 🌳
+team	👥 🤝
+team building	👥 🤝
+team lead	👤 👥
+teamed	🤝 👥
+teammate	👥 🤝
+teamwork	🤝 👥
+tears of joy	😂
+teas	🍵 🫖
+teaspoon	🥄
+tech	💻 📱 🤖 ⚙️
+technical	💻 ⚙️ 🛠️
+technician	🧑‍🔧 🔧 🛠️
+technicians	🔧 🛠️ ⚙️
+technique	🛠️ 🎯
+techno	🎧 🎵
+technological	💻 🤖 ⚙️ 📱
+technology	💻 📱 🤖
+techs	💻 🔧 🛠️
+teen	🧑
+teenager	🧑
+teenagers	🧑‍🎓 🎒 📱
+tees	👕 ⛳
+tel	☎️ 📞
+tele	📺 📞
+telecharger	⬇️ 📥
+telecom	📡 📞
+telecommunication	📡 📱 📶
+telecommunications	📞 📡 📱
+telecoms	📡 📞 📱
+telephony	📞 📱 ☎️
+telling	💬 🗣️
+tells	💬 🗣️
+temaki	🍣
+temp	🌡️
+temper	😠 😡 💢
+temperature	🌡️
+temperatures	🌡️ 🔥 ❄️
+template	📄 📋
+templates	📄 🗂️
+tempo	🎵 ⏱️
+temporal	⏳ 🕒
+temporary	⏳
+temptation	😈 🍰
+tempted	😏
+tenacious	💪
+tenant	🏠 🔑
+tenants	🏠 🔑 🧾
+tended	🌱 🧑‍🌾
+tendency	📈 ↗️
+tenor	🎤 🎶
+tens	🔟
+tense	😬
+tensions	😬
+tentacle	🐙
+tentative	🤔 ❓
+term	📅
+terminal	💻 ⌨️
+terminals	🛫 💻 🚉
+terminate	🛑 ⏹️
+terminated	🛑 ❌ ⛔
+termination	❌ 🛑 ⏹️ 🔚
+terminator	🤖
+terminology	📖 🔤
+terms	📜 📝
+terra	🌍
+terrace	🏡 🌿 ☀️
+terrain	⛰️ 🗺️
+terre	🌍
+terrible	😖 👎
+terrier	🐕
+terrific	🤩 👍 🌟
+terrified	😱 😨
+territorial	🗺️ 🚩
+territories	🗺️ 🌍 🚩
+territory	🗺️ 🚩 📍
+terror	😱 😨
+tertiary	🎓 3️⃣
+testament	📜
+tester	🧪 ✅ 🔍
+testify	⚖️
+testimonials	💬 ⭐ 🗣️
+testimony	⚖️
+testosterone	💪 🧪
+tests	📝 🧪 ✅
+tetris	🧱 🎮
+text me	💬 📱 📩
+textarea	📝
+textbook	📚 📖
+textile	🧵 🧶 👕
+textiles	🧵 🧶 🪡 👕
+textual	📝
+textures	🎨
+thai	🇹🇭
+thailand	🇹🇭
+thank	🙏
+thank you	🙏
+thank you card	💌 🙏
+thank you so much	🙏 ❤️
+thank you very much	🙏 ❤️
+thanked	🙏 😊
+thankful	🙏
+thanks a lot	🙏 😊 ❤️ 💐
+thanks again	🙏 😊
+thanks in advance	🙏 😊
+thanks so much	🙏 ❤️ 😊
+thankyou	🙏 😊
+thanx	🙏 😊
+that is on me	💳 💰
+that was my fault	🙋 😔 🙏
+thb	฿
+theatrical	🎭
+themed	🎨 🎉
+themes	🎨 🖼️ ✨
+then	➡️
+theological	⛪ ✝️ 📖
+theology	⛪ ✝️ 📿 🙏
+theorem	📐 🧮
+theoretical	🤔 💭
+theories	💡 🧠
+therapeutic	💆 🩺
+therapies	🧠 💆
+therapists	🛋️ 🧠
+thereafter	➡️ ⏭️
+thermal	♨️ 🌡️ 🔥
+thesaurus	📖 📚
+theses	📄 🎓
+thesis	📝 🎓 📄
+thessalonians	📖 ✝️
+thickness	📏
+thief	🥷 💰
+thieves	🦹 🥷
+thigh	🦵
+things	📦
+thinking of you	💭 ❤️ 🤗
+thinks	🤔 💭
+thirsty	🥤 💧
+thistle	🌿
+thorough	🔍 🧐
+thought	💭 🧠
+thoughtful	🤔 💭
+thousands	🔢
+threat	⚠️ 🚨
+threaten	⚠️ 😠
+threatened	⚠️ 😨
+threatening	⚠️ 😠 😡
+thresholds	🚪
+thrice	3️⃣
+thrill	🎢 🤩
+thrilled	🤩 🎉 😄
+thriller	😱 🎬
+thrillers	🎬 🍿 😱
+thrive	🌱 📈
+throne	👑 🪑
+throttle	🚗 🏍️
+through	➡️
+throughput	📈 📊
+throwing	🤾
+throws	🤾
+thru	➡️ 🚗
+thrust	🚀 💨
+thumbnail	🖼️
+thunderhead	⛈️ 🌩️
+thurs	📅 🗓️
+thursday	📅
+thx	👍
+thyme	🌿
+thyroid	🦋 🏥
+tickboxes	☑️ ✅
+ticker	📈 📉
+ticket machine	🎟️ 🎫
+tickling	😂
+tidal	🌊
+tide	🌊
+tides	🌊 🌙
+tidy	🧹 ✨ 🧽
+tiebreak	🎾 ⚖️
+tier	🪜
+ties	👔 🤝
+tiff	💢
+tigers	🐯 🐅
+tight	👖 🤏 😬
+tightly	🤏 🔒
+tights	🧦 👖
+tiki	🗿 🍹 🌺
+tile	🧱 🔲
+tiles	🧱 🟫
+tilt	↩️ 😤
+timbales	🥁
+time off	🏖️ 🏝️ 😴
+time zone	🌍 🕐 🌐
+timed	⏱️ ⏰
+timeless	♾️ ⏳
+timeline	📅 ⏳ 📈
+timeliness	⏰
+timely	⏰ ⏱️
+timeout	⏸️ ⏱️ ✋
+timeshare	🏖️ 🏠 🗓️
+timeshares	🏖️ 🏨 🗓️
+timesheet	📋 🕒 ⏱️
+timestamp	⏱️ 🕒 📅
+timetable	📅 🗓️ ⏰
+timezone	🌍 🕐 🌐
+timing	⏱️ ⏰ ⏳
+timor	🇹🇱
+tin	🥫
+tip jar	💰 🫙 💵
+tips	💡 💰
+tissue	🧻 🤧
+titanic	🚢
+title	🏷️ 📛
+tlc	❤️ 🤗
+tldr	📝 📄
+tls	🔒 🔐
+tnt	💣 🧨 💥
+to be announced	❓ ⏳
+to be confirmed	❓ ⏳
+to be honest	🤔 💬
+to do	✅ 📝 ☑️ 📋
+to your health	🥂 🍻
+toad	🐸
+toaster	🍞
+tobacco	🚬
+toc	📑 📄
+today	📅 ☀️
+todays	📅 🗓️
+toddler	👶 🧒 🚼
+toddlers	🧒 👶 🚼
+todo	✅ 📝 ☑️
+todos	📝 ✅ ☑️
+toe	🦶
+toes	🦶 👣
+toffee	🍬 🍫
+toggle	🔛 🔘 🔄
+togo	🇹🇬
+toilet brush	🚽 🧹
+toilet paper	🧻 🚽
+toilette	🚽
+token	🪙 🎟️
+told	🗣️
+tolerate	🤝
+tolerated	😑 😐 🤷
+toll	🛣️ 💰
+toll booth	🛣️ 🚧
+tomcat	🐱
+tome	📚 📖
+toml	📄
+tomorrow	📅 ⏭️
+ton	⚖️ 🏋️
+toner	🖨️ 🧴
+tones	🎵 🔊 🎨
+tonga	🇹🇴
+tonic	🍸 🍋
+tonight	🌙 🌃
+tonne	⚖️
+too late	⏰ 😩
+toodles	👋 ✌️
+toolkit	🧰 🔧 🛠️
+tools	🛠️ 🔧
+tooltip	💬 ℹ️
+toon	📺
+toons	📺 🎨
+toothache	🦷 😣
+toothpaste	🪥 🦷
+top marks	💯 🏆 ⭐
+top rated	⭐ 🏆 🌟
+top secret	🤫 🔒 🕵️
+top up	💳 📱 ⬆️
+topaz	💎 🟧
+topic	📌 💬
+topical	🧴
+topics	🗂️ 📋 💬
+topographic	🗺️ ⛰️
+topology	🌐 🕸️
+topped	🔝
+tops	👕 👚 🔝
+torah	✡️ 📜 🕍
+torii	⛩️
+torque	🔧 ⚙️
+torrent	🌊 ⬇️ 💧
+tort	⚖️
+tortellini	🍝 🥟
+tortured	😖 😩
+tot	👶 🧒
+totaling	🧮 ➕
+totals	🧮
+tote	👜 🛍️
+totem	🗿
+touch	👆 ✋
+touchdown	🏈 ✈️
+touching	🥹 ❤️
+touchpad	🖱️ 💻
+tour	🗺️ 🚌 ✈️
+touring	🧳 🚗 ✈️
+tourism	🗺️ ✈️ 🏖️ 🧳
+tourist	📸 🧳 🗺️
+tourists	🧳 📸 ✈️ 🗺️ 🏖️
+tournaments	🏆 🏟️ 🥇
+tours	🗺️ 🧳 ✈️ 🚍
+tow	🚚 🪝
+toward	➡️
+towel	🧖 🛁
+towing	🚛 🪝 🚚
+town	🏘️ 🌆
+townhouse	🏘️ 🏠
+towns	🏘️ 🏙️
+township	🏘️
+toxic	☠️ ☣️ 🤢
+toxicity	☠️ ☣️ ⚠️ 🧪
+toxicology	☠️ 🧪 ⚗️
+toxins	☠️ 🧪
+toys	🧸 🪀 🧩 🎲 🎮
+traced	🔍 ✏️
+traces	👣
+tracing	✏️ 🔍
+trackbacks	🔗
+tracked	📍 👣 🛰️
+tracker	📍 🧭
+tracking	📍 📦
+trackpad	🖱️ 💻
+traction	📈 🛞
+traded	🤝 💱 📈
+trader	📈 💰
+traders	📈 💹 💰 📊
+trades	🤝 💱
+trading	📈 💱 💹 🤝
+traditional	🏺
+traditions	🎎 🕯️
+traffic cone	🚧
+traffic light	🚦
+traffic sign	🚦 🛑
+trafficking	🚫 🚨 🛑
+tragedy	😢 💔
+tragic	😢 💔
+trail	🥾 🌲
+trailer	🚚 🎬
+trailers	🎬 🚛
+trails	🥾 🌲 🏞️ 🚶
+trained	🎓 🏋️
+trainee	🧑‍🎓
+trainees	🎓 🧑‍🎓
+trainer	🏋️
+trainers	👟 🏋️ 🏃
+training	🏋️ 📚
+traits	🧬 🧩
+trajectory	🚀 📈
+trance	🌀 🎧 🎶
+trans flag	🏳️‍⚧️
+trans pride	🏳️‍⚧️ 💙 💗
+transaction	💳 🧾 💸
+transactions	💳 💰
+transcend	✨
+transcribed	📝 ✍️ ⌨️
+transcript	📄 📝
+transcription	⌨️ 🎧 📝
+transfer	🔁 📤 💸
+transferring	📤 🔄
+transfers	💸 🔄
+transformations	🔄 🦋 ✨
+transformed	🦋 🔄 ✨
+transformer	🤖
+transformers	🤖 🚗
+transforming	🔄 🦋
+transforms	🔄
+transistor	🔌 ⚡
+transit	🚇 🚌 🚆 🚊
+transition	🔄 ➡️
+transitional	🔄
+translate	🌐 🔤 🗣️
+translation	🌐 🗣️ 🔤
+translations	🌐 🔤 🗣️ 📝
+translator	🌐 🗣️ 🔤
+translators	🌐 🗣️ 💬
+transmission	📡 ⚙️
+transmit	📡 📶
+transmitter	📡 📻
+transmitting	📡 📶 📤
+transnational	🌍 🌐
+transparency	🔍
+transplant	🏥
+transplantation	🫀 🏥
+transport	🚚 🚆 ✈️
+transported	🚚 ✈️ 🚢
+transporter	🚚
+transporting	🚚 🚛
+transverse	↔️
+trapeze	🎪 🤸
+trash can	🗑️ 🚮
+trauma	🤕 🏥
+traumatic	🏥 🧠
+travel bug	✈️ 🧳 🌍
+traveled	✈️ 🧳 🗺️ 🚆
+traveler	🧳 ✈️ 🎒
+travelers	🧳 ✈️ 🌍
+traveling	✈️ 🧳 🌍
+travelled	✈️ 🧳 🚆 🚗
+traveller	🧳 ✈️ 🗺️ 🌍
+travelling	✈️ 🧳 🌍 🚆
+travels	✈️ 🧳 🌍
+traverse	🚶
+trays	🍽️
+tread	👣 🛞 👟
+treadmill	🏃 🏋️
+treasurer	💰 🏦
+treasures	💎 👑
+treasury	🏛️ 💰 🏦
+treated	💊 🩺
+treaties	📜 🤝 🕊️
+treating	💊 🩺
+treatments	💊 💉 🩺
+treats	🍬 🍭 🍫
+treaty	📜 🤝 ✍️
+treble clef	𝄞 🎼
+trees	🌳 🌲 🌴
+trek	🥾 ⛰️
+trekking	🥾 ⛰️ 🎒
+trench	🧥 🕳️ ⛏️
+trending	📈 🔥
+trends	📈 📊 🔥
+trendy	😎 ✨ 🔥
+trespass	🚫 ⛔
+trex	🦖
+triage	🏥 🚑
+trial	⚖️ 🏛️
+trials	⚖️ 🧪
+tribe	👥
+tribunal	⚖️
+tributary	🌊 🏞️
+tribute	🌹 🕯️
+trick	🎩 ✨ 🪄 🃏
+trick or treat	🎃 🍬 👻
+tricky	🧩 😏
+tries	💪 🔁 🎯
+triggers	⚠️
+trillion	💰 📈
+trilogy	📚 🎬 3️⃣
+trimmed	✂️
+trinidad	🇹🇹
+trio	3️⃣ 👥
+tripod	📷 🎥
+trips	✈️ 🧳 🚗 🗺️
+trivia	❓ 🧠
+trojan	🐴 💻
+trojans	🐴 ⚔️
+troop	🪖 👥 🎖️
+troubled	😟 😰
+troubles	⚠️ 😟
+troubleshooting	🛠️ 🔧 🔍
+trough	🐖
+trout	🐟 🎣
+trucking	🚚
+trucks	🚚 🚛
+truly	✅ 💯 🙌
+trust	🤝
+trusted	🤝 ✅ 🔒
+trustee	⚖️ 🤝
+trustees	🏛️ 👥
+truths	✅ 💡
+try	💪
+try again	🔁 🔄
+tsp	🥄
+tsunami	🌊
+tty	⌨️ 💻
+tuba	🎺
+tuberculosis	🦠 🤒 🫁
+tubs	🛁
+tue	📅
+tuesday	📅
+tuesdays	📅 🗓️
+tuition	🎓 💰
+tumble	🤸
+tummy	🤢
+tumor	🎗️
+tuna	🐟 🍣
+tundra	❄️ 🏔️
+tune	🎵 🎶
+tuned	🎵 🎸 🎛️
+tuner	🎸 📻
+tuners	🎸 🎹 🎛️ 📻
+tunes	🎵 🎶 🎧
+tungsten	💡 🔩
+tuning	🎛️ 🎸 🔧
+tunisia	🇹🇳
+tunnel	🚇
+tunnels	🚇 🕳️
+turbine	⚙️
+turbo	⚡ 🏎️ 💨
+turbulence	✈️ 🌪️
+turf	🌱
+turismo	✈️ 🏖️ 🧳
+turkish	🇹🇷
+turkmenistan	🇹🇲
+turmeric	🟡 🌿
+turnaround	🔄 ↩️
+turned	🔄
+turning	↩️ ↪️ 🔄
+turnout	🗳️ 👥
+turnover	📊 🔄 💼
+turns	↩️ ↪️ 🔄
+turquoise	💎 🟦
+tutor	📚 🧑‍🏫
+tutorial	🎓 📚
+tutoring	📚 👩‍🏫 ✏️
+tutors	👩‍🏫 👨‍🏫 📚 🎓
+tuvalu	🇹🇻
+tvs	📺
+tweak	🔧 ⚙️
+tweed	🧥
+tweet	🐦 💬
+twice	2️⃣
+twilight	🌆 🌇
+two factor	🔐 2️⃣ 🛡️
+txt	📄 📝
+ty	🙏 😊
+tycoon	💼 💰 🤵
+tying	🪢
+typed	⌨️
+types	🔤 ⌨️
+typo	⌨️ ✏️
+typography	🔤 ✒️
+tyre	🛞 🚗
+tysm	🙏 ❤️ 😊
+tyvm	🙏 😊 ❤️
+uae	🇦🇪
+ubiquitous	🌍 🌐 ♾️
+udon	🍜
+uganda	🇺🇬
+uh oh	😬 😅
+ui	🖥️ 📱
+uk	🇬🇧
+ukraine	🇺🇦
+ukrainian	🇺🇦
+ukulele	🎸 🎶
+ultra	⚡ 🔥
+ultrasound	🤰 👶
+ultraviolet	☀️ 🟣
+umami	😋 🍲
+unabridged	📖
+unacceptable	🚫 ❌
+unanimous	🤝 ✅
+unanimously	🤝 🙌 ✅
+unanswered	❓ 📩
+unassigned	❓ ⬜
+unauthorized	🚫 🔒 ⛔
+unavailable	🚫 ❌
+unbiased	⚖️
+uncategorized	❓ 🗂️
+uncensored	🔞
+uncertain	🤔 ❓
+uncertainty	❓ 🤔
+unclassified	🔓
+uncle	👨
+unclear	❓ 🤔 🌫️
+uncommon	🦄 ✨
+unconscious	😵 💤
+uncover	🔍
+uncovered	🔍 🔓
+undefined	❓
+underdog	🐶 🏆
+undergraduate	🎓 🧑‍🎓
+undergraduates	🎓 📚
+underground	🚇 ⬇️
+underneath	⬇️ 👇
+underscore	_
+understand	💡
+understanding	🧠 💡 🤝
+understood	👍 ✅ 🆗
+understood the assignment	💯 ✅ 👏
+undertow	🌊
+underway	🚢 ⏳
+underworld	💀 👹
+undp	🇺🇳 🌍
+unemployed	💼 🚫
+unemployment	📉 💼 🚫
+unexpected	😲 🤯 ❗
+unfair	⚖️ 🚫
+unfamiliar	❓ 🤔
+unfinished	🚧 🏗️
+unfollow	👤 🚫
+unforgettable	🌟
+unfortunate	😔 😞
+unfortunately	😞
+unfriend	👤 ❌
+unicode	🔤 💻
+unidentified	❓
+uniforms	👔 🎽
+uninstall	🗑️ 💻
+unions	🤝
+unique	✨ 💎
+unisex	🚻
+unit	📏
+unit test	🧪 ✅
+unite	🤝 ✊
+united	🤝 🌐
+units	📦
+unity	🤝
+univ	🎓 🏫
+universe	🌌 🪐 ✨ 🌠
+universidad	🎓 🏫
+university	🎓 🏫 📚
+unknown	❓
+unlawful	🚫
+unleashed	🔓 🐕
+unlike	👎
+unlimited	♾️
+unnamed	❓ 👤
+unnecessary	🚫 ❌
+unpaid	💸 🚫
+unpleasant	😖 🤢
+unpredictable	🎲 🌪️ 🤷
+unpublished	📄 🚫
+unread	📩 🔴
+unresolved	❓ ⏳
+unrestricted	🔓 ♾️
+unsafe	⚠️ 🚫
+unsecured	🔓 ⚠️
+unseen	🙈
+unsolicited	📧 🚫
+unstable	⚠️
+unsubscribe	🚫 📧
+unsuccessful	❌ 📉 👎
+unsupported	🚫 ❌
+until	⏳ ⏰
+untitled	📄
+unveiled	✨
+unveils	🎉
+unwanted	🚫 🗑️
+unwilling	🙅 ❌
+unwrap	🎁 📦
+up only	📈 ⬆️ 🚀
+upc	🏷️ 📦
+upcoming	🔜 📅 🗓️ ⏳
+update	🔄 ⬆️ 🆕
+upgrade	⬆️ 🆙 🚀
+upgraded	⬆️ 🚀 ✨
+upholstery	🛋️ 🪑
+upload	📤 ⬆️ ☁️
+uploaded	⬆️ 📤
+uploading	⬆️ 📤
+uploads	⬆️ 📤
+upright	🧍
+upscale	💎
+upstairs	⬆️ 🪜
+upstream	⬆️ 🌊
+uptake	📈 ⬆️
+uptime	⏱️ 🟢
+upto	⬆️
+uptown	🏙️ 🌆
+uranium	☢️ ⚛️
+urban	🏙️ 🌆 🚇
+urgency	🚨 ⏰
+urgent	🚨 ⚠️
+uri	🔗 🌐
+urinary	🚽 🚻
+urine	🚽 💧
+url	🔗 🌐
+urology	🩺 🏥
+uruguay	🇺🇾
+usa	🇺🇸
+usable	✅ 👍 🆗
+usb	🔌 💾
+useful	👍
+usefulness	👍 ✅
+useless	🗑️ 👎 ❌
+user	👤
+username	👤 🪪
+userpic	👤 🖼️
+users	👥 👤
+uss	🚢 ⚓
+ussr	☭
+usually	🔁
+utc	🌐 🕒
+utensils	🍴 🥄
+utilities	💡 💧 🔌
+utopia	🌈 🏝️ ✨
+utp	🔌
+ux	🖥️ 📱
+uzbekistan	🇺🇿
+vacant	🈳 🪑
+vacation	🏖️ ✈️ 🌴 🧳
+vaccine	💉 💊
+vacuum	🧹
+vacuum cleaner	🧹
+vain	🪞 💅
+vale	🏞️
+valentine's day	💘 💝 ❤️ 🌹
+valentines	💘 ❤️ 🌹
+valentines day	💘 💝 ❤️ 🌹
+valet	🚗 🅿️ 🤵
+valid	✅
+validate	✅ ✔️ ☑️
+validation	✅ ✔️
+validity	✅ ✔️
+valley	🏞️ ⛰️
+valuable	💎 💰
+valuation	💰 📊
+value	💎 💰
+valued	💎 ⭐
+vanguard	🛡️ 🚩
+vanilla	🍦
+vanity	🪞 💄
+vantage	👁️ ⛰️ 🔭
+vanuatu	🇻🇺
+vapor	💨 ☁️ 🌫️
+variability	📊 🔀
+variable	🔣 🔢
+variance	📊
+variant	🔀 🦠
+variations	🔀 🎨 🌈
+variety	🌈
+varsity	🎓 🏆
+vary	🔀 ↔️ 📊
+vascular	🫀 🩸
+vase	🏺 💐
+vast	🌌 🌊 🏜️
+vatican	🇻🇦 ⛪
+vault	🏦 🔒
+vaults	🔐 🏦
+vcd	💿 📀
+vectors	➡️ 📐
+vegan	🌱 🥦 🥗
+vegetables	🥕 🥦 🥬
+vegetation	🌿 🌱 🌳
+vehicles	🚗 🚙 🚌 🚚 🚲
+vein	🩸
+velocity	💨 🚀 ⚡
+vending	🥤 🪙
+vendor	🏪 🛒
+venezuela	🇻🇪
+vengeance	⚔️
+venom	🐍 ☠️
+vent	😤 💨
+ventilation	🌬️ 💨
+ventricular	🫀
+venture	🚀 💼 📈
+venue	🏟️
+venues	🏟️ 🏛️ 🎭 🎤 📍
+venus	♀️ 🪐
+verbal	🗣️ 💬
+verbatim	📝 🔤
+verbs	🔤 📚
+verdict	⚖️ 🧑‍⚖️
+verification	✅ ✔️ 🔍
+verify	✅ ✔️ 🔍
+verlag	📚
+versatile	🔧 🔄 🛠️
+verse	📜 ✍️
+version	🔢 🔄
+version control	🔀
+vertical bar	|
+vertices	🔺 📐
+vesak	☸️ 🪷
+vessel	🚢 ⛵
+vet	🐾 🧑‍⚕️
+veteran	🎖️ 🪖
+veterans	🎖️ 🫡
+veterinary	🐾 🩺 🐶 🐱
+veto	🚫 ✋
+vets	🩺 🐾 🎖️
+vga	🔌 🖥️
+vi	Ⅵ ⅵ
+via	➡️
+viability	✅ 📈 🌱
+viable	✅ 👍
+vibe	✨ 😎
+vibes	✨ 😎 🎶
+vibrant	🌈 ✨ 🎨
+vibrating	📳
+vicinity	📍 🗺️ 🏘️
+vicious	😈
+victor	🏆 🥇
+victories	🏆 🥇 🎉
+vid	🎥 📹 ▶️
+video call	📹 💻 📞
+videogames	🎮 🕹️ 👾
+videos	🎥 📹 ▶️ 🎬
+videotape	📼 📹
+viet	🇻🇳
+vietnam	🇻🇳
+vietnamese	🇻🇳
+viewed	👀
+viewers	👀 📺
+viewpicture	🖼️
+viewpoint	👁️ 💭
+viewport	🖥️ 📱
+views	👀 🏞️ 🌄
+vigorous	💪 🏃
+vii	Ⅶ ⅶ
+viii	Ⅷ ⅷ
+viking	⚔️ 🛡️
+vikings	⚔️ 🛡️ 🪓 ⛵
+villa	🏡
+village	🏘️ 🏡
+villagers	🏘️ 🧑‍🌾 👥
+vine	🌿 🍇
+vineyard	🍇 🍷
+vintage	🕰️ 📻
+vinyl	💿 🎵
+viola	🎻
+violate	🚫 ⚠️
+violated	🚫 ❌
+violation	🚫 ⚠️
+vip	⭐ 🌟
+viper	🐍
+viral	🔥 📈
+virtual	💻 🌐
+virtual hug	🤗
+virtual machine	💻 🖥️
+virtually	🌐 💻
+virtue	😇 💖
+viruses	🦠
+visa	🛂
+visas	🛂 ✈️
+visibility	👁️
+visible	👀 👁️
+vision	👁️ 🔭
+visionary	💡 🔮 ✨
+visit	🚶 👋 📍
+visited	📍 🧳
+visiting	🧳 ✈️ 👋
+visitor	🚶 🧳
+visitors	👥 🚶 🧳
+visits	🏠 ✈️
+visor	🧢 🪖
+vista	🏞️ 🌄
+visual	👁️ 🎨 🖼️
+visualization	📊 📈
+visually	👁️ 👀
+vitae	📄
+vital	❤️
+vitality	⚡ 💪
+vitamins	💊
+vitro	🧪 🔬
+viva	🎉 👏
+vivid	🌈 ✨ 🎨
+vlog	🎥 📹
+vm	💻 🖥️
+vocabulary	📖 🔤 🗣️
+vocal	🎤 🗣️ 🎶
+vocals	🎤 🎶 🎵
+vocational	🛠️
+vodka	🍸 🥃
+vogue	👗 💃 ✨
+voice	🎤 🗣️
+voice call	📞 🎙️
+voice message	🎙️ 💬
+voice note	🎙️ 📝
+voicemail	📞
+voices	🗣️ 🎤 🎙️
+void	🕳️ 🚫
+vol	🔊 📚
+volatile	🧪 📉
+volatility	📈 📉 ⚠️
+volcanic	🌋
+volley	🏐
+vols	📚
+volt	⚡
+volts	⚡ 🔋
+volume down	🔉
+volume up	🔊
+volumes	📚 🔊
+voluntary	🙋 🤝
+volunteer	🙋 🤝
+vortex	🌀 🌪️
+vote	🗳️
+voted	🗳️ ✅
+voter	🗳️ ✅
+votes	🗳️ ✅
+voting	🗳️ ✅
+voucher	🎟️
+vouchers	🎟️ 🎫 🧾
+vows	💍 💒
+vox	🗣️ 📣
+voyage	🚢 ✈️
+voyager	🚀
+vpn	🔒 🌐
+vulnerabilities	🔓 ⚠️ 🛡️
+vulnerability	⚠️ 🔓
+wade	🚶 🌊
+wage	💵 💰
+wager	🎲 💰
+wagon	🛒
+wai	🙏
+wait for me	✋ ⏳
+wait up	✋ ⏳
+waited	⏳ ⏰
+waiter	🍽️
+waitlist	⏳ 📝
+waitress	🍽️
+waits	⏳ ⌛
+wake	⏰ 🌅
+wake up	⏰ 🌅 ☀️
+waking	⏰ ☀️
+wales	🏴󠁧󠁢󠁷󠁬󠁳󠁿
+walker	🚶
+wallet	👛 💳 💵
+wallets	👛 💳 💰
+wallpaper	🖼️
+wallpapers	🖼️ 📱 🌄
+walnut	🌰
+walrus	🦭
+waltz	💃 🕺
+wander	🚶 🗺️
+wandering	🚶 🧭
+wanderlust	✈️ 🌍 🧳
+wanting	🤲 💭
+wants	❤️
+wardrobe	👗 👚
+wards	🏥
+warehouse	🏭 📦
+warehousing	📦 🏭
+warlock	🧙
+warm	☀️ 🌤️
+warm up	🏃 🔥
+warm wishes	🤗 💖
+warmer	☀️ 🌡️ 🔥
+warming	🔥 🌡️ ♨️
+warmth	🔥 ☀️
+warned	⚠️ 🚨
+warns	⚠️ 🚨
+warp	🌀
+warrant	📜 ⚖️
+warranted	✅
+warranty	🛡️ 📄
+warriors	⚔️ 🛡️ 🪖
+wars	⚔️ 💣 🪖
+wash	🧼 🚿 🧺
+washable	🧼 💧
+washer	🧺
+washers	🧺 🫧
+washing	🧼 🫧 🧺 🚿
+washing machine	🧺
+wasp	🐝
+wastewater	🚰 💧 🚽 🏭
+wat	🤔 ❓
+watchdog	🐕 👁️ 🚨
+watched	👀 📺
+watchers	👀
+watching	👀 📺
+watchlist	👀 📋 🔍
+water bottle	💧
+water drop	💧
+water polo	🤽
+water sign	♋ ♏ ♓ 💧
+watercolor	🎨 🖌️
+waterfall	🌊 🏞️
+waterfront	🌊 ⚓ 🏖️
+watering	💧 🌱
+watering can	🌱 🚿
+waterproof	☔ 💧
+waters	💧 🌊 💦
+watershed	🌊 💧 🏞️
+waterways	🚤 🌊 🛶
+watt	⚡ 💡
+wav	🎵 🔊
+waveform	〰️ 🔊 📈
+wavelength	🌊
+wax	🕯️
+way in	➡️ 🚪
+way out	⬅️ 🚪
+ways	🛣️
+weaker	📉
+wear	👕 👗 👟
+wears	👕 👗 👖
+weave	🧶 🧵
+weaver	🧵 🕸️
+weaving	🧵 🧶
+webcam	📷 💻
+webcams	📷 🎥
+webcast	💻 📡 📺
+webcasts	📡 💻 🎥
+webdesign	🎨 💻 🌐
+webhosting	🌐 🖥️ ☁️
+webinar	💻 🎓
+weblog	📝 💻 🌐 ✍️
+webmail	📧
+webmaster	💻 🌐
+webpage	🌐 💻
+webring	🔗
+website	🌐 💻
+websites	🌐 💻 🕸️
+websocket	🔌 🌐
+wedding card	💌 💍
+wedding shower	🎁 💍
+wednesday	📅
+wednesdays	📅 🗓️
+wee	🤏
+weeds	🌿 🌱
+week	📅 🗓️
+weekday	📅
+weekends	📅 🎉
+weekly	📅 🔁
+weigh	⚖️
+weighs	⚖️ 🏋️
+weighted	⚖️
+weighting	⚖️
+weightlifting	🏋️
+weir	🌊
+welcome	👋 🤗
+welcome aboard	👋 🎉 🚢
+welcome back	👋 🔙
+welcome home	🏠 🏡 👋 🤗
+welcoming	🤗 👋 😊
+weld	🔥 ⚒️
+welfare	🤝 ❤️
+well deserved	👏 🏆
+well done	👏 ✅ 👍
+well played	👏 👍
+well said	👏 👍 💯 ✅
+wellies	🥾 🌧️
+wellness	🧘 🌿
+wells	⛲ 💧
+welsh	🏴󠁧󠁢󠁷󠁬󠁳󠁿
+werewolf	🐺 🌕
+western	🤠 🌵
+westerns	🤠 🐎 🐴
+wet floor	⚠️ 💧
+wetland	🌾 🐸 🦆 💧
+wetlands	🐸 🦆 💧 🌿
+wfh	🏠 💻
+wfo	🏢 💼
+wharf	⚓ 🚢 🛳️
+what is going on	❓ 🤔
+what is happening	❓ 🤔 📰
+what is new	🆕 ✨ 📰
+what is next	➡️ ⏭️ 🔜
+what is up	👋 ⬆️
+what's up	👋
+wheelchair access	♿
+when did it happen	📅 ⏰ 🕒
+when is it	📅 ⏰ 🕒
+when is last month	📅 ⬅️ 🗓️
+when is last week	📅 ⬅️ 🗓️
+when is last year	📅 ⬅️ 🗓️
+when is next month	📅 ➡️ 🗓️
+when is next week	📅 ➡️ 🗓️
+when is next year	📅 ➡️ 🗓️
+when is now	⏰ 🕒
+when is today	📅
+when is tomorrow	📅 ➡️
+when is tomorrow afternoon	📅 🌤️ ☀️
+when is tomorrow evening	📅 🌆 🌙
+when is tomorrow morning	📅 🌅 ☀️
+when is tomorrow night	📅 🌙 🌃
+when is tonight	🌙 🌃 ⭐
+when is yesterday	📅 ⬅️
+when is yesterday afternoon	📅 ⬅️ 🌤️
+when is yesterday evening	📅 ⬅️ 🌆
+when is yesterday morning	📅 ⬅️ 🌅
+when is yesterday night	📅 ⬅️ 🌙
+when was it	📅 ⏰
+when will it be	📅 ⏰ 🔮
+where are you	📍 🗺️
+where are you at	📍 🗺️
+where are you going	📍 ➡️ 🗺️
+where did it go	🔍 ❓ 📍
+where is it	📍 🔍 ❓
+where was it	📍 🔍 ⬅️
+where were you	📍 🗺️ ❓
+where will it be	📍 🔮 🗺️
+where will you be	📍 🔮 🗺️
+wherever	🌍 📍
+whipped cream	🍦
+whirlpool	🌀
+whisk	🥣 🍳
+whisker	🐱
+whispered	🤫
+white wine	🍷 🥂
+whiteboard	📋 ✏️ 📝
+whitewater	🌊 🛶 🚣
+whois	🔍 🌐
+wholesale	📦 🏪 🏭
+wholesaler	📦
+wholly	💯
+wicker	🧺
+wide	↔️
+widening	↔️
+wider	↔️
+widescreen	🖥️ 📺
+widespread	🌍 🌐
+widget	🧩 ⚙️
+widow	💔 🖤 🕊️
+width	↔️ 📏
+wife	💍 👰
+wig	💇
+wiki	🌐 📖
+wild card	🃏
+wildcats	🐆
+wilderness	🌲 🏞️
+wildlife	🦁 🐘 🌿
+willing	👍 🤝
+willingness	🤝 👍
+willow	🌳 🌿
+wills	📜 ⚖️
+winding	〰️ 🛣️
+winds	🌬️ 💨
+windshield	🚗 🪟
+windy	🌬️ 💨 🍃
+winery	🍷 🍇
+winners	🏆 🥇 🎉
+wins	🏆 🎉 🥇
+winters	❄️ ⛄
+wip	🚧 🛠️ ⏳
+wipe	🧻 🧽
+wire	🔌
+wired	🔌 💻
+wiring	🔌 ⚡ 💡
+wisdom	🦉 📚 🧠
+wisely	🦉
+wished	🙏 ✨
+wishing	🌠 🙏 🤞
+wishing well	⛲
+wishlist	📝 ⭐ 🛒
+wit	😏 🧠
+witchcraft	🔮 🧙 🪄 ✨
+withdraw	🏧 💸
+withdrawal	🏧 💸
+withdrawn	🏧 💸
+without	🚫
+withstand	🛡️ 💪
+witnessed	👀
+witnesses	👁️ 👀
+witty	😏 😄
+wives	👰 💍
+wizardry	🧙 🪄 ✨
+wnba	🏀
+woes	😢 😞 💔
+wok	🥘
+wolves	🐺
+women's day	♀️ 🌸 💐
+womens	👩 🚺
+womens day	♀️ 🌸 💐
+wondered	🤔 💭
+wonderful	🤩 ✨ 🌟
+wonderland	🐇 🎩 ✨
+wonders	🤔 ✨
+wontfix	🚫 ❌
+wonton	🥟
+wooden	🪵
+woodland	🌲 🌳 🦌
+woods	🌲 🌳
+woodworking	🪚 🪵 🔨
+woody	🌳 🪵
+word	📝 🔤
+wording	📝 ✍️
+words	🔤 💬 📝
+wore	👕 👗 👖
+work from home	🏠 💻
+work in progress	🚧 🛠️ ⏳
+workaround	🛠️ 💡
+workbook	📓 📒 ✏️
+workers	👷 🧑‍🏭
+workflow	🔄 📋 ⚙️
+workforce	👷 👥
+workgroup	👥 💼
+working	💼
+working from home	🏠 💻
+workload	💼
+workplace	🏢 💼
+works	⚙️ 🏗️ 🔨
+worksheet	📄 📝
+workshop	🛠️ 🔨 🧰
+workspace	🖥️ 💻
+workstation	💻 🖥️ ⌨️
+world cup	🏆 ⚽ 🌍
+worlds	🌍 🌎 🌏
+worn	👟 👕
+worse	📉 👎 😞
+worst	👎
+worth	💎 💰
+worthy	🏆 ⭐
+wound	🤕 🩹
+wounded	🤕 🩹 🩸
+woven	🧶 🧵
+wraith	👻
+wrapping	🎁 📦
+wrath	😡 🔥
+wreck	💥 🚗 🚧
+wrestler	🤼
+wretch	😫
+wrist	⌚
+writ	📜 ⚖️
+writer	✍️ 📝
+writers	✍️ 📝 📖
+wrong	❌ 🚫
+wrongful	⚖️
+wrote	✍️ 📝
+wrought	🔨 ⚒️
+wth	🤨 ❓ 🤯 ⁉️
+wushu	🥋
+wwii	🎖️ ⚔️
+www	🌐 🕸️ 💻
+xii	Ⅻ ⅻ
+xls	📊
+xml	📄 💻
+xray machine	🩻
+xtreme	🔥 ⚡
+xxl	👕
+xxxx	💋 😘
+yachts	🛥️ ⛵ 🚤
+yaml	📄 💻
+yard	🏡 🌿
+yas queen	👑 💅
+yass	🙌 🎉
+yea	✅ 👍
+yeah	👍 ✅
+year	📅 🗓️
+yearbook	📖 🎓 📘
+yearly	📅 🔁 🗓️
+yeast	🍞
+yeet	🚀
+yell	📢 🗣️
+yemen	🇾🇪
+yep	👍 ✅
+yes of course	✅ 👍 🙌 💯 ✔️
+yes please	✅ 🙏 👍 😊
+yesterday	📅 ⏪
+yield	⚠️
+yields	📈
+yippee	🎉 🙌
+yoga mat	🧘
+yoghurt	🥣
+yogurt	🥣
+yolo	🎉 🍻
+you are the best	🏆 ⭐ 🌟 🙌 👍
+you are welcome	😊 🙏 🤗 👍 🙂
+you bet	👍 ✅
+you can do it	💪 👍
+you got this	💪 👍
+you rock	🤘 🎸
+you rule	👑
+you're a star	⭐ 🌟
+you're amazing	🤩 ✨
+you're awesome	🤩 🌟
+you're the best	🏆 🥇
+you're welcome	🙏 😊
+youngest	👶
+youre welcome	🙏 😊
+yours truly	✍️ 💌
+youth	🧒
+yrs	📅 ⏳
+yw	🙏 😊
+yyyy	📅
+zambia	🇿🇲
+zealand	🇳🇿
+zebra crossing	🚸 🦓
+zenith	🔝 🌟
+zerodegrees	0️⃣ ❄️ 🥶
+zimbabwe	🇿🇼
+zine	📰 📖
+zirconia	💎
+zodiac sign	♈ ♉ ♊
+zone	📍
+zoning	🗺️ 🏗️
+zoology	🦁 🐘 🐒
+zoom in	🔍 ➕
+zoom out	🔍 ➖
+zucchini	🥒
