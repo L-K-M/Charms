@@ -419,6 +419,9 @@ public enum CatalogBuilder {
         /// another file, is a problem rather than dead data: a word that is
         /// also an alias or in the other file, and a related word that
         /// already finds an item through its name, a keyword or an alias.
+        /// A related word that begins an alias would interrupt the alias
+        /// while it is typed (`arr` before `arrow`), so it is a problem too;
+        /// a preferred word is not, since it overrides names on purpose.
         mutating func applyCuratedWords(_ words: [CuratedAlias], as kind: CuratedWords,
                                         aliases: [CuratedAlias], otherWords: [CuratedAlias]) -> [String] {
             let file = kind.file
@@ -428,6 +431,9 @@ public enum CatalogBuilder {
                 indexByString[entry.string.exact] = index
             }
             let aliasTexts = Set(aliases.map { Self.searchKey($0.text) })
+            // Folded as search folds a query before looking for aliases
+            // that start with it.
+            let foldedAliases = aliases.map { SearchText.fold($0.text) }.sorted()
             let otherTexts = Set(otherWords.map { Self.searchKey($0.text) })
 
             var problems: [String] = []
@@ -447,6 +453,10 @@ public enum CatalogBuilder {
                 }
                 if otherTexts.contains(key) {
                     problems.append("\(file):\(word.lineNumber): '\(text)' is also in \(otherFile)")
+                }
+                let folded = SearchText.fold(text)
+                if kind == .related, let alias = foldedAliases.first(where: { $0.utf8.count > folded.utf8.count && $0.hasPrefix(folded) }) {
+                    problems.append("\(file):\(word.lineNumber): '\(text)' begins the alias '\(alias)', which leads while it is typed")
                 }
                 var seenItems: Set<ExactString> = []
                 for (position, item) in word.items.enumerated() {

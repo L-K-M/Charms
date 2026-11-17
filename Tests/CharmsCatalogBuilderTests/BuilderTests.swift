@@ -270,7 +270,7 @@ final class BuilderTests: XCTestCase {
     }
 
     func testRelatedWordProblemsAreListedTogether() {
-        let related = "dup\t→\ndup\t→\nunknown\tU+9999\nrepeats\t→ →\narrow\t←\nrightwards arrow\t→\nleft\t←\n->>\t→\n"
+        let related = "dup\t→\ndup\t→\nunknown\tU+9999\nrepeats\t→ →\narrow\t←\nrightwards arrow\t→\nleft\t←\n->>\t→\narr\t←\n"
         XCTAssertThrowsError(try CatalogBuilder.build(sources(
             unicodeData: Self.arrows, aliases: "arrow\t→\nleft\t→\n", related: related))) { error in
             guard case .invalid(let problems) = error as? CatalogError else {
@@ -283,6 +283,7 @@ final class BuilderTests: XCTestCase {
             XCTAssertTrue(problems.contains { $0.contains("'rightwards arrow' already finds") })
             XCTAssertTrue(problems.contains { $0.contains("'left' is already an alias") })
             XCTAssertTrue(problems.contains { $0.contains("'->>' has no letters or digits") })
+            XCTAssertTrue(problems.contains { $0.contains("'arr' begins the alias 'arrow'") })
         }
     }
 
