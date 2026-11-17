@@ -585,10 +585,11 @@ public final class SearchIndex: Sendable {
                     // An entry that missed an earlier word cannot match.
                     guard matched[entry] == step else { continue }
                     let field = packed & Field.mask
-                    // Related words and block names count only as whole words
-                    // or prefixes: `port` is no reason to show what
-                    // `important` suggests, nor `critical` the Combining
-                    // Diacritical Marks.
+                    // Related words and block names are never matched inside
+                    // a word: `port` is no reason to show what `important`
+                    // suggests, nor `critical` the Combining Diacritical
+                    // Marks. A near miss may still reach them in the last
+                    // tier, as `importnat` should.
                     if matchClass == .substring, field == Field.related.rawValue || field == Field.group.rawValue {
                         continue
                     }

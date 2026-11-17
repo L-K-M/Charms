@@ -12,9 +12,9 @@ import Foundation
 ///
 /// The rules are deliberately small and purely English. A reading that
 /// produces a word the catalogue does not know simply finds nothing.
-public enum QueryReadings {
-    public struct Reading: Equatable, Sendable {
-        public enum Matching: Sendable {
+enum QueryReadings {
+    struct Reading: Equatable, Sendable {
+        enum Matching: Sendable {
             /// The last word may still be a prefix, as in the typed query.
             case prefix
             /// Every word must be whole, and the reading counts only if it
@@ -25,8 +25,8 @@ public enum QueryReadings {
             case whole
         }
 
-        public let tokens: [[UInt8]]
-        public let matching: Matching
+        let tokens: [[UInt8]]
+        let matching: Matching
     }
 
     /// Words that describe what kind of thing is wanted rather than which
@@ -53,14 +53,14 @@ public enum QueryReadings {
 
     /// The query's words without filler words, or all of them when nothing
     /// else would remain.
-    public static func significantWords(_ tokens: [[UInt8]]) -> [[UInt8]] {
+    static func significantWords(_ tokens: [[UInt8]]) -> [[UInt8]] {
         let kept = tokens.filter { !fillerWords.contains($0) }
         return kept.isEmpty ? tokens : kept
     }
 
     /// Alternative readings, most faithful first: without filler words, then
     /// with one word at a time reduced to each of its base forms.
-    public static func alternatives(_ tokens: [[UInt8]]) -> [Reading] {
+    static func alternatives(_ tokens: [[UInt8]]) -> [Reading] {
         guard !tokens.isEmpty, tokens.count <= maximumWords else { return [] }
         var readings: [Reading] = []
         let significant = significantWords(tokens)
@@ -85,7 +85,7 @@ public enum QueryReadings {
     /// comparative or adverb, and the American spelling of a British one.
     /// Several candidates are offered where English is irregular (`approved`
     /// may be `approve` or `approv`); the index decides which exist.
-    public static func baseForms(_ token: [UInt8]) -> [[UInt8]] {
+    static func baseForms(_ token: [UInt8]) -> [[UInt8]] {
         guard token.count >= minimumInflectedLength, token.allSatisfy({ $0 >= UInt8(ascii: "a") && $0 <= UInt8(ascii: "z") }) else {
             return []
         }

@@ -144,7 +144,7 @@ public struct CodePointQuery: Equatable, Sendable {
     /// True when some part of the query is written with a `U+` prefix,
     /// whether or not it names a valid scalar: such a query is about code
     /// points, and its `u` is not a word.
-    public static func isNotation(_ query: String) -> Bool {
+    static func isNotation(_ query: String) -> Bool {
         parts(of: query).contains(where: hasPrefix)
     }
 
