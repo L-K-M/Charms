@@ -234,11 +234,16 @@ public final class SearchIndex: Sendable {
     /// lists, and a one-letter query has thousands of candidates. With
     /// copies, `s` took 22 ms in an optimised build on Apple silicon (more
     /// once entries gained curated words); by position it takes 5 ms.
+    ///
+    /// A candidate holds only integers. With a boxed entry for characters
+    /// outside the catalogue, the Swift 6.2 optimiser in Xcode 26.0
+    /// crashed on `finishCounting` (an ownership error in CopyPropagation).
     private struct Candidate {
         enum Source {
             case catalogue(Int)
-            /// A character outside the catalogue, found by its code point.
-            indirect case outside(CatalogEntry)
+            /// A character outside the catalogue, found by its code point
+            /// or pasted: its position in the search's `outside` list.
+            case outside(Int)
         }
 
         var source: Source
@@ -252,8 +257,8 @@ public final class SearchIndex: Sendable {
             self.quality = quality
         }
 
-        init(outside entry: CatalogEntry, tier: SearchHit.Tier, quality: Int) {
-            self.source = .outside(entry)
+        init(outside position: Int, tier: SearchHit.Tier, quality: Int) {
+            self.source = .outside(position)
             self.tier = tier
             self.quality = quality
         }
@@ -265,24 +270,24 @@ public final class SearchIndex: Sendable {
         }
     }
 
-    private func entry(of candidate: Candidate) -> CatalogEntry {
+    private func entry(of candidate: Candidate, outside: [CatalogEntry]) -> CatalogEntry {
         switch candidate.source {
         case .catalogue(let index): return catalog.entries[index]
-        case .outside(let entry): return entry
+        case .outside(let position): return outside[position]
         }
     }
 
-    private func string(of candidate: Candidate) -> String {
+    private func string(of candidate: Candidate, outside: [CatalogEntry]) -> String {
         switch candidate.source {
         case .catalogue(let index): return catalog.entries[index].string
-        case .outside(let entry): return entry.string
+        case .outside(let position): return outside[position].string
         }
     }
 
-    private func rank(of candidate: Candidate) -> UInt8 {
+    private func rank(of candidate: Candidate, outside: [CatalogEntry]) -> UInt8 {
         switch candidate.source {
         case .catalogue(let index): return catalog.entries[index].rank
-        case .outside(let entry): return entry.rank
+        case .outside(let position): return outside[position].rank
         }
     }
 
@@ -291,17 +296,18 @@ public final class SearchIndex: Sendable {
         guard !query.isEmpty, options.limit > 0 else { return [] }
 
         var special: [Candidate] = []
+        var outside: [CatalogEntry] = []
         let codePoints = CodePointQuery.parse(query)
         if let codePoints, codePoints.isExplicit {
-            special.append(contentsOf: resolve(codePoints.string, tier: .codePoint))
+            special.append(contentsOf: resolve(codePoints.string, tier: .codePoint, outside: &outside))
         }
 
         // Pasted characters are looked up as themselves. Matching runs on the
         // raw query, before any case or accent folding.
         let hasNonASCII = query.utf8.contains { $0 >= 0x80 }
         if hasNonASCII, !SearchText.containsASCIIAlphanumeric(query) {
-            special.append(contentsOf: literalCandidates(query))
-            return finish(special, options: options)
+            special.append(contentsOf: literalCandidates(query, outside: &outside))
+            return finish(special, outside: outside, options: options)
         }
 
         let folded = SearchText.fold(query)
@@ -319,13 +325,13 @@ public final class SearchIndex: Sendable {
             // for the arrow, the alias leads and the characters it happens to
             // be written with follow.
             let hasAlias = special.contains { $0.tier == .exact }
-            for var candidate in literalCandidates(query) {
-                if hasAlias, !string(of: candidate).isExactly(query) {
+            for var candidate in literalCandidates(query, outside: &outside) {
+                if hasAlias, !string(of: candidate, outside: outside).isExactly(query) {
                     candidate.tier = .prefix
                 }
                 special.append(candidate)
             }
-            return finish(special, options: options)
+            return finish(special, outside: outside, options: options)
         }
 
         special.append(contentsOf: curatedWordCandidates(Self.phraseKey(tokens)))
@@ -340,7 +346,7 @@ public final class SearchIndex: Sendable {
         }
 
         if let codePoints, !codePoints.isExplicit {
-            special.append(contentsOf: resolve(codePoints.string, tier: .bareCodePoint))
+            special.append(contentsOf: resolve(codePoints.string, tier: .bareCodePoint, outside: &outside))
         }
         if options.isCancelled() { return [] }
 
@@ -348,7 +354,7 @@ public final class SearchIndex: Sendable {
         candidates.append(contentsOf: wordCandidates(tokens, matching: .substring))
         if options.isCancelled() { return [] }
 
-        var (hits, matched) = finishCounting(candidates, options: options)
+        var (hits, matched) = finishCounting(candidates, outside: outside, options: options)
 
         // Only a query that names nothing exactly is read another way, so a
         // word the catalogue knows is never second-guessed. Dropping filler
@@ -374,14 +380,14 @@ public final class SearchIndex: Sendable {
             }
             if options.isCancelled() { return [] }
             if candidates.count > found {
-                (hits, matched) = finishCounting(candidates, options: options)
+                (hits, matched) = finishCounting(candidates, outside: outside, options: options)
             }
         }
 
         if matched < Self.fuzzyThreshold, tokens.allSatisfy({ $0.count >= Self.fuzzyMinimumLength }) {
             candidates.append(contentsOf: wordCandidates(tokens, matching: .fuzzy))
             if options.isCancelled() { return [] }
-            hits = finish(candidates, options: options)
+            hits = finish(candidates, outside: outside, options: options)
         }
         return hits
     }
@@ -425,27 +431,30 @@ public final class SearchIndex: Sendable {
 
     // MARK: Literal and code point lookups
 
-    private func resolve(_ string: String, tier: SearchHit.Tier) -> [Candidate] {
+    /// The entry for `string`. A character the catalogue lacks is added to
+    /// `outside`, which the candidate then refers to.
+    private func resolve(_ string: String, tier: SearchHit.Tier, outside: inout [CatalogEntry]) -> [Candidate] {
         if let index = catalog.index(of: string) {
             return [Candidate(index: index, tier: tier, quality: 0)]
         }
         if let entry = catalog.resolve(string) {
-            return [Candidate(outside: entry, tier: tier, quality: 0)]
+            outside.append(entry)
+            return [Candidate(outside: outside.count - 1, tier: tier, quality: 0)]
         }
         return []
     }
 
     /// The whole query as one item, then each of its characters, then the
     /// scalars of any character that is not itself an entry.
-    private func literalCandidates(_ query: String) -> [Candidate] {
-        var result = resolve(query, tier: .literal)
+    private func literalCandidates(_ query: String, outside: inout [CatalogEntry]) -> [Candidate] {
+        var result = resolve(query, tier: .literal, outside: &outside)
         var quality = -1
         for character in query where !character.isWhitespace {
             let text = String(character)
-            var found = resolve(text, tier: .literal)
+            var found = resolve(text, tier: .literal, outside: &outside)
             if found.isEmpty, text.unicodeScalars.count > 1 {
                 for scalar in text.unicodeScalars {
-                    found.append(contentsOf: resolve(String(scalar), tier: .literal))
+                    found.append(contentsOf: resolve(String(scalar), tier: .literal, outside: &outside))
                 }
             }
             for var candidate in found {
@@ -771,17 +780,17 @@ public final class SearchIndex: Sendable {
     /// happens to contain the fragment as a whole word. Some-words matches
     /// go by quality first, like exact ones, since their quality says how
     /// many of the words they answer.
-    private func finish(_ candidates: [Candidate], options: SearchOptions) -> [SearchHit] {
-        finishCounting(candidates, options: options).hits
+    private func finish(_ candidates: [Candidate], outside: [CatalogEntry], options: SearchOptions) -> [SearchHit] {
+        finishCounting(candidates, outside: outside, options: options).hits
     }
 
     /// Also counts every distinct match, not just the hits within the limit,
     /// so that how many matched never depends on how many are shown.
-    private func finishCounting(_ candidates: [Candidate], options: SearchOptions) -> (hits: [SearchHit], matched: Int) {
+    private func finishCounting(_ candidates: [Candidate], outside: [CatalogEntry], options: SearchOptions) -> (hits: [SearchHit], matched: Int) {
         var best: [ExactString: Candidate] = [:]
         best.reserveCapacity(candidates.count)
         for candidate in candidates {
-            let key = string(of: candidate).exact
+            let key = string(of: candidate, outside: outside).exact
             if let existing = best[key], (existing.tier, -existing.quality) <= (candidate.tier, -candidate.quality) {
                 continue
             }
@@ -789,7 +798,7 @@ public final class SearchIndex: Sendable {
         }
 
         func boost(_ candidate: Candidate) -> Int {
-            let key = string(of: candidate).exact
+            let key = string(of: candidate, outside: outside).exact
             if options.favourites.contains(key) { return 2 }
             if options.recents.contains(key) { return 1 }
             return 0
@@ -811,18 +820,18 @@ public final class SearchIndex: Sendable {
                 let rhsBoost = boost(rhs)
                 if lhsBoost != rhsBoost { return lhsBoost > rhsBoost }
             }
-            let lhsRank = rank(of: lhs)
-            let rhsRank = rank(of: rhs)
+            let lhsRank = rank(of: lhs, outside: outside)
+            let rhsRank = rank(of: rhs, outside: outside)
             if lhsRank != rhsRank { return lhsRank < rhsRank }
             if isPartial, lhs.quality != rhs.quality { return lhs.quality > rhs.quality }
             switch (lhs.index, rhs.index) {
             case let (l?, r?): return l < r
             case (.some, nil): return true
             case (nil, .some): return false
-            case (nil, nil): return string(of: lhs).unicodeScalars.lexicographicallyPrecedes(string(of: rhs).unicodeScalars)
+            case (nil, nil): return string(of: lhs, outside: outside).unicodeScalars.lexicographicallyPrecedes(string(of: rhs, outside: outside).unicodeScalars)
             }
         }
-        return (ordered.prefix(options.limit).map { SearchHit(entry: entry(of: $0), index: $0.index, tier: $0.tier) }, ordered.count)
+        return (ordered.prefix(options.limit).map { SearchHit(entry: entry(of: $0, outside: outside), index: $0.index, tier: $0.tier) }, ordered.count)
     }
 }
 

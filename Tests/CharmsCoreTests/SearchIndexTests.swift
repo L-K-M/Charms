@@ -348,6 +348,14 @@ final class SearchIndexTests: XCTestCase {
         XCTAssertEqual(hits.map(\.entry.name), ["cjk unified ideograph-4e2d"])
     }
 
+    func testSeveralPastedCharactersOutsideTheCatalogueKeepTheirOrder() {
+        // Characters the catalogue lacks are kept apart from it; each hit
+        // must still show its own character, in the order typed.
+        let hits = Self.index.search("\u{4E2D}" + Self.rightArrow + "\u{D55C}")
+        XCTAssertEqual(hits.map(\.entry.string), ["\u{4E2D}", Self.rightArrow, "\u{D55C}"])
+        XCTAssertEqual(hits.map(\.index).map { $0 == nil }, [true, false, true])
+    }
+
     func testAsciiPunctuationFallsBackToTheCharacterItself() {
         assertResults("#", [Self.numberSign])
         assertResults("+", [Self.plus])
