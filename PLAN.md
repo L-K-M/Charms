@@ -128,7 +128,7 @@ The Impression picker concentrates expression on choosing and proofing a charact
 
 The diagram is structural; native font metrics determine final spacing.
 
-- The picker is 432 by 472 points with eight 44-point cells, 6-point gaps and 19-point tray insets. The panel stays fixed while searching. Names and the complete scalar sequence live beside the large proof; a second specimen uses 16-point text. The “Aa” and “Bb” are fixed examples, never source-document text.
+- The picker is 474 by 472 points with eight 44-point cells per row, 12-point column gaps, 6-point row gaps and 19-point tray insets. The panel stays fixed while searching. Names and the complete scalar sequence live beside the large proof; a second specimen uses 16-point text. The “Aa” and “Bb” are fixed examples, never source-document text.
 - Surface the Copy action in the footer (for example `⌘↵ Copy`) so the explicit copy path is discoverable without reading the keyboard table.
 - Larger-text reflow remains a release requirement and is not implemented by this fixed-size prototype. Long names have a tooltip and accessibility label; long scalar sequences have horizontal scrolling with a bidirectional affordance and an unabridged accessibility value. See the prototype guide for validation gaps.
 - Empty search shows a compact favourites section and up to two rows of recents. Seed a small useful favourites set only on first launch.

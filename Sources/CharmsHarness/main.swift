@@ -69,6 +69,10 @@ case "windows":
     guard let processID = arguments.number("pid") else { Output.usage() }
     Output.emit(Inspect.windows(ownedBy: Int(processID)))
 
+case "source-header":
+    guard let processID = arguments.number("pid") else { Output.usage() }
+    Output.emit(Inspect.sourceHeader(in: pid_t(processID)))
+
 case "displays":
     Output.emit(Inspect.displays())
 
