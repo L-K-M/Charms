@@ -19,8 +19,8 @@ public struct GIFMediaFetcher: Sendable {
         self.session = session
     }
 
-    public func data(for url: URL) async -> Data? {
-        guard GIFMediaPolicy.isServiceMedia(url) else { return nil }
+    public func data(for url: URL, provider: GIFProvider) async -> Data? {
+        guard GIFMediaPolicy.isServiceMedia(url, provider: provider) else { return nil }
         var request = URLRequest(url: url)
         request.setValue("image/gif", forHTTPHeaderField: "Accept")
         do {

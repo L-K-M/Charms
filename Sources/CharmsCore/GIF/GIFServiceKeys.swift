@@ -147,18 +147,10 @@ public struct FileGIFServiceKeyStore: GIFServiceKeyStoring {
 }
 
 public enum GIFServiceKeyStores {
-    /// The real home keeps its keys in the Keychain. Every other directory
-    /// is an isolated home and keeps them in that directory, so it never
-    /// touches the real keys.
-    public static func make(supportDirectory: URL) -> any GIFServiceKeyStoring {
-        if let base = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first {
-            let real = base.appendingPathComponent("Charms", isDirectory: true)
-            if samePath(supportDirectory, real) { return KeychainGIFServiceKeyStore() }
-        }
-        return FileGIFServiceKeyStore(directory: supportDirectory)
-    }
-
-    private static func samePath(_ lhs: URL, _ rhs: URL) -> Bool {
-        lhs.standardizedFileURL.resolvingSymlinksInPath().path == rhs.standardizedFileURL.resolvingSymlinksInPath().path
+    /// An explicit CHARMS_HOME keeps its keys on disk even when it aliases
+    /// the default support directory. Only the ordinary app uses the Keychain.
+    public static func make(supportDirectory: URL, isIsolated: Bool) -> any GIFServiceKeyStoring {
+        if isIsolated { return FileGIFServiceKeyStore(directory: supportDirectory) }
+        return KeychainGIFServiceKeyStore()
     }
 }

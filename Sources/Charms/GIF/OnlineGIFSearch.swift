@@ -34,14 +34,14 @@ public final class OnlineGIFSearch: ObservableObject {
     private var previewCache: [String: Data] = [:]
     private var previewCacheBytes = 0
 
-    public init(supportDirectory: URL) {
+    public init(supportDirectory: URL, isIsolated: Bool) {
         self.stateFileURL = supportDirectory.appendingPathComponent(Self.stateFileName)
         let state = Self.loadState(from: stateFileURL)
         self.provider = state.provider
         self.rating = state.rating
         self.clientID = state.clientID
         self.attribution = state.provider.attribution
-        self.keys = GIFServiceKeyStores.make(supportDirectory: supportDirectory)
+        self.keys = GIFServiceKeyStores.make(supportDirectory: supportDirectory, isIsolated: isIsolated)
         self.hasKey = false
         self.language = Locale.current.language.languageCode?.identifier ?? "en"
         self.region = Locale.current.region?.identifier
@@ -77,8 +77,9 @@ public final class OnlineGIFSearch: ObservableObject {
                 ))
                 let page = try await client.page(query: self.activeQuery, cursor: cursor)
                 guard !Task.isCancelled, request == self.generation else { return }
-                self.items.append(contentsOf: page.items)
-                self.nextPage = page.next
+                let remaining = GIFSearchRequest.maximumResults - self.items.count
+                self.items.append(contentsOf: page.items.prefix(remaining))
+                self.nextPage = self.items.count < GIFSearchRequest.maximumResults ? page.next : nil
                 self.status = self.items.isEmpty ? "No matching GIFs." : nil
             } catch {
                 guard let self, !Task.isCancelled, request == self.generation else { return }
@@ -106,7 +107,7 @@ public final class OnlineGIFSearch: ObservableObject {
         guard items.contains(where: { $0.preview.url == url }) else { return nil }
         if let cached = previewCache[url.absoluteString] { return cached }
         let current = generation
-        guard let data = await media.data(for: url), current == generation, !Task.isCancelled, data.starts(with: Self.gifMagic) else { return nil }
+        guard let data = await media.data(for: url, provider: provider), current == generation, !Task.isCancelled, data.starts(with: Self.gifMagic) else { return nil }
         cachePreview(data, for: url)
         return data
     }

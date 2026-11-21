@@ -100,6 +100,15 @@ final class GIFSearchTests: XCTestCase {
         XCTAssertThrowsError(try request(.klipy).page(from: Data("<html>".utf8), cursor: nil)) { XCTAssertEqual($0 as? GIFSearchError, .malformed) }
     }
 
+    func testKLIPYStopsAtTheLastPageEvenWhenMoreAreAdvertised() throws {
+        let search = request(.klipy)
+        let body = Data(#"{"data":{"data":[],"has_next":true}}"#.utf8)
+        let lastPage = GIFSearchRequest.maximumPage
+        XCTAssertEqual(try search.page(from: body, cursor: lastPage - 1).next, lastPage)
+        XCTAssertNil(try search.page(from: body, cursor: lastPage).next)
+        XCTAssertEqual(try query(search.url(query: "hello", cursor: Int.max))["page"], String(lastPage))
+    }
+
     func testErrorAnswersNameTheProblem() {
         XCTAssertEqual(request(.giphy).error(status: 401, body: Data()), .rejectedKey)
         XCTAssertEqual(request(.giphy).error(status: 429, body: Data()), .rateLimited)

@@ -20,7 +20,7 @@ final class AppServices {
     init(paths: AppPaths) {
         self.paths = paths
         localGIFs = LocalGIFLibrary(supportDirectory: paths.supportDirectory)
-        onlineGIFs = OnlineGIFSearch(supportDirectory: paths.supportDirectory)
+        onlineGIFs = OnlineGIFSearch(supportDirectory: paths.supportDirectory, isIsolated: paths.isIsolated)
         preferences = PreferencesStore(paths: paths)
         library = LibraryController(paths: paths, diagnostics: diagnostics)
         snippets = SnippetController(paths: paths, diagnostics: diagnostics)

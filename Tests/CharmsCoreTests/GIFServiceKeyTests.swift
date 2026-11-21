@@ -82,8 +82,18 @@ final class GIFServiceKeyTests: XCTestCase {
     func testFactoryKeepsAnIsolatedHomeOutOfTheKeychain() {
         let directory = makeDirectory()
         defer { remove(directory) }
-        let store = GIFServiceKeyStores.make(supportDirectory: directory)
+        let store = GIFServiceKeyStores.make(supportDirectory: directory, isIsolated: true)
         XCTAssertTrue(store is FileGIFServiceKeyStore, "an isolated home must not touch the real Keychain")
+    }
+
+    func testAnIsolatedAliasCannotSelectTheRealKeychain() throws {
+        let real = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
+            .appendingPathComponent("Charms", isDirectory: true)
+        let alias = makeDirectory()
+        try FileManager.default.createSymbolicLink(at: alias, withDestinationURL: real)
+        defer { remove(alias) }
+        // Inspect only the selected backend. Never access either credential.
+        XCTAssertTrue(GIFServiceKeyStores.make(supportDirectory: alias, isIsolated: true) is FileGIFServiceKeyStore)
     }
 
     func testFactoryUsesTheKeychainInTheRealHome() {
@@ -91,6 +101,6 @@ final class GIFServiceKeyTests: XCTestCase {
             return XCTFail("no application-support directory")
         }
         let real = base.appendingPathComponent("Charms", isDirectory: true)
-        XCTAssertTrue(GIFServiceKeyStores.make(supportDirectory: real) is KeychainGIFServiceKeyStore)
+        XCTAssertTrue(GIFServiceKeyStores.make(supportDirectory: real, isIsolated: false) is KeychainGIFServiceKeyStore)
     }
 }

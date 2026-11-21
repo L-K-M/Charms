@@ -367,7 +367,7 @@ released. This does not extend coverage to Intel or older macOS versions.
 ## Not verified
 
 - **macOS 14, 15 and 26.** The deployment target is macOS 14 and CI builds
-  with Xcode 26 on macOS 26, but the app has only been run on macOS 27.
+  with Xcode 27.2 on macOS 27. The app has only been run on macOS 27.
 - **Intel Macs.** Release builds are universal; the Intel half has not been
   run.
 - **Chrome and real Electron applications** (VS Code, Slack and the like),

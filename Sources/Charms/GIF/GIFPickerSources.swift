@@ -84,7 +84,7 @@ final class GIFPickerSources {
             }
             model.hasMoreGIFs = online.nextPage != nil
             model.attribution = online.attribution
-            model.gifStatus = online.status ?? (rows.isEmpty ? (query.isEmpty
+            model.gifStatus = online.status ?? (rows.isEmpty ? (query.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
                 ? "Type to search online." : "No matching GIFs.") : nil)
         }
         model.gifRows = rows

@@ -14,8 +14,10 @@ public struct GIFSearchRequest: Sendable {
     /// random and kept on this Mac; it is not tied to any account.
     public let clientID: String
     public static let pageSize = 24
-    /// GIPHY serves no results past this offset.
-    public static let maximumOffset = 4999
+    /// Both services share GIPHY’s limit of 5,000 results per search.
+    public static let maximumResults = 5000
+    private static let maximumOffset = maximumResults - 1
+    static let maximumPage = (maximumResults + pageSize - 1) / pageSize
     /// The longest query sent.
     public static let maximumQueryLength = 100
 
@@ -50,7 +52,7 @@ public struct GIFSearchRequest: Sendable {
             items = [
                 URLQueryItem(name: "api_key", value: key),
                 URLQueryItem(name: "limit", value: String(Self.pageSize)),
-                URLQueryItem(name: "offset", value: String(max(0, cursor ?? 0))),
+                URLQueryItem(name: "offset", value: String(min(max(0, cursor ?? 0), Self.maximumOffset))),
                 URLQueryItem(name: "rating", value: rating.rawValue),
                 URLQueryItem(name: "bundle", value: "messaging_non_clips"),
             ]
@@ -61,7 +63,7 @@ public struct GIFSearchRequest: Sendable {
         case .klipy:
             components.path = "/api/v1/\(key)/gifs/" + (trimmed.isEmpty ? "trending" : "search")
             items = [
-                URLQueryItem(name: "page", value: String(max(1, cursor ?? 1))),
+                URLQueryItem(name: "page", value: String(min(max(1, cursor ?? 1), Self.maximumPage))),
                 URLQueryItem(name: "per_page", value: String(Self.pageSize)),
                 URLQueryItem(name: "customer_id", value: clientID),
                 URLQueryItem(name: "content_filter", value: rating.klipyFilter),
@@ -122,7 +124,7 @@ public struct GIFSearchRequest: Sendable {
             return GIFItem(id: id, title: Self.cleanTitle((object["title"] as? String) ?? ""), preview: preview, message: message)
         }
         let hasNext = (envelope["has_next"] as? Bool) ?? false
-        return GIFPage(items: items, next: hasNext && page < Int.max ? page + 1 : nil)
+        return GIFPage(items: items, next: hasNext && page < maximumPage ? page + 1 : nil)
     }
 
     /// Maps an error answer to what the reader can do about it. KLIPY
