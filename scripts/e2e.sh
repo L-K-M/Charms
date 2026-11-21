@@ -221,7 +221,8 @@ scenario_gif_copy() {
     echo 'R0lGODlhAQABAIAAAP8AAAAA/yH5BAAKAAAALAAAAAABAAEAAAICRAEAIfkEAAoAAAAsAAAAAAEAAQAAAgJMAQA7' | base64 -D > "$gif"
     reset "GIF "
     open_picker || return 1
-    "$HARNESS" hotkey --code 19 --command >/dev/null # Command-2 on the harness layout
+    "$HARNESS" hotkey --code 20 --command >/dev/null # Online GIFs
+    "$HARNESS" hotkey --code 19 --command >/dev/null # My GIFs
     choose "staged-animation" || return 1
     expect "unchanged document" "$(editor)" "GIF " || return 1
     expect "exact original GIF" "$("$HARNESS" pasteboard --compare-gif "$gif" | field matchesGIF)" "true"
@@ -229,7 +230,11 @@ scenario_gif_copy() {
 
 scenario_gif_sources() {
     reset "GIF "
-    local count; count="$(clipboard_count)"
+    local count host_count; count="$(clipboard_count)"
+    host_count="$(send --op state | field workspaceShortcutCount)"
+    "$HARNESS" hotkey --code 18 --command >/dev/null
+    "$HARNESS" hotkey --code 19 --command >/dev/null
+    expect "host shortcuts before opening" "$(send --op state | field workspaceShortcutCount)" "$((host_count + 2))" || return 1
     open_picker || return 1
     typing "arrow"
     "$HARNESS" hotkey --code 20 --command >/dev/null # Command-3
@@ -238,7 +243,18 @@ scenario_gif_sources() {
     expect "source after Escape" "$(editor)" "GIF " || return 1
     expect "clipboard after Escape" "$(clipboard_count)" "$count" || return 1
     open_picker && choose "arrow" || return 1
-    expect "next session starts in Characters" "$(editor)" "GIF →"
+    expect "next session starts in Characters" "$(editor)" "GIF →" || return 1
+    reset "GIF "
+    open_picker || return 1
+    "$HARNESS" hotkey --code 19 --command >/dev/null
+    "$HARNESS" hotkey --code 20 --command >/dev/null
+    typing "dance"
+    "$HARNESS" hotkey --code 18 --command >/dev/null # Back to Characters
+    choose "arrow" || return 1
+    expect "character after switching back" "$(editor)" "GIF →" || return 1
+    expect "host shortcuts while picker was open" "$(send --op state | field workspaceShortcutCount)" "$((host_count + 2))" || return 1
+    "$HARNESS" hotkey --code 19 --command >/dev/null
+    expect "host shortcut after dismissal" "$(send --op state | field workspaceShortcutCount)" "$((host_count + 3))"
 }
 
 scenario_placement() {

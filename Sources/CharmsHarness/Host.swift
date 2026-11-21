@@ -14,6 +14,7 @@ final class Host: NSObject, NSApplicationDelegate, NSWindowDelegate {
 
     private let arguments: Arguments
     private var window: NSWindow!
+    private var workspaceShortcutCount = 0
     private let editor = HostTextView()
     private let field = NSTextField()
     private let secret = NSSecureTextField()
@@ -107,7 +108,20 @@ final class Host: NSObject, NSApplicationDelegate, NSWindowDelegate {
         edit.addItem(withTitle: "Paste", action: #selector(NSText.paste(_:)), keyEquivalent: "v")
         edit.addItem(withTitle: "Select All", action: #selector(NSText.selectAll(_:)), keyEquivalent: "a")
         main.addItem(withTitle: "Edit", action: nil, keyEquivalent: "").submenu = edit
+
+        // Model a frontmost app with its own Command-1 and Command-2 actions.
+        let workspaces = NSMenu(title: "Workspaces")
+        for number in ["1", "2"] {
+            let item = workspaces.addItem(withTitle: "Workspace " + number,
+                                          action: #selector(selectWorkspace(_:)), keyEquivalent: number)
+            item.target = self
+        }
+        main.addItem(withTitle: "Workspaces", action: nil, keyEquivalent: "").submenu = workspaces
         return main
+    }
+
+    @objc private func selectWorkspace(_ sender: Any?) {
+        workspaceShortcutCount += 1
     }
 
     // MARK: Commands
@@ -175,6 +189,7 @@ final class Host: NSObject, NSApplicationDelegate, NSWindowDelegate {
         let selection = editor.selectedRange()
         return [
             "editor": editor.string,
+            "workspaceShortcutCount": workspaceShortcutCount,
             "editorSelection": [selection.location, selection.length],
             "field": field.stringValue,
             // The length only: enough to see that nothing was typed into
