@@ -85,9 +85,18 @@ the selected link, or copies it when the picker has no insertion target.
 Command-Return copies the link. **Characters** (⌘1) returns to the catalogue.
 The picker shows each source’s shortcut beside its name. You can also
 switch sources with **Control-Tab** (next) and
-**Control-Shift-Tab** (previous). From Online GIFs, these go to Characters
+**Control-Shift-Tab** (previous). From Online GIFs, these go to Memes
 and My GIFs respectively.
 The typed `::` shortcut stays local to character and snippet search.
+
+### Memes (development build)
+
+Choose **Memes** (⌘4), describe a scene, and press Return to open Apple’s
+Image Playground. Choose the artwork you like and click Done. On macOS 27
+or later, Charms uses the available on-device Apple Intelligence model to
+suggest a caption for the image. You can edit it or write your own.
+**Copy PNG** copies the finished meme so you can paste it where you want.
+Creating the artwork requires a Mac with Image Playground available.
 
 ### Text snippets
 

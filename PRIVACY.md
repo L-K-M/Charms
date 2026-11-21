@@ -16,6 +16,12 @@ a preview contacts the provider’s media host. Switching sources clears the
 search field. Charms never includes local GIFs, local tags, document text or
 ordinary character searches in provider requests.
 
+**Memes.** Opening Image Playground gives Apple’s system interface the
+description you typed in Memes. Charms offers the on-device artwork styles.
+After you choose an image, the on-device caption model receives the image
+and that description. Charms keeps the draft in memory until you close
+the composer. Copy PNG places the finished image on the clipboard.
+
 ## What Charms looks at
 
 **When you open the picker.** Charms asks the application you are typing in,

@@ -89,6 +89,9 @@ not a mockup or a real document.
   Preserve source switching only in shortcut and menu-bar sessions, native
   marked-text handling, and the fresh query when entering Online GIFs. Show
   each source’s Command-number shortcut beside its name on a single row.
+- Memes ends the caret-targeted picker session before opening Apple's
+  Image Playground. Keep prompts and artwork out of diagnostics and storage.
+  Only an explicit Copy PNG may write the meme to the clipboard.
 - The **Impression** composing picker is documented in
   `docs/design/impression.md` and `docs/design/prototype.md`. Its two-scale
   proof uses catalogue previews, not document text. `pressedItem` is only a

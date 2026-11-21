@@ -176,6 +176,21 @@ struct PickerSurfaceView: View {
                 PickerFooterView(model: model)
                     .frame(height: PickerViewModel.footerHeight)
                     .background(palette.tray)
+            } else if model.source == .memes {
+                VStack(spacing: 12) {
+                    if model.canUseImagePlayground {
+                        Text("Describe the artwork above, then choose an image to caption.")
+                        Button("Open Image Playground…") { model.onCreateMeme?() }
+                            .disabled(model.isQueryEmpty)
+                    } else {
+                        Text("Image Playground requires a compatible Mac with Apple Intelligence enabled.")
+                    }
+                }
+                .multilineTextAlignment(.center)
+                .padding()
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .foregroundStyle(palette.chalk)
+                .background(palette.tray)
             } else {
                 GIFPickerView(model: model)
             }

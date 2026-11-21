@@ -239,9 +239,27 @@ scenario_gif_source_cycle() {
     open_picker || return 1
     "$HARNESS" hotkey --code 20 --command >/dev/null
     typing "dance"
-    press tab --control # Online GIFs wraps to Characters
+    press tab --control # Online GIFs to Memes
+    press tab --control # Memes wraps to Characters
     choose "arrow" || return 1
     expect "character after cycling forward" "$(editor)" "Cycle →"
+}
+
+scenario_meme_escape() {
+    reset "Meme "
+    local count; count="$(clipboard_count)"
+    open_picker || return 1
+    "$HARNESS" hotkey --code 21 --command >/dev/null # Memes
+    press return # Empty prompts leave the picker open
+    typing "a robot with a library card"
+    press escape
+    expect "document after cancelling meme" "$(editor)" "Meme " || return 1
+    expect "clipboard after cancelling meme" "$(clipboard_count)" "$count" || return 1
+    open_picker || return 1
+    "$HARNESS" hotkey --code 21 --command >/dev/null
+    press tab --control # Memes wraps to Characters
+    choose "arrow" || return 1
+    expect "character after leaving Memes" "$(editor)" "Meme →"
 }
 
 scenario_gif_sources() {
@@ -743,7 +761,7 @@ theme_round_trip() {
     scenario_navigate && scenario_escape && scenario_sequence && scenario_preview_guides && scenario_keyboard_menu && scenario_snippet_insert
 }
 
-ALL=(insert escape replace_selection sequence navigate first_selected copy gif_copy gif_sources gif_source_cycle placement click_cell click_outside
+ALL=(insert escape replace_selection sequence navigate first_selected copy gif_copy gif_sources gif_source_cycle meme_escape placement click_cell click_outside
      hover_keeps_selection no_results preview_guides click_proof keyboard_menu
      cancel_while_held typed_trigger typed_trigger_first_selected typed_trigger_late_selection
      typed_trigger_focus_moves_during_selection typed_trigger_selection_refused typed_trigger_fast

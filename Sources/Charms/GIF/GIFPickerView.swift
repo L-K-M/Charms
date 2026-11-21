@@ -8,12 +8,14 @@ enum PickerSource: String, CaseIterable {
     case characters = "Characters"
     case local = "My GIFs"
     case online = "Online GIFs"
+    case memes = "Memes"
 
     var commandDigit: String {
         switch self {
         case .characters: "1"
         case .local: "2"
         case .online: "3"
+        case .memes: "4"
         }
     }
 
@@ -33,6 +35,7 @@ enum PickerSource: String, CaseIterable {
         case .characters: return "Find symbols, emoji, snippets…"
         case .local: return "Find GIFs by filename or tag…"
         case .online: return "Search the online GIF provider…"
+        case .memes: return "Describe your meme artwork…"
         }
     }
 }

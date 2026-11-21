@@ -58,6 +58,16 @@ In the signed build on the same Mac, the header showed **Characters ⌘1**,
 Accessibility exposed the source names and their individual Command shortcuts.
 Opening the character-only picker with `::` hid the source row.
 
+### Meme generation
+
+On the same Mac with Apple Intelligence enabled, ⌘4 opened Memes. The
+system Image Playground sheet generated a robot librarian from a typed
+prompt. Choosing Done returned the artwork to Charms and the on-device
+model suggested a caption. Editing it and pressing Copy PNG produced a
+1024 × 1157 PNG with the edited caption below the artwork. The original
+harness document stayed intact. Image generation on other macOS versions
+and in other languages remains unverified.
+
 ## Verified
 
 One system so far, on 10 November 2026:
