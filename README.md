@@ -3,7 +3,7 @@
 > [!IMPORTANT]
 > LLM disclosure: This codebase was written with substantial help from large language models: AI coding agents working from the [`AGENTS.md`](AGENTS.md) brief in this repo.
 
-**Latest release:** v<!-- version -->0.1.0<!-- /version --> · [Download](https://github.com/L-K-M/Charms/releases/latest)
+**Latest release:** v<!-- version -->0.2.0<!-- /version --> · [Download](https://github.com/L-K-M/Charms/releases/latest)
 
 Charms is a small Mac menu-bar utility for typing the characters your keyboard
 does not have: arrows, symbols, punctuation and emoji. Press a shortcut where
@@ -28,13 +28,12 @@ some weight, without adding a step or delaying insertion. Hover never changes
 what Return inserts. Motion follows Reduce Motion; the opaque paper and
 composing tray do not depend on transparency. Sound is intentionally absent.
 
-Impression is the development picker, not a tagged release. Read the
-[three concepts and design decision](docs/design/impression.md),
+Read the [three concepts and design decision](docs/design/impression.md),
 [build and run it](docs/design/prototype.md), or
 [watch the native keyboard demonstration](docs/design/impression-demo.mp4).
 The catalogue and insertion policy are unchanged.
 
-### Released picker (v0.1.0)
+### Original picker (v0.1.0)
 
 ![Charms searching for arrows beside the typing position in TextEdit](docs/screenshots/picker-arrows.png)
 
@@ -66,7 +65,7 @@ put there. It is off by default, and off in terminals, code editors,
 password managers and applications that have their own `:shortcodes:`; the
 list is yours to edit.
 
-### GIFs (development build)
+### GIFs
 
 Choose a folder under **Settings → GIFs**, then drop your GIF files into it.
 Open the picker with the shortcut and choose **My GIFs** (⌘2). Search by
@@ -89,7 +88,7 @@ switch sources with **Control-Tab** (next) and
 and My GIFs respectively.
 The typed `::` shortcut stays local to character and snippet search.
 
-### Memes (development build)
+### Memes
 
 Choose **Memes** (⌘4), describe a scene, and press Return to open Apple’s
 Image Playground. Choose the artwork you like and click Done. On macOS 27
@@ -132,7 +131,7 @@ forgets all answers, including a temporary Not Now in the current run.
 Change the shortcut, choose a default emoji skin tone, or start Charms at
 login in Settings.
 
-In development builds, **Appearance** offers three picker themes:
+**Appearance** offers three picker themes:
 **Impression** (warm paper and vermilion), **Blueprint** (navy and cyan), and
 **Plum** (rose paper and apricot). Choose System, Light or Dark independently.
 Choices take effect immediately and survive relaunch. The preview uses the
@@ -175,8 +174,8 @@ delete the app, and optionally delete `~/Library/Application Support/Charms`
 
 What has been tested, and on which systems, is recorded in
 [docs/compatibility.md](docs/compatibility.md). The released-app screenshots
-under `docs/screenshots/` show v0.1.0 on macOS 27. Impression's separate
-development captures live under `docs/design/`. Other macOS versions may look
+under `docs/screenshots/` show v0.1.0 on macOS 27. Impression captures live
+under `docs/design/`. Other macOS versions may look
 different.
 
 ### Reinstalling or going back
