@@ -83,7 +83,8 @@ For web results, configure a KLIPY or GIPHY key in GIF settings and choose
 **Online GIFs** (⌘3). Type a new query to search that provider. Return inserts
 the selected link, or copies it when the picker has no insertion target.
 Command-Return copies the link. **Characters** (⌘1) returns to the catalogue.
-You can also switch sources with **Control-Tab** (next) and
+The picker shows each source’s shortcut beside its name. You can also
+switch sources with **Control-Tab** (next) and
 **Control-Shift-Tab** (previous). From Online GIFs, these go to Characters
 and My GIFs respectively.
 The typed `::` shortcut stays local to character and snippet search.

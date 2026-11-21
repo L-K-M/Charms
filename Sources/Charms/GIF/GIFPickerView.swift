@@ -9,14 +9,17 @@ enum PickerSource: String, CaseIterable {
     case local = "My GIFs"
     case online = "Online GIFs"
 
+    var commandDigit: String {
+        switch self {
+        case .characters: "1"
+        case .local: "2"
+        case .online: "3"
+        }
+    }
+
     static func commandShortcut(for event: NSEvent) -> Self? {
         func source(for digit: String?) -> Self? {
-            switch digit {
-            case "1": .characters
-            case "2": .local
-            case "3": .online
-            default: nil
-            }
+            allCases.first { $0.commandDigit == digit }
         }
         if let direct = source(for: event.charactersIgnoringModifiers) { return direct }
         if let typed = event.characters, !typed.isEmpty { return source(for: typed) }
