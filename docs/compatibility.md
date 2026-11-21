@@ -27,20 +27,36 @@ own Vision request cannot execute.
 Live provider credentials, GIF playback in recipient apps, and execution
 on Intel or macOS 14 remain unverified.
 
-### Picker source shortcuts
+### Source shortcuts in Paseo
 
-In an earlier build on macOS 27.0.1 (M4 Max, Swiss German input source),
-a separate process reserving ⌘1 and ⌘2 reproduced the reported conflict
-in Paseo Desktop 0.16.2. With those reservations held, Ctrl-Tab cycled
-forward and Ctrl-Shift-Tab cycled backward. Charms now uses these cycling
-shortcuts exclusively for switching sources.
+On macOS 27.0.1 with the Swiss German (CH-DE) input source, the signed
+Charms build from c94ddbb switched sources over Paseo Desktop 0.16.2.
+The test used an isolated profile with two workspaces. With focus in
+Paseo’s search field, Control-P opened the picker in insertion mode.
+From Online GIFs, both ⌘1 and ⌘2 changed the native query field’s
+accessible placeholder to the expected source. This also worked with a
+partially typed online query and with Command held across successive keys.
+The same switches worked after clicking Online GIFs with the mouse and
+when Charms opened in copy-only mode.
 
-On the same Mac, the signed universal build showed three source buttons
-and one Ctrl-Tab hint on a single row in all three modes. The accessibility
-tree exposed the hint as “Control-Tab for the next source”. Opening with
-`::` hid the buttons and hint. Over the native harness, ⌘2 and ⌘3 left
-Characters selected, and ⌘1 left My GIFs selected. The same ⌘2 check
-switched to My GIFs in the previous build.
+A separate process reserving ⌘1 and ⌘2 reproduced a picker that stayed
+on Online GIFs after ⌘2. In the updated build, with those reservations
+still held and Paseo in front, Control-Shift-Tab selected My GIFs and
+Control-Tab cycled through Online GIFs and Characters. This establishes
+one way the reported symptom can occur. The cause on the reporting Mac
+is unverified. AppKit event tests also cover a missing digit string and
+a Command-layer digit that differs from the unmodified text.
+
+The native harness gives its host competing ⌘1 and ⌘2 menu commands. Run
+`./scripts/e2e.sh gif_sources gif_copy gif_source_cycle` to check that the host receives
+its shortcuts before and after a picker session, that Charms can return
+from Online GIFs to Characters and insert an arrow, and that switching
+from Online GIFs to My GIFs copies the selected animation.
+
+In the signed build on the same Mac, the header showed **Characters ⌘1**,
+**My GIFs ⌘2** and **Online GIFs ⌘3** on one row in all three modes.
+Accessibility exposed the source names and their individual Command shortcuts.
+Opening the character-only picker with `::` hid the source row.
 
 ## Verified
 

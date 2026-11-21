@@ -120,16 +120,14 @@ struct PickerSurfaceView: View {
                 if model.allowsSourceSwitch {
                     HStack(spacing: 10) {
                         ForEach(PickerSource.allCases, id: \.self) { source in
-                            Button(source.rawValue) { model.onChangeSource?(source) }
+                            Button("\(source.rawValue) ⌘\(source.commandDigit)") { model.onChangeSource?(source) }
                                 .buttonStyle(.plain)
                                 .font(.system(size: 11, weight: source == model.source ? .bold : .regular))
                                 .foregroundStyle(source == model.source ? palette.label : palette.secondary)
+                                .accessibilityLabel(source.rawValue)
+                                .accessibilityHint("Select with Command-\(source.commandDigit)")
                                 .accessibilityAddTraits(source == model.source ? .isSelected : [])
                         }
-                        Text("Ctrl-Tab")
-                            .font(.system(size: 10, design: .monospaced))
-                            .foregroundStyle(palette.secondary)
-                            .accessibilityLabel("Control-Tab for the next source")
                     }
                 } else {
                     Text("IMPRESSION")
