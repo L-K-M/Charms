@@ -20,7 +20,8 @@ struct PickerMenuAction: Identifiable {
 final class PickerViewModel: ObservableObject {
     static let columns = 8
     static let cellSize: CGFloat = 44
-    static let cellSpacing: CGFloat = 6
+    static let columnSpacing: CGFloat = 12
+    static let rowSpacing: CGFloat = 6
     static let padding: CGFloat = 19
     static let mastheadHeight: CGFloat = 32
     static let searchHeight: CGFloat = 46

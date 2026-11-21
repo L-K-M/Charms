@@ -20,7 +20,7 @@ struct PickerGridView: View {
     @Namespace private var selectionSaddle
 
     private var columns: [GridItem] {
-        Array(repeating: GridItem(.fixed(PickerViewModel.cellSize), spacing: PickerViewModel.cellSpacing), count: PickerViewModel.columns)
+        Array(repeating: GridItem(.fixed(PickerViewModel.cellSize), spacing: PickerViewModel.columnSpacing), count: PickerViewModel.columns)
     }
 
     var body: some View {
@@ -72,7 +72,7 @@ struct PickerGridView: View {
                     .foregroundStyle(palette.chalk.opacity(contrast == .increased ? 1 : 0.75))
                     .frame(height: PickerViewModel.cellSize, alignment: .leading)
             } else {
-                LazyVGrid(columns: columns, alignment: .leading, spacing: PickerViewModel.cellSpacing) {
+                LazyVGrid(columns: columns, alignment: .leading, spacing: PickerViewModel.rowSpacing) {
                     ForEach(Array(section.items.enumerated()), id: \.offset) { itemIndex, item in
                         cell(item, at: GridPosition(section: sectionIndex, index: itemIndex))
                     }

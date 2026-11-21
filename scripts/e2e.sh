@@ -245,6 +245,31 @@ scenario_gif_source_cycle() {
     expect "character after cycling forward" "$(editor)" "Cycle →"
 }
 
+scenario_source_header() {
+    reset ""
+    open_picker || return 1
+    local prompt header
+    for prompt in "Find symbols, emoji, snippets…" "Find GIFs by filename or tag…" \
+                  "Search the online GIF provider…" "Describe your meme artwork…"; do
+        header="$("$HARNESS" source-header --pid "$APP_PID")"
+        # A single line of the 11-point button font measures 14 points here.
+        if ! python3 - "$header" "$prompt" <<'PYTHON'
+import json, sys
+header = json.loads(sys.argv[1])
+heights = header["heights"]
+single_row = len(heights) == 4 and all(0 < height < 20 for height in heights)
+sys.exit(0 if single_row and header["prompt"] == sys.argv[2] else 1)
+PYTHON
+        then
+            FAILURE="unexpected source or wrapped header for '$prompt' ($header)"
+            press escape
+            return 1
+        fi
+        press tab --control
+    done
+    press escape
+}
+
 scenario_meme_escape() {
     reset "Meme "
     local count; count="$(clipboard_count)"
@@ -340,8 +365,8 @@ scenario_click_cell() {
     origin="$(picker_origin)" || { FAILURE="no picker window on screen"; return 1; }
     read -r px py <<< "$origin"
     # Second result: masthead 32, search 46, proof 154, grid padding 19,
-    # heading 12 + gap 8; cells 44 with 6 between. See PickerViewModel.
-    "$HARNESS" click --x "$(awk "BEGIN { print $px + 19 + 50 + 22 }")" --y "$(awk "BEGIN { print $py + 32 + 46 + 154 + 19 + 12 + 8 + 22 }")" >/dev/null
+    # heading 12 + gap 8; cells 44 with 12 between columns. See PickerViewModel.
+    "$HARNESS" click --x "$(awk "BEGIN { print $px + 19 + 56 + 22 }")" --y "$(awk "BEGIN { print $py + 32 + 46 + 154 + 19 + 12 + 8 + 22 }")" >/dev/null
     await "outcome-" "$from" || { FAILURE="the click did not end the session"; return 1; }
     sleep 0.15
     expect "text" "$(editor)" "←"
@@ -355,7 +380,7 @@ scenario_hover_keeps_selection() {
     from="$(mark)"
     origin="$(picker_origin)" || { FAILURE="no picker window on screen"; return 1; }
     read -r px py <<< "$origin"
-    "$HARNESS" mouse --x "$(awk "BEGIN { print $px + 19 + 50 + 22 }")" --y "$(awk "BEGIN { print $py + 32 + 46 + 154 + 19 + 12 + 8 + 22 }")" >/dev/null
+    "$HARNESS" mouse --x "$(awk "BEGIN { print $px + 19 + 56 + 22 }")" --y "$(awk "BEGIN { print $py + 32 + 46 + 154 + 19 + 12 + 8 + 22 }")" >/dev/null
     press return
     await "outcome-" "$from" || { FAILURE="the session did not end"; return 1; }
     sleep 0.15
@@ -761,7 +786,7 @@ theme_round_trip() {
     scenario_navigate && scenario_escape && scenario_sequence && scenario_preview_guides && scenario_keyboard_menu && scenario_snippet_insert
 }
 
-ALL=(insert escape replace_selection sequence navigate first_selected copy gif_copy gif_sources gif_source_cycle meme_escape placement click_cell click_outside
+ALL=(insert escape replace_selection sequence navigate first_selected copy gif_copy gif_sources gif_source_cycle meme_escape source_header placement click_cell click_outside
      hover_keeps_selection no_results preview_guides click_proof keyboard_menu
      cancel_while_held typed_trigger typed_trigger_first_selected typed_trigger_late_selection
      typed_trigger_focus_moves_during_selection typed_trigger_selection_refused typed_trigger_fast

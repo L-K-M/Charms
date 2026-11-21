@@ -85,7 +85,7 @@ not a mockup or a real document.
 - The session state table (`SessionMachine`) is the single authority on what
   the picker may do next. The app reports events to it and performs the
   effects it returns; it does not keep a second notion of state.
-- Test source shortcuts with `scripts/e2e.sh gif_sources gif_copy gif_source_cycle`.
+- Test source shortcuts and header layout with `scripts/e2e.sh gif_sources gif_copy gif_source_cycle source_header`.
   Preserve source switching only in shortcut and menu-bar sessions, native
   marked-text handling, and the fresh query when entering Online GIFs. Show
   each source’s Command-number shortcut beside its name on a single row.

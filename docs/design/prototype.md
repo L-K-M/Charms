@@ -106,8 +106,9 @@ selection under hover, empty-result recovery, exact insertion without preview
 guides, a non-actionable proof, and keyboard access to character actions. The
 last test exposed an existing macOS 27 routing bug: Control-Return reached the
 native query menu instead. It was observed failing before the panel-level
-key-equivalent fix and passing afterwards. The mouse coordinates in the
-script follow the new 432 by 472 point panel and its section heading.
+key-equivalent fix and passing afterwards. The original prototype measured
+432 by 472 points. The current four-mode picker is 474 points wide. The
+mouse scenarios target the second cell in the wider tray.
 
 The completed theme build passes 354 unit tests and all 33 real-input
 scenarios. Six theme/appearance additions each repeat navigation, Escape,

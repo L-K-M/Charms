@@ -21,7 +21,7 @@ The specimen is demonstration text, not a reading of your document. The name
 and exact Unicode sequence sit beside the proof; guides for spaces and
 combining marks are labelled and never inserted.
 
-![The Impression picker, searching the real character catalogue for arrows](docs/design/impression-arrows.png)
+![The Impression picker showing arrow results beneath the four mode buttons and their keyboard shortcuts](docs/design/impression-arrows.png)
 
 The raised selection and short stamping response give choosing a character
 some weight, without adding a step or delaying insertion. Hover never changes

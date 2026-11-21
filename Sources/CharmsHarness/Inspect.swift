@@ -115,6 +115,27 @@ enum Inspect {
         return result
     }
 
+    static func sourceHeader(in pid: pid_t) -> [String: Any] {
+        let app = AXUIElementCreateApplication(pid)
+        var heights: [CGFloat] = []
+        var prompt = ""
+        func visit(_ element: AXUIElement) {
+            let role = copy(element, kAXRoleAttribute) as? String
+            if role == kAXTextFieldRole, let placeholder = copy(element, kAXPlaceholderValueAttribute) as? String {
+                prompt = placeholder
+            }
+            if role == kAXButtonRole,
+               let hint = copy(element, kAXHelpAttribute) as? String, hint.hasPrefix("Select with Command-"),
+               let size = copy(element, kAXSizeAttribute), CFGetTypeID(size) == AXValueGetTypeID() {
+                var bounds = CGSize.zero
+                if AXValueGetValue(size as! AXValue, .cgSize, &bounds) { heights.append(bounds.height) }
+            }
+            for child in copy(element, kAXChildrenAttribute) as? [AXUIElement] ?? [] { visit(child) }
+        }
+        for window in copy(app, kAXWindowsAttribute) as? [AXUIElement] ?? [] { visit(window) }
+        return ["heights": heights, "prompt": prompt]
+    }
+
     private static func copy(_ element: AXUIElement, _ attribute: String) -> CFTypeRef? {
         var value: CFTypeRef?
         guard AXUIElementCopyAttributeValue(element, attribute as CFString, &value) == .success else { return nil }

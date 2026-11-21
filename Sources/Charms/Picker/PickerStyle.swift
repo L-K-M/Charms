@@ -129,6 +129,7 @@ struct PickerSurfaceView: View {
                                 .accessibilityAddTraits(source == model.source ? .isSelected : [])
                         }
                     }
+                    .fixedSize(horizontal: true, vertical: false)
                 } else {
                     Text("IMPRESSION")
                         .font(.system(size: 9, weight: .medium, design: .monospaced))
