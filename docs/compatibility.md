@@ -53,10 +53,10 @@ its shortcuts before and after a picker session, that Charms can return
 from Online GIFs to Characters and insert an arrow, and that switching
 from Online GIFs to My GIFs copies the selected animation.
 
-In the signed build on the same Mac, the header showed each source’s
-Command shortcut and the forward and backward cycling hint in all three
-sources. Accessibility exposed the source names and their individual
-Command shortcuts. Opening the character-only picker with `::` hid the hints.
+In the signed build on the same Mac, the header showed **Characters ⌘1**,
+**My GIFs ⌘2** and **Online GIFs ⌘3** on one row in all three modes.
+Accessibility exposed the source names and their individual Command shortcuts.
+Opening the character-only picker with `::` hid the source row.
 
 ## Verified
 

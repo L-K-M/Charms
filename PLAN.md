@@ -33,7 +33,7 @@ At the planning baseline the repository contained the license but no application
 - Character and local GIF search, favourites, and recents work offline. The
   optional online GIF source starts with a new query and uses a provider key.
   The shortcut picker shows Command-1 through Command-3 beside their sources
-  and lists Control-Tab and Control-Shift-Tab for cycling in display order.
+  on one row. Control-Tab cycles forward and Control-Shift-Tab cycles backward.
   Local indexing, on-device image tagging, and GIF insertion are described in
   [the GIF implementation plan](docs/design/gifs.md).
 - An optional typed `::` trigger opens the same picker, alongside the global shortcut, without leaving the trigger behind after insertion.
