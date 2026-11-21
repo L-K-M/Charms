@@ -11,6 +11,24 @@ final class LocalGIFLibraryTests: XCTestCase {
         XCTAssertTrue(condition())
     }
 
+    func testUnavailableInferenceKeepsFilenameAndUserTags() async throws {
+        let root = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+        defer { try? FileManager.default.removeItem(at: root) }
+        let folder = root.appendingPathComponent("collection", isDirectory: true)
+        try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
+        try Data("GIF89a".utf8).write(to: folder.appendingPathComponent("hello.gif"))
+        let library = LocalGIFLibrary(supportDirectory: root) { _ in
+            throw GIFAnalyzer.Failure.analysisFailed("inference-unavailable")
+        }
+        library.setFolder(folder)
+        try await waitFor { library.status?.contains("filename") == true }
+        let entry = try XCTUnwrap(library.entries.first)
+        XCTAssertEqual(entry.url.lastPathComponent, "hello.gif")
+        XCTAssertNil(entry.method)
+        library.setTags(["greeting"], for: entry.url)
+        XCTAssertEqual(library.entries.first?.tags, ["greeting"])
+    }
+
     func testWatchedChangesKeepEditedTagsAndOriginalBytes() async throws {
         let root = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
             .resolvingSymlinksInPath()

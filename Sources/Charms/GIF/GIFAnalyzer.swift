@@ -1,4 +1,5 @@
 import CoreGraphics
+import CoreML
 import Foundation
 import ImageIO
 import Vision
@@ -72,7 +73,8 @@ enum GIFAnalyzer: Sendable {
         let frames = try await sampledFrames(at: url)
 
         try Task.checkCancellation()
-        let baseline = try await visionTags(for: frames)
+        let vision = try? await visionTags(for: frames)
+        try Task.checkCancellation()
         var semantic: [String] = []
         #if canImport(FoundationModels) && canImport(_Vision_FoundationModels)
         if #available(macOS 27, *) {
@@ -80,6 +82,8 @@ enum GIFAnalyzer: Sendable {
         }
         #endif
         try Task.checkCancellation()
+        guard vision != nil || !semantic.isEmpty else { throw Failure.analysisFailed("inference-unavailable") }
+        let baseline = vision ?? []
         return Analysis(tags: sanitize(Array(baseline.prefix(3)) + semantic + baseline),
                         method: semantic.isEmpty ? .vision : .multimodal)
     }
@@ -126,13 +130,18 @@ enum GIFAnalyzer: Sendable {
     static func visionTags(for frames: [CGImage]) async throws -> [String] {
         var captions: [String] = []
         var labels: [String] = []
+        var ranVision = false
         for frame in frames {
             try Task.checkCancellation()
             let handler = VNImageRequestHandler(cgImage: frame, options: [:])
             let classify = VNClassifyImageRequest()
             let text = VNRecognizeTextRequest()
             text.recognitionLevel = .accurate
-            try? handler.perform([classify, text])
+            // The classifier and OCR can have different hardware support.
+            // A classifier failure must not discard a readable caption.
+            for request in [classify as VNRequest, text] {
+                if perform(request, with: handler) { ranVision = true }
+            }
             for observation in (classify.results ?? []).prefix(5) where observation.confidence >= 0.5 {
                 labels.append(observation.identifier)
             }
@@ -143,7 +152,25 @@ enum GIFAnalyzer: Sendable {
                 }
             }
         }
+        guard ranVision else { throw Failure.analysisFailed("vision-unavailable") }
         return sanitize(captions + labels)
+    }
+
+    private static func perform(_ request: VNRequest, with handler: VNImageRequestHandler) -> Bool {
+        do {
+            try handler.perform([request])
+            return true
+        } catch {
+            // Virtual Macs may expose CPU compute without a usable GPU.
+            guard let stages = try? request.supportedComputeStageDevices else { return false }
+            for (stage, devices) in stages {
+                for case let .cpu(cpu) in devices {
+                    request.setComputeDevice(.cpu(cpu), for: stage)
+                    break
+                }
+            }
+            return (try? handler.perform([request])) != nil
+        }
     }
 
     // MARK: - Decoding

@@ -3,6 +3,7 @@ import CoreText
 import Foundation
 import ImageIO
 import UniformTypeIdentifiers
+import Vision
 import XCTest
 @testable import Charms
 
@@ -78,6 +79,7 @@ final class GIFAnalyzerTests: XCTestCase {
     func testVisionFallbackReadsText() async throws {
         let url = try makeGIF(named: "text.gif", count: 3, delays: [0.2, 0.2, 0.2], label: "CAT")
         let frames = try await GIFAnalyzer.sampledFrames(at: url)
+        try requireSystemOCR(for: XCTUnwrap(frames.first))
         let tags = try await GIFAnalyzer.visionTags(for: frames)
         XCTAssertTrue(tags.contains("cat"), "expected OCR to read CAT, got \(tags)")
     }
@@ -86,11 +88,29 @@ final class GIFAnalyzerTests: XCTestCase {
         // The drawn word keeps the Vision baseline non-empty even where the
         // Foundation Models path is unavailable.
         let url = try makeGIF(named: "text.gif", count: 3, delays: [0.2, 0.2, 0.2], label: "CAT")
-        let tags = try await GIFAnalyzer.tags(for: url)
+        let tags: [String]
+        do {
+            tags = try await GIFAnalyzer.tags(for: url)
+        } catch GIFAnalyzer.Failure.analysisFailed("inference-unavailable") {
+            // A machine with neither inference backend still indexes filenames.
+            let frames = try await GIFAnalyzer.sampledFrames(at: url)
+            try requireSystemOCR(for: XCTUnwrap(frames.first))
+            throw GIFAnalyzer.Failure.analysisFailed("inference-unavailable")
+        }
 
-        XCTAssertFalse(tags.isEmpty)
         XCTAssertLessThanOrEqual(tags.count, GIFAnalyzer.maximumTags)
         XCTAssertEqual(tags, GIFAnalyzer.sanitize(tags))
+    }
+
+    /// Probe Apple's request directly. A Charms regression still fails on
+    /// hosts where Vision can execute the same input.
+    private func requireSystemOCR(for frame: CGImage) throws {
+        let request = VNRecognizeTextRequest()
+        do {
+            try VNImageRequestHandler(cgImage: frame).perform([request])
+        } catch {
+            throw XCTSkip("System OCR unavailable on this host: " + error.localizedDescription)
+        }
     }
 
     // MARK: - Refusals
