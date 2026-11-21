@@ -11,16 +11,25 @@ final class MemeDraft: ObservableObject {
     private var artwork: CGImage?
     private var suggestion: Task<Void, Never>?
 
-    func accept(_ url: URL, prompt: String,
-                suggest: @escaping (CGImage, String) async throws -> String = MemeCaptioner.suggest) {
-        // Image Playground owns this temporary URL. Read the pixels before
-        // returning from its delegate, including the file's orientation.
-        guard let source = CGImageSourceCreateWithURL(url as CFURL, nil),
-              let image = CGImageSourceCreateThumbnailAtIndex(source, 0, [
+    func acceptTemporaryArtwork(at url: URL, prompt: String,
+                                suggest: @escaping (CGImage, String) async throws -> String = MemeCaptioner.suggest) {
+        // Image Playground gives its delegate a temporary file to consume.
+        // Decode eagerly so the draft no longer needs the file after unlinking.
+        let image = CGImageSourceCreateWithURL(url as CFURL, nil).flatMap { source in
+            CGImageSourceCreateThumbnailAtIndex(source, 0, [
                 kCGImageSourceCreateThumbnailFromImageAlways: true,
                 kCGImageSourceCreateThumbnailWithTransform: true,
+                kCGImageSourceShouldCacheImmediately: true,
                 kCGImageSourceThumbnailMaxPixelSize: 1600
-              ] as CFDictionary) else {
+            ] as CFDictionary)
+        }
+        do {
+            try FileManager.default.removeItem(at: url)
+        } catch {
+            notice = "Charms couldn’t remove Image Playground’s temporary image."
+            return
+        }
+        guard let image else {
             notice = "Charms couldn’t read that image. Choose another in Image Playground."
             return
         }

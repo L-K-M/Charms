@@ -52,6 +52,7 @@ final class MemeComposerWindow: NSObject, NSWindowDelegate {
             playground.concepts = [.text(prompt)]
             if #available(macOS 15.4, *) {
                 playground.allowedGenerationStyles = [.animation, .illustration, .sketch]
+                playground.selectedGenerationStyle = .illustration
             }
             host.presentAsSheet(playground)
         }
@@ -72,7 +73,7 @@ final class MemeComposerWindow: NSObject, NSWindowDelegate {
 @available(macOS 15.1, *)
 extension MemeComposerWindow: ImagePlaygroundViewController.Delegate {
     func imagePlaygroundViewController(_ controller: ImagePlaygroundViewController, didCreateImageAt url: URL) {
-        draft.accept(url, prompt: prompt)
+        draft.acceptTemporaryArtwork(at: url, prompt: prompt)
         controller.dismiss(nil)
     }
 

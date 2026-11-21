@@ -20,7 +20,7 @@ final class MemeDraftTests: XCTestCase {
         let draft = MemeDraft()
         let started = expectation(description: "Caption model started")
         var resume: CheckedContinuation<String, Never>?
-        draft.accept(url, prompt: "a robot librarian") { _, _ in
+        draft.acceptTemporaryArtwork(at: url, prompt: "a robot librarian") { _, _ in
             await withCheckedContinuation { continuation in
                 resume = continuation
                 started.fulfill()
@@ -40,7 +40,8 @@ final class MemeDraftTests: XCTestCase {
         defer { try? FileManager.default.removeItem(at: url) }
         let unavailable = expectation(description: "Manual caption offered")
         let observation = draft.$notice.compactMap { $0 }.first().sink { _ in unavailable.fulfill() }
-        draft.accept(url, prompt: "books") { _, _ in throw CocoaError(.featureUnsupported) }
+        draft.acceptTemporaryArtwork(at: url, prompt: "books") { _, _ in throw CocoaError(.featureUnsupported) }
+        XCTAssertFalse(FileManager.default.fileExists(atPath: url.path))
         await fulfillment(of: [unavailable], timeout: 2)
         observation.cancel()
         XCTAssertFalse(draft.canCopy)
@@ -49,5 +50,16 @@ final class MemeDraftTests: XCTestCase {
         draft.editCaption("Reading between the lines.")
         XCTAssertTrue(draft.canCopy)
         XCTAssertNil(draft.notice)
+    }
+
+    func testUnreadablePlaygroundOutputIsAlsoRemoved() throws {
+        let url = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+        try Data("invalid image".utf8).write(to: url)
+        defer { try? FileManager.default.removeItem(at: url) }
+        let draft = MemeDraft()
+        draft.acceptTemporaryArtwork(at: url, prompt: "books")
+        XCTAssertFalse(FileManager.default.fileExists(atPath: url.path))
+        XCTAssertNotNil(draft.notice)
+        XCTAssertFalse(draft.canCopy)
     }
 }
