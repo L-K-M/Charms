@@ -30,7 +30,10 @@ At the planning baseline the repository contained the license but no application
 - Enter inserts the exact selected Unicode string, including complete emoji sequences, into the intended input field.
 - A stale or uncertain target produces a clear copy-only outcome instead of inserting somewhere else.
 - The default interface remains useful without choosing a font, Unicode block, output format, or category.
-- Searching, favourites, and recents work offline, without an account.
+- Character and local GIF search, favourites, and recents work offline. The
+  optional online GIF source starts with a new query and uses a provider key.
+  Local indexing, on-device image tagging, and GIF insertion are described in
+  [the GIF implementation plan](docs/design/gifs.md).
 - An optional typed `::` trigger opens the same picker, alongside the global shortcut, without leaving the trigger behind after insertion.
 - VoiceOver and keyboard-only users can search, select, favourite, insert, copy, and dismiss.
 - The app requests only the accessibility access it needs; browse/copy remains usable when that access is missing or revoked.
@@ -65,7 +68,7 @@ At the planning baseline the repository contained the license but no application
 ### Deferred
 
 - Font inspection, font comparison, font-specific private-use glyph collections, and typographic alternate selection.
-- Drawing recognition, AI search, GIFs, stickers, templates, multiline snippets and general-purpose automatic text expansion.
+- Drawing recognition, AI character search, stickers, templates, multiline snippets and general-purpose automatic text expansion.
 - Arbitrary trigger languages and automatic conversion of ordinary words; v1 recognizes only the optional `::` marker.
 - Cloud accounts, cross-device synchronization, usage analytics, and remote search.
 - HTML/CSS/source-code output formats, a full Unicode inspector, and user-authored theme files. Three built-in palettes are available in Settings.

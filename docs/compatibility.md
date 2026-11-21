@@ -3,6 +3,23 @@
 What has been checked, on which system, and how. Anything not listed under
 "Verified" is unverified, whatever the code intends.
 
+## GIF verification, 21 November 2026
+
+On the Apple M4 Max running macOS 27.0.1 with Xcode 27.2, the on-device
+general model accepted an ordered set of frames. A six-frame staged animation
+of a moving red dot with the caption HELLO returned the search tags
+`hello` and `red dot` through the multimodal analysis path. Reaction accuracy
+on a collection of real-world memes remains unverified.
+
+A signed universal build passed the native `gif_copy` and `gif_sources`
+scenarios. A file dropped into a watched folder became searchable by name.
+Return copied both frames byte-for-byte and left the harness document alone.
+Switching to an empty online source and cancelling preserved the clipboard.
+Folder replacement, tag overrides, relaunch, removal and stale reads are
+covered by library tests. Both providers use local HTTP fixtures in tests.
+Live provider credentials, GIF playback in recipient apps, and execution
+on Intel or macOS 14 remain unverified.
+
 ## Verified
 
 One system so far, on 10 November 2026:

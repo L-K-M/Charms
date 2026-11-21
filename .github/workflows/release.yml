@@ -17,7 +17,7 @@ env:
 jobs:
   release:
     name: Build & publish (unsigned)
-    runs-on: macos-26
+    runs-on: xcode-27
     timeout-minutes: 45   # don't let a wedged build stall a release for 6h
     steps:
       # Actions are pinned to immutable commit SHAs: a mutable tag can be repointed
@@ -35,7 +35,7 @@ jobs:
         # Must match ci.yml. A release built on a toolchain CI has never used is
         # a build nobody has tested.
         with:
-          xcode-version: '26.0'
+          xcode-version: '27.2'
 
       - name: Install tooling
         run: brew install create-dmg

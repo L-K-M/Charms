@@ -24,7 +24,7 @@ concurrency:
 jobs:
   build-test:
     name: Build, Test & Package
-    runs-on: macos-26
+    runs-on: xcode-27
     timeout-minutes: 30   # a wedged build shouldn't burn the 6h default job limit
     steps:
       # Actions are pinned to immutable commit SHAs: a mutable tag like @v4 can be
@@ -47,7 +47,7 @@ jobs:
       - name: Select Xcode
         uses: maxim-lobanov/setup-xcode@ed7a3b1fda3918c0306d1b724322adc0b8cc0a90 # v1.7.0
         with:
-          xcode-version: '26.0'   # pin so a runner-image bump can't change the toolchain
+          xcode-version: '27.2'   # pin so a runner-image bump can't change the toolchain
 
       - name: Build
         run: swift build

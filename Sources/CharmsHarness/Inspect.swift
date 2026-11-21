@@ -1,5 +1,6 @@
 import AppKit
 import ApplicationServices
+import UniformTypeIdentifiers
 
 /// Read-only views of the system for assertions.
 enum Inspect {
@@ -14,11 +15,16 @@ enum Inspect {
         ]
     }
 
-    static func pasteboard(setting text: String?) -> [String: Any] {
+    static func pasteboard(setting text: String?, comparingGIF path: String?) -> [String: Any] {
         let pasteboard = NSPasteboard.general
         if let text {
             pasteboard.clearContents()
             pasteboard.setString(text, forType: .string)
+        }
+        if let path {
+            let expected = try? Data(contentsOf: URL(fileURLWithPath: path))
+            let actual = pasteboard.data(forType: .init(UTType.gif.identifier))
+            return ["matchesGIF": expected != nil && actual == expected]
         }
         return ["changeCount": pasteboard.changeCount, "string": pasteboard.string(forType: .string) ?? NSNull()]
     }

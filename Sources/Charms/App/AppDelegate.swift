@@ -80,7 +80,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         // There is no notification for a permission being granted or taken
         // away. Coming back from System Settings is the moment to look.
         observers.append(NotificationCenter.default.addObserver(forName: NSApplication.didBecomeActiveNotification, object: nil, queue: .main) { [weak self] _ in
-            MainActor.assumeIsolated { self?.refreshCapabilities() }
+            MainActor.assumeIsolated {
+                self?.services?.localGIFs.refresh()
+                self?.refreshCapabilities()
+            }
         })
         observers.append(DistributedNotificationCenter.default().addObserver(forName: SingleInstance.showSettingsNotification, object: nil, queue: .main) { [weak self] _ in
             MainActor.assumeIsolated { self?.showSettings(nil) }

@@ -73,7 +73,7 @@ case "displays":
     Output.emit(Inspect.displays())
 
 case "pasteboard":
-    Output.emit(Inspect.pasteboard(setting: arguments.string("set")))
+    Output.emit(Inspect.pasteboard(setting: arguments.string("set"), comparingGIF: arguments.string("compare-gif")))
 
 default:
     Output.usage()

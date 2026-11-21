@@ -18,6 +18,7 @@ let package = Package(
         .executableTarget(name: "CharmsCatalogTool", dependencies: ["CharmsCatalogBuilder"]),
         .executableTarget(name: "CharmsHarness"),
 
+        .testTarget(name: "CharmsGIFTests", dependencies: ["Charms"]),
         .testTarget(name: "CharmsCoreTests", dependencies: ["CharmsCore"]),
         .testTarget(name: "CharmsCatalogBuilderTests", dependencies: ["CharmsCatalogBuilder"])
     ],

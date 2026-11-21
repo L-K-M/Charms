@@ -213,6 +213,34 @@ scenario_copy() {
     expect "clipboard" "$(clipboard)" "∞"
 }
 
+# The shortcut picker opens each source with a fresh query. An empty online
+# source cannot commit the previous local or character result.
+scenario_gif_copy() {
+    local gif="$WORK/gifs/staged-animation.gif"
+    # Two 1x1 frames with different pixels and delays.
+    echo 'R0lGODlhAQABAIAAAP8AAAAA/yH5BAAKAAAALAAAAAABAAEAAAICRAEAIfkEAAoAAAAsAAAAAAEAAQAAAgJMAQA7' | base64 -D > "$gif"
+    reset "GIF "
+    open_picker || return 1
+    "$HARNESS" hotkey --code 19 --command >/dev/null # Command-2 on the harness layout
+    choose "staged-animation" || return 1
+    expect "unchanged document" "$(editor)" "GIF " || return 1
+    expect "exact original GIF" "$("$HARNESS" pasteboard --compare-gif "$gif" | field matchesGIF)" "true"
+}
+
+scenario_gif_sources() {
+    reset "GIF "
+    local count; count="$(clipboard_count)"
+    open_picker || return 1
+    typing "arrow"
+    "$HARNESS" hotkey --code 20 --command >/dev/null # Command-3
+    press return
+    press escape
+    expect "source after Escape" "$(editor)" "GIF " || return 1
+    expect "clipboard after Escape" "$(clipboard_count)" "$count" || return 1
+    open_picker && choose "arrow" || return 1
+    expect "next session starts in Characters" "$(editor)" "GIF →"
+}
+
 scenario_placement() {
     # The picker is on the caret's display, beside the caret and not over
     # the line being typed.
@@ -683,7 +711,7 @@ theme_round_trip() {
     scenario_navigate && scenario_escape && scenario_sequence && scenario_preview_guides && scenario_keyboard_menu && scenario_snippet_insert
 }
 
-ALL=(insert escape replace_selection sequence navigate first_selected copy placement click_cell click_outside
+ALL=(insert escape replace_selection sequence navigate first_selected copy gif_copy gif_sources placement click_cell click_outside
      hover_keeps_selection no_results preview_guides click_proof keyboard_menu
      cancel_while_held typed_trigger typed_trigger_first_selected typed_trigger_late_selection
      typed_trigger_focus_moves_during_selection typed_trigger_selection_refused typed_trigger_fast
@@ -713,6 +741,13 @@ for _ in $(seq 1 100); do
     sleep 0.1
 done
 grep -q '"ready"' "$WORK/host.log" 2>/dev/null || skip "the test window did not open"
+mkdir "$WORK/gifs"
+# Select the fixture folder before launch, leaving it empty until the drop test.
+python3 - "$WORK" <<'PYTHON'
+import json, pathlib, sys
+home = pathlib.Path(sys.argv[1])
+(home / "gif-library.json").write_text(json.dumps({"folder": (home / "gifs").as_uri(), "entries": []}))
+PYTHON
 start_charms "$(preferences_for insert)" || skip "Charms did not start"
 grep -q "insertion-enabled" "$TRACE" || skip "Charms started without the Accessibility permission"
 

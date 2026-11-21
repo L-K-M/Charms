@@ -27,6 +27,7 @@ public enum SessionOutcome: String, Equatable, Sendable {
     case copied
     case dispatched
     case failedBeforeDispatch
+    case copyFailed
 }
 
 public enum SessionState: Equatable, Sendable {
@@ -88,6 +89,7 @@ public enum SessionEvent: Equatable, Sendable {
     case dispatchFinished(SessionID)
     /// The transport could not even start; nothing was sent.
     case dispatchNotStarted(SessionID)
+    case copyFailed(SessionID)
     case copyFinished(SessionID)
     /// Escape, an outside click, the panel losing key status, a display or
     /// Space change, sleep, or the source application going away.
@@ -227,6 +229,9 @@ public struct SessionMachine: Sendable {
         case .dispatchNotStarted(let id):
             guard isCurrent(id), state == .dispatching else { return [] }
             return end(.failedBeforeDispatch, dismiss: false)
+        case .copyFailed(let id):
+            guard isCurrent(id), state == .copying else { return [] }
+            return end(.copyFailed, dismiss: false)
         case .copyFinished(let id):
             guard isCurrent(id), state == .copying else { return [] }
             return end(.copied, dismiss: false)
