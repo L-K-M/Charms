@@ -52,6 +52,16 @@ final class SessionMachineTests: XCTestCase {
         XCTAssertTrue(machine.isIdle)
     }
 
+    func testCopyFailureEndsOnlyTheCurrentCopy() {
+        var (machine, id) = browsing()
+        _ = machine.handle(.activate(.copy))
+        _ = machine.handle(.keysReleased(id))
+        XCTAssertEqual(machine.handle(.copyFailed(SessionID(id.rawValue + 1))), [])
+        XCTAssertEqual(machine.handle(.copyFailed(id)), [.finish(id, .copyFailed)])
+        XCTAssertEqual(machine.handle(.copyFinished(id)), [])
+        XCTAssertTrue(machine.isIdle)
+    }
+
     func testReturnInCopyOnlyModeCopies() {
         var (machine, id) = browsing(.shortcut, capture: .copyOnly)
         XCTAssertFalse(machine.canInsert)

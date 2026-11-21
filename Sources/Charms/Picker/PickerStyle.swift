@@ -117,15 +117,24 @@ struct PickerSurfaceView: View {
                     .font(.system(size: 10, weight: .bold, design: .monospaced))
                     .tracking(2)
                 Spacer()
-                Text("IMPRESSION")
-                    .font(.system(size: 9, weight: .medium, design: .monospaced))
-                    .tracking(1.6)
-                    .foregroundStyle(palette.secondary)
+                if model.allowsSourceSwitch {
+                    ForEach(PickerSource.allCases, id: \.self) { source in
+                        Button(source.rawValue) { model.onChangeSource?(source) }
+                            .buttonStyle(.plain)
+                            .font(.system(size: 10, weight: source == model.source ? .bold : .regular))
+                            .foregroundStyle(source == model.source ? palette.label : palette.secondary)
+                            .accessibilityAddTraits(source == model.source ? .isSelected : [])
+                    }
+                } else {
+                    Text("IMPRESSION")
+                        .font(.system(size: 9, weight: .medium, design: .monospaced))
+                        .tracking(1.6)
+                        .foregroundStyle(palette.secondary)
+                }
             }
             .foregroundStyle(palette.label)
             .padding(.horizontal, 19)
             .frame(height: PickerViewModel.mastheadHeight)
-            .accessibilityHidden(true)
 
             // AppKit's real text field is laid over this aperture. Keeping
             // its field editor preserves IME, Undo and ordinary query editing.
@@ -152,16 +161,20 @@ struct PickerSurfaceView: View {
             .padding(.bottom, 6)
             .accessibilityHidden(true)
 
-            PickerProofView(model: model)
-                .frame(height: PickerViewModel.proofHeight)
+            if model.source == .characters {
+                PickerProofView(model: model)
+                    .frame(height: PickerViewModel.proofHeight)
 
-            PickerGridView(model: model)
-                .frame(maxHeight: .infinity)
-                .background(palette.tray)
+                PickerGridView(model: model)
+                    .frame(maxHeight: .infinity)
+                    .background(palette.tray)
 
-            PickerFooterView(model: model)
-                .frame(height: PickerViewModel.footerHeight)
-                .background(palette.tray)
+                PickerFooterView(model: model)
+                    .frame(height: PickerViewModel.footerHeight)
+                    .background(palette.tray)
+            } else {
+                GIFPickerView(model: model)
+            }
         }
         .environment(\.pickerPalette, palette)
         .background(palette.shell)

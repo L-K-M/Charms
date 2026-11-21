@@ -9,6 +9,8 @@ final class AppServices {
     let preferences: PreferencesStore
     let library: LibraryController
     let snippets: SnippetController
+    let localGIFs: LocalGIFLibrary
+    let onlineGIFs: OnlineGIFSearch
     let glyphs = GlyphSupport()
     /// Nil until the catalogue has been read, a fraction of a second after
     /// launch.
@@ -17,6 +19,8 @@ final class AppServices {
 
     init(paths: AppPaths) {
         self.paths = paths
+        localGIFs = LocalGIFLibrary(supportDirectory: paths.supportDirectory)
+        onlineGIFs = OnlineGIFSearch(supportDirectory: paths.supportDirectory, isIsolated: paths.isIsolated)
         preferences = PreferencesStore(paths: paths)
         library = LibraryController(paths: paths, diagnostics: diagnostics)
         snippets = SnippetController(paths: paths, diagnostics: diagnostics)

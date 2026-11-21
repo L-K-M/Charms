@@ -66,6 +66,25 @@ put there. It is off by default, and off in terminals, code editors,
 password managers and applications that have their own `:shortcodes:`; the
 list is yours to edit.
 
+### GIFs (development build)
+
+Choose a folder under **Settings → GIFs**, then drop your GIF files into it.
+Open the picker with the shortcut and choose **My GIFs** (⌘2). Search by
+filename, caption, or tag. The up and down arrows preview results. Return
+copies the original animated GIF for pasting into an app that accepts images.
+Edit a file’s search tags in GIF settings. Preview, tagging and copy support
+files up to 64 MiB.
+
+Charms analyzes sampled frames on your Mac. Vision finds subjects and text.
+On macOS 27 or later, an available on-device Apple Intelligence model can
+also suggest actions and reactions. Filename search works during analysis.
+
+For web results, configure a KLIPY or GIPHY key in GIF settings and choose
+**Online GIFs** (⌘3). Type a new query to search that provider. Return inserts
+the selected link, or copies it when the picker has no insertion target.
+Command-Return copies the link. **Characters** (⌘1) returns to the catalogue.
+The typed `::` shortcut stays local to character and snippet search.
+
 ### Text snippets
 
 Type `::shrug`, then Return, to insert `¯\_(ツ)_/¯`. Charms includes **20
@@ -115,7 +134,7 @@ Charms asks for one permission, Accessibility, and explains it before the
 system prompt appears. (macOS 27 lists it as Device Control and Data Access.)
 It uses it to find the field you are typing in and to send the chosen
 character there. Without it Charms still opens, searches and copies; you paste
-yourself. Nothing leaves your Mac: see [PRIVACY.md](PRIVACY.md).
+yourself. Only online GIF search contacts an external provider. See [PRIVACY.md](PRIVACY.md).
 
 If insertion stops after replacing the app, choose Enable Insertion in
 Settings, General. In the system list, switch Charms off and on again if it
@@ -179,8 +198,8 @@ appearances.
 
 `scripts/build.sh` / `scripts/release.sh` wrap the shared `lkm-build` /
 `lkm-release` engines; releases are cut by tagging. See [CICD.md](CICD.md).
-Requires macOS 14+ and Xcode 26 (any Xcode 16+ builds the package; CI pins the
-toolchain). There are no dependencies.
+Requires macOS 14 or later. Build with Xcode 27.2 to include on-device image
+prompting and match CI. There are no package dependencies.
 
 macOS ties the Accessibility grant to the app's signature, and an ad-hoc
 signature is different in every build. For a build you rebuild often, sign

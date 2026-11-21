@@ -60,6 +60,8 @@ struct SettingsView: View {
                 .tabItem { Label("Appearance", systemImage: "paintpalette") }
             SnippetsSettingsView(controller: model.services.snippets)
                 .tabItem { Label("Snippets", systemImage: "text.quote") }
+            GIFSettingsView(library: model.services.localGIFs, online: model.services.onlineGIFs)
+                .tabItem { Label("GIFs", systemImage: "photo.on.rectangle") }
             typing.tabItem { Label("Typing ::", systemImage: "keyboard") }
             applications.tabItem { Label("Applications", systemImage: "app.badge") }
             data.tabItem { Label("Data", systemImage: "tray.full") }

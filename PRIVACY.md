@@ -1,7 +1,20 @@
 # Privacy
 
-Charms runs entirely on your Mac. It has no account, no server and no
-analytics, and it makes no network requests.
+Charms has no account, server, or analytics. Character search, snippets and
+your local GIF library work offline.
+
+**My GIFs.** Charms reads GIFs in the folder you choose. It keeps the folder
+selection, file information and search tags in local application support.
+Vision and the available on-device Apple Intelligence model analyze frames
+locally. Copy GIF places the original image data on the clipboard.
+
+**Online GIFs.** Typing in this source sends the new search to your selected
+provider, KLIPY or GIPHY. The provider receives the query, API key, rating,
+and connection information including your IP address. Requests can include
+language, region, and for KLIPY an anonymous client identifier. Viewing
+a preview contacts the provider’s media host. Switching sources clears the
+search field. Charms never includes local GIFs, local tags, document text or
+ordinary character searches in provider requests.
 
 ## What Charms looks at
 

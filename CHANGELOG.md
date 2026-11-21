@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Search a watched GIF folder by filename or editable on-device tags. On
+  supported Macs, Apple Intelligence can also identify actions and reactions.
+- Search KLIPY or GIPHY from the picker using a provider key. Copy a local
+  animation or insert an online GIF link at the caret.
+
 ## [0.1.0] - 2026-11-10
 
 The first release.

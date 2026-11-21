@@ -18,7 +18,7 @@ Release.
 
 ## Continuous integration (`ci.yml`)
 
-One job on `macos-26` selecting **Xcode 26.0** via `maxim-lobanov/setup-xcode` —
+One job on `xcode-27` selecting **Xcode 27.2** via `maxim-lobanov/setup-xcode` —
 pinned so a runner-image bump can't silently change the toolchain. The app's
 deployment target stays macOS 14 (`LSMinimumSystemVersion`); building on a
 newer SDK does not raise it. The package has no dependencies, so the build
@@ -42,8 +42,7 @@ swift run CharmsCatalogTool check
 ./scripts/build-app.sh --universal
 ```
 
-This requires Xcode 26 to match CI (any Xcode 16+ builds the package; the pin
-keeps CI deterministic).
+Use Xcode 27.2 to match CI and compile on-device image prompting for macOS 27.
 
 What CI cannot check: everything that involves another application, the
 Accessibility permission, or a display. `scripts/e2e.sh` runs those checks

@@ -51,7 +51,7 @@ enum Output {
           frontmost                The frontmost application.
           windows --pid N          That process's windows on screen, front to back.
           displays                 The displays and the pointer position.
-          pasteboard [--set S]     The general pasteboard's string and change count.
+          pasteboard [--set S | --compare-gif PATH]     Inspect the general pasteboard.
 
         Every command prints one JSON object. Exit status: 0 success, 1 failure
         ({"error": ...}), 2 usage.

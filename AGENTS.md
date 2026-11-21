@@ -127,7 +127,7 @@ not a mockup or a real document.
   add or strip variation selectors, joiners or modifiers.
 - **Accessibility offsets are UTF-16.** Never use Swift character counts as
   ranges in another application's text.
-- **Privacy.** No network access. No stored queries, surrounding typed text,
+- **Privacy.** Only explicit online GIF browsing may contact the selected provider and its media hosts. Local GIF files and their tags stay on device. No stored queries, surrounding typed text,
   document contents, window titles or clipboard contents. Text deliberately
   saved as snippets, favourites or recents is the explicit local-storage
   exception; never include snippet content in diagnostics. The diagnostics log has no

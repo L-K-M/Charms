@@ -156,13 +156,18 @@ final class InsertionService {
     }
 
     /// An explicit Copy: the clipboard is meant to change.
-    func copy(_ text: String) {
+    func copy(_ item: NSPasteboardItem) -> Bool {
         // A pending restoration must not put older contents over this copy.
         clipboardGuard.abandon()
         savedClipboard = nil
         let pasteboard = NSPasteboard.general
         pasteboard.clearContents()
-        pasteboard.setString(text, forType: .string)
+        return pasteboard.writeObjects([item])
+    }
+
+    func copy(_ text: String) -> Bool {
+        let item = NSPasteboardItem()
+        return item.setString(text, forType: .string) && copy(item)
     }
 }
 

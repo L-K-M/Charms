@@ -1,6 +1,7 @@
 import AppKit
 import Carbon.HIToolbox
 import CharmsCore
+import UniformTypeIdentifiers
 
 /// Runs one picker session at a time.
 ///
@@ -16,6 +17,7 @@ final class PickerController: PickerSearchDelegate {
     private let insertion: InsertionService
     private let panel = PickerPanel()
     private let model = PickerViewModel()
+    private let gifSources: GIFPickerSources
     private let viewController: PickerViewController
     private var machine = SessionMachine()
     private var session: Session?
@@ -24,6 +26,25 @@ final class PickerController: PickerSearchDelegate {
 
     /// Called when a session ends, so the typed trigger can start afresh.
     var onSessionEnded: (() -> Void)?
+
+    private enum Choice {
+        case character(PickerItem)
+        case localGIF(URL, GIFFileSnapshot)
+        case onlineLink(URL)
+
+        var text: String? {
+            switch self {
+            case .character(let item): return item.string
+            case .onlineLink(let url): return url.absoluteString
+            case .localGIF: return nil
+            }
+        }
+
+        var character: PickerItem? {
+            guard case .character(let item) = self else { return nil }
+            return item
+        }
+    }
 
     private struct Session {
         let id: SessionID
@@ -36,7 +57,7 @@ final class PickerController: PickerSearchDelegate {
         var captureDone = false
         var presented = false
         /// The item the user committed to, frozen when they did.
-        var chosen: PickerItem?
+        var chosen: Choice?
         // Typed invocation only.
         var handoff: TriggerHandoff?
         /// UTF-16 units of the query that came from keys the source received.
@@ -49,6 +70,7 @@ final class PickerController: PickerSearchDelegate {
         self.services = services
         fieldAccess = FieldAccessController(services: services, capture: capture)
         insertion = InsertionService(diagnostics: services.diagnostics)
+        gifSources = GIFPickerSources(services: services, model: model)
         viewController = PickerViewController(model: model)
         panel.contentViewController = viewController
         panel.setContentSize(PickerPanel.size)
@@ -67,6 +89,8 @@ final class PickerController: PickerSearchDelegate {
         }
         model.onCopySelection = { [weak self] in self?.activate(.copy) }
         model.menuActions = { [weak self] position in self?.menuActions(for: position) ?? [] }
+        model.onChangeSource = { [weak self] source in self?.changeSource(source) }
+        model.onActivateGIF = { [weak self] in self?.activate(.insert) }
         observeEnvironment()
     }
 
@@ -156,9 +180,9 @@ final class PickerController: PickerSearchDelegate {
         let pressed: PickerItem?
         switch machine.state {
         case .awaitingRelease:
-            pressed = session?.chosen
+            pressed = session?.chosen?.character
         case .handoff where machine.pendingActivation != nil:
-            pressed = session?.chosen
+            pressed = session?.chosen?.character
         default:
             pressed = nil
         }
@@ -179,10 +203,7 @@ final class PickerController: PickerSearchDelegate {
             case .dispatch(let id):
                 dispatch(id)
             case .copy(let id):
-                if let chosen = session?.chosen {
-                    insertion.copy(chosen.string)
-                }
-                perform(machine.handle(.copyFinished(id)))
+                copyChoice(id)
             case .activationExpired:
                 showNotice("Keys still held · press ↵ again")
             case .finish(let id, let outcome):
@@ -207,6 +228,9 @@ final class PickerController: PickerSearchDelegate {
         }
 
         // A new session starts with an empty query.
+        model.allowsSourceSwitch = invocation != .typedMarker
+        gifSources.reset(to: .characters)
+        setSourcePrompt(.characters)
         viewController.setQuery("")
         model.isNavigating = false
         model.selection = nil
@@ -456,12 +480,24 @@ final class PickerController: PickerSearchDelegate {
     // MARK: Commit
 
     private func activate(_ action: SessionAction, choosing item: PickerItem? = nil) {
-        guard let chosen = item ?? model.selectedItem else { return }
         guard machine.state == .browsing || machine.state == .handoff else { return }
         // During handoff only the first choice counts. A second Return on
         // another cell must not replace what the first one froze.
         if machine.state == .handoff, machine.pendingActivation != nil { return }
-        session?.chosen = chosen
+        switch model.source {
+        case .characters:
+            guard let chosen = item ?? model.selectedItem else { return }
+            session?.chosen = .character(chosen)
+        case .local:
+            guard let row = model.selectedGIF, let revision = row.revision,
+                  revision.size <= GIFAnalyzer.maximumFileBytes else { return }
+            session?.chosen = .localGIF(row.id, revision)
+            perform(machine.handle(.activate(.copy)))
+            return
+        case .online:
+            guard let row = model.selectedGIF else { return }
+            session?.chosen = .onlineLink(row.id)
+        }
         perform(machine.handle(.activate(action)))
     }
 
@@ -536,13 +572,35 @@ final class PickerController: PickerSearchDelegate {
         }
     }
 
+    private func copyChoice(_ id: SessionID) {
+        guard let current = session, current.id == id, let chosen = current.chosen else {
+            perform(machine.handle(.copyFailed(id)))
+            return
+        }
+        if let text = chosen.text {
+            perform(machine.handle(insertion.copy(text) ? .copyFinished(id) : .copyFailed(id)))
+            return
+        }
+        guard case .localGIF(let url, let revision) = chosen else { return }
+        let count = NSPasteboard.general.changeCount
+        Task {
+            let bytes = try? await revision.data(at: url)
+            let item = NSPasteboardItem()
+            let copied = bytes.map {
+                NSPasteboard.general.changeCount == count &&
+                    item.setData($0, forType: .init(UTType.gif.identifier)) && insertion.copy(item)
+            } ?? false
+            perform(machine.handle(copied ? .copyFinished(id) : .copyFailed(id)))
+        }
+    }
+
     private func dispatch(_ id: SessionID) {
-        guard let current = session, current.id == id, let chosen = current.chosen, let target = current.target else {
+        guard let current = session, current.id == id, let text = current.chosen?.text, let target = current.target else {
             perform(machine.handle(.dispatchNotStarted(id)))
             return
         }
         let backend = InsertionPolicy.backend(forBundleIdentifier: target.bundleIdentifier, pasteApplications: services.preferences.value.pasteApplications)
-        let result = insertion.insert(chosen.string, processID: target.processID, backend: backend, session: id)
+        let result = insertion.insert(text, processID: target.processID, backend: backend, session: id)
         services.diagnostics.record(.insertion, "sent-\(backend == .paste ? "paste" : "unicode")", application: target.bundleIdentifier)
         switch result {
         case .dispatched: perform(machine.handle(.dispatchFinished(id)))
@@ -552,20 +610,38 @@ final class PickerController: PickerSearchDelegate {
 
     private func finish(_ id: SessionID, outcome: SessionOutcome) {
         guard let current = session, current.id == id else { return }
-        if outcome == .dispatched || outcome == .copied, let chosen = current.chosen {
+        if outcome == .dispatched || outcome == .copied, let chosen = current.chosen?.character {
             services.library.change { $0.recordUse(LibraryItem(string: chosen.string, name: chosen.name, snippetShortcut: chosen.snippetShortcut)) }
         }
-        if outcome == .failedBeforeDispatch {
+        if outcome == .failedBeforeDispatch || outcome == .copyFailed {
             NSSound.beep()
         }
         services.diagnostics.record(.session, "outcome-\(Self.code(outcome.rawValue))", application: current.target?.bundleIdentifier)
+        gifSources.reset(to: .characters)
         session = nil
         onSessionEnded?()
     }
 
     // MARK: Content
 
+    private func changeSource(_ source: PickerSource) {
+        guard machine.state == .browsing, model.allowsSourceSwitch, source != model.source else { return }
+        gifSources.reset(to: source)
+        viewController.setQuery("")
+        setSourcePrompt(source)
+        model.isNavigating = false
+        model.notice = nil
+        refreshContent(keepSelection: false)
+        viewController.focusSearch()
+    }
+
+    private func setSourcePrompt(_ source: PickerSource) {
+        viewController.searchField.placeholderString = source.prompt
+        viewController.searchField.setAccessibilityLabel(source.prompt)
+    }
+
     private func refreshContent(keepSelection: Bool) {
+        guard model.source == .characters else { return }
         let query = viewController.searchField.stringValue
         model.isQueryEmpty = query.allSatisfy(\.isWhitespace)
         guard let content = services.content else {
@@ -603,12 +679,26 @@ final class PickerController: PickerSearchDelegate {
     // MARK: PickerSearchDelegate
 
     func searchTextChanged(_ text: String) {
+        if model.source != .characters {
+            gifSources.updateQuery(text)
+            return
+        }
         // Typing always goes back to editing the query.
         model.isNavigating = false
         refreshContent(keepSelection: false)
     }
 
     func searchCommand(_ command: PickerCommand, caretAtEnd: Bool) -> Bool {
+        if model.source != .characters {
+            switch command {
+            case .up: gifSources.move(by: -1)
+            case .down: gifSources.move(by: 1)
+            case .cancel: perform(machine.handle(.cancel))
+            case .activate: activate(.insert)
+            default: return false
+            }
+            return true
+        }
         switch command {
         case .cancel:
             perform(machine.handle(.cancel))
@@ -696,7 +786,14 @@ final class PickerController: PickerSearchDelegate {
         guard machine.isPickerVisible else { return false }
         let flags = event.modifierFlags.intersection([.command, .control, .option, .shift])
         let isReturn = event.keyCode == UInt16(kVK_Return) || event.keyCode == UInt16(kVK_ANSI_KeypadEnter)
-        if flags == .control, isReturn {
+        if flags == .command, let key = event.charactersIgnoringModifiers,
+           let index = Int(key), (1...PickerSource.allCases.count).contains(index),
+           model.allowsSourceSwitch,
+           (viewController.searchField.currentEditor() as? NSTextView)?.hasMarkedText() != true {
+            changeSource(PickerSource.allCases[index - 1])
+            return true
+        }
+        if flags == .control, isReturn, model.source == .characters {
             // macOS 27 opens the field editor's menu before doCommandBy sees
             // Control-Return. Keep this picker command at the panel boundary,
             // except while the native input method owns the composing keys.
@@ -709,6 +806,7 @@ final class PickerController: PickerSearchDelegate {
             activate(.copy)
             return true
         }
+        guard model.source == .characters else { return false }
         switch event.charactersIgnoringModifiers?.lowercased() {
         case "d":
             if let item = model.selectedItem { toggleFavourite(item) }

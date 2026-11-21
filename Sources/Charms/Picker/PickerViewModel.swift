@@ -29,6 +29,19 @@ final class PickerViewModel: ObservableObject {
     static let sectionHeadingHeight: CGFloat = 12
 
     @Published var theme: PickerTheme = .impression
+    @Published var source: PickerSource = .characters
+    @Published var allowsSourceSwitch = true
+    @Published var gifRows: [GIFRow] = []
+    @Published var selectedGIFID: URL?
+    @Published var gifStatus: String?
+    @Published var attribution = ""
+    var selectedGIF: GIFRow? { gifRows.first { $0.id == selectedGIFID } }
+    var onChangeSource: ((PickerSource) -> Void)?
+    @Published var hasMoreGIFs = false
+    var onMoreGIFs: (() -> Void)?
+    var onActivateGIF: (() -> Void)?
+    var loadPreview: ((GIFRow) async -> Data?)?
+
     @Published var sections: [PickerSection] = []
     @Published var selection: GridPosition?
     /// True while the arrow keys move between cells instead of through the
