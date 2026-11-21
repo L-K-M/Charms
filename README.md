@@ -72,7 +72,8 @@ Choose a folder under **Settings → GIFs**, then drop your GIF files into it.
 Open the picker with the shortcut and choose **My GIFs** (⌘2). Search by
 filename, caption, or tag. The up and down arrows preview results. Return
 copies the original animated GIF for pasting into an app that accepts images.
-Edit a file’s search tags in GIF settings.
+Edit a file’s search tags in GIF settings. Preview, tagging and copy support
+files up to 64 MiB.
 
 Charms analyzes sampled frames on your Mac. Vision finds subjects and text.
 On macOS 27 or later, an available on-device Apple Intelligence model can

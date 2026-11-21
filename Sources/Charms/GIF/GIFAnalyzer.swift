@@ -63,8 +63,7 @@ enum GIFAnalyzer: Sendable {
     /// Returns searchable tags for the GIF at `url`.
     ///
     /// Throws `Failure` when the file cannot be read or no frame can be
-    /// decoded. Model and Vision failures are not thrown: the Vision
-    /// baseline runs when the model cannot answer.
+    /// decoded, or when neither system inference backend can run.
     static func tags(for url: URL) async throws -> [String] {
         try await analyze(url).tags
     }
@@ -176,9 +175,8 @@ enum GIFAnalyzer: Sendable {
     // MARK: - Decoding
 
     static func sampledFrames(at url: URL) async throws -> [CGImage] {
-        try await Task.detached(priority: .utility) {
-            try decodeSampledFrames(at: url)
-        }.value
+        try Task.checkCancellation()
+        return try decodeSampledFrames(at: url)
     }
 
     private static func decodeSampledFrames(at url: URL) throws -> [CGImage] {
@@ -208,8 +206,9 @@ enum GIFAnalyzer: Sendable {
             kCGImageSourceCreateThumbnailFromImageAlways: true,
             kCGImageSourceThumbnailMaxPixelSize: maximumFrameEdge
         ]
-        let frames = indices.compactMap {
-            CGImageSourceCreateThumbnailAtIndex(source, $0, options as CFDictionary)
+        let frames = try indices.compactMap { index in
+            try Task.checkCancellation()
+            return CGImageSourceCreateThumbnailAtIndex(source, index, options as CFDictionary)
         }
         guard !frames.isEmpty else { throw Failure.noFrames }
         return frames

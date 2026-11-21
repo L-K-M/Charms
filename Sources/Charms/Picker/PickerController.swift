@@ -489,7 +489,8 @@ final class PickerController: PickerSearchDelegate {
             guard let chosen = item ?? model.selectedItem else { return }
             session?.chosen = .character(chosen)
         case .local:
-            guard let row = model.selectedGIF, let revision = row.revision else { return }
+            guard let row = model.selectedGIF, let revision = row.revision,
+                  revision.size <= GIFAnalyzer.maximumFileBytes else { return }
             session?.chosen = .localGIF(row.id, revision)
             perform(machine.handle(.activate(.copy)))
             return

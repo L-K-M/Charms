@@ -79,9 +79,11 @@ final class GIFAnalyzerTests: XCTestCase {
     func testVisionFallbackReadsText() async throws {
         let url = try makeGIF(named: "text.gif", count: 3, delays: [0.2, 0.2, 0.2], label: "CAT")
         let frames = try await GIFAnalyzer.sampledFrames(at: url)
-        try requireSystemOCR(for: XCTUnwrap(frames.first))
-        let tags = try await GIFAnalyzer.visionTags(for: frames)
-        XCTAssertTrue(tags.contains("cat"), "expected OCR to read CAT, got \(tags)")
+        let tags = try? await GIFAnalyzer.visionTags(for: frames)
+        if tags?.contains("cat") != true {
+            try requireSystemOCR(for: XCTUnwrap(frames.first))
+            XCTFail("Vision can run on this input but the CAT caption was missing.")
+        }
     }
 
     func testTagsForAnimatedFixtureAreBounded() async throws {

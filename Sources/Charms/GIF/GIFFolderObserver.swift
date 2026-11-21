@@ -30,7 +30,7 @@ final class GIFFolderObserver {
                 let url = URL(fileURLWithPath: String(cString: names[i]))
                 if flags[i] & UInt32(kFSEventStreamEventFlagMustScanSubDirs | kFSEventStreamEventFlagRootChanged) != 0 ||
                     url.path == handler.root ||
-                    (url.pathExtension.lowercased() == "gif" && url.deletingLastPathComponent().path == handler.root) {
+                    (url.pathExtension.lowercased() == "gif" && url.deletingLastPathComponent().resolvingSymlinksInPath().path == handler.root) {
                     handler.change()
                     break
                 }

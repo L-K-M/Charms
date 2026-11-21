@@ -29,6 +29,29 @@ final class LocalGIFLibraryTests: XCTestCase {
         XCTAssertEqual(library.entries.first?.tags, ["greeting"])
     }
 
+    func testCompletingAnInPlaceDropDuringAnalysisReindexesTheFinalBytes() async throws {
+        let root = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+        defer { try? FileManager.default.removeItem(at: root) }
+        let folder = root.appendingPathComponent("gifs", isDirectory: true)
+        try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
+        let url = folder.appendingPathComponent("partial.gif")
+        try Data().write(to: url)
+        var attempts = 0
+        let library = LocalGIFLibrary(supportDirectory: root) { file in
+            attempts += 1
+            if attempts == 1 {
+                let writer = try FileHandle(forWritingTo: file)
+                try writer.write(contentsOf: Data("GIF89a".utf8))
+                try writer.close()
+                return .init(tags: ["stale"], method: .multimodal)
+            }
+            return .init(tags: ["finished"], method: .multimodal)
+        }
+        library.setFolder(folder)
+        try await waitFor { library.entries.first?.tags == ["finished"] }
+        XCTAssertEqual(library.entries.first?.revision.size, 6)
+    }
+
     func testWatchedChangesKeepEditedTagsAndOriginalBytes() async throws {
         let root = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
             .resolvingSymlinksInPath()

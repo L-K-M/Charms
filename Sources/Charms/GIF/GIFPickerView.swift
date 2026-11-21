@@ -103,7 +103,7 @@ struct GIFPickerView: View {
                     Label(model.source == .local ? "Copy GIF" : model.canInsert ? "Insert link" : "Copy link",
                           systemImage: "return")
                 }
-                .disabled(model.selectedGIF == nil)
+                .disabled(model.selectedGIF == nil || (model.selectedGIF?.revision?.size ?? 0) > GIFAnalyzer.maximumFileBytes)
                 Spacer()
                 if model.source == .online { Text(model.attribution).font(.caption) }
             }

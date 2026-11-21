@@ -67,7 +67,9 @@ final class GIFPickerSources {
                 let detail = entry.tags.joined(separator: ", ")
                 let searchable = title + " " + detail
                 guard words.allSatisfy({ searchable.localizedStandardContains(String($0)) }) else { return nil }
-                return GIFRow(id: entry.url, preview: entry.url, title: title, detail: detail,
+                let description = entry.revision.size > GIFAnalyzer.maximumFileBytes
+                    ? "Exceeds the 64 MiB preview and copy limit" : detail
+                return GIFRow(id: entry.url, preview: entry.url, title: title, detail: description,
                               revision: entry.revision)
             }
             model.gifStatus = library.status ?? (rows.isEmpty ? (library.folder == nil

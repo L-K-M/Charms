@@ -101,6 +101,8 @@ final class LocalGIFLibrary: ObservableObject {
                 apply(files)
             } catch {
                 guard !Task.isCancelled else { return }
+                worker?.cancel()
+                worker = nil
                 cached = entries.isEmpty ? cached : entries
                 entries = []
                 status = "Cannot read the GIF folder. Check its location and permissions."
@@ -155,7 +157,10 @@ final class LocalGIFLibrary: ObservableObject {
                     guard !Task.isCancelled else { return }
                     guard GIFFileSnapshot.inspect(entry.url) == entry.revision,
                           let i = entries.firstIndex(where: { $0.url == entry.url && $0.revision == entry.revision }) else {
+                        // A drop can first publish an empty or partially written
+                        // file. Some volumes report only its directory entry.
                         failed.insert(entry.revision)
+                        scheduleScan()
                         continue
                     }
                     entries[i].generatedTags = result.tags
@@ -165,6 +170,7 @@ final class LocalGIFLibrary: ObservableObject {
                 } catch {
                     guard !Task.isCancelled else { return }
                     failed.insert(entry.revision)
+                    if GIFFileSnapshot.inspect(entry.url) != entry.revision { scheduleScan() }
                 }
             }
             guard !Task.isCancelled else { return }

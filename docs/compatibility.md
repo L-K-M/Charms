@@ -8,7 +8,11 @@ What has been checked, on which system, and how. Anything not listed under
 On the Apple M4 Max running macOS 27.0.1 with Xcode 27.2, the on-device
 general model accepted an ordered set of frames. A six-frame staged animation
 of a moving red dot with the caption HELLO returned the search tags
-`hello` and `red dot` through the multimodal analysis path. Reaction accuracy
+`hello` and `red dot` through the multimodal analysis path. Dropping the same
+animation into an initially empty watched folder while the packaged app ran,
+searching for its generated caption `hello`, and pressing Return copied the
+original bytes. A regression test completes a partially written file during
+analysis and checks that only its final tags become searchable. Reaction accuracy
 on a collection of real-world memes remains unverified.
 
 A signed universal build passed the native `gif_copy` and `gif_sources`
@@ -16,7 +20,10 @@ scenarios. A file dropped into a watched folder became searchable by name.
 Return copied both frames byte-for-byte and left the harness document alone.
 Switching to an empty online source and cancelling preserved the clipboard.
 Folder replacement, tag overrides, relaunch, removal and stale reads are
-covered by library tests. Both providers use local HTTP fixtures in tests.
+covered by library tests. The full native suite passed all 42 scenarios.
+Both providers use local HTTP fixtures in tests. Hardware-dependent OCR is
+checked on the Mac Studio. The hosted runner skips that assertion when its
+own Vision request cannot execute.
 Live provider credentials, GIF playback in recipient apps, and execution
 on Intel or macOS 14 remain unverified.
 
