@@ -9,25 +9,6 @@ enum PickerSource: String, CaseIterable {
     case local = "My GIFs"
     case online = "Online GIFs"
 
-    var commandDigit: String {
-        switch self {
-        case .characters: "1"
-        case .local: "2"
-        case .online: "3"
-        }
-    }
-
-    static func commandShortcut(for event: NSEvent) -> Self? {
-        func source(for digit: String?) -> Self? {
-            allCases.first { $0.commandDigit == digit }
-        }
-        if let direct = source(for: event.charactersIgnoringModifiers) { return direct }
-        if let typed = event.characters, !typed.isEmpty { return source(for: typed) }
-        // With no event text, ask AppKit what this key produces on the
-        // current Command layer. An explicit remapping above takes precedence.
-        return source(for: event.characters(byApplyingModifiers: .command))
-    }
-
     var prompt: String {
         switch self {
         case .characters: return "Find symbols, emoji, snippets…"

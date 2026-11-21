@@ -213,31 +213,24 @@ scenario_copy() {
     expect "clipboard" "$(clipboard)" "∞"
 }
 
-# The shortcut picker opens each source with a fresh query. An empty online
-# source cannot commit the previous local or character result.
 scenario_gif_copy() {
-    copy_gif_from_online "$HARNESS" hotkey --code 19 --command
-}
-
-copy_gif_from_online() {
     local gif="$WORK/gifs/staged-animation.gif"
     # Two 1x1 frames with different pixels and delays.
     echo 'R0lGODlhAQABAIAAAP8AAAAA/yH5BAAKAAAALAAAAAABAAEAAAICRAEAIfkEAAoAAAAsAAAAAAEAAQAAAgJMAQA7' | base64 -D > "$gif"
     reset "GIF "
     open_picker || return 1
-    "$HARNESS" hotkey --code 20 --command >/dev/null # Online GIFs
-    "$@" >/dev/null # Switch to My GIFs
+    press tab --control --shift # Characters wraps to Online GIFs
+    press tab --control --shift # Online GIFs to My GIFs
+    "$HARNESS" hotkey --code 18 --command >/dev/null # Command-1 must leave My GIFs selected
     choose "staged-animation" || return 1
     expect "unchanged document" "$(editor)" "GIF " || return 1
     expect "exact original GIF" "$("$HARNESS" pasteboard --compare-gif "$gif" | field matchesGIF)" "true"
 }
 
-# Source navigation when Command-number never reaches the picker.
 scenario_gif_source_cycle() {
-    copy_gif_from_online press tab --control --shift || return 1
     reset "Cycle "
     open_picker || return 1
-    "$HARNESS" hotkey --code 20 --command >/dev/null
+    press tab --control --shift # Characters wraps to Online GIFs
     typing "dance"
     press tab --control # Online GIFs wraps to Characters
     choose "arrow" || return 1
@@ -253,24 +246,23 @@ scenario_gif_sources() {
     expect "host shortcuts before opening" "$(send --op state | field workspaceShortcutCount)" "$((host_count + 2))" || return 1
     open_picker || return 1
     typing "arrow"
-    "$HARNESS" hotkey --code 20 --command >/dev/null # Command-3
+    press tab --control # My GIFs
+    press tab --control # Empty Online GIFs cannot commit the previous result
     press return
     press escape
     expect "source after Escape" "$(editor)" "GIF " || return 1
     expect "clipboard after Escape" "$(clipboard_count)" "$count" || return 1
-    open_picker && choose "arrow" || return 1
-    expect "next session starts in Characters" "$(editor)" "GIF →" || return 1
-    reset "GIF "
-    open_picker || return 1
+    local code
+    for code in 19 20; do # Command-2 and Command-3 must both leave Characters selected
+        reset "GIF "
+        open_picker || return 1
+        "$HARNESS" hotkey --code "$code" --command >/dev/null
+        choose "arrow" || return 1
+        expect "character after Command-number (key code $code)" "$(editor)" "GIF →" || return 1
+    done
+    host_count="$(send --op state | field workspaceShortcutCount)"
     "$HARNESS" hotkey --code 19 --command >/dev/null
-    "$HARNESS" hotkey --code 20 --command >/dev/null
-    typing "dance"
-    "$HARNESS" hotkey --code 18 --command >/dev/null # Back to Characters
-    choose "arrow" || return 1
-    expect "character after switching back" "$(editor)" "GIF →" || return 1
-    expect "host shortcuts while picker was open" "$(send --op state | field workspaceShortcutCount)" "$((host_count + 2))" || return 1
-    "$HARNESS" hotkey --code 19 --command >/dev/null
-    expect "host shortcut after dismissal" "$(send --op state | field workspaceShortcutCount)" "$((host_count + 3))"
+    expect "host shortcut after dismissal" "$(send --op state | field workspaceShortcutCount)" "$((host_count + 1))"
 }
 
 scenario_placement() {

@@ -88,7 +88,7 @@ not a mockup or a real document.
 - Test source shortcuts with `scripts/e2e.sh gif_sources gif_copy gif_source_cycle`.
   Preserve source switching only in shortcut and menu-bar sessions, native
   marked-text handling, and the fresh query when entering Online GIFs. Show
-  the keyboard hints alongside the source buttons whenever switching is available.
+  a single Ctrl-Tab hint on the source row whenever switching is available.
 - The **Impression** composing picker is documented in
   `docs/design/impression.md` and `docs/design/prototype.md`. Its two-scale
   proof uses catalogue previews, not document text. `pressedItem` is only a

@@ -69,7 +69,7 @@ list is yours to edit.
 ### GIFs (development build)
 
 Choose a folder under **Settings → GIFs**, then drop your GIF files into it.
-Open the picker with the shortcut and choose **My GIFs** (⌘2). Search by
+Open the picker with the shortcut and choose **My GIFs**. Search by
 filename, caption, or tag. The up and down arrows preview results. Return
 copies the original animated GIF for pasting into an app that accepts images.
 Edit a file’s search tags in GIF settings. Preview, tagging and copy support
@@ -80,13 +80,11 @@ On macOS 27 or later, an available on-device Apple Intelligence model can
 also suggest actions and reactions. Filename search works during analysis.
 
 For web results, configure a KLIPY or GIPHY key in GIF settings and choose
-**Online GIFs** (⌘3). Type a new query to search that provider. Return inserts
+**Online GIFs**. Type a new query to search that provider. Return inserts
 the selected link, or copies it when the picker has no insertion target.
-Command-Return copies the link. **Characters** (⌘1) returns to the catalogue.
-The picker shows each source’s shortcut beside its name. You can also
-switch sources with **Control-Tab** (next) and
-**Control-Shift-Tab** (previous). From Online GIFs, these go to Characters
-and My GIFs respectively.
+Command-Return copies the link. Press **Ctrl-Tab** to cycle through
+**Characters**, **My GIFs** and **Online GIFs**, then back to **Characters**.
+**Ctrl-Shift-Tab** cycles in reverse.
 The typed `::` shortcut stays local to character and snippet search.
 
 ### Text snippets
