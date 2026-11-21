@@ -357,6 +357,40 @@ application matrix, VoiceOver listening, real IMEs, accessibility display
 settings, older-macOS/Intel runtime or fresh multi-display/full-screen
 coverage. CI and independent review results are recorded in the PR.
 
+## Published v0.2.0
+
+Published on 21 November 2026 from commit
+`163fd7b7e6f0e752bf873b4551cba921b0c58027` by
+[release run 44955837664](https://github.com/L-K-M/Charms/actions/runs/44955837664).
+The hosted Xcode 27.2 job passed the test suite with one Vision OCR test
+skipped, built the universal app, and compared both published downloads
+byte for byte with its build output.
+
+Both archives were independently downloaded on an Apple M4 Max running
+macOS 27.0.1 (26A434). Their SHA-256 hashes matched GitHub's asset digests
+and the published [SHA256SUMS.txt](https://github.com/L-K-M/Charms/releases/download/v0.2.0/SHA256SUMS.txt).
+ZIP integrity and `hdiutil verify` passed. The read-only DMG and extracted
+ZIP contained identical Charms bundles. The DMG's Applications link
+pointed to `/Applications`. Both bundles passed deep, strict signature
+verification and contained arm64 and x86_64 executable slices. The app
+reported v0.2.0, build 3, macOS 14.0 minimum, and bundle ID `ch.lkmc.Charms`.
+The bundled catalogue and notices matched the tagged source. The icon
+retained transparency.
+
+On the same Mac with Xcode 27.2, all 481 local tests, including the Vision
+OCR test, passed. The pinned-data and catalogue checks also passed. The
+Apple Development-signed build of the same source passed all 46 native
+harness scenarios with isolated storage, including caret insertion,
+cancellation, GIF copy, source cycling, the one-row header, opening and
+cancelling Memes, and snippets.
+
+The ad-hoc-signed app extracted from the published ZIP passed eight native
+scenarios with isolated storage (`insert`, `escape`, `gif_copy`,
+`gif_sources`, `gif_source_cycle`, `source_header`, `meme_escape`, and
+`snippet_insert`). Intel and older macOS runtime, a fresh Gatekeeper
+installation, and live online GIF provider requests remain unverified for
+this release.
+
 ## Published v0.1.0
 
 Published on 10 November 2026 from commit
