@@ -58,6 +58,12 @@ In the signed build on the same Mac, the header showed **Characters ⌘1**,
 Accessibility exposed the source names and their individual Command shortcuts.
 Opening the character-only picker with `::` hid the source row.
 
+With four modes, the 432-point picker wrapped a source label to two lines
+(28 points high) on macOS 27.0.1. In the signed 474 × 472 point picker,
+all four buttons measured 14 points high and shared the same top edge with
+each mode selected. Run `scripts/e2e.sh source_header click_cell
+hover_keeps_selection placement` to check the header, grid and caret placement.
+
 ### Meme generation
 
 On the same Mac with Apple Intelligence enabled, ⌘4 opened Memes. The

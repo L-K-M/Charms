@@ -50,6 +50,7 @@ enum Output {
           focused                  The focused element of the frontmost application.
           frontmost                The frontmost application.
           windows --pid N          That process's windows on screen, front to back.
+          source-header --pid N    The source prompt and heights of its mode buttons.
           displays                 The displays and the pointer position.
           pasteboard [--set S | --compare-gif PATH]     Inspect the general pasteboard.
 

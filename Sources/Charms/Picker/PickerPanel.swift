@@ -12,7 +12,7 @@ import SwiftUI
 /// field has keyboard focus again within a few milliseconds. That is what
 /// lets a character go back to where the user was typing.
 final class PickerPanel: NSPanel {
-    static let size = CGSize(width: 432, height: 472)
+    static let size = CGSize(width: 474, height: 472)
 
     /// Keys the search field never sees as commands: Command-Return,
     /// Command-D and Command-C. Returns true when the key was used.
