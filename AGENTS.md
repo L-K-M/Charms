@@ -85,6 +85,9 @@ not a mockup or a real document.
 - The session state table (`SessionMachine`) is the single authority on what
   the picker may do next. The app reports events to it and performs the
   effects it returns; it does not keep a second notion of state.
+- Test source shortcuts with `scripts/e2e.sh gif_sources gif_copy gif_source_cycle`.
+  Preserve source switching only in shortcut and menu-bar sessions, native
+  marked-text handling, and the fresh query when entering Online GIFs.
 - The **Impression** composing picker is documented in
   `docs/design/impression.md` and `docs/design/prototype.md`. Its two-scale
   proof uses catalogue previews, not document text. `pressedItem` is only a

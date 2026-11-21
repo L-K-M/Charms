@@ -786,11 +786,9 @@ final class PickerController: PickerSearchDelegate {
         guard machine.isPickerVisible else { return false }
         let flags = event.modifierFlags.intersection([.command, .control, .option, .shift])
         let isReturn = event.keyCode == UInt16(kVK_Return) || event.keyCode == UInt16(kVK_ANSI_KeypadEnter)
-        if flags == .command, let key = event.charactersIgnoringModifiers,
-           let index = Int(key), (1...PickerSource.allCases.count).contains(index),
-           model.allowsSourceSwitch,
+        if model.allowsSourceSwitch, let source = sourceShortcut(for: event, flags: flags),
            (viewController.searchField.currentEditor() as? NSTextView)?.hasMarkedText() != true {
-            changeSource(PickerSource.allCases[index - 1])
+            changeSource(source)
             return true
         }
         if flags == .control, isReturn, model.source == .characters {
@@ -819,6 +817,18 @@ final class PickerController: PickerSearchDelegate {
         default:
             return false
         }
+    }
+
+    private func sourceShortcut(for event: NSEvent, flags: NSEvent.ModifierFlags) -> PickerSource? {
+        let sources = PickerSource.allCases
+        if flags == .command { return PickerSource.commandShortcut(for: event) }
+
+        // Command-number can be reserved before the nonactivating panel sees it.
+        // Control-Tab follows the visible source order and keeps plain Tab in the editor.
+        guard event.keyCode == UInt16(kVK_Tab), flags == .control || flags == [.control, .shift],
+              let current = sources.firstIndex(of: model.source) else { return nil }
+        let step = flags.contains(.shift) ? sources.count - 1 : 1
+        return sources[(current + step) % sources.count]
     }
 
     // MARK: Cell menu
