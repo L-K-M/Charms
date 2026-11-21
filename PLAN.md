@@ -32,10 +32,12 @@ At the planning baseline the repository contained the license but no application
 - The default interface remains useful without choosing a font, Unicode block, output format, or category.
 - Character and local GIF search, favourites, and recents work offline. The
   optional online GIF source starts with a new query and uses a provider key.
-  The shortcut picker shows Command-1 through Command-3 beside their sources
+  The shortcut picker shows Command-1 through Command-4 beside their sources
   on one row. Control-Tab cycles forward and Control-Shift-Tab cycles backward.
   Local indexing, on-device image tagging, and GIF insertion are described in
   [the GIF implementation plan](docs/design/gifs.md).
+- Memes opens Apple’s Image Playground with an explicit prompt. The user
+  chooses original artwork, edits an on-device caption, and copies a PNG.
 - An optional typed `::` trigger opens the same picker, alongside the global shortcut, without leaving the trigger behind after insertion.
 - VoiceOver and keyboard-only users can search, select, favourite, insert, copy, and dismiss.
 - The app requests only the accessibility access it needs; browse/copy remains usable when that access is missing or revoked.

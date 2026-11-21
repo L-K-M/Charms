@@ -24,7 +24,7 @@ final class GIFPickerSources {
         model.loadPreview = { [weak self] row in
             guard let self else { return nil }
             switch self.model.source {
-            case .characters: return nil
+            case .characters, .memes: return nil
             case .local: return try? await row.revision?.data(at: row.id)
             case .online: return await self.online.previewData(for: row.preview)
             }
@@ -58,7 +58,7 @@ final class GIFPickerSources {
     private func refresh() {
         let rows: [GIFRow]
         switch model.source {
-        case .characters: return
+        case .characters, .memes: return
         case .local:
             model.hasMoreGIFs = false
             let words = query.split(whereSeparator: \.isWhitespace)

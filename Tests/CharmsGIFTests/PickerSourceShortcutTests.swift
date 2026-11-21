@@ -9,6 +9,7 @@ final class PickerSourceShortcutTests: XCTestCase {
             ("1", "", "", .characters),
             ("2", "2", "@", .local),
             ("2", "c", "c", nil),
+            ("4", "4", "4", .memes),
             ("1", "3", "3", .online)
         ]
         for (digit, text, unmodified, source) in cases {

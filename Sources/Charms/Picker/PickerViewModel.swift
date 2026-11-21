@@ -37,6 +37,8 @@ final class PickerViewModel: ObservableObject {
     @Published var attribution = ""
     var selectedGIF: GIFRow? { gifRows.first { $0.id == selectedGIFID } }
     var onChangeSource: ((PickerSource) -> Void)?
+    var onCreateMeme: (() -> Void)?
+    @Published var canUseImagePlayground = false
     @Published var hasMoreGIFs = false
     var onMoreGIFs: (() -> Void)?
     var onActivateGIF: (() -> Void)?
