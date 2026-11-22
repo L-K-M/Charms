@@ -41,7 +41,7 @@ final class VeniceImageTests: XCTestCase {
         XCTAssertEqual(request.httpMethod, "POST")
         XCTAssertEqual(request.allHTTPHeaderFields, [
             "Authorization": "Bearer \(key)", "Content-Type": "application/json", "Accept": "image/png",
-            "Accept-Language": "en", "User-Agent": "Charms (macOS)"
+            "Accept-Language": "en", "User-Agent": "macOS"
         ])
         XCTAssertFalse(String(decoding: try XCTUnwrap(request.httpBody), as: UTF8.self).contains(key))
     }

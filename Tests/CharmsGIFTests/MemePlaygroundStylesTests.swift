@@ -9,16 +9,20 @@ final class MemePlaygroundStylesTests: XCTestCase {
         let allowed = MemePlaygroundStyles.allowed
         XCTAssertTrue(allowed.contains(.illustration) && allowed.contains(.animation) && allowed.contains(.sketch))
         XCTAssertFalse(allowed.contains(.emoji), "Genmoji returns a glyph, not artwork")
-        XCTAssertTrue(allowed.contains(MemePlaygroundStyles.initial), "the preselection must be allowed")
+        let initial = MemePlaygroundStyles.initial(for: .apple)
+        XCTAssertTrue(allowed.contains(initial), "the preselection must be allowed")
         if #available(macOS 26, *) {
             XCTAssertTrue(allowed.contains(.externalProvider))
-            XCTAssertNotEqual(MemePlaygroundStyles.initial, .externalProvider)
+            XCTAssertNotEqual(initial, .externalProvider)
+            // macOS hides an unconfigured provider unless it is preselected.
+            XCTAssertTrue(MemePlaygroundEntry.offersExternalProvider)
+            XCTAssertEqual(MemePlaygroundStyles.initial(for: .externalProvider), .externalProvider)
         }
         if #available(macOS 27, *) {
             XCTAssertTrue(allowed.contains(.any))
-            XCTAssertEqual(MemePlaygroundStyles.initial, .any)
+            XCTAssertEqual(initial, .any)
         } else {
-            XCTAssertEqual(MemePlaygroundStyles.initial, .illustration)
+            XCTAssertEqual(initial, .illustration)
         }
     }
 }

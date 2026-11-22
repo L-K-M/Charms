@@ -74,6 +74,33 @@ model suggested a caption. Editing it and pressing Copy PNG produced a
 harness document stayed intact. Image generation on other macOS versions
 and in other languages remains unverified.
 
+### Meme artwork sources, 22 November 2026
+
+On the same Mac (Apple Silicon, macOS 27.0.1, Xcode 27.2), with a signed
+build and isolated storage:
+
+- Return on a description opened Image Playground, which began generating
+  without another click and produced a photorealistic image in Any Style.
+- With ChatGPT not set up, the style menu listed Any Style, Animation,
+  Illustration and Sketch, although the external provider was allowed.
+  Preselecting it, as the ChatGPT button does, showed Apple's setup. Not Now
+  fell back to generating with Apple's model.
+- Dragging from another app was accepted for an image file, PNG data and a
+  file promise, and refused for a web link. The promise's temporary folder
+  was removed. The composer floated while Charms was inactive and empty.
+  Choose Image worked through the open panel and left the file in place.
+- The Venice endpoint rejected an invalid key with 401 and the composer
+  showed the matching message. A debug build pointed at a local fixture
+  server sent the expected body and headers, showed Stop while waiting,
+  then displayed and captioned the returned image.
+- Copy PNG wrote a PNG. Cancel in the sheet returned to the composer, and
+  Escape there closed it. All eight Settings tabs fit at 640 points.
+- The Keychain store saved, replaced, read and removed a throwaway item.
+
+Unverified: a successful paid Venice request and the look or speed of either
+model, generation through a configured ChatGPT, dragging from Draw Things
+itself, Macs without Apple Intelligence, Intel, and macOS 14 to 26.
+
 ## Verified
 
 One system so far, on 10 November 2026:

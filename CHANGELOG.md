@@ -7,6 +7,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Create meme artwork in any style on macOS 27, or with ChatGPT on macOS 26
+  or later, through Image Playground.
+- Generate meme artwork in the composer with your own Venice key, using
+  Z-Image Turbo or GPT Image 2.6 Flare. It is off until you switch it on.
+- Caption an image you drop or choose, for example one made offline with
+  Draw Things.
+
+### Changed
+
+- Memes works on Macs without Apple Intelligence.
+- Cancelling Image Playground returns to the meme composer.
+- Settings has a Memes tab and is wide enough for all tab titles.
+
+### Fixed
+
+- The privacy policy no longer says Image Playground’s styles run on the
+  device. On macOS 27 they run on Apple’s Private Cloud Compute.
+
 ## [0.2.0] - 2026-11-21
 
 ### Added

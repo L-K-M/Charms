@@ -50,8 +50,9 @@ struct SettingsView: View {
 
     /// Shows the appearance preview and reset action together on a normal
     /// display. Smaller windows retain the native form's scrolling.
-    static let defaultSize = NSSize(width: 600, height: 780)
-    static let minimumSize = NSSize(width: 520, height: 400)
+    static let defaultSize = NSSize(width: 640, height: 780)
+    /// Measured on macOS 27.0.1: eight tab titles are truncated below 640.
+    static let minimumSize = NSSize(width: 640, height: 400)
 
     var body: some View {
         TabView(selection: $model.tab) {

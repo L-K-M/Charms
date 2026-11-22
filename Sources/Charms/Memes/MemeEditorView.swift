@@ -3,7 +3,7 @@ import SwiftUI
 
 /// What the composer's controls ask the window to do.
 struct MemeEditorActions {
-    let openPlayground: () -> Void
+    let openPlayground: (MemePlaygroundEntry) -> Void
     let chooseImage: () -> Void
     let generate: () -> Void
     let stop: () -> Void
@@ -100,8 +100,13 @@ struct MemeEditorView: View {
             .accessibilityLabel("Scene description")
             .disabled(draft.isBusy)
         HStack {
-            Button("Image Playground…", action: actions.openPlayground)
+            Button("Image Playground…") { actions.openPlayground(.apple) }
                 .disabled(!canUsePlayground || draft.isBusy)
+            if MemePlaygroundEntry.offersExternalProvider {
+                Button("ChatGPT…") { actions.openPlayground(.externalProvider) }
+                    .help("Opens Image Playground with ChatGPT. macOS sets it up and sends it the description.")
+                    .disabled(!canUsePlayground || draft.isBusy)
+            }
             Button("Choose Image…", action: actions.chooseImage)
                 .keyboardShortcut("o", modifiers: .command)
                 .disabled(draft.isBusy)

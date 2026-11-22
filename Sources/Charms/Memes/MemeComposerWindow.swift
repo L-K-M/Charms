@@ -59,7 +59,7 @@ final class MemeComposerWindow: NSObject, NSWindowDelegate {
         window.makeKeyAndOrderFront(nil)
 
         // With Venice on there is a choice to make, so nothing opens by itself.
-        if !preferences.value.veniceImagesEnabled, !trimmedDescription.isEmpty { openPlayground() }
+        if !preferences.value.veniceImagesEnabled, !trimmedDescription.isEmpty { openPlayground(.apple) }
     }
 
     private var trimmedDescription: String {
@@ -72,7 +72,7 @@ final class MemeComposerWindow: NSObject, NSWindowDelegate {
 
     private func makeContent() -> NSViewController {
         let actions = MemeEditorActions(
-            openPlayground: { [weak self] in self?.openPlayground() },
+            openPlayground: { [weak self] entry in self?.openPlayground(entry) },
             chooseImage: { [weak self] in self?.chooseImage() },
             generate: { [weak self] in self?.generate() },
             stop: { [weak self] in self?.draft.stopLoading() },
@@ -132,7 +132,7 @@ final class MemeComposerWindow: NSObject, NSWindowDelegate {
 
     // MARK: Artwork sources
 
-    private func openPlayground() {
+    private func openPlayground(_ entry: MemePlaygroundEntry) {
         #if canImport(ImagePlayground)
         guard #available(macOS 15.1, *), canAcceptArtwork,
               let host = window?.contentViewController, Self.isPlaygroundAvailable else { return }
@@ -142,7 +142,7 @@ final class MemeComposerWindow: NSObject, NSWindowDelegate {
         playground.concepts = playgroundPrompt.isEmpty ? [] : [.text(playgroundPrompt)]
         if #available(macOS 15.4, *) {
             playground.allowedGenerationStyles = MemePlaygroundStyles.allowed
-            playground.selectedGenerationStyle = MemePlaygroundStyles.initial
+            playground.selectedGenerationStyle = MemePlaygroundStyles.initial(for: entry)
         }
         host.presentAsSheet(playground)
         #endif

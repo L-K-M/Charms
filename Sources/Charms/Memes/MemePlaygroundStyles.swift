@@ -1,3 +1,16 @@
+/// Which of the composer's buttons opened the system sheet.
+enum MemePlaygroundEntry {
+    case apple
+    /// ChatGPT, through the system. Measured on macOS 27.0.1: until it is set
+    /// up the style menu omits it, and only preselecting it shows the setup.
+    case externalProvider
+
+    static var offersExternalProvider: Bool {
+        if #available(macOS 26, *) { return true }
+        return false
+    }
+}
+
 #if canImport(ImagePlayground)
 import ImagePlayground
 
@@ -10,13 +23,14 @@ enum MemePlaygroundStyles {
         #if compiler(>=6.4)
         if #available(macOS 27, *) { styles.insert(.any, at: 0) }
         #endif
-        // No check for a configured provider: the system runs that setup.
         if #available(macOS 26, *) { styles.append(.externalProvider) }
         return styles
     }
 
-    /// Never the external provider, which is the user's choice to make.
-    static var initial: ImagePlaygroundStyle {
+    /// The sheet starts generating with this style as soon as it opens with
+    /// a description, so another provider is preselected only when asked for.
+    static func initial(for entry: MemePlaygroundEntry) -> ImagePlaygroundStyle {
+        if entry == .externalProvider, #available(macOS 26, *) { return .externalProvider }
         #if compiler(>=6.4)
         if #available(macOS 27, *) { return .any }
         #endif

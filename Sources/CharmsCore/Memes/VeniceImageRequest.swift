@@ -54,9 +54,10 @@ public struct VeniceImageRequest: Sendable {
         request.setValue("Bearer \(key)", forHTTPHeaderField: "Authorization")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("image/png", forHTTPHeaderField: "Accept")
-        // URLSession would otherwise add the user's languages and the OS build.
+        // URLSession would otherwise name the app, the user's languages and
+        // the OS build. Venice needs none of them to make an image.
         request.setValue("en", forHTTPHeaderField: "Accept-Language")
-        request.setValue("Charms (macOS)", forHTTPHeaderField: "User-Agent")
+        request.setValue("macOS", forHTTPHeaderField: "User-Agent")
         return request
     }
 }

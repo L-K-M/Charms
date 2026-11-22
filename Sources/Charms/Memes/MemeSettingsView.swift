@@ -39,8 +39,9 @@ struct MemeSettingsView: View {
                 Text("Nothing until you press Generate. Then Charms sends the scene description, your key, and the model and image options to Venice. Your images, captions and the text you were typing are never sent.")
                     .font(.callout).foregroundStyle(.secondary)
                 ForEach(VeniceImageModel.allCases) { model in
-                    LabeledContent(model.name) {
-                        Text(model.privacyNote).foregroundStyle(.secondary)
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text(model.name)
+                        Text(model.privacyNote).font(.callout).foregroundStyle(.secondary)
                     }
                 }
             }
