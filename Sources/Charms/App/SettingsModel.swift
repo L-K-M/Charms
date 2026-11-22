@@ -3,6 +3,10 @@ import CharmsCore
 import Combine
 import UniformTypeIdentifiers
 
+enum SettingsTab: Hashable {
+    case general, appearance, snippets, gifs, memes, typing, applications, data
+}
+
 /// The state behind the settings window that does not live in the stored
 /// preferences: what the system currently allows, and the outcome of the
 /// last change that could fail.
@@ -16,6 +20,7 @@ final class SettingsModel: ObservableObject {
     @Published var shortcutMessage: String?
     @Published var launchMessage: String?
     @Published var dataMessage: String?
+    @Published var tab = SettingsTab.general
 
     var onCapabilitiesChanged: (() -> Void)?
     var onShowOnboarding: (() -> Void)?

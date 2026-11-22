@@ -11,6 +11,7 @@ final class AppServices {
     let snippets: SnippetController
     let localGIFs: LocalGIFLibrary
     let onlineGIFs: OnlineGIFSearch
+    let veniceArtwork: VeniceArtworkService
     let glyphs = GlyphSupport()
     /// Nil until the catalogue has been read, a fraction of a second after
     /// launch.
@@ -22,6 +23,10 @@ final class AppServices {
         localGIFs = LocalGIFLibrary(supportDirectory: paths.supportDirectory)
         onlineGIFs = OnlineGIFSearch(supportDirectory: paths.supportDirectory, isIsolated: paths.isIsolated)
         preferences = PreferencesStore(paths: paths)
+        veniceArtwork = VeniceArtworkService(
+            preferences: preferences,
+            keys: VeniceKeyStore.make(supportDirectory: paths.supportDirectory, isIsolated: paths.isIsolated)
+        )
         library = LibraryController(paths: paths, diagnostics: diagnostics)
         snippets = SnippetController(paths: paths, diagnostics: diagnostics)
     }

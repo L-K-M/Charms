@@ -27,6 +27,8 @@ final class PickerController: PickerSearchDelegate {
 
     /// Called when a session ends, so the typed trigger can start afresh.
     var onSessionEnded: (() -> Void)?
+    /// Called when the meme composer asks for its settings.
+    var onShowMemeSettings: (() -> Void)?
 
     private enum Choice {
         case character(PickerItem)
@@ -91,7 +93,7 @@ final class PickerController: PickerSearchDelegate {
         model.onCopySelection = { [weak self] in self?.activate(.copy) }
         model.menuActions = { [weak self] position in self?.menuActions(for: position) ?? [] }
         model.onChangeSource = { [weak self] source in self?.changeSource(source) }
-        model.onCreateMeme = { [weak self] in self?.createMeme() }
+        model.onOpenMemeComposer = { [weak self] in self?.openMemeComposer() }
         model.onActivateGIF = { [weak self] in self?.activate(.insert) }
         observeEnvironment()
     }
@@ -500,7 +502,7 @@ final class PickerController: PickerSearchDelegate {
             guard let row = model.selectedGIF else { return }
             session?.chosen = .onlineLink(row.id)
         case .memes:
-            if action == .insert { createMeme() }
+            if action == .insert { createMemeFromDescription() }
             return
         }
         perform(machine.handle(.activate(action)))
@@ -630,18 +632,25 @@ final class PickerController: PickerSearchDelegate {
 
     // MARK: Content
 
-    private func createMeme() {
+    /// Return needs a description. The button does not, as the composer also
+    /// takes an image you already have.
+    private func createMemeFromDescription() {
+        guard !viewController.searchField.stringValue.allSatisfy(\.isWhitespace) else { return }
+        openMemeComposer()
+    }
+
+    private func openMemeComposer() {
         guard machine.state == .browsing, model.source == .memes else { return }
         let prompt = viewController.searchField.stringValue.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard !prompt.isEmpty else { return }
-        model.canUseImagePlayground = MemeComposerWindow.isAvailable
-        guard model.canUseImagePlayground else { return }
 
         // The system sheet needs an active window. End the caret-targeted
         // session before taking focus. The composer only supports explicit Copy.
         let screen = panel.screen
         perform(machine.handle(.cancel))
-        let composer = MemeComposerWindow(prompt: prompt, insertion: insertion)
+        let composer = MemeComposerWindow(
+            prompt: prompt, insertion: insertion, preferences: services.preferences, venice: services.veniceArtwork,
+            showSettings: { [weak self] in self?.onShowMemeSettings?() }
+        )
         composer.onClose = { [weak self, weak composer] in
             self?.memeWindows.removeAll { $0 === composer }
         }
@@ -654,7 +663,6 @@ final class PickerController: PickerSearchDelegate {
         gifSources.reset(to: source)
         viewController.setQuery("")
         model.isQueryEmpty = true
-        if source == .memes { model.canUseImagePlayground = MemeComposerWindow.isAvailable }
         setSourcePrompt(source)
         model.isNavigating = false
         model.notice = nil
@@ -722,7 +730,7 @@ final class PickerController: PickerSearchDelegate {
     func searchCommand(_ command: PickerCommand, caretAtEnd: Bool) -> Bool {
         if model.source == .memes {
             switch command {
-            case .activate: createMeme()
+            case .activate: createMemeFromDescription()
             case .cancel: perform(machine.handle(.cancel))
             default: return false
             }

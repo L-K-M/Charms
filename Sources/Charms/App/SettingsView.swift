@@ -54,17 +54,27 @@ struct SettingsView: View {
     static let minimumSize = NSSize(width: 520, height: 400)
 
     var body: some View {
-        TabView {
+        TabView(selection: $model.tab) {
             general.tabItem { Label("General", systemImage: "gearshape") }
+                .tag(SettingsTab.general)
             AppearanceSettingsView(preferences: preferences)
                 .tabItem { Label("Appearance", systemImage: "paintpalette") }
+                .tag(SettingsTab.appearance)
             SnippetsSettingsView(controller: model.services.snippets)
                 .tabItem { Label("Snippets", systemImage: "text.quote") }
+                .tag(SettingsTab.snippets)
             GIFSettingsView(library: model.services.localGIFs, online: model.services.onlineGIFs)
                 .tabItem { Label("GIFs", systemImage: "photo.on.rectangle") }
+                .tag(SettingsTab.gifs)
+            MemeSettingsView(venice: model.services.veniceArtwork, preferences: preferences)
+                .tabItem { Label("Memes", systemImage: "theatermasks") }
+                .tag(SettingsTab.memes)
             typing.tabItem { Label("Typing ::", systemImage: "keyboard") }
+                .tag(SettingsTab.typing)
             applications.tabItem { Label("Applications", systemImage: "app.badge") }
+                .tag(SettingsTab.applications)
             data.tabItem { Label("Data", systemImage: "tray.full") }
+                .tag(SettingsTab.data)
         }
         .padding(16)
         .frame(minWidth: Self.minimumSize.width, maxWidth: .infinity, minHeight: Self.minimumSize.height, maxHeight: .infinity)

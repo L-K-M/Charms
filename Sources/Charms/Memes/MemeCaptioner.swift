@@ -17,13 +17,14 @@ enum MemeCaptioner {
             let session = LanguageModelSession(
                 model: model,
                 instructions: """
-                Write one funny, short meme caption for the supplied artwork. The description is what the
-                user asked Image Playground to draw. Return the caption alone, without quotation marks,
-                using at most \(maximumCaptionCharacters) characters.
+                Write one funny, short meme caption for the supplied artwork. A description, when there
+                is one, is what the user asked an image generator to draw. Return the caption alone,
+                without quotation marks, using at most \(maximumCaptionCharacters) characters.
                 """
             )
+            let description = prompt.isEmpty ? "No description was given." : prompt
             let request = Prompt {
-                prompt
+                description
                 Attachment(artwork)
             }
             let response = try await session.respond(to: request, options: GenerationOptions(maximumResponseTokens: 128))
