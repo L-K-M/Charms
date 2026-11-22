@@ -6,7 +6,9 @@ enum MemePlaygroundEntry {
     case externalProvider
 
     static var offersExternalProvider: Bool {
+        #if compiler(>=6.2)
         if #available(macOS 26, *) { return true }
+        #endif
         return false
     }
 }
@@ -23,14 +25,19 @@ enum MemePlaygroundStyles {
         #if compiler(>=6.4)
         if #available(macOS 27, *) { styles.insert(.any, at: 0) }
         #endif
+        // Likewise the macOS 26 SDK and Swift 6.2.
+        #if compiler(>=6.2)
         if #available(macOS 26, *) { styles.append(.externalProvider) }
+        #endif
         return styles
     }
 
     /// The sheet starts generating with this style as soon as it opens with
     /// a description, so another provider is preselected only when asked for.
     static func initial(for entry: MemePlaygroundEntry) -> ImagePlaygroundStyle {
+        #if compiler(>=6.2)
         if entry == .externalProvider, #available(macOS 26, *) { return .externalProvider }
+        #endif
         #if compiler(>=6.4)
         if #available(macOS 27, *) { return .any }
         #endif

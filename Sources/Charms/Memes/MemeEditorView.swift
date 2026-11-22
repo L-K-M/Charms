@@ -147,7 +147,7 @@ struct MemeEditorView: View {
                 .disabled(draft.sceneDescription.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
         }
         .disabled(draft.isBusy)
-        Text("About \(Self.price(cents: model.priceInCents(quality: quality))) per image. Generate sends only the description to Venice. \(model.privacyNote)")
+        Text("About \(Self.price(cents: model.priceInCents(quality: quality))) per image. Generate sends Venice the description and these settings. \(model.privacyNote)")
             .font(.caption).foregroundStyle(.secondary).fixedSize(horizontal: false, vertical: true)
     }
 

@@ -99,6 +99,9 @@ build and isolated storage:
   then displayed and captioned the returned image.
 - Copy PNG wrote a PNG. Cancel in the sheet returned to the composer, and
   Escape there closed it. All eight Settings tabs fit at 640 points.
+- Beneath an open Image Playground sheet, Command-Return, Command-O and
+  Command-G left the composer and clipboard alone. With the longest content
+  at 460 by 580 points, every control stayed visible.
 - The Keychain store saved, replaced, read and removed a throwaway item.
 
 Unverified: a successful paid Venice request and the look or speed of either
