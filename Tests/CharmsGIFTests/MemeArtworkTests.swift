@@ -121,4 +121,27 @@ final class MemeArtworkTests: XCTestCase {
         XCTAssertTrue(draft.isSuggesting)
         resume?.resume(returning: "Suggested.")
     }
+
+    func testALateSuggestionDoesNotEraseAFailure() async throws {
+        let draft = MemeDraft()
+        var resume: CheckedContinuation<String, Never>?
+        let started = expectation(description: "suggestion started")
+        draft.loadArtwork(.importing, prompt: "", suggest: { _, _ in
+            await withCheckedContinuation { continuation in
+                resume = continuation
+                started.fulfill()
+            }
+        }, load: { try MemeTestImages.image() })
+        await fulfillment(of: [started], timeout: 5)
+
+        draft.loadArtwork(.generating, prompt: "cat") { throw VeniceImageError.busy }
+        await settle(draft)
+        let suggested = expectation(description: "suggestion applied")
+        let observation = draft.$caption.filter { $0 == "Late." }.first().sink { _ in suggested.fulfill() }
+        resume?.resume(returning: "Late.")
+        await fulfillment(of: [suggested], timeout: 5)
+        observation.cancel()
+        await Task.yield()
+        XCTAssertEqual(draft.notice, VeniceImageError.busy.errorDescription)
+    }
 }

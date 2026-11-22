@@ -97,6 +97,8 @@ final class MemeDraft: ObservableObject {
             } catch {
                 guard !Task.isCancelled else { return }
                 self?.isSuggesting = false
+                // A newer artwork failure matters more than this.
+                guard self?.notice == nil else { return }
                 self?.notice = "The on-device caption is unavailable. Type your own caption below."
             }
         }
@@ -111,6 +113,7 @@ final class MemeDraft: ObservableObject {
     func editCaption(_ text: String) {
         // A text field also reports its unchanged value, for example on focus.
         guard !text.isExactly(caption) else { return }
+        notice = nil
         applyCaption(text)
         hasUserCaption = !caption.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
     }
@@ -118,7 +121,6 @@ final class MemeDraft: ObservableObject {
     private func applyCaption(_ text: String) {
         stopSuggesting()
         caption = String(text.prefix(MemeCaptioner.maximumCaptionCharacters))
-        notice = nil
         render()
     }
 

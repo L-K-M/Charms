@@ -83,21 +83,16 @@ final class MemeComposerWindow: NSObject, NSWindowDelegate {
         let editor = MemeEditorView(draft: draft, preferences: preferences, venice: venice,
                                     canUsePlayground: Self.isPlaygroundAvailable, actions: actions)
 
-        // AppKit finds a dragging destination by walking up from the view
-        // under the pointer, so the drop view contains the hosted editor.
         let root = NSViewController()
         let drop = MemeDropView(frame: NSRect(origin: .zero, size: Self.size))
         drop.canAccept = { [weak self] in self?.canAcceptArtwork ?? false }
         drop.onTargeted = { [weak self] targeted in self?.draft.isDropTargeted = targeted }
         drop.onDrop = { [weak self] source in self?.receiveDrop(source) }
-        root.view = drop
 
         let host = NSHostingController(rootView: editor)
         host.sizingOptions = []
+        root.view = drop.covering(host.view, size: Self.size)
         root.addChild(host)
-        host.view.frame = drop.bounds
-        host.view.autoresizingMask = [.width, .height]
-        drop.addSubview(host.view)
         return root
     }
 

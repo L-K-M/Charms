@@ -1,7 +1,11 @@
 import AppKit
 
-/// The composer's root view. It accepts images anywhere in the window;
-/// SwiftUI's drop handlers do not receive file promises.
+/// Accepts images anywhere in the composer. SwiftUI's drop handlers do not
+/// receive file promises.
+///
+/// It lies above the editor. Measured on macOS 27.0.1: beneath it, a focused
+/// text field took a dropped file as its path, and the scene description is
+/// what Generate sends. Clicks pass through, and so do drags of plain text.
 final class MemeDropView: NSView {
     var canAccept: () -> Bool = { false }
     var onTargeted: (Bool) -> Void = { _ in }
@@ -16,6 +20,19 @@ final class MemeDropView: NSView {
 
     @available(*, unavailable)
     required init?(coder: NSCoder) { fatalError("not used") }
+
+    /// A view with `content` filling it and this view on top.
+    func covering(_ content: NSView, size: NSSize) -> NSView {
+        let root = NSView(frame: NSRect(origin: .zero, size: size))
+        for view in [content, self] {
+            view.frame = root.bounds
+            view.autoresizingMask = [.width, .height]
+            root.addSubview(view)
+        }
+        return root
+    }
+
+    override func hitTest(_ point: NSPoint) -> NSView? { nil }
 
     private func operation(for sender: NSDraggingInfo) -> NSDragOperation {
         guard canAccept(), MemeImageSource.isOffered(on: sender.draggingPasteboard) else { return [] }

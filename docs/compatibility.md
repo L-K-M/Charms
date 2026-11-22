@@ -89,6 +89,10 @@ build and isolated storage:
   file promise, and refused for a web link. The promise's temporary folder
   was removed. The composer floated while Charms was inactive and empty.
   Choose Image worked through the open panel and left the file in place.
+- An image file or promise dropped on the focused description field became
+  artwork and left the text alone, and a text file was refused. Before the
+  drop view was moved above the fields, the file's path was inserted there.
+  Dragged plain text still lands in the field.
 - The Venice endpoint rejected an invalid key with 401 and the composer
   showed the matching message. A debug build pointed at a local fixture
   server sent the expected body and headers, showed Stop while waiting,
