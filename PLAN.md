@@ -36,8 +36,11 @@ At the planning baseline the repository contained the license but no application
   on one row. Control-Tab cycles forward and Control-Shift-Tab cycles backward.
   Local indexing, on-device image tagging, and GIF insertion are described in
   [the GIF implementation plan](docs/design/gifs.md).
-- Memes opens Apple’s Image Playground with an explicit prompt. The user
-  chooses original artwork, edits an on-device caption, and copies a PNG.
+- Memes opens a composer. Artwork comes from Apple’s Image Playground
+  (including Any Style and ChatGPT), from Venice with the user’s own key
+  after an explicit Generate, or from an image the user drops or chooses.
+  The user edits an on-device caption and copies a PNG. Memes works without
+  Apple Intelligence.
 - An optional typed `::` trigger opens the same picker, alongside the global shortcut, without leaving the trigger behind after insertion.
 - VoiceOver and keyboard-only users can search, select, favourite, insert, copy, and dismiss.
 - The app requests only the accessibility access it needs; browse/copy remains usable when that access is missing or revoked.
@@ -520,7 +523,8 @@ Retain required Unicode/CLDR and any package notices in `THIRD_PARTY_NOTICES.md`
 - Migrate entries using stable IDs and exact sequences so catalogue updates do not lose favourites. Preserve unresolved favourites for future recovery rather than deleting them automatically.
 - Do not persist search queries, typed-trigger observations or marker context, AX snapshots, selected document text, window titles, or clipboard contents.
 - Keep runtime diagnostics limited to timings, error categories, transport choice, coarse placement/fallback reasons, and the bundle identifier of the application concerned. The log has no free-text field, so typed text and raw user content cannot enter it. Add an opt-in "Export Diagnostics" action in Settings that writes the same categories to a local file the user can attach to a bug report; never transmit them and never include text content.
-- No telemetry or network access is needed for ordinary operation.
+- No telemetry or network access is needed for ordinary operation. Online
+  GIFs and Venice artwork are opt-in and act only on an explicit request.
 - With typed recognition disabled, no global keyboard observer is installed. With it enabled, observation is local and ephemeral, limited to marker recognition and the bounded explicit-query handoff; unrelated typing is never retained.
 - Use the system login-item API (`SMAppService.mainApp`) when the user opts in; reflect actual registration state, including a disabled or approval-required login item (`SMAppService.status == .requiresApproval`). In the approval-required state, provide a direct affordance to open System Settings (`SMAppService.openSystemSettingsLoginItems()`) with clear recovery instructions.
 

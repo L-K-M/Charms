@@ -23,48 +23,42 @@ public enum GIFServiceKeyError: Error, LocalizedError, Equatable {
         case .storage: return "The GIF service key could not be saved. Check that Charms can write its application-support folder."
         }
     }
+
+    init(_ error: SecretStoreError) {
+        switch error {
+        case .keychain(let status): self = .keychain(status)
+        case .storage(let path, let reason): self = .storage(path: path, reason: reason)
+        }
+    }
+
+    /// Trims and checks a key on its way into a store. Nil removes it.
+    static func save(_ key: String?, for provider: GIFProvider, in secrets: some SecretStoring) throws {
+        let trimmed = key?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+        guard trimmed.isEmpty || GIFSearchRequest.isPlausibleKey(trimmed) else { throw GIFServiceKeyError.implausible }
+        do {
+            try secrets.setSecret(trimmed.isEmpty ? nil : trimmed, for: provider.rawValue)
+        } catch let error as SecretStoreError {
+            throw GIFServiceKeyError(error)
+        }
+    }
 }
 
 /// One generic-password item per service, on this Mac only.
 public struct KeychainGIFServiceKeyStore: GIFServiceKeyStoring {
     public static let service = "ch.lkmc.Charms.gif-service-key"
 
+    private let secrets = KeychainSecretStore(service: Self.service)
+
     public init() {}
 
-    private func query(_ provider: GIFProvider) -> [String: Any] {
-        [kSecClass as String: kSecClassGenericPassword, kSecAttrService as String: Self.service, kSecAttrAccount as String: provider.rawValue]
-    }
-
     public func key(for provider: GIFProvider) -> String? {
-        var item = query(provider)
-        item[kSecReturnData as String] = true
-        item[kSecMatchLimit as String] = kSecMatchLimitOne
-        var result: CFTypeRef?
-        guard SecItemCopyMatching(item as CFDictionary, &result) == errSecSuccess, let data = result as? Data,
-              let key = String(data: data, encoding: .utf8), GIFSearchRequest.isPlausibleKey(key) else { return nil }
+        guard let key = try? secrets.secret(for: provider.rawValue), GIFSearchRequest.isPlausibleKey(key) else { return nil }
         return key
     }
 
     /// A nil or empty key removes the stored one.
     public func setKey(_ key: String?, for provider: GIFProvider) throws {
-        let trimmed = key?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
-        guard !trimmed.isEmpty else {
-            let status = SecItemDelete(query(provider) as CFDictionary)
-            guard status == errSecSuccess || status == errSecItemNotFound else { throw GIFServiceKeyError.keychain(status) }
-            return
-        }
-        guard GIFSearchRequest.isPlausibleKey(trimmed) else { throw GIFServiceKeyError.implausible }
-        let data = Data(trimmed.utf8)
-        let status = SecItemUpdate(query(provider) as CFDictionary, [kSecValueData as String: data] as CFDictionary)
-        if status == errSecItemNotFound {
-            var item = query(provider)
-            item[kSecValueData as String] = data
-            item[kSecAttrAccessible as String] = kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly
-            let added = SecItemAdd(item as CFDictionary, nil)
-            guard added == errSecSuccess else { throw GIFServiceKeyError.keychain(added) }
-        } else if status != errSecSuccess {
-            throw GIFServiceKeyError.keychain(status)
-        }
+        try GIFServiceKeyError.save(key, for: provider, in: secrets)
     }
 }
 
@@ -72,77 +66,21 @@ public struct KeychainGIFServiceKeyStore: GIFServiceKeyStoring {
 public struct FileGIFServiceKeyStore: GIFServiceKeyStoring {
     public static let fileName = "gif-service-keys.json"
 
-    private struct Storage: Codable {
-        var keys: [String: String]
-    }
-
-    private let directory: URL
+    private let secrets: FileSecretStore
 
     public init(directory: URL) {
-        self.directory = directory
+        secrets = FileSecretStore(directory: directory, fileName: Self.fileName)
     }
 
-    private var fileURL: URL { directory.appendingPathComponent(Self.fileName) }
-
     public func key(for provider: GIFProvider) -> String? {
-        guard let key = try? load().keys[provider.rawValue], GIFSearchRequest.isPlausibleKey(key) else { return nil }
+        guard let key = try? secrets.secret(for: provider.rawValue), GIFSearchRequest.isPlausibleKey(key) else { return nil }
         return key
     }
 
     /// A nil or empty key removes the stored one, and an emptied file is
     /// deleted.
     public func setKey(_ key: String?, for provider: GIFProvider) throws {
-        let trimmed = key?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
-        var storage = try load()
-        if trimmed.isEmpty {
-            storage.keys[provider.rawValue] = nil
-            if storage.keys.isEmpty { try remove() } else { try save(storage) }
-            return
-        }
-        guard GIFSearchRequest.isPlausibleKey(trimmed) else { throw GIFServiceKeyError.implausible }
-        storage.keys[provider.rawValue] = trimmed
-        try save(storage)
-    }
-
-    private func load() throws -> Storage {
-        do {
-            return try JSONDecoder().decode(Storage.self, from: Data(contentsOf: fileURL))
-        } catch let error as NSError where error.domain == NSCocoaErrorDomain && error.code == NSFileReadNoSuchFileError {
-            return Storage(keys: [:])
-        } catch {
-            throw GIFServiceKeyError.storage(path: fileURL.path, reason: "reading failed")
-        }
-    }
-
-    private func save(_ storage: Storage) throws {
-        let manager = FileManager.default
-        do {
-            try manager.createDirectory(at: directory, withIntermediateDirectories: true)
-            // Publish a complete, already-private file, including when replacing
-            // a key in an existing isolated home with permissive directory modes.
-            let staging = directory.appendingPathComponent(UUID().uuidString, isDirectory: true)
-            try manager.createDirectory(at: staging, withIntermediateDirectories: false,
-                                        attributes: [.posixPermissions: 0o700])
-            defer { try? manager.removeItem(at: staging) }
-            let temporary = staging.appendingPathComponent(Self.fileName)
-            try JSONEncoder().encode(storage).write(to: temporary)
-            try manager.setAttributes([.posixPermissions: 0o600], ofItemAtPath: temporary.path)
-            guard rename(temporary.path, fileURL.path) == 0 else {
-                throw POSIXError(POSIXErrorCode(rawValue: errno) ?? .EIO)
-            }
-        } catch {
-            throw GIFServiceKeyError.storage(path: fileURL.path, reason: error.localizedDescription)
-        }
-    }
-
-    private func remove() throws {
-        do {
-            try FileManager.default.removeItem(at: fileURL)
-        } catch let error as NSError where error.domain == NSCocoaErrorDomain && error.code == NSFileNoSuchFileError {
-            return
-        } catch {
-            throw GIFServiceKeyError.storage(path: fileURL.path, reason: error.localizedDescription)
-        }
+        try GIFServiceKeyError.save(key, for: provider, in: secrets)
     }
 }
 

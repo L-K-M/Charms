@@ -1,33 +1,9 @@
 import Foundation
 
-/// One ephemeral session for GIF traffic: HTTPS, no cookies, no cache, no
-/// credentials, redirects refused, answers capped.
+/// GIF answers are small and quick, so their deadlines are short.
 enum GIFSession {
     static func make(protocolClasses: [AnyClass]? = nil) -> URLSession {
-        let configuration = URLSessionConfiguration.ephemeral
-        configuration.httpCookieStorage = nil
-        configuration.urlCredentialStorage = nil
-        configuration.urlCache = nil
-        configuration.httpShouldSetCookies = false
-        configuration.httpCookieAcceptPolicy = .never
-        configuration.timeoutIntervalForRequest = 8
-        configuration.timeoutIntervalForResource = 20
-        if let protocolClasses { configuration.protocolClasses = protocolClasses }
-        return URLSession(configuration: configuration, delegate: RefuseRedirects(), delegateQueue: nil)
-    }
-}
-
-final class RefuseRedirects: NSObject, URLSessionTaskDelegate {
-    func urlSession(_ session: URLSession, task: URLSessionTask, willPerformHTTPRedirection response: HTTPURLResponse, newRequest request: URLRequest, completionHandler: @escaping (URLRequest?) -> Void) {
-        completionHandler(nil)
-    }
-
-    func urlSession(_ session: URLSession, task: URLSessionTask, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
-        if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust {
-            completionHandler(.performDefaultHandling, nil)
-        } else {
-            completionHandler(.cancelAuthenticationChallenge, nil)
-        }
+        ProviderSession.make(requestTimeout: 8, resourceTimeout: 20, protocolClasses: protocolClasses)
     }
 }
 

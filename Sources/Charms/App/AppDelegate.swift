@@ -47,6 +47,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         trigger.onTriggered = { [weak picker] processID in picker?.invokeTyped(processID: processID) }
         trigger.onSourceKey = { [weak picker] key in picker?.sourceReceived(key) }
         picker.onSessionEnded = { [weak trigger] in trigger?.reset() }
+        picker.onShowMemeSettings = { [weak self] in self?.showSettings(tab: .memes) }
 
         let statusItem = StatusItemController(services: services)
         statusItem.onOpenPicker = { [weak self] in
@@ -133,6 +134,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     @objc func showSettings(_ sender: Any?) {
+        showSettings(tab: nil)
+    }
+
+    /// Without a tab, Settings keeps the one last shown.
+    private func showSettings(tab: SettingsTab?) {
         guard let services, let hotKeys else { return }
         if settings == nil {
             let model = SettingsModel(services: services, hotKeys: hotKeys)
@@ -141,6 +147,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             model.onForgetFieldAccessAnswers = { [weak self] in self?.picker?.forgetFieldAccessAnswers() }
             settings = SettingsWindowController(model: model)
         }
+        if let tab { settings?.model.tab = tab }
         settings?.model.refresh()
         settings?.show()
     }

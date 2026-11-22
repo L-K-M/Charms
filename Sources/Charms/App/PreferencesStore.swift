@@ -1,6 +1,7 @@
 import CharmsCore
 import Combine
 import Foundation
+import SwiftUI
 
 /// The user's settings, observable by the interface and by the services
 /// that depend on them.
@@ -30,5 +31,13 @@ final class PreferencesStore: ObservableObject {
         guard copy != value else { return }
         value = copy
         save(copy.encoded())
+    }
+
+    /// A control's two-way connection to one stored setting.
+    func binding<Value>(_ setting: WritableKeyPath<Preferences, Value>) -> Binding<Value> {
+        Binding(
+            get: { self.value[keyPath: setting] },
+            set: { value in self.update { $0[keyPath: setting] = value } }
+        )
     }
 }

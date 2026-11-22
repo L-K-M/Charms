@@ -25,6 +25,11 @@ public struct Preferences: Codable, Equatable, Sendable {
     public var pickerTheme: PickerTheme
     /// Appearance the picker asks the system for.
     public var pickerAppearance: PickerAppearance
+    /// Let the meme composer send descriptions to Venice. Off until the user
+    /// turns it on, and even then nothing is sent before Generate.
+    public var veniceImagesEnabled: Bool
+    public var veniceModel: VeniceImageModel
+    public var veniceQuality: VeniceImageQuality
 
     public init(
         shortcut: KeyCombo = .standard,
@@ -37,7 +42,10 @@ public struct Preferences: Codable, Equatable, Sendable {
         fieldAccessDeclined: Set<String> = [],
         hasCompletedOnboarding: Bool = false,
         pickerTheme: PickerTheme = .impression,
-        pickerAppearance: PickerAppearance = .system
+        pickerAppearance: PickerAppearance = .system,
+        veniceImagesEnabled: Bool = false,
+        veniceModel: VeniceImageModel = .standard,
+        veniceQuality: VeniceImageQuality = .standard
     ) {
         self.shortcut = shortcut
         self.skinTone = skinTone
@@ -50,6 +58,9 @@ public struct Preferences: Codable, Equatable, Sendable {
         self.hasCompletedOnboarding = hasCompletedOnboarding
         self.pickerTheme = pickerTheme
         self.pickerAppearance = pickerAppearance
+        self.veniceImagesEnabled = veniceImagesEnabled
+        self.veniceModel = veniceModel
+        self.veniceQuality = veniceQuality
     }
 
     private enum CodingKeys: String, CodingKey {
@@ -57,6 +68,7 @@ public struct Preferences: Codable, Equatable, Sendable {
         case triggerExclusions, pasteApplications, shortcutPassThrough, hasCompletedOnboarding
         case fieldAccessApplications, fieldAccessDeclined
         case pickerTheme, pickerAppearance
+        case veniceImagesEnabled, veniceModel, veniceQuality
     }
 
     /// Decodes leniently: a field that is absent or unreadable takes its
@@ -78,6 +90,9 @@ public struct Preferences: Codable, Equatable, Sendable {
         hasCompletedOnboarding = value(.hasCompletedOnboarding, defaults.hasCompletedOnboarding)
         pickerTheme = value(.pickerTheme, defaults.pickerTheme)
         pickerAppearance = value(.pickerAppearance, defaults.pickerAppearance)
+        veniceImagesEnabled = value(.veniceImagesEnabled, defaults.veniceImagesEnabled)
+        veniceModel = value(.veniceModel, defaults.veniceModel)
+        veniceQuality = value(.veniceQuality, defaults.veniceQuality)
     }
 
     public static let storageKey = "preferences.v1"

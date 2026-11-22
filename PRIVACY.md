@@ -16,11 +16,35 @@ a preview contacts the provider’s media host. Switching sources clears the
 search field. Charms never includes local GIFs, local tags, document text or
 ordinary character searches in provider requests.
 
-**Memes.** Opening Image Playground gives Apple’s system interface the
-description you typed in Memes. Charms offers the on-device artwork styles.
-After you choose an image, the on-device caption model receives the image
-and that description. Charms keeps the draft in memory until you close
-the composer. Copy PNG places the finished image on the clipboard.
+**Memes: Image Playground and ChatGPT.** Opening Image Playground gives
+Apple’s system interface the description you typed, and the interface
+starts generating at once. With Venice switched off, pressing Return on a
+description in Memes opens it. On macOS 27, Apple runs every Image
+Playground style on Private Cloud Compute, so the description leaves your
+Mac. Apple says it doesn’t store or share it. The ChatGPT button, or
+choosing ChatGPT inside the sheet, has macOS send the request to OpenAI
+under the setup and terms macOS shows you. Charms never preselects ChatGPT
+unless you click that button.
+
+**Memes: Venice.** This is off until you add your key and switch it on.
+Nothing is sent until you press Generate. Each press then sends one request
+to `api.venice.ai` with the scene description, your key, the model and fixed
+image options. Venice also sees connection information including your IP
+address, and says it processes account, usage and request metadata. Charms
+sends no cookies, languages, app name or system version, and no image,
+caption, document text or search. Redirects are refused. Venice lists
+Z-Image Turbo as Private, meaning it says the description is not kept after
+the request. It lists GPT Image 2.6 Flare as Anonymized: OpenAI can read the
+description, and Venice says it withholds your identity from OpenAI.
+
+**Memes: your images and captions.** An image you drop or choose is read
+where it is and never uploaded, changed or deleted by Charms. A file on a
+network volume is read over that network. Web addresses are never fetched.
+A file another app promises is received into a private temporary folder,
+which Charms removes afterwards. The on-device caption model receives the
+artwork, plus the description only when the artwork was generated from it.
+Charms keeps the draft in memory until you close the composer. Copy PNG
+places the finished image on the clipboard.
 
 ## What Charms looks at
 
@@ -61,8 +85,13 @@ your fifty most recently used characters, each with its name.
 In its preferences: the shortcut, the preferred skin tone, whether the `::`
 trigger is on, the three application lists, and the applications you
 answered about when Charms asked whether to turn on text field reporting.
+It also stores whether Venice is switched on and the chosen model and
+quality.
 
-It does not store searches, typed text, document contents, window titles,
+In the Keychain: the GIF and Venice keys you save. With `CHARMS_HOME` set,
+they are files in that directory that only you can read.
+
+It does not store searches, meme descriptions or artwork, typed text, document contents, window titles,
 clipboard contents, or which application you used a character in.
 
 ## Diagnostics

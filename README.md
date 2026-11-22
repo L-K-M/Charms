@@ -90,12 +90,34 @@ The typed `::` shortcut stays local to character and snippet search.
 
 ### Memes
 
-Choose **Memes** (⌘4), describe a scene, and press Return to open Apple’s
-Image Playground. Choose the artwork you like and click Done. On macOS 27
-or later, Charms uses the available on-device Apple Intelligence model to
-suggest a caption for the image. You can edit it or write your own.
-**Copy PNG** copies the finished meme so you can paste it where you want.
-Creating the artwork requires a Mac with Image Playground available.
+Choose **Memes** (⌘4), describe a scene, and press Return. The composer
+takes artwork from four places:
+
+- **Image Playground** opens by itself after Return, unless Venice is
+  switched on, and starts generating straight away. On macOS 27 or later it
+  starts in **Any Style**, and all its styles run on Apple’s Private Cloud
+  Compute. It requires Apple Intelligence.
+- **ChatGPT…** opens the same Apple sheet with ChatGPT selected, on macOS 26
+  or later. The first time, macOS offers to set ChatGPT up. Until then
+  ChatGPT doesn’t appear in the sheet’s style menu. If you choose Not Now,
+  the sheet uses Apple’s model instead. Charms needs no key.
+- **Venice** generates inside the composer with your own API key. Add the key
+  and switch Venice on under **Settings → Memes**. Choose a model, then press
+  **Generate** (⌘G). Venice bills your account. At its list prices of
+  22 November 2026, Z-Image Turbo costs $0.01 an image and GPT Image 2.6
+  Flare $0.05, $0.07 or $0.09 at low, medium or high quality. Charms never
+  retries, and a request you stop may still be billed.
+- **Your own image.** Drop an image anywhere in the composer, or click
+  **Choose Image…** (⌘O). This works offline with generators such as Draw
+  Things. While the composer waits for an image, it stays above other apps
+  so you can drag to it.
+
+Venice and your own images need no Apple Intelligence. On macOS 27 or later,
+Charms uses the available on-device Apple Intelligence model to suggest a
+caption. You can edit it or write your own, and a caption you wrote stays
+when you change the artwork. **Copy PNG** copies the finished meme so you can
+paste it where you want. To caption an image without describing a scene,
+click **Open Meme Composer** in the picker.
 
 ### Text snippets
 
@@ -146,7 +168,9 @@ Charms asks for one permission, Accessibility, and explains it before the
 system prompt appears. (macOS 27 lists it as Device Control and Data Access.)
 It uses it to find the field you are typing in and to send the chosen
 character there. Without it Charms still opens, searches and copies; you paste
-yourself. Only online GIF search contacts an external provider. See [PRIVACY.md](PRIVACY.md).
+yourself. Charms contacts an external service only for online GIFs and for
+Venice artwork you ask it to generate. Image Playground can use Apple’s or
+ChatGPT’s servers. See [PRIVACY.md](PRIVACY.md).
 
 If insertion stops after replacing the app, choose Enable Insertion in
 Settings, General. In the system list, switch Charms off and on again if it
@@ -169,8 +193,9 @@ If another utility already uses Control-P, for example PopChar, quit it or
 change one of the two shortcuts; whichever registered first wins.
 
 To remove Charms, switch off "Open Charms at login" in its Settings, quit it,
-delete the app, and optionally delete `~/Library/Application Support/Charms`
-(favourites and recents) and the Accessibility entry in System Settings.
+remove any saved GIF or Venice keys in Settings, delete the app, and
+optionally delete `~/Library/Application Support/Charms` (favourites and
+recents) and the Accessibility entry in System Settings.
 
 What has been tested, and on which systems, is recorded in
 [docs/compatibility.md](docs/compatibility.md). The released-app screenshots

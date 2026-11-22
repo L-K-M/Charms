@@ -89,9 +89,19 @@ not a mockup or a real document.
   Preserve source switching only in shortcut and menu-bar sessions, native
   marked-text handling, and the fresh query when entering Online GIFs. Show
   each source’s Command-number shortcut beside its name on a single row.
-- Memes ends the caret-targeted picker session before opening Apple's
-  Image Playground. Keep prompts and artwork out of diagnostics and storage.
+- Memes ends the caret-targeted picker session before opening the composer.
+  Keep prompts and artwork out of diagnostics and storage.
   Only an explicit Copy PNG may write the meme to the clipboard.
+- Image Playground generates as soon as it opens with a description, so
+  preselect the external provider only for the ChatGPT button. That button
+  has to stay: macOS 27.0.1 omits an unconfigured provider from the style
+  menu and shows its setup only when it is preselected.
+- Venice lives behind `VeniceArtworkService`: off by default, one request
+  per Generate, no retry, the key read only then. Model IDs, sizing and
+  prices in `VeniceImageModel` come from `GET /models?type=image`; recheck
+  them there when changing models.
+- User-supplied images are read-only. Only Image Playground's temporary
+  output and Charms' own file-promise folder may be deleted.
 - The **Impression** composing picker is documented in
   `docs/design/impression.md` and `docs/design/prototype.md`. Its two-scale
   proof uses catalogue previews, not document text. `pressedItem` is only a
@@ -134,7 +144,7 @@ not a mockup or a real document.
   add or strip variation selectors, joiners or modifiers.
 - **Accessibility offsets are UTF-16.** Never use Swift character counts as
   ranges in another application's text.
-- **Privacy.** Only explicit online GIF browsing may contact the selected provider and its media hosts. Local GIF files and their tags stay on device. No stored queries, surrounding typed text,
+- **Privacy.** Only two features may contact a service directly: explicit online GIF browsing (the selected provider and its media hosts) and, when switched on, Generate in the meme composer (Venice, sending only the scene description and fixed options). Image Playground and its ChatGPT option are the system's, opened on request. Local GIF files and their tags, artwork and captions are never uploaded by Charms. No stored queries, surrounding typed text,
   document contents, window titles or clipboard contents. Text deliberately
   saved as snippets, favourites or recents is the explicit local-storage
   exception; never include snippet content in diagnostics. The diagnostics log has no
