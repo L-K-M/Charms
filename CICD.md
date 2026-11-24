@@ -13,7 +13,7 @@ Release.
 | Workflow | Trigger | Purpose |
 | --- | --- | --- |
 | `.github/workflows/ci.yml` | Pull requests, pushes to `main`, manual dispatch | License/bundle-id assertions, `swift build`, `swift test`, catalogue check, universal `.app` assembly on a pinned Xcode toolchain. |
-| `.github/workflows/zai-code-review.yml` | Pull requests (opened / reopened / synchronize / ready for review) | Automated review pass with GLM 5.3 (deep) and StepFun step-5-preview (fast tier), with MiMo as the outage fallback. |
+| `.github/workflows/zai-code-review.yml` | Pull requests (opened / reopened / synchronize / ready for review) | Automated review pass with GLM 5.3 (deep) and StepFun step-5-preview (fast tier). |
 | `.github/workflows/release.yml` | Pushing a `v*` tag (e.g. `v1.2.0`) | Re-run tests, build the universal `.app`, package `.zip` + `.dmg`, publish a GitHub Release, then byte-compare the published assets. |
 
 ## Continuous integration (`ci.yml`)
@@ -69,8 +69,8 @@ hardening:
   never for a fork's.
 - The third-party action is pinned to an immutable commit rather than a moving tag.
 - One review per PR at a time; a superseded review of an outdated diff is cancelled.
-- `ZAI_API_KEY` is required; `MIMO_API_KEY` and `STEPFUN_API_KEY` are optional —
-  empty secrets keep the outage fallback and the dedicated fast tier disabled.
+- `ZAI_API_KEY` is required; `STEPFUN_API_KEY` is optional —
+  an empty StepFun key keeps the dedicated fast tier on Z.ai.
 - Note: because `pull_request_target` reads the workflow from the base branch, a
   PR that introduces this file is not itself reviewed; reviews start with the
   next PR.
